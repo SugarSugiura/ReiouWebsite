@@ -8,11 +8,13 @@
   },
   "devDependencies": {
     "http-server": "^14.1.1",
+    "mustache": "^4.2.0",
     "prettier": "^2.8.0"
   },
   "scripts": {
     "start": "http-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "mustache user.json base.mustache -p user.mustache > output.html"
   },
   "repository": {
     "type": "git",

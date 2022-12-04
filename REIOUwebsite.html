@@ -38,6 +38,23 @@
                 <a href="hazimete.html">
                     <img src="assets/img/ranking1.jpg" alt="テキストテキストテキスト">
                 </a>
+
+                <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+                <div id="app">{{ message }}</div>
+
+                <script>
+                    const { createApp } = Vue
+
+                    createApp({
+                        data() {
+                            return {
+                                message: '将棋盤をここに表示する'
+                            }
+                        }
+                    }).mount('#app')
+                </script>
+
                 <h2 class="article-subtitle">駒の動かし方</h2>
             </article>
         </div>

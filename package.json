@@ -7,6 +7,7 @@
     "shogi-player": "^0.0.360"
   },
   "devDependencies": {
+    "ejs": "^3.1.8",
     "http-server": "^14.1.1",
     "mustache": "^4.2.0",
     "prettier": "^2.8.0"
@@ -14,7 +15,9 @@
   "scripts": {
     "start": "http-server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "mustache user.json base.mustache -p user.mustache > output.html"
+    "build": "mustache user.json base.mustache -p user.mustache > output.html",
+    "build:inline": "ejs sample.ejs -o output.html name=Lerxst",
+    "build:json": "ejs sample.ejs -o output.html -f user.json"
   },
   "repository": {
     "type": "git",

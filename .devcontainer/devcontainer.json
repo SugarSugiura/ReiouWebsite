@@ -15,7 +15,8 @@
 	  "esbenp.prettier-vscode",
 	  "dbaeumer.vscode-eslint",
 	  "Vue.volar",
-	  "imgildev.vscode-mustache-snippets"
+	  "imgildev.vscode-mustache-snippets",
+	  "TaodongWu.ejs-snippets"
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.

@@ -382,3 +382,61 @@ footer　※以下コピペ理解未完
   label, input, textarea, select, button {
     cursor: pointer;
   }
+
+/*-------------------------------------------
+SP
+-------------------------------------------*/
+
+@media screen and (max-width: 767px) {
+  /*-------------------------------------------
+  header
+  -------------------------------------------*/
+  #header .site-title {
+    padding: 20px 16px;
+  }
+  #wrapper {
+    /* 横スクロールを表示 */
+    overflow-x: scroll;
+  }
+
+  /*-------------------------------------------
+  pickup
+  -------------------------------------------*/
+  #pickup {
+    flex-direction: column;
+    padding-top: 140px;
+  }
+  #pickup article {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  /*-------------------------------------------
+  container
+  -------------------------------------------*/
+  #container {
+    flex-direction: column;
+  }
+  main {
+    width: 100%;
+  }
+
+  /*-------------------------------------------
+  aside
+  -------------------------------------------*/
+  #sidebar {
+    width: 100%;
+    padding: 0;
+  }
+
+  /*-------------------------------------------
+  footer
+  -------------------------------------------*/
+  #footer .content {
+    flex-direction: column;
+  }
+  #footer .item {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}

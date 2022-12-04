@@ -36,6 +36,7 @@ main
 ### TODO
 
 - [ ] shogi-playerとマージ
+- [ ] マルチページモード https://cli.vuejs.org/config/#pages
 - [ ] codespacesの使い方説明
 - [ ] yarn run serveが動くようにする
 - [ ] コンテナ起動時に、yarn startする

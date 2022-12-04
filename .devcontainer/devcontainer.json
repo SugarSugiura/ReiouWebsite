@@ -14,7 +14,8 @@
 	"extensions": [
 	  "esbenp.prettier-vscode",
 	  "dbaeumer.vscode-eslint",
-	  "Vue.volar"
+	  "Vue.volar",
+	  "imgildev.vscode-mustache-snippets"
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.

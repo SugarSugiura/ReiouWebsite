@@ -40,6 +40,7 @@ main
 - [ ] マルチページモード https://cli.vuejs.org/config/#pages -> shogi-player 自体の js は一つだけ。kif ファイルごとにビルドが必要ないはずで、ならば js を html-webpack-plugin で inject するほどのことはなさそう
 - [ ] 開発時、テンプレート書き換えしたタイミングで、手動でサーバーを再起動しなくていいようにする (-> nodemon?)
 - [x] ejs に切り替え(node.jsを使うなら、express標準のやつを使うのがよさそう)
+- [ ] node.jsのexpresssサーバーで開発するようにする。認証機能をつけるまではデプロイはビルド後のhtmlだけでいい説。ejsは開発サーバーをリロードしなくても、ブラウザをリロードするだけで中身が反映されているので楽そう。
 - [ ] yarn run serveが動くようにする
 - [ ] コンテナ起動時に、yarn startする
 - [ ] devcontainerの設定を整理

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AppShogiPlayer from './components/AppShogiPlayer.vue'
+import AppShogiPlayer from './AppShogiPlayer.vue'
 
 export default {
   name: 'App',

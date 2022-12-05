@@ -225,8 +225,4 @@ $sp_assets_dir: "shogi-player/assets"
     width: 100%
   +tablet
     width: 70vmin
-
-// Vue のロゴを小さくする
-#app > img
-  height: 64px
 </style>

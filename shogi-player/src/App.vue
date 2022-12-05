@@ -1,23 +1,22 @@
 <template>
-  <div id="shogi-player">
-
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app-shogi-player">
+    <AppShogiPlayer msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppShogiPlayer from './components/AppShogiPlayer.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AppShogiPlayer
   }
 }
 </script>
 
 <style>
-#shogi-player {
+#app-shogi-player {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

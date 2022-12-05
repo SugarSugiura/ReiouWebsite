@@ -193,11 +193,10 @@ import Buefy from "buefy"
 import "buefy/dist/buefy.css"
 Vue.use(Buefy)
 
-// shogi-player 本体
 import ShogiPlayer from "shogi-player/components/ShogiPlayer.vue"
 
 export default {
-  name: "HelloWorld",
+  name: "AppShogiPlayer",
   components: {
     ShogiPlayer,
   },

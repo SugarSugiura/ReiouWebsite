@@ -9,6 +9,9 @@ module.exports = {
     "shogi-player",
   ],
 
+  // KIF ファイルに全角スペースが入っているとビルドが通らない問題があるので、eslint を無効化
+  lintOnSave: false,
+
   // ▼webpack5 で "Uncaught ReferenceError: process is not defined" になる問題に対処する
   // 4 まで必ず存在していた process が 5 から切り捨てられたため process を参照しているライブラリがことごとく失敗する
   // typedef process であらかじめチェックするように webpack のドキュメントに書いてあるがきりがない

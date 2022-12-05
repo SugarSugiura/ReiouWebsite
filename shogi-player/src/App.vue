@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+  <div id="shogi-player">
+
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style>
-#app {
+#shogi-player {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

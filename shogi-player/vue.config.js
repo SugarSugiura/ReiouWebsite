@@ -28,17 +28,9 @@ module.exports = {
       chunks: ['chunk-vendors', 'chunk-common', 'index']
     },
     hazimete: {
-      // entry for the page
+      // todo: 必要なshogi-playerのjsをentryにする
       entry: 'src/main.js',
-      // the source template
-      template: 'public/hazimete.html',
-      // output as dist/hazimete.html
-      filename: 'hazimete.html',
-      // when using title option,
-      // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
       title: '初めての方へ',
-      // chunks to include on this page, by default includes
-      // extracted common chunks and vendor chunks.
       chunks: ['chunk-vendors', 'chunk-common', 'index']
     },
 

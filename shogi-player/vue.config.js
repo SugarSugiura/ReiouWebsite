@@ -12,6 +12,43 @@ module.exports = {
   // KIF ファイルに全角スペースが入っているとビルドが通らない問題があるので、eslint を無効化
   lintOnSave: false,
 
+  pages: {
+    index: {
+      // entry for the page
+      entry: 'src/main.js',
+      // the source template
+      template: 'public/index.html',
+      // output as dist/index.html
+      filename: 'index.html',
+      // when using title option,
+      // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
+      title: 'Index Page',
+      // chunks to include on this page, by default includes
+      // extracted common chunks and vendor chunks.
+      chunks: ['chunk-vendors', 'chunk-common', 'index']
+    },
+    hazimete: {
+      // entry for the page
+      entry: 'src/main.js',
+      // the source template
+      template: 'public/hazimete.html',
+      // output as dist/hazimete.html
+      filename: 'hazimete.html',
+      // when using title option,
+      // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
+      title: '初めての方へ',
+      // chunks to include on this page, by default includes
+      // extracted common chunks and vendor chunks.
+      chunks: ['chunk-vendors', 'chunk-common', 'index']
+    },
+
+    // when using the entry-only string format,
+    // template is inferred to be `public/subpage.html`
+    // and falls back to `public/index.html` if not found.
+    // Output filename is inferred to be `subpage.html`.
+    // subpage: 'src/subpage/main.js'
+  },
+
   // ▼webpack5 で "Uncaught ReferenceError: process is not defined" になる問題に対処する
   // 4 まで必ず存在していた process が 5 から切り捨てられたため process を参照しているライブラリがことごとく失敗する
   // typedef process であらかじめチェックするように webpack のドキュメントに書いてあるがきりがない

@@ -175,7 +175,9 @@ Menu Wide
 }
 #header .site-title {
   padding: 20px 16px;
+  /*header自体の位置(間隔)*/
   line-height: 1px;
+  /*header縦の位置が変わったけどなぜかはわからん*/
 }
 /*
 「display: inline-block;」でリンクを親要素の範囲に広げる
@@ -186,27 +188,27 @@ inline-blockを設定している
 #header .site-title a {
     display: inline-block;
 }
-nav {
+#navi {
     background-color: #333;
+    /*
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-nav a {
-    color: #fff;
+    */
 }
 
-nav ul {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+#navi a {
+    color: #fff;
 }
+/*
 nav li {
     font-size: 0.875rem;
-    /*ヘッダー枠内の文字の大きさ*/
+    ヘッダー枠内の文字の大きさ
     padding: 10px 40px 10px 40px;
-    /*ヘッダー枠内の空白調整*/
+    ヘッダー枠内の空白調整
 }
+*/
+/*
 nav .menu,
 nav .login {
   display: flex;
@@ -215,18 +217,36 @@ nav .login {
   padding: 0 16px;
   margin: 0 auto;
 }
+*/
 
-nav .menu li {
-  padding: 10px 0px 10px 80px;
-  /*ヘッダー枠内のmenuの位置*/
-  margin-right: 0px;
-  /*ヘッダー枠内のmenuの間隔*/
-}
+/*
 nav .login li {
   padding: 10px 80px 10px 0px;
   margin-left: 0px;
-  /*ヘッダー枠内のloginの間隔*/
+  ヘッダー枠内のloginの間隔
 }
+*/
+
+#navi ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#navi li {
+  font-size: 0.875rem;
+  padding: 10px 60px 10px 0;
+  /*ヘッダー枠内のmenuの位置*/
+  /*margin-right: 0px;*/
+  /*ヘッダー枠内のmenuの間隔*/
+}
+/*
+#navi li {
+  font-size: 0.875rem;
+  padding: 10px 0 10px 0;
+  margin: 0 auto;
+}
+*/
 
 /*-------------------------------------------
 top-title ヘッダーの次に来る初心者向けのとこ
@@ -394,10 +414,14 @@ SP
   #header .site-title {
     padding: 20px 16px;
   }
-  #wrapper {
+  #navi {
     /* 横スクロールを表示 */
     overflow-x: scroll;
   }
+
+  /*nav {
+    margin: auto;
+  }*/
 
   /*-------------------------------------------
   pickup

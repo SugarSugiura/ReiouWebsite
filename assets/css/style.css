@@ -200,6 +200,19 @@ inline-blockを設定している
 #navi a {
     color: #fff;
 }
+
+.pc-area {
+  display: block;
+  /* pc版を表示 */
+}
+.phone-area {
+  display: none;
+  /* スマホ版を非表示 */
+}
+.toggle_btn {
+  display: none;
+  /* スマホ版を非表示 */
+}
 /*
 nav li {
     font-size: 0.875rem;
@@ -310,99 +323,99 @@ TOP、PRODUCTS
 footer　※以下コピペ理解未完
 -------------------------------------------*/
 #footer {
-    font-size: 0.875rem;
-    background-color: #f7f7f7;
-  }
-  #footer .content {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-  #footer .item {
-    width: 30%;
-  }
-  #footer .footer-title {
-    font-size: 1.125rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-  #footer ul.about-list {
-    margin: 20px 0;
-  }
-  #footer ul.about-list li {
-    margin-bottom: 5px;
-  }
-  #footer ul.about-list .arrow {
-    position: relative;
-    display: inline-block;
-    padding-left: 12px;
-    color: #333;
-  }
-  /*
-  疑似要素で三角矢印を表示
-  border～プロパティで三角を作り、positionで位置調整
-  */
-  #footer ul.about-list .arrow::before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 6px 0 6px 8px;
-    border-color: transparent transparent transparent #333;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    margin-top: -6px;
-  }
-  #footer .menu-list {
-    border-bottom: solid  1px #777;
-  }
-  #footer .menu-list > li {
-    border-top: solid  1px #777;
-    padding: 15px;
-    text-align: left;
-  }
-  #footer .copyright {
-    font-size: 0.750rem;
-    text-align: center;
-    padding: 10px 0;
-  }
+  font-size: 0.875rem;
+  background-color: #f7f7f7;
+}
+#footer .content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+ padding-bottom: 50px;
+}
+#footer .item {
+  width: 30%;
+}
+#footer .footer-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+#footer ul.about-list {
+  margin: 20px 0;
+}
+#footer ul.about-list li {
+  margin-bottom: 5px;
+}
+#footer ul.about-list .arrow {
+  position: relative;
+  display: inline-block;
+  padding-left: 12px;
+  color: #333;
+}
+/*
+疑似要素で三角矢印を表示
+border～プロパティで三角を作り、positionで位置調整
+*/
+#footer ul.about-list .arrow::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent #333;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -6px;
+}
+#footer .menu-list {
+  border-bottom: solid  1px #777;
+}
+#footer .menu-list > li {
+  border-top: solid  1px #777;
+  padding: 15px;
+  text-align: left;
+}
+#footer .copyright {
+  font-size: 0.750rem;
+  text-align: center;
+  padding: 10px 0;
+}
 
-  /*
-  otoiawase
-  .select, .input, .radio, .textarea
-  */
-  /*
-  #top {
-    padding-top: 150px;
-  }
-  */
-  .select {
-    border-radius: 5px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    min-width: 500px;
-  }
-  .input {
-    border-radius: 5px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    min-width: 500px;
-  }
-  .radio {
-    margin: auto;
-  }
-  .textarea {
-    border-radius: 5px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    min-width: 500px;
-    min-height: 100px;
-  }
-  label, input, textarea, select, button {
-    cursor: pointer;
-  }
+/*
+otoiawase
+.select, .input, .radio, .textarea
+*/
+/*
+#top {
+  padding-top: 150px;
+}
+*/
+.select {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-width: 500px;
+}
+.input {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-width: 500px;
+}
+.radio {
+  margin: auto;
+}
+.textarea {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-width: 500px;
+  min-height: 100px;
+}
+label, input, textarea, select, button {
+  cursor: pointer;
+}
 
 /*-------------------------------------------
 SP
@@ -415,29 +428,144 @@ SP
   #header .site-title {
     padding: 20px 16px;
   }
-  #navi {
-    /* 横スクロールを表示 */
-    overflow-x: scroll;
+
+  /*
+  「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
+  ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+  設定している場合は、z-indexの数値が大きい方が前面に表示される
+  */
+  #header {
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10
+  }
+  /*
+  ハンバーガーメニュー
+  メニューが閉じている時は、「left: -300px;」で画面左に隠し、
+  「opacity: 0;」で非表示にしている
+  */
+  #navi-phone {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    color: #fff;
+    padding: 36px 50px;
+    transition: all 0.5s;
+    z-index: 20;
+    opacity: 0;
+  }
+  #navi-phone a {
+    color: #fff;
+  }
+  #navi-phone li {
+    margin-bottom: 14px;
   }
 
   .pc-area {
     display: none;
+    /* pc版を非表示 */
   }
-
-  /*nav {
-    margin: auto;
-  }*/
+  .phone-area {
+    display: block;
+    /* スマホ版を表示 */
+  }
+  .open #navi-phone {
+    left: 0;
+    opacity: 1;
+  }
+  .toggle_btn {
+    display: block;
+    /* スマホ版を表示 */
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transition: all 0.5s;
+    cursor: pointer;
+    z-index: 20;
+  }
+  /*
+  ハンバーガーメニューの線の設定（メニューが閉じている時）
+  */
+  .toggle_btn span {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #333;
+    border-radius: 4px;
+    transition: all 0.5s;
+  }
+  /*
+  1本目の線の位置を設定
+  */
+  .toggle_btn span:nth-child(1) {
+    top: 10px;
+  }
+  /*
+  2本目の線の位置を設定
+  */
+  .toggle_btn span:nth-child(2) {
+    bottom: 10px;
+  }
+  /*
+  ハンバーガーメニューの線の設定（メニューが開いている時）
+  線の色を白に変更
+  */
+  .open .toggle_btn span {
+    background-color: #fff;
+  }
+  /*
+  1本目の線を-45度回転
+  */
+  .open .toggle_btn span:nth-child(1) {
+    -webkit-transform: translateY(4px) rotate(-45deg);
+    transform: translateY(4px) rotate(-45deg);
+  }
+  /*
+  2本目の線を45度回転
+  */
+  .open .toggle_btn span:nth-child(2) {
+    -webkit-transform: translateY(-4px) rotate(45deg);
+    transform: translateY(-4px) rotate(45deg);
+  }
+  #mask {
+    display: none;
+    transition: all 0.5s;
+  }
+  /*
+  メニューを開いている時は、全体を黒背景にする
+  */
+  .open #mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .8;
+    z-index: 10;
+    cursor: pointer;
+  }
 
   /*-------------------------------------------
   top-title
   -------------------------------------------*/
 
   #top-title {
-    /*justify-content: space-between;*/
     padding-top: 100px;
     flex-direction: column;
   }
-  }
+  /*Galaxy Foldでは"駒の動かし方"が2行になるため調整必要*/
+
   #top-title article {
     width: 100%;
     margin-bottom: 30px;

@@ -9,10 +9,11 @@
         <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/style.css">
+        <script src="assets/js/main.js"></script>
     </head>
     <!--ページを開いた瞬間に色が変色しているバグあり-->
     <body>
-        <header id="header">
+        <header id="header" class="">
             <h1 class="site-title wrapper"><!--空白でclass名を2つ指定-->
                 <a href="REIOUwebsite.html"><img src="assets/img/REIOUlogo.png" alt="REIOU"></a>
             </h1>
@@ -29,6 +30,21 @@
                     <li><a href="#">ログイン</a></li>
                 </ul>-->
             </nav>
+            <nav id="navi-phone" class="phone-area">
+                <ul class="wrapper">
+                    <li><a href="#">学習</a></li>
+                    <li><a href="#">戦法一覧</a></li>
+                    <li><a href="#">紹介</a></li>
+                    <li><a href="#">プラン</a></li>
+                    <li><a href="#">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="toggle_btn">
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div id="mask"></div>
         </header>
 
         <!--ヘッダーとmainの間にタイトルをつけたいならこれをいれた方がいいか-->

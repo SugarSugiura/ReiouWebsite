@@ -236,6 +236,7 @@ nav .login li {
 #navi li {
   font-size: 0.875rem;
   padding: 10px 60px 10px 0;
+  margin: auto;
   /*ヘッダー枠内のmenuの位置*/
   /*margin-right: 0px;*/
   /*ヘッダー枠内のmenuの間隔*/
@@ -419,18 +420,25 @@ SP
     overflow-x: scroll;
   }
 
+  .pc-area {
+    display: none;
+  }
+
   /*nav {
     margin: auto;
   }*/
 
   /*-------------------------------------------
-  pickup
+  top-title
   -------------------------------------------*/
-  #pickup {
+
+  #top-title {
+    /*justify-content: space-between;*/
+    padding-top: 100px;
     flex-direction: column;
-    padding-top: 140px;
   }
-  #pickup article {
+  }
+  #top-title article {
     width: 100%;
     margin-bottom: 30px;
   }

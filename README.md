@@ -49,3 +49,9 @@ main
 - [ ] kifファイルを渡せるようにする
 - [ ] コンテンツの運用を考える
 = [ ] デプロイ周り
+
+```bash
+docker build -t reiou:1 .
+docker run --name local --rm -p 4000:4000 -it reiou:1
+docker exec -it local bash
+```

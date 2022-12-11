@@ -12,7 +12,7 @@
     "prettier": "^2.8.0"
   },
   "scripts": {
-    "start": "http-server",
+    "start": "http-server --port 4000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:inline": "ejs sample.ejs -o output.html name=Lerxst",
     "build:json": "ejs sample.ejs -o output.html -f user.json"

@@ -1,24 +1,26 @@
-<template lang="pug">
-.IndexApp.section
-  .is-flex.is-flex-direction-column.is-align-items-center
-    NuxtLogo
-    .MyShogiPlayerContainer
-      ShogiPlayer(
-        sp_run_mode="view_mode"
-        sp_layout="is_horizontal"
-        sp_controller="is_controller_on"
-        sp_slider="is_slider_on"
-        sp_summary="is_summary_off"
-        :sp_turn="4"
-        :sp_body="staticKif"
-        )
+<template>
+  <div class="secondPage section">
+    <div class="is-flex is-flex-direction-column is-align-items-center">
+      <div class="MyShogiPlayerContainer">
+        <ShogiPlayer
+          sp_run_mode="view_mode"
+          sp_layout="is_horizontal"
+          sp_controller="is_controller_on"
+          sp_slider="is_slider_on"
+          sp_summary="is_summary_off"
+          :sp_turn="31"
+          :sp_body="staticKif"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import ShogiPlayer from "shogi-player/components/ShogiPlayer.vue";
 
 export default {
-  name: "IndexApp",
+  name: "secondPage",
   components: {
     ShogiPlayer,
   },
@@ -206,12 +208,10 @@ export default {
 };
 </script>
 
-<style lang="sass">
-.IndexApp
-  // ShogiPlayer は常に横100%まで広がるので外側で大きさを調整する
-  .MyShogiPlayerContainer
-    +mobile
-      width: 100%
-    +tablet
-      width: 60vmin
+<style lang="scss">
+.secondPage {
+  .MyShogiPlayerContainer {
+    width: 80vmin;
+  }
+}
 </style>

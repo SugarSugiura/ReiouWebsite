@@ -46,3 +46,9 @@ $ yarn add shogi-player
 yarn
 yarn dev --open --port 3200
 ```
+
+```shell
+npm install -g yarn
+yarn install
+yarn run dev
+```

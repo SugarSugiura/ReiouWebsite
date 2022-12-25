@@ -209,6 +209,7 @@ inline-blockを設定している
   /* スマホ版を非表示 */
 }
 .toggle_btn {
+  right: 15px;
   display: none;
   /* スマホ版を非表示 */
 }

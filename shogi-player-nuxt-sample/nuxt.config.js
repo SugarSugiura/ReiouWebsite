@@ -4,19 +4,30 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "shogi-player-nuxt-sample",
+    title: "令王",
     htmlAttrs: {
-      lang: "en"
+      lang: "ja"
     },
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      { hid: "description", name: "description", content: "説明テキスト" },
       { name: "format-detection", content: "telephone=no" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
-    ]
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" },
+      { rel: "stylesheet", href: "https://unpkg.com/ress/dist/ress.min.css" },
+      { rel: "stylesheet", href: "assets/css/style.css" }
+    ],
+    script: [
+      {
+        src: 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'
+      },
+      {
+        src: 'assets/js/main.js'
+      }
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

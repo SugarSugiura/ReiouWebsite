@@ -10,3 +10,8 @@ yarn install
 ```bash
 yarn run dev
 ```
+
+### sugar memo
+
+<style lang="scss">
+ →cssで書いてもいい、scssでかけると楽

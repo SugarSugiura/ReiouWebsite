@@ -416,6 +416,35 @@ otoiawase
 label, input, textarea, select, button {
   cursor: pointer;
 }
+/*-------------------------------------------
+トップに追従ボタン
+-------------------------------------------*/
+.fixed_banner {
+  position: fixed; /* 追従させる為にfixedの値を記述します */
+  z-index: 99999; /* 他の要素の下に隠れないように全面配置させます */
+  top: 150px; /* 上から150pxのところにバナーを配置します */
+  right: 40px; /* 右から40pxのところにバナーを配置します */
+  }
+  
+  .fixed_banner_pc {
+  width: 300px; /* バナーの横幅を指定してあげます */
+  }
+  
+  .floating-banner:hover {
+  opacity: .8; /* マウスが重なった時に少し透過させます */
+  }
+  
+  .fixed_banner_sp {
+  display: none; /* PCではスマホ用のバナーは非表示にします */
+  }
+  
+  
+  @media screen and (max-width: 480px) { /* メディアクエリを使ってスマホ用のブレイクポイントを指定 */
+  
+  .fixed_banner_sp {
+  display: inline-block; /* 消していたスマホ用のバナーを表示させます */
+  width: 100vw; /* スマホの画面幅いっぱいにバナーを表示させます */
+  }
 
 /*-------------------------------------------
 SP
@@ -565,7 +594,6 @@ SP
   z-index: 10;
   cursor: pointer;
 }
-
   /*-------------------------------------------
   top-title
   -------------------------------------------*/

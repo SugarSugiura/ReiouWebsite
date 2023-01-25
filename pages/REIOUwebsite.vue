@@ -148,6 +148,12 @@
           <script async src="https://platform.twitter.com/widgets.js"></script>
         </section>
       </div>
+      <button class="fixed_banner">
+        <a href="リンク先URL">
+          <img class="fixed_banner_pc" src="バナー画像ファイル名" alt="">
+          <img class="fixed_banner_sp" src="バナー画像ファイル名" alt="">
+        </a>
+      </button>
 
       <p class="copyright">&copy; REIOU</p>
     </footer>

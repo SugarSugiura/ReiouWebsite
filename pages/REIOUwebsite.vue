@@ -6,7 +6,14 @@
       </h1>
       <nav id="navi" class="pc-area"><!--元は-->
         <ul class="wrapper"><!--元はmenu-->
-          <li><a href="#">学習<!----></a></li>
+          <li class="single">
+            <a href="#">学習<!----></a>
+            <ul class="menu-second">
+              <li><a href="#">Single Child</a></li>
+              <li><a href="#">Single Child</a></li>
+              <li><a href="#">Single Child</a></li>
+            </ul>
+          </li>
           <li><a href="#">戦法一覧<!----></a></li>
           <li><a href="#">紹介<!----></a></li>
           <li><a href="#">プラン<!----></a></li>

@@ -21,11 +21,13 @@ ul {
 ここまで
 */
 
+/*変更失敗
+
 a {
     color: #333;
     text-decoration: none;
     transition: all 0.5s;
-    /*これを入れると透明になる瞬間が滑らかに*/
+    
 }
 a:hover {
   opacity: 0.7;
@@ -36,6 +38,54 @@ img {
 li {
     list-style: none;
 }
+
+.wrapper {
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  position:relative;
+}
+
+.wrapper > li {
+  width: 25%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.wrapper > li:hover {
+  background-color: #3c3636;
+}
+
+.wrapper > li a {
+  display: block;
+}
+
+.menu-second {
+  visibility: hidden;
+}
+
+.wrapper > .single {
+  position: relative;
+}
+
+.single .menu-second {
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+.single .menu-second li a:hover {
+  opacity: 0.7;
+}
+
+.single:hover .menu-second {
+  visibility: visible;
+}
+
+*/
 
 /*
 グローバルナビゲーション 未理解

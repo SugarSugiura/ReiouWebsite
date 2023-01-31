@@ -445,6 +445,7 @@ label, input, textarea, select, button {
   display: inline-block; /* 消していたスマホ用のバナーを表示させます */
   width: 100vw; /* スマホの画面幅いっぱいにバナーを表示させます */
   }
+}
 
 /*-------------------------------------------
 SP
@@ -638,3 +639,4 @@ SP
     margin-bottom: 30px;
   }
 }
+

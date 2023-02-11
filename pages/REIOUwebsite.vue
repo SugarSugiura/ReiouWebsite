@@ -166,3 +166,49 @@
     </footer>
   </div>
 </template>
+
+
+<style lang="scss">
+  .wrapper {
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .wrapper > li a {
+    display: block;
+  }
+
+  .menu-second {
+    visibility: hidden;
+  }
+
+  .menu > .single {
+    position: relative;
+  }
+  /*
+  「position: absolute;」で、singleクラスを基準に所定の位置に配置する
+  */
+  .single .menu-second {
+    width: 100%;
+    background-color: #3c3636;
+    position: absolute;
+    top: 50px;
+    left: 0;
+  }
+
+  .single .menu-second li a:hover {
+    opacity: 0.7;
+  }
+
+  /*
+    ホバー時にサブメニュー（Single）を表示する
+  */
+  
+  .single:hover .menu-second {
+    visibility: visible;
+  }
+
+</style>

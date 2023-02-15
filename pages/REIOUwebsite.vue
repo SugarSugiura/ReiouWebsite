@@ -134,7 +134,7 @@
           <ul class="about-list">
             <li><a href="REIOUunnei.html" class="arrow">令王運営の詳細</a></li>
             <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼" class="arrow">お仕事のご依頼</a></li>
-            <li><a href="otoiawase.html" class="arrow">お問い合わせ</a></li>
+            <li><a href="otoiawase" class="arrow">お問い合わせ</a></li>
           </ul>
         </section>
 

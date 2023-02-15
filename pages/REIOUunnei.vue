@@ -41,6 +41,16 @@
             テキストテキストテキストテキストテキストテキストテキストテキストテキスト
           </p>
         </div>
+        <section>
+          <div class="slide">
+            <img id="slide_img" src="img/img1.jpg">
+          </div>
+          <div class="toolbar">
+            <div id="prev" class="button"><</div>
+            <div id="page"></div>
+            <div id="next" class="button">></div>
+          </div>
+        </section>
       </div>
     </main>
 
@@ -82,3 +92,52 @@
     </footer>
   </div>
 </template>
+
+<style lang="scss">
+// 大枠
+section{
+  width: 500px;
+  margin: 40px auto;
+}
+
+// スライドショー
+.slide{
+  width: 500px;
+  height: 500px;
+  margin-bottom: 10px;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+// ツールバー
+.toolbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// ページ数
+#page{
+  margin: 0 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+// ボタン
+.button{
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  line-height: 48px;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #ddd;
+  cursor: pointer;
+  user-select: none;
+}
+</style>

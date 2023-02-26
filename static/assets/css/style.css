@@ -9,29 +9,22 @@ body {
     font-size: 1rem;
     font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
 }
-/*
-css記載
-下になんかあるとクリック範囲が変わる可能性有
 
-ul {
-  list-style: none;
-}
-
-ここまで
-*/
-
-a {
+ a {
     color: #333;
     text-decoration: none;
-    transition: all 0.5s;
+    transition: all 0.5s; 
     /*これを入れると透明になる瞬間が滑らかに*/
-}
+} 
+
+
 a:hover {
   opacity: 0.7;
 }
 img {
     max-width: 100%;
 }
+
 li {
     list-style: none;
 }
@@ -51,95 +44,9 @@ li {
   margin: 0 auto;
   position: relative;
 }
-
-.wrapper .menu > li {
-  width: 25%;
-  height: 50px;
-  line-height: 30px;
-  text-align: center;
-}
-
-.wrapper .menu > li:hover {
-  background-color: #3c3636;
-}
-   /*
-「display: block;」でリンク範囲を親要素と同じ範囲まで広げる
-   
-.wrapper .menu > li a {
-  display: block;
-}
-
-    /*
-ドロップダウン用のメニュー
-初期状態は表示しないため、「visibility: hidden;」で非表示にしておく
-    
-.wrapper .menu .gakushu .menu-second {
-  visibility: hidden;
-}
-
-     /*
-Menu .gakushu,.shokai,.plan
-「position: relative;」で、サブメニュー（一列系）の基準位置として設定
-横書きを設定しているか
-     
-.wrapper .menu > .gakushu {
-  position: relative;
-}
-
-      /*
-「position: absolute;」で、singleクラスを基準に所定の位置に配置する
-      
-.wrapper .menu .gakushu .menu-second {
-  width: 100%;
-  background-color: #3c3636;
-  position: absolute;
-  top: 50px;
-  left: 0;
-}
-
-       /*
-透明度
-       
-.wrapper .menu .gakushu .menu-second li a:hover {
-  opacity: 0.7;
-}
-
-        /*
-ホバー時にサブメニュー（Single）を表示する
-        
-.wrapper .menu .gakushu:hover .menu-second {
-  visibility: visible;
-}
-
-          /*
-Menu Wide
-「position: absolute;」で、menuクラスを基準に所定の位置に配置する
-          
-.wide .menu-second {
-  width: 100%;
-  background-color: #3c3636;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 50px;
-  left: 0;
-}
-
-.wide .menu-second li {
-  width: 25%;
-}
-.wide .menu-second li a:hover {
-  opacity: 0.7;
-}
-
-ホバー時にサブメニュー（Wide）を表示する
-ここまでコピペ
-
-.wide:hover .menu-second {
-  visibility: visible;
-}
 */
+
+
 
 /*
 コンテンツ幅を設定するための共通クラス
@@ -148,21 +55,30 @@ Menu Wide
     max-width: 1200px;
     padding: 0 16px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
 }
-/*
-.wrapper {
-    width: 100%;
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 40px;
+
+.wrapper > li {
+  width: 25%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
 }
-*/
-/*
-.readmore {
-    font-size: 0.875rem;
-    text-align: center;
+
+.wrapper > li:hover {
+  background-color: #3c3636;
 }
-*/
+
+.wrapper > li a {
+  display: block;
+}
+
+.wrapper > .single {
+  position: relative;
+}
+
 /*-------------------------------------------
 ヘッダー
 -------------------------------------------*/
@@ -199,6 +115,37 @@ inline-blockを設定している
 #navi a {
     color: #fff;
 }
+
+.menu-second {
+  visibility: hidden;
+}
+
+
+/*
+「position: absolute;」で、singleクラスを基準に所定の位置に配置する
+*/
+.single .menu-second {
+  width: 100%;
+  background-color: #3c3636;
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
+.single .menu-second li a:hover {
+  opacity: 0.7;
+}
+
+
+
+/*
+  ホバー時にサブメニュー（Single）を表示する
+*/
+
+.single:hover .menu-second {
+  visibility: visible;
+}
+
 
 .pc-area {
   display: block;
@@ -240,15 +187,15 @@ nav .login li {
 }
 */
 
-#navi ul {
+/* #navi ul {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
+} */
 
 #navi li {
   font-size: 0.875rem;
-  padding: 10px 60px 10px 0;
+  /* padding: 10px 60px 10px 0;  これを書くと文字が中心からずれる*/
   margin: auto;
   /*ヘッダー枠内のmenuの位置*/
   /*margin-right: 0px;*/

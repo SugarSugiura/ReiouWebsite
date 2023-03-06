@@ -83,11 +83,18 @@ li {
 ヘッダー
 -------------------------------------------*/
 #header {
-    width: 100%;
-    background-color: #fff;
-    position: fixed;
-    z-index: 10;
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10
 }
+
 #header .site-title {
   padding: 20px 16px;
   /*header自体の位置(間隔)*/
@@ -425,18 +432,7 @@ SP
 ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
 設定している場合は、z-indexの数値が大きい方が前面に表示される
 */
-#header {
-  width: 100%;
-  height: 80px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 10
-}
+
 /*
 ハンバーガーメニュー
 メニューが閉じている時は、「left: -300px;」で画面左に隠し、

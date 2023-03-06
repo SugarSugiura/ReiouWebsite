@@ -46,7 +46,7 @@
             <img id="slide_img" src="img/img1.jpg">
           </div>
           <div class="toolbar">
-            <div id="prev" class="button"><</div>
+            <div id="prev" class="button"></div>
             <div id="page"></div>
             <div id="next" class="button">></div>
           </div>

@@ -1,5 +1,27 @@
 @charset "UTF-8";
 
+/*リセットCSSデフォルトの設定を消去*/ 
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+
 html {
     font-size: 100%;
 }
@@ -27,6 +49,10 @@ img {
 
 li {
     list-style: none;
+}
+
+ul {
+  padding-inline-start: 0px;
 }
 
 /*
@@ -137,6 +163,7 @@ inline-blockを設定している
   position: absolute;
   top: 50px;
   left: 0;
+  padding-inline-start: 0%;
 }
 
 .single .menu-second li a:hover {
@@ -198,16 +225,16 @@ nav .login li {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-} */
+} 
 
 #navi li {
   font-size: 0.875rem;
   /* padding: 10px 60px 10px 0;  これを書くと文字が中心からずれる*/
-  margin: auto;
+  /*margin:auto;*/
   /*ヘッダー枠内のmenuの位置*/
   /*margin-right: 0px;*/
   /*ヘッダー枠内のmenuの間隔*/
-}
+/*}*/
 /*
 #navi li {
   font-size: 0.875rem;

@@ -283,6 +283,9 @@ top-title ヘッダーの次に来る初心者向けのとこ
     margin-bottom: 10px;
     vertical-align: top;
 }
+img {
+  box-shadow: 4px 4px 4px #a5a5a5;
+}
 .product-list p {
     font-size: 0.75rem;
 }

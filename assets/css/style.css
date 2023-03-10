@@ -284,7 +284,9 @@ top-title ヘッダーの次に来る初心者向けのとこ
     vertical-align: top;
 }
 img {
+  /*logoには反映させたくないので修正必須*/
   box-shadow: 4px 4px 4px #a5a5a5;
+  border-radius: 20px;
 }
 .product-list p {
     font-size: 0.75rem;
@@ -399,6 +401,59 @@ label, input, textarea, select, button {
 }
 
 /*-------------------------------------------
+popup
+-------------------------------------------*/
+.open-pop-up {
+  /* cursor:pointer; /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
+}
+#pop-up {
+  display: none;  /* label でコントロールするので input は非表示に */  
+}
+.overlay {
+  display: none;  /* input にチェックが入るまでは非表示に */
+}
+#pop-up:checked +.overlay {
+  display: block;
+  z-index: 9999;
+  background-color: #00000070;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.window {
+  width: 90vw;
+  max-width: 380px;
+  height: 240px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.text {
+  font-size: 18px;
+  margin: 0;
+}
+.close-pop-up {
+  cursor:pointer;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 20px;
+}
+#move-page {
+  position: absolute;
+  top: 66%;
+  left: 46%;
+}
+
+/*-------------------------------------------
 SP
 -------------------------------------------*/
 
@@ -419,11 +474,6 @@ SP
     padding: 20px 16px;
   }
 
-  /*
-  「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
-  ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
-  設定している場合は、z-indexの数値が大きい方が前面に表示される
-  */
   /*
   「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
   ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
@@ -592,59 +642,3 @@ SP
   }
 
 }
-
-
-    /*-------------------------------------------
-  popup
-  -------------------------------------------*/
-  .open-pop-up {
-    /* cursor:pointer; /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
-  }
-  #pop-up {
-    display: none;  /* label でコントロールするので input は非表示に */
-    
-  }
-  .overlay {
-    display: none;  /* input にチェックが入るまでは非表示に */
-  }
-  #pop-up:checked +.overlay {
-    display: block;
-    z-index: 9999;
-    background-color: #00000070;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-  }
-  .window {
-    width: 90vw;
-    max-width: 380px;
-    height: 240px;
-    background-color: #ffffff;
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .text {
-    font-size: 18px;
-    margin: 0;
-  }
-  .close-pop-up {
-    cursor:pointer;
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    font-size: 20px;
-  }
-
-  #move-page {
-    position: absolute;
-    top: 66%;
-    left: 46%;
-  }

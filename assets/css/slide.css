@@ -1,9 +1,44 @@
 @charset "UTF-8";
 
-.slideshow {
-	position: relative;
-	overflow: hidden;
+/*リセットCSS*/
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img,
+ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd,
+ol, ul, li, fieldset, form, label, legend, article, aside, canvas,
+details, figcaption, figure, footer, header, hgroup, menu, nav,
+section, summary, time, mark, audio, video {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
 }
+
+.slideshow_container {
+	z-index: 100;
+	inset: 0px;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+}
+
+.slideshow_wrapper {
+	z-index: 100;
+	inset: 15px;
+	position: absolute;
+}
+
+.slideshow {
+	overflow: hidden;
+	display: block;
+    position: absolute;
+    z-index: 1000;
+	inset: 0px;
+}
+
+
+
 input[name="slideshow"] {
 	display: none;
 }
@@ -11,13 +46,20 @@ input[name="slideshow"] {
 /* :::::: slideContents :::::: */
 .slideContents {
 	display: flex;
-	position: relative;
 	width: 500%;
-	background: #86c0de;
 	text-align: center;
 	-webkit-user-select: none;
 	user-select: none;
 	transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0px;
+    background: -webkit-radial-gradient(center center, circle cover, rgb(23, 156, 197) 0%, rgb(173, 217, 228) 100%);
+    overflow: hidden;
+
 }
 .slideContents section {
 	width: 20%;
@@ -127,3 +169,66 @@ input[name="slideshow"] {
 #switch4:checked ~ .next label[for="switch5"] {
 	pointer-events: auto;
 }
+
+.slider_wrapper {
+	display: block;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    inset: 0px;
+    z-index: 1000;
+}
+
+.slider_container {
+	z-index: 100;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    inset: 15px;
+    background: -webkit-radial-gradient(center center, circle cover, rgb(242, 252, 255) 0%, rgb(173, 217, 228) 100%);
+    overflow: hidden;
+}
+
+.slider_closeButtonContainer {
+	position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 100000;
+}
+
+.swiper {
+	margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0px;
+    z-index: 1;
+	height: 100%;
+}
+
+.swiper_pointer_events {
+	touch-action: pan-y;
+}
+
+.swiper_wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.slide_navigation_buttons_container {
+    position: absolute;
+    bottom: 15px;
+    right: 50px;
+    height: 110px;
+    width: 110px;
+    z-index: 100000;
+}
+

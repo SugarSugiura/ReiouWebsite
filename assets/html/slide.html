@@ -1,56 +1,248 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="ja">
-  <head>
     <meta charset="utf-8">
-    <title>令王</title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="robots" content="noindex,nofollow">
-    <meta name="description" content="CSSでスライドショーするシンプルなサンプル">
-    <meta name="theme-color" content="#553968">
-    <link rel="canonical" href="https://lopan.jp/css-animation/slideshow/">
-    <link rel="stylesheet" href="../css/slide.css">
-  </head>
-  <body>
-    <div class="slideshow">
-	    <input type="radio" name="slideshow" id="switch1" checked>
-	    <input type="radio" name="slideshow" id="switch2">
-	    <input type="radio" name="slideshow" id="switch3">
-	    <input type="radio" name="slideshow" id="switch4">
-	    <input type="radio" name="slideshow" id="switch5">
-	    <div class="slideContents">
-		    <section id="slide1">
-			    <img src="../../assets/img/aigakari.jpg" alt="" width="600" height="400">
-		    </section>
-		    <section id="slide2">
-			    <img src="../../assets/img/aigakariPopup.png" alt="" width="600" height="400">
-		    </section>
-		    <section id="slide3">
-			    <img src="../../img/slide_03.png" alt="" width="600" height="400">
-		    </section>
-		    <section id="slide4">
-			    <img src="../../img/slide_04.png" alt="" width="600" height="400">
-		    </section>
-		    <section id="slide5">
-			    <img src="../../img/slide_05.png" alt="" width="600" height="400">
-		    </section>
-	    </div>
-	    <p class="arrow prev">
-		    <i class="ico"></i>
-		    <label for="switch1"></label>
-		    <label for="switch2"></label>
-		    <label for="switch3"></label>
-		    <label for="switch4"></label>
-		    <label for="switch5"></label>
-	    </p>
-	    <p class="arrow next">
-		    <i class="ico"></i>
-		    <label for="switch1"></label>
-		    <label for="switch2"></label>
-		    <label for="switch3"></label>
-		    <label for="switch4"></label>
-		    <label for="switch5"></label>
-	    </p>
-    </div>
-  </body>
+    <head>
+        <title>令王</title>
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+
+    <body>
+        <header id="header">
+            <h1 class="site-title wrapper"><!--空白でclass名を2つ指定-->
+              <a href="REIOUwebsite.html"><img src="../../assets/img/REIOUlogo.png" alt="REIOU"></a>
+            </h1>
+            <nav id="navi" class="pc-area"><!--元は-->
+              <ul class="wrapper"><!--元はmenu-->
+                <li class="single">
+                  <a href="#">学習<!----></a>
+                  <ul class="menu-second">
+                    <li><a href="#">Single Child</a></li>
+                    <li><a href="#">Single Child</a></li>
+                    <li><a href="#">Single Child</a></li>
+                  </ul>
+                </li>
+                <li class="single">
+                  <a href="#">戦法一覧<!----></a>
+                  <ul class="menu-second">
+                    <li><a href="#">相掛かり戦法</a></li>
+                    <li><a href="#">角換わり戦法</a></li>
+                    <li><a href="#">ネタ戦法</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">紹介<!----></a></li>
+                <li><a href="#">プラン<!----></a></li>
+                <!--<li><a href="#">お問い合わせ</a></li>-->
+              </ul>
+              <!--<ul class="login">
+                  <li><a href="#">無料版</a></li>
+                  <li><a href="#">ログイン</a></li>
+              </ul>-->
+            </nav>
+            <nav id="navi-phone" class="phone-area">
+              <ul class="wrapper">
+                <li><a href="#">学習</a></li>
+                <li><a href="#">戦法一覧</a></li>
+                <li><a href="#">紹介</a></li>
+                <li><a href="#">プラン</a></li>
+                <li><a href="#">お問い合わせ</a></li>
+              </ul>
+            </nav>
+            <div class="toggle_btn">
+              <span></span>
+              <span></span>
+            </div>
+      
+            <div id="mask"></div>
+          </header>
+
+          <div class="slideshow_container">
+            <div class="slideshow_wrapper">
+              <div class="slideshow">
+                <input type="radio" name="slideshow" id="switch1" checked>
+                <input type="radio" name="slideshow" id="switch2">
+                <input type="radio" name="slideshow" id="switch3">
+                <input type="radio" name="slideshow" id="switch4">
+                <input type="radio" name="slideshow" id="switch5">
+                <div class="slideContents">
+                  <section id="slide1">
+                    <img src="../../assets/img/aigakari.jpg" alt="" width="600" height="400">
+                  </section>
+                  <section id="slide2">
+                    <img src="../../assets/img/aigakariPopup.png" alt="" width="600" height="400">
+                  </section>
+                  <section id="slide3">
+                    <img src="../../img/slide_03.png" alt="" width="600" height="400">
+                  </section>
+                  <section id="slide4">
+                    <img src="../../img/slide_04.png" alt="" width="600" height="400">
+                  </section>
+                  <section id="slide5">
+                    <img src="../../img/slide_05.png" alt="" width="600" height="400">
+                  </section>
+                </div>
+                <p class="arrow prev">
+                  <i class="ico"></i>
+                  <label for="switch1"></label>
+                  <label for="switch2"></label>
+                  <label for="switch3"></label>
+                  <label for="switch4"></label>
+                  <label for="switch5"></label>
+                </p>
+                <p class="arrow next">
+                  <i class="ico"></i>
+                  <label for="switch1"></label>
+                  <label for="switch2"></label>
+                  <label for="switch3"></label>
+                  <label for="switch4"></label>
+                  <label for="switch5"></label>
+                </p>
+              </div>
+            </div>
+            
+          </div>
+    </body>
+
+    <!--ヘッダーとmainの間にタイトルをつけたいならこれをいれた方がいいか-->
+    <div id="top-title" class="wrapper">
+        <article>
+          <h2 class="article-title">初心者はこちらから！！！</h2>
+          <h2 class="article-subtitle">駒の動かし方</h2>
+          <a href="hazimete.html">
+            <img src="../../assets/img/ranking1.jpg" alt="テキストテキストテキスト">
+          </a>
+  
+          <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  
+          <div id="app">{{ message }}</div>
+  
+          <script>
+            const {createApp} = Vue
+  
+            createApp({
+              data() {
+                return {
+                  message: '将棋盤をここに表示する'
+                }
+              }
+            }).mount('#app')
+          </script>
+  
+  
+        </article>
+      </div>
+      <!--上にタイトルをつけたいならこれをいれた方がいいか-->
+  
+      <main>
+        <div id="top" class="wrapper">
+          <ul class="product-list">
+            <li>
+              <a href="aigakari.html" >
+                <img src="../../assets/img/main1.jpg" alt="">
+                <p>【居飛車】</p>
+                <p>相掛かり戦法</p>
+              </a>
+            </li>
+            <li>
+              <a href="kakugawari.html">
+                <img src="../../assets/img/main1.jpg" alt="">
+                <p>【居飛車】</p>
+                <p>角換わり戦法</p>
+              </a>
+            </li>
+            <li>
+              <a href="yagura.html">
+                <img src="../../assets/img/main1.jpg" alt="">
+                <p>【居飛車】</p>
+                <p>矢倉戦法</p>
+              </a>
+            </li>
+            <li>
+              <a href="sanken.html">
+                <img src="../../assets/img/main1.jpg" alt="">
+                <p>【振り飛車】</p>
+                <p>三間飛車戦法</p>
+              </a>
+            </li>
+            <li>
+              <a href="shiken.html">
+                <img src="../../assets/img/main1.jpg" alt="">
+                <p>【振り飛車】</p>
+                <p>四間飛車戦法</p>
+              </a>
+            </li>
+            <li>
+              <a href="nakahisya.html">
+                <img src="../../assets/img/main1.jpg" alt="">
+                <p>【振り飛車】</p>
+                <p>中飛車戦法</p>
+              </a>
+            </li>
+          </ul>
+          <a class="link-text" href="REIOUproducts.html#koma-move">View More</a>
+          <!--View Moreを押下するとさらに戦法一覧が表示される、productsのmoreから表示できるとなおよい-->
+        </div>
+      </main>
+  
+      <footer id="footer">
+        <div class="content wrapper">
+          <section class="item">
+            <h3 class="footer-title">About</h3>
+            <p>
+              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+            </p>
+            <ul class="about-list">
+              <li><a href="REIOUunnei.html" class="arrow">令王運営の詳細</a></li>
+              <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼" class="arrow">お仕事のご依頼</a></li>
+              <li><a href="otoiawase" class="arrow">お問い合わせ</a></li>
+            </ul>
+          </section>
+  
+          <section class="item">
+            <h3 class="footer-title">Menu</h3>
+            <ul class="menu-list">
+              <li><a href="#">NEW</a></li>
+              <li><a href="#">CATEGORY</a></li>
+              <li><a href="#">COLUMN</a></li>
+              <li><a href="#">SERIES</a></li>
+              <li><a href="#">Q&A</a></li>
+            </ul>
+          </section>
+  
+          <section class="item">
+            <h3 class="footer-title">Twitter</h3>
+            <a class="twitter-timeline" data-height="315" href="https://twitter.com/Sugar_Sugiura">Tweets by 令王</a>
+            <script async src="https://platform.twitter.com/widgets.js"></script>
+          </section>
+        </div>
+        <button class="fixed_banner">
+          <a href="リンク先URL">
+            <img class="fixed_banner_pc" src="バナー画像ファイル名" alt="">
+            <img class="fixed_banner_sp" src="バナー画像ファイル名" alt="">
+          </a>
+        </button>
+  
+        <p class="copyright">&copy; REIOU</p>
+      </footer>
+      <script src="../js/main.js"></script>
+</html>
+
+
+
+<html lang="ja">
+  	<head>
+    	<meta charset="utf-8">
+    	<title>令王</title>
+    	<meta name="viewport" content="width=device-width">
+    	<meta name="robots" content="noindex,nofollow">
+    	<meta name="description" content="CSSでスライドショーするシンプルなサンプル">
+    	<meta name="theme-color" content="#553968">
+    	<link rel="canonical" href="https://lopan.jp/css-animation/slideshow/">
+    	<link rel="stylesheet" href="../css/slide.css">
+  	</head>
+  	<body>
+    	
+  	</body>
 </html>
 

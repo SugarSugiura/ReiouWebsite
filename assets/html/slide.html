@@ -55,14 +55,20 @@
             <div id="mask"></div>
           </header>
 
-          <div class="slideshow_container">
-            <div class="slideshow_wrapper">
+          <input type="checkbox" id="slide_close" checked>
+          <div class="slideshow_wrapper">
+            <div class="slideshow_container">
               <div class="slideshow">
                 <input type="radio" name="slideshow" id="switch1" checked>
                 <input type="radio" name="slideshow" id="switch2">
                 <input type="radio" name="slideshow" id="switch3">
                 <input type="radio" name="slideshow" id="switch4">
                 <input type="radio" name="slideshow" id="switch5">
+                <div class="slide_closeButton_container">
+                  <div style="position: relative; display: inline-block">
+                    <label class="slide_closeButton" for="slide_close">×</label>
+                  </div>
+                </div>
                 <div class="slideContents">
                   <section id="slide1">
                     <img src="../../assets/img/aigakari.jpg" alt="" width="600" height="400">
@@ -245,4 +251,3 @@
     	
   	</body>
 </html>
-

@@ -16,14 +16,24 @@ section, summary, time, mark, audio, video {
     background: transparent;
 }
 
-.slideshow_container {
+.slideshow_wrapper {
+	display: none;
+}
+
+#slide_close {
+	display: none;
+}
+
+#slide_close:checked +.slideshow_wrapper {
 	z-index: 100;
 	inset: 0px;
 	background-color: rgba(0, 0, 0, 0.7);
 	position: absolute;
+	display: block;
 }
 
-.slideshow_wrapper {
+
+.slideshow_container {
 	z-index: 100;
 	inset: 15px;
 	position: absolute;
@@ -35,6 +45,21 @@ section, summary, time, mark, audio, video {
     position: absolute;
     z-index: 1000;
 	inset: 0px;
+}
+
+.slide_closeButton_container {
+	position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 100000;
+}
+
+.slide_closeButton {
+	cursor:pointer;
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    font-size: 20px;
 }
 
 

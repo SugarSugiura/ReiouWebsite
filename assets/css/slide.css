@@ -1,9 +1,71 @@
 @charset "UTF-8";
 
-.slideshow {
-	position: relative;
-	overflow: hidden;
+/*リセットCSS*/
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img,
+ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd,
+ol, ul, li, fieldset, form, label, legend, article, aside, canvas,
+details, figcaption, figure, footer, header, hgroup, menu, nav,
+section, summary, time, mark, audio, video {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
 }
+
+.slideshow_wrapper {
+	display: none;
+}
+
+#slide_close {
+	display: none;
+}
+
+#slide_close:checked +.slideshow_wrapper {
+	z-index: 100;
+	inset: 0px;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	display: block;
+}
+
+#slide_close:checked +html {
+	overflow-y: hidden;
+}
+
+
+.slideshow_container {
+	z-index: 100;
+	inset: 15px;
+	position: absolute;
+}
+
+.slideshow {
+	overflow: hidden;
+	display: block;
+    position: absolute;
+    z-index: 1000;
+	inset: 0px;
+}
+
+.slide_closeButton_container {
+	position: absolute;
+    top: 20px;
+    right: 55px;
+    z-index: 100000;
+}
+
+.slide_closeButton {
+	cursor:pointer;
+    position: relative;
+    font-size: 20px;
+}
+
+
+
 input[name="slideshow"] {
 	display: none;
 }
@@ -11,24 +73,60 @@ input[name="slideshow"] {
 /* :::::: slideContents :::::: */
 .slideContents {
 	display: flex;
-	position: relative;
 	width: 500%;
-	background: #86c0de;
 	text-align: center;
 	-webkit-user-select: none;
 	user-select: none;
 	transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0px;
+    background: -webkit-radial-gradient(center center, circle cover, rgb(23, 156, 197) 0%, rgb(173, 217, 228) 100%);
+    overflow: hidden;
+
 }
 .slideContents section {
 	width: 20%;
+	height: 100%;
 }
-.slideContents section img {
-	max-width: 100%;
-	height: auto;
-	padding: 0 50px;
-	box-sizing: border-box;
-	vertical-align: middle;
+
+.slideContents section div{
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items: center;
 }
+
+#slide1 {
+	grid-template-rows: 200px 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "areaA areaA"
+        "areaB areaC";
+}
+
+#slide2 {
+	grid-template-rows: 400px 1fr;
+    grid-template-columns: 400px 1fr;
+    grid-template-areas:
+        "areaA areaA"
+        "areaB areaC";
+}
+
+.headline {
+	display: flex;
+	grid-area: areaA;
+	font-size: 30px;
+	
+}
+
+#itemB {
+	grid-area: areaB
+}
+
 @media (min-width: 520px) {
 	.slideContents section img {
 		aspect-ratio: 3 / 1;

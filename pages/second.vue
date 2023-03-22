@@ -2,9 +2,6 @@
   <div class="secondPage section">
     <div class="is-flex is-flex-direction-column is-align-items-center">
       <div class="MyShogiPlayerContainer">
-        <div class="test">
-          こんにちは,{{name}}
-        </div>
         <ShogiPlayer
           sp_run_mode="view_mode"
           sp_layout="is_horizontal"
@@ -29,7 +26,6 @@ export default {
   },
   data() {
     return {
-      name:"sagachan",
       staticKif: `手合割：平手
 先手：
 後手：
@@ -217,9 +213,5 @@ export default {
   .MyShogiPlayerContainer {
     width: 80vmin;
   }
-}
-
-.test {
-  font-size: 30px;
 }
 </style>

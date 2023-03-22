@@ -90,14 +90,43 @@ input[name="slideshow"] {
 }
 .slideContents section {
 	width: 20%;
+	height: 100%;
 }
-.slideContents section img {
-	max-width: 100%;
-	height: auto;
-	padding: 0 50px;
-	box-sizing: border-box;
-	vertical-align: middle;
+
+.slideContents section div{
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items: center;
 }
+
+#slide1 {
+	grid-template-rows: 200px 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "areaA areaA"
+        "areaB areaC";
+}
+
+#slide2 {
+	grid-template-rows: 400px 1fr;
+    grid-template-columns: 400px 1fr;
+    grid-template-areas:
+        "areaA areaA"
+        "areaB areaC";
+}
+
+.headline {
+	display: flex;
+	grid-area: areaA;
+	font-size: 30px;
+	
+}
+
+#itemB {
+	grid-area: areaB
+}
+
 @media (min-width: 520px) {
 	.slideContents section img {
 		aspect-ratio: 3 / 1;

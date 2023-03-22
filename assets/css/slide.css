@@ -32,6 +32,10 @@ section, summary, time, mark, audio, video {
 	display: block;
 }
 
+#slide_close:checked +html {
+	overflow-y: hidden;
+}
+
 
 .slideshow_container {
 	z-index: 100;
@@ -49,16 +53,14 @@ section, summary, time, mark, audio, video {
 
 .slide_closeButton_container {
 	position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 20px;
+    right: 55px;
     z-index: 100000;
 }
 
 .slide_closeButton {
 	cursor:pointer;
-    position: absolute;
-    top: 10px;
-    right: 40px;
+    position: relative;
     font-size: 20px;
 }
 
@@ -194,66 +196,3 @@ input[name="slideshow"] {
 #switch4:checked ~ .next label[for="switch5"] {
 	pointer-events: auto;
 }
-
-.slider_wrapper {
-	display: block;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: absolute;
-    inset: 0px;
-    z-index: 1000;
-}
-
-.slider_container {
-	z-index: 100;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    position: absolute;
-    inset: 15px;
-    background: -webkit-radial-gradient(center center, circle cover, rgb(242, 252, 255) 0%, rgb(173, 217, 228) 100%);
-    overflow: hidden;
-}
-
-.slider_closeButtonContainer {
-	position: absolute;
-    top: 10px;
-    right: 15px;
-    z-index: 100000;
-}
-
-.swiper {
-	margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    overflow: hidden;
-    list-style: none;
-    padding: 0px;
-    z-index: 1;
-	height: 100%;
-}
-
-.swiper_pointer_events {
-	touch-action: pan-y;
-}
-
-.swiper_wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    transition-property: transform;
-    box-sizing: content-box;
-}
-
-.slide_navigation_buttons_container {
-    position: absolute;
-    bottom: 15px;
-    right: 50px;
-    height: 110px;
-    width: 110px;
-    z-index: 100000;
-}
-

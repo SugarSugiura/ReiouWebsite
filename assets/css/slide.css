@@ -100,10 +100,17 @@ input[name="slideshow"] {
 	place-items: center;
 }
 
-.slide_inside {
+.slide1_inside_areaA {
+	width: 100%;
 	grid-area: areaA;
 	display: flex;
 	flex-direction: column;
+}
+
+.slide1_inside_areaB {
+	width: 100%;
+	grid-area: areaB;
+	display: block;
 }
 
 @media (orientation: landscape){
@@ -119,7 +126,7 @@ input[name="slideshow"] {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
         "areaA areaA"
-        "areaB areaC";
+        "areaB areaB";
 }
 
 #slide2 {
@@ -131,11 +138,11 @@ input[name="slideshow"] {
 }
 
 .headline {
-	font-size: 60px;
+	font-size: 70px;
 }
 
 .description {
-	font-size: 40px;
+	font-size: 30px;
 }
 
 #itemB {

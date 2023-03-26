@@ -36,9 +36,7 @@ body {
 
 a {
     color: #333;
-    text-decoration: none;
-    transition: all 0.5s;
-    
+    text-decoration: none;    
 }
 
 a:hover {
@@ -103,6 +101,9 @@ li {
   position: relative;
 }
 
+.menu_headline {
+  transition: all 0.5s; /*カーソルを合わせた時の文字が薄くなる速度が滑らかになる */
+}
 
 
 

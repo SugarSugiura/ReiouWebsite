@@ -414,6 +414,22 @@ li {
   position: relative;
 }
 
+/*-------------------------------------------
+shogi-player
+-------------------------------------------*/
+.shogi-player_container {
+  display: block;
+  inset: 0px;
+  position: absolute;
+  overflow:hidden;
+}
+
+@media screen and (max-width: 750px) {
+  .shogi-player_container {
+    inset: 0px -200px 0px -200px;
+  }
+}
+
 
 
 

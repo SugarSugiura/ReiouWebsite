@@ -36,9 +36,13 @@ body {
 
 a {
     color: #333;
+<<<<<<< HEAD
     text-decoration: none;
     transition: all 0.5s;
 
+=======
+    text-decoration: none;    
+>>>>>>> 3e13c1a7bb160ac1f517c618a6b5caf601e78413
 }
 
 a:hover {
@@ -103,6 +107,7 @@ li {
   position: relative;
 }
 
+<<<<<<< HEAD
 /*吹き出し1*/
 .article-title {
   position: relative;
@@ -110,6 +115,10 @@ li {
   border: 3px solid #d8d8d8;
   border-radius: 10px;
   background: #f9f9f9;
+=======
+.menu_headline {
+  transition: all 0.5s; /*カーソルを合わせた時の文字が薄くなる速度が滑らかになる */
+>>>>>>> 3e13c1a7bb160ac1f517c618a6b5caf601e78413
 }
 
 .article-title:before {

@@ -40,7 +40,7 @@ a {
 }
 
 a:hover {
-  opacity: 0.7;
+  /* opacity: 0.7; */
 }
 
 img {
@@ -87,33 +87,6 @@ li {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  position: relative;
-}
-
-.menu {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 0;
-}
-
-.menu > li {
-  width: 25%;
-  height: 75px;
-  line-height: 75px;
-  text-align: center;
-}
-
-.menu > li:hover {
-  background-color: #7bc0d3;
-}
-
-.menu > li a {
-  display: block;
-}
-
-.menu > .single {
   position: relative;
 }
 
@@ -181,6 +154,36 @@ inline-blockを設定している
     color: #fff;
 }
 
+.menu {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 0;
+}
+
+.menu > li {
+  width: 25%;
+  height: 75px;
+  line-height: 75px;
+  text-align: center;
+}
+
+.menu > li:hover {
+  /* background-color: #7bc0d3; */
+}
+
+.menu:hover .single > a {
+  opacity: 0.7;
+}
+
+.menu > li a {
+  display: block;
+}
+
+.menu > .single {
+  position: relative;
+}
 
 .menu-second {
   visibility: hidden;
@@ -197,12 +200,16 @@ inline-blockを設定している
   top: 0px;
   left: 0;
 }
-.single .menu-second li a:hover {
+.active .menu-second li a:hover {
   opacity: 0.7;
 }
 
 .single:hover .menu-second {
   visibility: visible;
+  opacity: 1;
+}
+
+.single:hover .single > a {
   opacity: 1;
 }
 

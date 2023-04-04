@@ -388,6 +388,11 @@ footer　※以下コピペ理解未完
   background-color: var(--main-color);
   color: white;
 }
+
+.support li {
+  color: var(--main-color);
+}
+
 #footer .content {
   display: flex;
   justify-content: space-between;
@@ -396,15 +401,19 @@ footer　※以下コピペ理解未完
 }
 #footer .item {
   width: 30%;
+  text-align: center;
 }
 #footer .footer-title {
   font-size: 1.125rem;
   font-weight: bold;
   margin-bottom: 30px;
 }
-#footer ul.about-list {
-  margin: 20px 0;
+#footer ul.service-list {
+  margin: auto;
+  text-align: left;
+  width: fit-content;
 }
+
 #footer ul.about-list li {
   margin-bottom: 5px;
 }
@@ -432,6 +441,7 @@ border～プロパティで三角を作り、positionで位置調整
 }
 #footer .menu-list {
   border-bottom: solid  1px #777;
+  width: 75%;
 }
 #footer .menu-list > li {
   border-top: solid  1px #777;
@@ -683,9 +693,9 @@ SP
     /*-------------------------------------------
   popup
   -------------------------------------------*/
-  .open-pop-up {
-    /* cursor:pointer; /* マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように */
-  }
+  /* .open-pop-up {
+    cursor:pointer; マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように
+  } */
   #pop-up {
     display: none;  /* label でコントロールするので input は非表示に */
     

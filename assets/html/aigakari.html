@@ -7,11 +7,17 @@
     </head>
 
     <body>
-      <input type="checkbox" id="pop-up" checked>
+      <input type="checkbox" id="pop-up" checked> <!--閉じるボタン用のチェックボックス-->
       <div class="overlay">
 	      <div class="window">
 		      <label class="close-pop-up" for="pop-up">×</label>
-		      <p class="text"><img src="../../assets/img/aigakariPopup.png" alt=""></p>
+          <span class="title-pop-up">相掛かり</span>
+          <span class="description-pop-up">
+            相掛かりは飛車先交換から激しい展開になりやすい。
+            <br>
+            定石を覚えて戦おう！
+          </span>
+		      <!-- <p class="text"><img src="../../assets/img/aigakariPopup.png" alt=""></p> -->
 	      </div>
       </div>
 
@@ -162,28 +168,25 @@
   
       <footer id="footer">
         <div class="content wrapper">
-          <section class="item">
-            <h3 class="footer-title">About</h3>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <ul class="about-list">
-              <li><a href="REIOUunnei.html" class="arrow">令王運営の詳細</a></li>
-              <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼" class="arrow">お仕事のご依頼</a></li>
-              <li><a href="otoiawase" class="arrow">お問い合わせ</a></li>
-            </ul>
+          <!-- <section class="item"> アプリができたとき用
+
+          </section> -->
+          <section class="item" style="border-right: solid; border-left: solid; padding-left: 40px">
+            <h3 class="footer-title">サービス</h3>
+              <ul class="service-list">
+                <li><a href="REIOUunnei.html">コース一覧</a></li>
+                <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼">Q&A</a></li>
+                <li><a href="otoiawase">お問い合わせ</a></li>
+              </ul>
           </section>
   
-          <section class="item">
-            <h3 class="footer-title">Menu</h3>
-            <ul class="menu-list">
-              <li><a href="#">NEW</a></li>
-              <li><a href="#">CATEGORY</a></li>
-              <li><a href="#">COLUMN</a></li>
-              <li><a href="#">SERIES</a></li>
-              <li><a href="#">Q&A</a></li>
+          <section class="item" style="border-right: solid;">
+            <h3 class="footer-title">サポート</h3>
+              <ul class="menu-list">
+              <li><a href="#">運営会社</a></li>
+              <li><a href="#" >利用規約</a></li>
+              <li><a href="#">プライバシーポリシー</a></li>
+              <!-- <li><a href="#">特定商取引法に基づく表示</a></li> -->
             </ul>
           </section>
   
@@ -192,14 +195,8 @@
             <a class="twitter-timeline" data-height="315" href="https://twitter.com/Sugar_Sugiura">Tweets by 令王</a>
             <script async src="https://platform.twitter.com/widgets.js"></script>
           </section>
+
         </div>
-        <button class="fixed_banner">
-          <a href="リンク先URL">
-            <img class="fixed_banner_pc" src="バナー画像ファイル名" alt="">
-            <img class="fixed_banner_sp" src="バナー画像ファイル名" alt="">
-          </a>
-        </button>
-  
         <p class="copyright">&copy; REIOU</p>
       </footer>
       <script src="../js/main.js"></script>

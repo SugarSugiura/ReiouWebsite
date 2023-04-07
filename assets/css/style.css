@@ -386,71 +386,71 @@ footer　※以下コピペ理解未完
 #footer {
   font-size: 0.875rem;
   background-color: var(--main-color);
-  color: white;
-}
-
-.support li {
-  color: var(--main-color);
+  color: #ffffff;
 }
 
 #footer .content {
   display: flex;
   justify-content: space-between;
   padding-top: 50px;
- padding-bottom: 50px;
+  padding-bottom: 50px;
 }
 #footer .item {
   width: 30%;
-  text-align: center;
+  text-align: left;
 }
+
 #footer .footer-title {
   font-size: 1.125rem;
   font-weight: bold;
   margin-bottom: 30px;
 }
 #footer ul.service-list {
-  margin: auto;
   text-align: left;
   width: fit-content;
 }
 
-#footer ul.about-list li {
-  margin-bottom: 5px;
+#footer ul.service-list li {
+  /* padding-top: 5px;
+  padding-bottom: 5px; */
 }
-#footer ul.about-list .arrow {
+
+#footer ul.service-list li a {
+  color: #fff;
+}
+
+#footer ul.service-list .arrow {
   position: relative;
   display: inline-block;
   padding-left: 12px;
-  color: #ffffff;
 }
 /*
 疑似要素で三角矢印を表示
 border～プロパティで三角を作り、positionで位置調整
 */
-#footer ul.about-list .arrow::before {
+#footer ul.service-list .arrow::before {
   content: '';
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 6px 0 6px 8px;
-  border-color: transparent transparent transparent #d4d4d4;
+  border-color: transparent transparent transparent #ffffff;
   position: absolute;
   top: 50%;
   left: 0;
   margin-top: -6px;
 }
 #footer .menu-list {
-  border-bottom: solid  1px #777;
-  width: 75%;
+  /* border-bottom: solid  1px #777; */
+  width: fit-content;
 }
 #footer .menu-list > li {
-  border-top: solid  1px #777;
-  padding: 15px;
   text-align: left;
+  margin: auto;
 }
 
 #footer .menu-list a {
-  color: #fff;
+  color: #fff
 } 
 
 #footer .copyright {
@@ -690,62 +690,84 @@ SP
 }
 
 
-    /*-------------------------------------------
-  popup
-  -------------------------------------------*/
-  /* .open-pop-up {
-    cursor:pointer; マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように
-  } */
-  #pop-up {
-    display: none;  /* label でコントロールするので input は非表示に */
-    
-  }
-  .overlay {
-    display: none;  /* input にチェックが入るまでは非表示に */
-  }
-  #pop-up:checked +.overlay {
-    display: block;
-    z-index: 9999;
-    background-color: #00000070;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-  }
-  .window {
-    width: 90vw;
-    max-width: 380px;
-    height: 240px;
-    background-color: #ffffff;
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .text {
-    font-size: 18px;
-    margin: 0;
-  }
-  .close-pop-up {
-    cursor:pointer;
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    font-size: 20px;
-  }
+  /*-------------------------------------------
+pop-up
+-------------------------------------------*/
+/* .open-pop-up {
+  cursor:pointer; マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように
+} */
+#pop-up {
+  display: none;  /* label でコントロールするので input は非表示に */
+  
+}
+.overlay {
+  display: none;  /* input にチェックが入るまでは非表示に */
+}
+#pop-up:checked +.overlay {
+  display: block;
+  z-index: 9999;
+  background-color: #00000070;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.window {
+  width: 90vw;
+  max-width: 380px;
+  height: 240px;
+  background-color: var(--main-color);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 游明朝;
+}
+.text {
+  font-size: 18px;
+  margin: 0;
+}
+.close-pop-up {
+  cursor:pointer;
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  font-size: 20px;
+  color: #fff;
+}
 
-  #move-page {
-    position: absolute;
-    top: 66%;
-    left: 46%;
-  }
+.window span {
+  color:#fff
+}
 
-  /*吹き出し1*/
+.title-pop-up {
+  position: absolute;
+  top: 25px;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.description-pop-up {
+  position: absolute;
+  top: 100px;
+  border-top: solid;
+  font-size: 20px;
+  padding: 20px 20px 0px;
+  font-weight: 200;
+}
+
+#move-page {
+  position: absolute;
+  top: 66%;
+  left: 46%;
+}
+
+/*吹き出し1*/
 .article-title {
   position: relative;
   padding: 1.5rem 2rem;

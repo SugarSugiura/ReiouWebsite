@@ -15,6 +15,7 @@
     </head>
 
     <body>
+<<<<<<< HEAD
         <header id="header">
             <h1 class="site-title wrapper"><!--空白でclass名を2つ指定-->
               <a href="index.html"><img src="../../assets/img/REIOUlogo.png" alt="REIOU"></a>
@@ -44,24 +45,67 @@
               <!--<ul class="login">
                   <li><a href="#">無料版</a></li>
                   <li><a href="#">ログイン</a></li>
+=======
+      <header id="header">
+        <div class="header_container">
+          <h1 class="site-title"><!--空白でclass名を2つ指定-->
+            <a href="index.html"><img src="../../assets/img/REIOUlogo.png" alt="REIOU"></a>
+          </h1>
+          <nav id="navi" class="pc-area"><!--元は-->
+            <ul class="menu active"><!--元はmenu-->
+              <li class="single">
+                <a href="#" id="menu1" class="single_text" style="transition: all 0.3s">学習<!----></a>
+                <ul class="menu-second">
+                  <li><a href="slide.html">Single Child</a></li>
+                  <li><a href="#">Single Child</a></li>
+                  <li><a href="#">Single Child</a></li>
+                </ul>
+              </li>
+              <li class="single active">
+                <a href="#" id="menu2" class="single_text" style="transition: all 0.3s">戦法一覧<!----></a>
+                <ul class="menu-second">
+                  <li><a href="#">角換わり戦法</a></li>
+                  <li><a href="#">ネタ戦法</a></li>
+                </ul>
+              </li>
+              <li class="single active">
+                <a href="#" id="menu3" class="single_text" style="transition: all 0.3s">紹介<!----></a>
+              </li>
+              <li class="single active">
+                <a href="#" id="menu4" class="single_text" style="transition: all 0.3s">プラン<!---->
+                </a>
+              </li>
+              <!--<li><a href="#">お問い合わせ</a></li>-->
+            </ul>
+                <!--<ul class="login">
+                    <li><a href="#">無料版</a></li>
+                    <li><a href="#">ログイン</a></li>
+>>>>>>> 3a3bd2e84ca4a40c1bae31b8145b41aea95c525c
               </ul>-->
-            </nav>
-            <nav id="navi-phone" class="phone-area">
-              <ul class="wrapper">
-                <li><a href="#">学習</a></li>
-                <li><a href="#">戦法一覧</a></li>
-                <li><a href="#">紹介</a></li>
-                <li><a href="#">プラン</a></li>
-                <li><a href="#">お問い合わせ</a></li>
-              </ul>
-            </nav>
-            <div class="toggle_btn">
-              <span></span>
-              <span></span>
-            </div>
-      
-            <div id="mask"></div>
-          </header>
+          </nav>
+          <div style="flex-basis: 10%;" class="test">
+            <h1>
+              仮予定地
+            </h1>
+          </div>
+        </div>
+        
+        
+        <nav id="navi-phone" class="phone-area">
+          <ul class="wrapper">
+            <li><a href="#">学習</a></li>
+            <li><a href="#">戦法一覧</a></li>
+            <li><a href="#">紹介</a></li>
+            <li><a href="#">プラン</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <div class="toggle_btn">
+          <span></span>
+          <span></span>
+        </div>
+        <div id="mask"></div>
+      </header>
     </body>
 
     <!--ヘッダーとmainの間にタイトルをつけたいならこれをいれた方がいいか-->
@@ -70,7 +114,8 @@
           <h2 class="article-title">初心者はこちらから！！！</h2>
           <h2 class="article-subtitle">駒の動かし方</h2>
           <a href="hazimete.html">
-            <img src="../../assets/img/ranking1.jpg" alt="テキストテキストテキスト">
+            <img  style="box-shadow: 4px 4px 4px #a5a5a5; border-radius: 20px;" 
+            src="../../assets/img/ranking1.jpg" alt="テキストテキストテキスト">
           </a>
   
           <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -88,12 +133,20 @@
               }
             }).mount('#app')
           </script>
+<<<<<<< HEAD
 
           <!--吹き出しはじまり-->
           <div class="balloon5">
             <div class="faceicon">
               <img src="E:\動画用\素材\将棋ウォーズ\45fu.png">
               </div>
+=======
+          <!--吹き出しはじまり-->
+          <div class="balloon5">
+            <div class="faceicon">
+              <img src="../img/45fu.png">
+            </div>
+>>>>>>> 3a3bd2e84ca4a40c1bae31b8145b41aea95c525c
             <div class="chatting">
               <div class="says">
                 <p>自分に合った戦法を選ぼう</p>
@@ -101,6 +154,11 @@
             </div>
           </div>
           <!--吹き出し終わり-->
+<<<<<<< HEAD
+=======
+  
+  
+>>>>>>> 3a3bd2e84ca4a40c1bae31b8145b41aea95c525c
         </article>
       </div>
       <!--上にタイトルをつけたいならこれをいれた方がいいか-->
@@ -109,50 +167,90 @@
         <div id="top" class="wrapper">
           <ul class="product-list">
             <li>
-              <a href="aigakari.html" >
-                <img src="../../assets/img/main1.jpg" alt="">
-                <p>【居飛車】</p>
-                <p>相掛かり戦法</p>
-              </a>
+              <div>
+                <a href="aigakari.html">
+                  
+                  <img src="../../assets/img/main1.jpg" alt="">
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>相掛かり戦法</p>
+                  </div>
+                </a>
+              </div>
             </li>
             <li>
-              <a href="kakugawari.html">
-                <img src="../../assets/img/main1.jpg" alt="">
-                <p>【居飛車】</p>
-                <p>角換わり戦法</p>
-              </a>
+              <div>
+                <a href="kakugawari.html">
+                  <img src="../../assets/img/main1.jpg" alt="">
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>角換わり戦法</p>
+                  </div>
+                </a>
+              </div>
             </li>
             <li>
-              <a href="yagura.html">
-                <img src="../../assets/img/main1.jpg" alt="">
-                <p>【居飛車】</p>
-                <p>矢倉戦法</p>
-              </a>
+              <div>
+                <a href="yagura.html">
+                  <img src="../../assets/img/main1.jpg" alt="">
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>矢倉戦法</p>
+                  </div>
+                </a>
+              </div>
             </li>
             <li>
-              <a href="sanken.html">
-                <img src="../../assets/img/main1.jpg" alt="">
-                <p>【振り飛車】</p>
-                <p>三間飛車戦法</p>
-              </a>
+              <div>
+                <a href="sanken.html">
+                  <img src="../../assets/img/main1.jpg" alt="">
+                  <div class="product-list-title">
+                    <p>【振り飛車】</p>
+                    <p>三間飛車戦法</p>
+                  </div>
+                </a>
+              </div>
             </li>
             <li>
-              <a href="shiken.html">
-                <img src="../../assets/img/main1.jpg" alt="">
-                <p>【振り飛車】</p>
-                <p>四間飛車戦法</p>
-              </a>
+              <div>
+                <a href="shiken.html">
+                  <img src="../../assets/img/main1.jpg" alt="">
+                  <div class="product-list-title">
+                    <p>【振り飛車】</p>
+                    <p>四間飛車戦法</p>
+                  </div>
+                </a>
+              </div>
             </li>
             <li>
-              <a href="nakahisya.html">
-                <img src="../../assets/img/main1.jpg" alt="">
-                <p>【振り飛車】</p>
-                <p>中飛車戦法</p>
-              </a>
+              <div>
+                <a href="nakahisya.html">
+                  <img src="../../assets/img/main1.jpg" alt="">
+                  <div class="product-list-title">
+                    <p>【振り飛車】</p>
+                    <p>中飛車戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a href="aigakari.html">
+                  <img src="../../assets/img/main1.jpg" alt="">
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>相掛かり戦法</p>
+                  </div>
+                </a>
+              </div>
             </li>
           </ul>
         </div>
+<<<<<<< HEAD
         <div>
+=======
+        <div style="width:100px; margin:0 auto">
+>>>>>>> 3a3bd2e84ca4a40c1bae31b8145b41aea95c525c
           <a class="link-text" href="index.html#koma-move">View More</a>
           <!--View Moreを押下するとさらに戦法一覧が表示される、productsのmoreから表示できるとなおよい-->
         </div>
@@ -160,28 +258,25 @@
   
       <footer id="footer">
         <div class="content wrapper">
+          <!-- <section class="item"> アプリができたとき用
+
+          </section> -->
           <section class="item">
-            <h3 class="footer-title">About</h3>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <ul class="about-list">
-              <li><a href="REIOUunnei.html" class="arrow">令王運営の詳細</a></li>
-              <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼" class="arrow">お仕事のご依頼</a></li>
-              <li><a href="otoiawase" class="arrow">お問い合わせ</a></li>
-            </ul>
+            <h3 class="footer-title">サービス</h3>
+              <ul class="service-list">
+                <li><a href="REIOUunnei.html">コース一覧</a></li>
+                <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼">Q&A</a></li>
+                <li><a href="otoiawase">お問い合わせ</a></li>
+              </ul>
           </section>
   
           <section class="item">
-            <h3 class="footer-title">Menu</h3>
-            <ul class="menu-list">
-              <li><a href="#">NEW</a></li>
-              <li><a href="#">CATEGORY</a></li>
-              <li><a href="#">COLUMN</a></li>
-              <li><a href="#">SERIES</a></li>
-              <li><a href="#">Q&A</a></li>
+            <h3 class="footer-title">サポート</h3>
+              <ul class="menu-list">
+              <li><a href="#">運営会社</a></li>
+              <li><a href="#" >利用規約</a></li>
+              <li><a href="#">プライバシーポリシー</a></li>
+              <!-- <li><a href="#">特定商取引法に基づく表示</a></li> -->
             </ul>
           </section>
   
@@ -190,20 +285,18 @@
             <a class="twitter-timeline" data-height="315" href="https://twitter.com/Sugar_Sugiura">Tweets by 令王</a>
             <script async src="https://platform.twitter.com/widgets.js"></script>
           </section>
+
         </div>
-        <button class="fixed_banner">
-          <a href="リンク先URL">
-            <img class="fixed_banner_pc" src="バナー画像ファイル名" alt="">
-            <img class="fixed_banner_sp" src="バナー画像ファイル名" alt="">
-          </a>
-        </button>
-  
         <p class="copyright">&copy; REIOU</p>
       </footer>
 <<<<<<< HEAD
 =======
       
       <script src="../js/main.js"></script>
+<<<<<<< HEAD
 >>>>>>> 3e13c1a7bb160ac1f517c618a6b5caf601e78413
+=======
+      <script src="../js/header.js"></script>
+>>>>>>> 3a3bd2e84ca4a40c1bae31b8145b41aea95c525c
 </html>
 

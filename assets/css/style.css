@@ -306,10 +306,23 @@ top-title ヘッダーの次に来る初心者向けのとこ
   justify-content: space-between;
   padding-top: 150px;
   /*margin-bottom: 60px;*/
+  padding-bottom: 20px;
+}
+
+.top-container {
+  background-color:#fff;
+  width:100%;
+  height: 400px;
+  display:flex;
+  margin:0 auto;
+  border-radius: 20px;
+  flex-direction: row;
+  box-shadow: rgb(230, 230, 230) 0px 2px 6px;
 }
 
 #top-title article {
-  width: 50%;
+  width: 100%;
+  height: 100%;
 }
 
 /*初心者向けリストの上タイトル*/
@@ -320,7 +333,21 @@ top-title ヘッダーの次に来る初心者向けのとこ
 
 /*初心者向けリストの下タイトル*/
 #top-title .article-subtitle {
-  font-size: 50px;
+  font-size: 20px;
+  margin: 65px 0px 65px 30px;
+}
+
+.top-right {
+  text-align: center;
+  display: inline-block;
+  
+}
+
+.top-right img {
+  border-radius: 5px;
+  width: 480px;
+  height: 270px;
+  margin: 65px 0;
 }
 
 /*main*/

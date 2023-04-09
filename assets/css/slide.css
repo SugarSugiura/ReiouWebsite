@@ -333,27 +333,31 @@ input[name="slideshow"] {
 	position: absolute;
 }
 .arrow {
-	top: 0;
+	bottom: 20px;
 	margin: 0;
 	transition: background .3s;
+  background-color: #ffffff;
+  border-radius: 50%;
 }
 .prev {
-	left: 0;
+	right: 200px;
 }
 .next {
-	right: 0;
+	right: 100px;
 }
 .arrow:hover {
-	background: rgba(255,255,255,.2);
+	/* background: rgba(255,255,255,.2); */
 }
-.arrow,
-.arrow label {
+.arrow {
 	cursor: pointer;
 	width: 50px;
-	height: 100%;
+	height: 50px;
 }
 .arrow label {
-	top: 0;
+  cursor: pointer;
+	width: 50px;
+	height: 100%;
+	bottom: 0;
 	left: 0;
 	z-index: 1;
 }
@@ -361,18 +365,17 @@ input[name="slideshow"] {
 	top: calc(50% - 6px);
 	width: 12px;
 	height: 12px;
-	border-top: 3px solid #fff;
-	opacity: 0;
+	border-top: 3px solid #000000;
 }
 .prev .ico {
-	left: 50%;
-	border-left: 3px solid #fff;
+	left: 40%;
+	border-left: 3px solid #000000;
 	transform: rotate(-45deg);
 	transition: left .3s cubic-bezier(0.215, 0.61, 0.355, 1), opacity .3s;
 }
 .next .ico {
-	right: 50%;
-	border-right: 3px solid #fff;
+	right: 40%;
+	border-right: 3px solid #000000;
 	transform: rotate(45deg);
 	transition: right .3s cubic-bezier(0.215, 0.61, 0.355, 1), opacity .3s;
 }

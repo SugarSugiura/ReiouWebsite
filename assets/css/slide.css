@@ -392,18 +392,23 @@ input[name="slideshow"] {
 /* :::::: mechanism :::::: */
 #switch1:checked ~ .slideContents {
 	transform: translateX(0);
+  border-radius: 0.5rem;
 }
 #switch2:checked ~ .slideContents {
 	transform: translateX(-20%);
+  border-radius: 0.5rem;
 }
 #switch3:checked ~ .slideContents {
 	transform: translateX(-40%);
+  border-radius: 0.5rem;
 }
 #switch4:checked ~ .slideContents {
 	transform: translateX(-60%);
+  border-radius: 0.5rem;
 }
 #switch5:checked ~ .slideContents {
 	transform: translateX(-80%);
+  border-radius: 0.5rem;
 }
 
 /* :::::: arrow mechanism :::::: */

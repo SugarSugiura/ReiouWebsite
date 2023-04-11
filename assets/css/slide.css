@@ -132,12 +132,12 @@ li {
 	cursor:pointer;
   position: relative;
   font-size: 20px;
-  color: #fff;
-  background-color: #0085eb;
+  color: #ffffff;
+  background-color: #62e7ff;
 }
 
 .slide_openButton:hover {
-  color: #fff;
+  color: #ffffff;
   border-radius: 50%;
 }
 
@@ -166,7 +166,7 @@ input[name="slideshow"] {
 }
 
 .slide_bg {
-  background: -webkit-radial-gradient(center center, circle cover, rgb(23, 156, 197) 0%, rgb(173, 217, 228) 100%);
+  background: -webkit-radial-gradient(center center, circle cover, rgb(220, 255, 255) 0%, rgb(106, 220, 255) 100%);
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
@@ -345,6 +345,10 @@ input[name="slideshow"] {
 .next {
 	right: 100px;
 }
+/*クリック時色が変更される*/
+.arrow:active{
+  background-color: rgb(47, 0, 255);
+}
 .arrow:hover {
 	/* background: rgba(255,255,255,.2); */
 }
@@ -382,12 +386,12 @@ input[name="slideshow"] {
 .arrow:hover .ico {
 	opacity: .6;
 }
-.prev:hover .ico {
+/* .prev:hover .ico {
 	left: calc(50% - 6px);
 }
 .next:hover .ico {
 	right: calc(50% - 6px);
-}
+} */
 
 /* :::::: mechanism :::::: */
 #switch1:checked ~ .slideContents {
@@ -550,6 +554,10 @@ inline-blockを設定している
   bottom: 10px;
 }
 
+.toggle_btn span:nth-child(3) {
+  bottom: 2px;
+}
+
 .toggle_btn span {
   display: block;
   position: absolute;
@@ -593,12 +601,23 @@ inline-blockを設定している
 */
 .open .toggle_btn span:nth-child(1) {
   -webkit-transform: translateY(4px) rotate(-45deg);
-  transform: translateY(4px) rotate(-45deg);
+  transform: translateY(8px) rotate(-45deg);
 }
 /*
-2本目の線を45度回転
+2本目の線を透過
 */
-.open .toggle_btn span:nth-child(2) {
+.open .toggle_btn span:nth-child(2) { 
+opacity: 0;
+} 
+/*
+3本目の線を45度回転
+*/
+.open .toggle_btn span:nth-child(3) {
   -webkit-transform: translateY(-4px) rotate(45deg);
-  transform: translateY(-4px) rotate(45deg);
+  transform: translateY(-7px) rotate(45deg);
+}
+
+
+.toggle_btn span:nth-child(2) {
+  bottom: 10px;
 }

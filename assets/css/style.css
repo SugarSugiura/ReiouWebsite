@@ -112,6 +112,27 @@ li {
   position: relative;
 }
 
+.btn {
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
 .menu_headline {
   transition: all 0.5s; /*カーソルを合わせた時の文字が薄くなる速度が滑らかになる */
 }
@@ -192,13 +213,24 @@ inline-blockを設定している
   text-align: center;
 }
 
+.menu > li:nth-child(1):hover + li:nth-child(2),
+.menu > li:nth-child(1):hover + li:nth-child(3),
+.menu > li:nth-child(1):hover + li:nth-child(4)
+ {
+  opacity: 0.5;
+ }
+
+ .menu > li:nth-child(1):hover + li:nth-child(3) {
+  opacity: 0.5;
+ }
+
 /* .menu > li:hover {
   background-color: #7bc0d3;
 } */
 
-.active:hover .single_text {
+/* .active:hover .single_text {
   opacity: 0.7;
-}
+} */
 
 .menu > li a {
   display: block;
@@ -224,13 +256,24 @@ inline-blockを設定している
   left: 0;
 }
 .single .menu-second li a:hover {
-  opacity: 0.7;
+  /* opacity: 0.7; */
   transition: opacity 0.5s;
 }
 
 .single:hover .menu-second {
   visibility: visible;
   opacity: 1;
+}
+
+#menu2 {
+  border-left: solid;
+  border-width: 1px;
+}
+
+#menu3 {
+  border-left: solid;
+  border-right: solid;
+  border-width: 1px;
 }
 
 .pc-area {
@@ -243,7 +286,7 @@ inline-blockを設定している
   /* スマホ版を非表示 */
 }
 .toggle_btn {
-  right: 40px;
+  right: 20px;
   display: none;
   /* スマホ版を非表示 */
 }
@@ -492,6 +535,16 @@ border～プロパティで三角を作り、positionで位置調整
   padding: 10px 0;
 }
 
+.service {
+  border-right: solid;
+  border-left: solid;
+  padding-left: 40px;
+}
+
+.support {
+  border-right: solid;
+}
+
 /*
 otoiawase
 .select, .input, .radio, .textarea
@@ -526,223 +579,6 @@ otoiawase
 label, input, textarea, select, button {
   cursor: pointer;
 }
-
-/*-------------------------------------------
-SP
--------------------------------------------*/
-
-@media screen and (max-width: 767px) {
-
-  .pc-area {
-    display: none;
-    /* pc版を非表示 */
-  }
-  .phone-area {
-    display: block;
-    /* スマホ版を表示 */
-  }
-  /*-------------------------------------------
-  header
-  -------------------------------------------*/
-  #header .site-title {
-    padding: 20px 16px;
-  }
-
-  /*
-  「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
-  ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
-  設定している場合は、z-indexの数値が大きい方が前面に表示される
-  */
-  /*
-「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
-※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
-設定している場合は、z-indexの数値が大きい方が前面に表示される
-*/
-#header {
-  width: 100%;
-  height: 80px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-
-.header_container {
-  display: block;
-}
-
-
-
-.test {
-  visibility: hidden;
-}
-/*
-ハンバーガーメニュー
-メニューが閉じている時は、「left: -300px;」で画面左に隠し、
-「opacity: 0;」で非表示にしている
-*/
-#navi-phone {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  width: 300px;
-  color: #fff;
-  padding: 36px 50px;
-  transition: all 0.5s;
-  z-index: 20;
-  opacity: 0;
-}
-#navi-phone a {
-  color: #fff;
-}
-#navi-phone li {
-  margin-bottom: 14px;
-}
-/*
-ハンバーガーメニュー
-メニューが開いている時は、「left: 0;」「opacity: 1;」で
-画面左に表示する
-*/
-.open #navi-phone {
-  left: 0;
-  opacity: 1;
-}
-.toggle_btn {
-  display: block;
-  /* スマホ版を表示 */
-  width: 30px;
-  height: 30px;
-  position: relative;
-  transition: all 0.5s;
-  cursor: pointer;
-  z-index: 20;
-}
-/*
-ハンバーガーメニューの線の設定（メニューが閉じている時）
-*/
-.toggle_btn span {
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background-color: #333;
-  border-radius: 4px;
-  transition: all 0.5s;
-}
-/*
-1本目の線の位置を設定
-*/
-.toggle_btn span:nth-child(1) {
-  top: 10px;
-}
-/*
-2本目の線の位置を設定
-*/
-.toggle_btn span:nth-child(2) {
-  bottom: 10px;
-}
-/*
-ハンバーガーメニューの線の設定（メニューが開いている時）
-線の色を白に変更
-*/
-.open .toggle_btn span {
-  background-color: #fff;
-}
-/*
-1本目の線を-45度回転
-*/
-.open .toggle_btn span:nth-child(1) {
-  -webkit-transform: translateY(4px) rotate(-45deg);
-  transform: translateY(4px) rotate(-45deg);
-}
-/*
-2本目の線を45度回転
-*/
-.open .toggle_btn span:nth-child(2) {
-  -webkit-transform: translateY(-4px) rotate(45deg);
-  transform: translateY(-4px) rotate(45deg);
-}
-#mask {
-  display: none;
-  transition: all 0.5s;
-}
-/*
-メニューを開いている時は、全体を黒背景にする
-*/
-.open #mask {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: .8;
-  z-index: 10;
-  cursor: pointer;
-}
-
-  /*-------------------------------------------
-  top-title
-  -------------------------------------------*/
-
-  #top-title {
-    padding-top: 100px;
-    flex-direction: column;
-  }
-  /*Galaxy Foldでは"駒の動かし方"が2行になるため調整必要*/
-
-  #top-title article {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-
-  .top-right img {
-    border-radius: 5px;
-    width: 480px;
-    margin: 0;
-}
-
-  #top-title .article-subtitle {
-    font-size: 10px;
-    margin: 30px 0px 30px 15px;
-  }
-
-  /*-------------------------------------------
-  container
-  -------------------------------------------*/
-  #container {
-    flex-direction: column;
-  }
-  main {
-    width: 100%;
-  }
-
-  /*-------------------------------------------
-  aside
-  -------------------------------------------*/
-  #sidebar {
-    width: 100%;
-    padding: 0;
-  }
-
-  /*-------------------------------------------
-  footer
-  -------------------------------------------*/
-  #footer .content {
-    flex-direction: column;
-  }
-  #footer .item {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-
-}
-
 
   /*-------------------------------------------
 pop-up
@@ -902,3 +738,295 @@ pop-up
   padding: 0;
 }
 /*吹き出し2終わり*/
+
+/*-------------------------------------------
+SP
+-------------------------------------------*/
+
+@media screen and (max-width: 767px) {
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .pc-area {
+    display: none;
+    /* pc版を非表示 */
+  }
+  .phone-area {
+    display: block;
+    /* スマホ版を表示 */
+  }
+  /*-------------------------------------------
+  header
+  -------------------------------------------*/
+  #header .site-title {
+    padding: 20px 16px;
+  }
+
+  /*
+  「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
+  ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+  設定している場合は、z-indexの数値が大きい方が前面に表示される
+  */
+  /*
+「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
+※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+設定している場合は、z-indexの数値が大きい方が前面に表示される
+*/
+#header {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.header_container {
+  display: block;
+  left: 15px;
+  position: relative;
+}
+
+
+
+.test {
+  visibility: hidden;
+}
+/*
+ハンバーガーメニュー
+メニューが閉じている時は、「left: -300px;」で画面左に隠し、
+「opacity: 0;」で非表示にしている
+*/
+#navi-phone {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  color: #fff;
+  padding: 36px 50px;
+  transition: all 0.5s;
+  z-index: 20;
+  opacity: 0;
+}
+#navi-phone a {
+  color: #fff;
+}
+#navi-phone li {
+  margin-bottom: 14px;
+}
+/*
+ハンバーガーメニュー
+メニューが開いている時は、「left: 0;」「opacity: 1;」で
+画面左に表示する
+*/
+.open #navi-phone {
+  left: 0;
+  opacity: 1;
+}
+.toggle_btn {
+  display: block;
+  /* スマホ版を表示 */
+  width: 30px;
+  height: 30px;
+  position: relative;
+  transition: all 0.5s;
+  cursor: pointer;
+  z-index: 20;
+}
+/*
+ハンバーガーメニューの線の設定（メニューが閉じている時）
+*/
+.toggle_btn span {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: #333;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+/*
+1本目の線の位置を設定
+*/
+.toggle_btn span:nth-child(1) {
+  top: 10px;
+}
+/*
+2本目の線の位置を設定
+*/
+.toggle_btn span:nth-child(2) {
+  bottom: 10px;
+}
+
+.toggle_btn span:nth-child(3) {
+  bottom: 2px;
+}
+
+/*
+ハンバーガーメニューの線の設定（メニューが開いている時）
+線の色を白に変更
+*/
+.open .toggle_btn span {
+  background-color: #fff;
+}
+/*
+1本目の線を-45度回転
+*/
+.open .toggle_btn span:nth-child(1) {
+  -webkit-transform: translateY(4px) rotate(-45deg);
+  transform: translateY(8px) rotate(-45deg);
+}
+/*
+2本目の線を透過
+*/
+.open .toggle_btn span:nth-child(2) { 
+opacity: 0;
+} 
+/*
+3本目の線を45度回転
+*/
+.open .toggle_btn span:nth-child(3) {
+  -webkit-transform: translateY(-4px) rotate(45deg);
+  transform: translateY(-7px) rotate(45deg);
+}
+
+#mask {
+  display: none;
+  transition: all 0.5s;
+}
+/*
+メニューを開いている時は、全体を黒背景にする
+*/
+.open #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .8;
+  z-index: 10;
+  cursor: pointer;
+}
+
+  /*-------------------------------------------
+  top-title
+  -------------------------------------------*/
+
+  #top-title {
+    padding-top: 100px;
+    flex-direction: column;
+  }
+  /*Galaxy Foldでは"駒の動かし方"が2行になるため調整必要*/
+
+  #top-title article {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .top-right img {
+    border-radius: 5px;
+    width: 480px;
+    margin: 0;
+}
+
+  #top-title .article-subtitle {
+    font-size: 10px;
+    margin: 30px 0px 30px 15px;
+  }
+
+  /*-------------------------------------------
+  container
+  -------------------------------------------*/
+  #container {
+    flex-direction: column;
+  }
+  main {
+    width: 100%;
+  }
+
+  /*-------------------------------------------
+  aside
+  -------------------------------------------*/
+  #sidebar {
+    width: 100%;
+    padding: 0;
+  }
+
+  /*-------------------------------------------
+  product-list
+  -------------------------------------------*/
+
+  .product-list li {
+    margin-top:  10px;
+    margin-bottom: 10px;
+  }
+
+  /*-------------------------------------------
+  footer
+  -------------------------------------------*/
+  #footer .content {
+    flex-direction: column;
+  }
+  #footer .item {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .service {
+    border-right: none;
+    border-left: none;
+    padding-left: 0; 
+  }
+
+  .support {
+    border-right: none;
+  }
+
+  #footer .footer-title {
+    margin-bottom: 10px;
+  }
+
+}
+
+.follow-me {
+  list-style: none;
+  margin: 0 0 -8px;
+  overflow: hidden;
+  padding: 0;
+}
+.follow-me li {
+  float: left;
+  margin: 0 8px 8px 0;
+  padding: 0;
+}
+.follow-me li a::before {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #fff;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 16px;
+  height: 44px; /* Button height */
+  line-height: 44px; /* Button height */
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  text-align: center;
+  width: 44px; /* Button width */
+}
+.follow-me li a:hover::before {
+  opacity: 0.7;
+}
+
+.follow-me li a[href*="twitter.com"]::before        { background-color: #55acee; content: "\f099"; }

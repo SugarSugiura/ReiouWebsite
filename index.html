@@ -6,6 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="assets/css/style.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
       <!--JQuery読み込み-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
@@ -20,7 +21,7 @@
           <nav id="navi" class="pc-area"><!--元は-->
             <ul class="menu active"><!--元はmenu-->
               <li class="single">
-                <a href="#" id="menu1" class="single_text" style="transition: all 0.3s">学習<!----></a>
+                <a href="index.html" id="menu1" class="single_text" style="transition: all 0.3s">学習<!----></a>
                 <ul class="menu-second">
                   <li><a href="assets/html/slide.html">Single Child</a></li>
                   <li><a href="#">Single Child</a></li>
@@ -57,15 +58,16 @@
         
         
         <nav id="navi-phone" class="phone-area">
-          <ul class="wrapper">
-            <li><a href="#">学習</a></li>
-            <li><a href="#">戦法一覧</a></li>
-            <li><a href="#">紹介</a></li>
-            <li><a href="#">プラン</a></li>
-            <li><a href="#">お問い合わせ</a></li>
+          <ul class="phone_menu_wrapper">
+            <li><a href="index.html" class="btn">学習</a></li>
+            <li><a href="#" class="btn">戦法一覧</a></li>
+            <li><a href="#" class="btn">紹介</a></li>
+            <li><a href="#" class="btn">プラン</a></li>
+            <li><a href="#" class="btn">お問い合わせ</a></li>
           </ul>
         </nav>
         <div class="toggle_btn">
+          <span></span>
           <span></span>
           <span></span>
         </div>
@@ -214,7 +216,7 @@
           <!-- <section class="item"> アプリができたとき用
 
           </section> -->
-          <section class="item" style="border-right: solid; border-left: solid; padding-left: 40px">
+          <section class="item service">
             <h3 class="footer-title">サービス</h3>
               <ul class="service-list">
                 <li><a href="REIOUunnei.html">コース一覧</a></li>
@@ -223,7 +225,7 @@
               </ul>
           </section>
   
-          <section class="item" style="border-right: solid;">
+          <section class="item support">
             <h3 class="footer-title">サポート</h3>
               <ul class="menu-list">
               <li><a href="#">運営会社</a></li>
@@ -234,9 +236,12 @@
           </section>
   
           <section class="item">
-            <h3 class="footer-title">Twitter</h3>
-            <a class="twitter-timeline" data-height="315" href="https://twitter.com/Sugar_Sugiura">Tweets by 令王</a>
-            <script async src="https://platform.twitter.com/widgets.js"></script>
+            <h3 class="footer-title">SNS</h3>
+            <ul class="follow-me">
+              <li><a href="https://twitter.com/Sugar_Sugiura"></a></li>
+            </ul>
+            <!-- <a class="twitter-timeline" data-height="315" href="https://twitter.com/Sugar_Sugiura">Tweets by 令王</a>
+            <script async src="https://platform.twitter.com/widgets.js"></script> -->
           </section>
 
         </div>
@@ -244,6 +249,6 @@
       </footer>
       
       <script src="assets/js/main.js"></script>
-      <script src="assetsjs/header.js"></script>
+      <!-- <script src="assetsjs/header.js"></script> -->
 </html>
 

@@ -317,7 +317,28 @@ input[name="slideshow"] {
 	font-size: 35px;
 }
 
+   /* @media only screen and (min-width:651px){
+  .slide_title {
+  font-size: 60px;
+}
+  .description {
+    font-size: 16px;
+  }
+}
 
+@media only screen and (min-width:961px) {
+  .slide-title {
+  font-size: 50px;
+  }
+  .description {
+    font-size: 35px;
+  }
+}      */
+@media screen and (orientation: portrait) {
+  .slideContents section div {
+         transform: scale(0.8);
+     }
+ }
 
 /* @media (min-width: 520px) {
 	.slideContents section img {

@@ -182,12 +182,14 @@ input[name="slideshow"] {
 	height: 100%;
 	display: grid;
 	place-items: center;
+  position: relative;
+  top:30px;
 }
 
 
 
 @media (orientation: landscape){
-	.slideContents section div {
+	.slide_wrapper {
 		transform: scale(0.8);
 	}
 }
@@ -205,7 +207,7 @@ input[name="slideshow"] {
 }
 
 .slide1_inside_areaA {
-	width: 100%;
+	width: 120%;
 	grid-area: areaA;
 	display: flex;
 	flex-direction: column;
@@ -306,15 +308,16 @@ input[name="slideshow"] {
 }
 
 .slide_title {
-	font-size: 70px;
+	font-size: 40px;
+  margin-bottom: 20px;
 }
 
 .slide_headline {
-	font-size: 50px;
+	font-size: 20px;
 }
 
 .description {
-	font-size: 35px;
+	font-size: 22px;
 }
 
    /* @media only screen and (min-width:651px){
@@ -335,7 +338,7 @@ input[name="slideshow"] {
   }
 }      */
 @media screen and (orientation: portrait) {
-  .slideContents section div {
+  .slide_wrapper {
          transform: scale(0.8);
      }
  }
@@ -641,4 +644,28 @@ opacity: 0;
 
 .toggle_btn span:nth-child(2) {
   bottom: 10px;
+}
+
+@media screen and (max-width: 959px) {
+  #slide1 {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "areaA areaA"
+      "areaB areaB";
+  }
+
+  .slide_wrapper {
+    top: -25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #slide1 {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "areaA areaA"
+      "areaB areaB";
+  }
 }

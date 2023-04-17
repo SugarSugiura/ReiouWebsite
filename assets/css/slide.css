@@ -97,14 +97,16 @@ li {
 	z-index: 100;
 	inset: 15px;
 	position: absolute;
+  border-radius: 0.5rem;
 }
 
 .slideshow {
 	overflow: hidden;
 	display: block;
-    position: absolute;
-    z-index: 1000;
+  position: absolute;
+  z-index: 1000;
 	inset: 0px;
+  border-radius: 0.5rem;
 }
 
 .slide_closeButton_container {
@@ -154,16 +156,17 @@ input[name="slideshow"] {
 	-webkit-user-select: none;
 	user-select: none;
 	transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    position: absolute;
-    inset: 0px;
-    
-    overflow: hidden;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0px;  
+  overflow: hidden;
 
 }
+
+
 
 .slide_bg {
   background: -webkit-radial-gradient(center center, circle cover, rgb(220, 255, 255) 0%, rgb(106, 220, 255) 100%);
@@ -449,8 +452,7 @@ input[name="slideshow"] {
 #switch5:checked ~ .prev label[for="switch4"],
 #switch1:checked ~ .next label[for="switch2"],
 #switch2:checked ~ .next label[for="switch3"],
-#switch3:checked ~ .next label[for="switch4"],
-#switch4:checked ~ .next label[for="switch5"] {
+#switch3:checked ~ .next label[for="switch4"] {
 	pointer-events: auto;
 }
 

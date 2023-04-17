@@ -461,7 +461,7 @@ shogi-player
 -------------------------------------------*/
 .shogi-player_container {
   display: block;
-  inset: -20px 0px 0px 0px;
+  inset: -90px 0px 0px 0px;
   position: absolute;
   overflow:hidden;
 }

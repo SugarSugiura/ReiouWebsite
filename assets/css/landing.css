@@ -1060,8 +1060,31 @@ opacity: 0;
 .follow-me li a[href*="twitter.com"]::before        { background-color: #55acee; content: "\f099"; }
 
 .title {
-    height: 500px;
+    height: 200px;
     background-color: #0073aa;
-    padding:3.0517578125rem 1.5625rem;
+    padding: 1rem 0;
+    position: relative ;
+    top: 75px;
 }
+
+.title-text1 {
+  font-size: 40px;
+  line-height: 120px;
+  text-align:center;
+  color:#ffffff;
+}
+
+.text2 {
+  font-size: 25px;
+  line-height: opx;
+  text-align:center;
+  color:#ffffff;
+}
+
+.main1 {
+  height: 800px;
+  background-color: #ffffff;
+  position: relative;
+  top: 75px;
+} 
 

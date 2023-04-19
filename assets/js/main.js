@@ -19,6 +19,14 @@ $(function(){
         $('#header').addClass('open');
       }
     });
+
+    $('.toggle_btn').on('click', function() {
+      if ($('#shogi-player').hasClass('sp')) {
+        $('#shogi-player').removeClass('sp');
+      } else {
+        $('#shogi-player').addClass('sp');
+      }
+    });
   
     // メニューが表示されている時に画面をクリックした場合
     $('#mask').on('click', function() {

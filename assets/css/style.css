@@ -27,6 +27,12 @@ time, mark, audio, video {
   background:transparent;
 }
 
+* {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0px;
+}
+
 /*ここは試験用*/
 
 .test > h1 {
@@ -58,7 +64,8 @@ body {
 
 a {
     color: #333;
-    text-decoration: none;    
+    text-decoration: none;   
+    cursor: pointer; 
 }
 
 /* a:hover {
@@ -835,22 +842,79 @@ SP
 メニューが閉じている時は、「left: -300px;」で画面左に隠し、
 「opacity: 0;」で非表示にしている
 */
+
 #navi-phone {
+  display: block;
   position: fixed;
+  width: 100%;
+  height: 100%;
   top: 0;
-  left: -300px;
-  width: 300px;
-  color: #fff;
-  padding: 36px 50px;
-  transition: all 0.5s;
-  z-index: 20;
+  bottom: 0;
+  right: 0;
+  left: -1000px;
+  padding-top: 60px;
+  z-index: 100;
+  transition: opacity 0.3s;
+  background: #008c95;
+  padding: 80px 8vw 8vw 8vw;
   opacity: 0;
+  z-index: 0;
 }
+
+.phone_menu_wrapper {
+  width: 100%;
+  margin-bottom: 6.6vw;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 #navi-phone a {
+  display: flex;
+  align-items: center;
+  font-size: 3.7vw;
+  font-weight: 600;
+  border-bottom: 1px solid #fff;
+  padding: 4vw 4vw 4vw 16vw;
   color: #fff;
+  text-decoration: none;
 }
+
+#navi-phone a:before {
+  width: 4.8vw;
+  height: 4.8vw;
+  content: "";
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 70vw;
+  margin: auto;
+  border-radius: 25%;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+#navi-phone a:after {
+  content: "";
+  display: block;
+  background-size: contain;
+  position: absolute;
+  width: 1.7vw;
+  height: 1.7vw;
+  top: 0;
+  bottom: 0;
+  left: 71vw;
+  margin: auto;
+  border-top: 1px solid rgb(255, 255, 255);
+  border-right: 1px solid rgb(255, 255, 255);
+  transform: rotate(45deg);
+    
+}
+
 #navi-phone li {
-  margin-bottom: 14px;
+  position: relative;
 }
 /*
 ハンバーガーメニュー
@@ -860,6 +924,7 @@ SP
 .open #navi-phone {
   left: 0;
   opacity: 1;
+  z-index: 20;
 }
 .toggle_btn {
   display: block;
@@ -869,7 +934,7 @@ SP
   position: relative;
   transition: all 0.5s;
   cursor: pointer;
-  z-index: 20;
+  z-index: 101;
 }
 /*
 ハンバーガーメニューの線の設定（メニューが閉じている時）
@@ -886,18 +951,22 @@ SP
 /*
 1本目の線の位置を設定
 */
+.open .toggle_btn span:nth-child(1) {
+  top: 7px;
+}
+
 .toggle_btn span:nth-child(1) {
-  top: 10px;
+  top: 6px;
 }
 /*
 2本目の線の位置を設定
 */
 .toggle_btn span:nth-child(2) {
-  bottom: 10px;
+  bottom: 14px;
 }
 
 .toggle_btn span:nth-child(3) {
-  bottom: 2px;
+  bottom: 6px;
 }
 
 /*
@@ -935,7 +1004,7 @@ opacity: 0;
 /*
 メニューを開いている時は、全体を黒背景にする
 */
-.open #mask {
+/* .open #mask {
   display: block;
   position: fixed;
   top: 0;
@@ -946,7 +1015,7 @@ opacity: 0;
   opacity: .8;
   z-index: 10;
   cursor: pointer;
-}
+} */
 
   /*-------------------------------------------
   top-title
@@ -1058,3 +1127,4 @@ opacity: 0;
 }
 
 .follow-me li a[href*="twitter.com"]::before        { background-color: #55acee; content: "\f099"; }
+

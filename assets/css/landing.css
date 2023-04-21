@@ -386,7 +386,7 @@ top-title ヘッダーの次に来る初心者向けのとこ
 }
 
 .top-container {
-  background-color:#ffffff;
+  background-color:#fff;
   display:flex;
   margin:0 auto;
   border-radius: 20px;
@@ -1058,3 +1058,70 @@ opacity: 0;
 }
 
 .follow-me li a[href*="twitter.com"]::before        { background-color: #55acee; content: "\f099"; }
+
+.title {
+    height: 200px;
+    background-color: #0073aa;
+    padding: 1rem 0;
+    position: relative ;
+    top: 75px;
+}
+
+.title-text1 {
+  font-size: 40px;
+  line-height: 120px;
+  text-align:center;
+  color:#ffffff;
+}
+
+.text2 {
+  font-size: 25px;
+  line-height: opx;
+  text-align:center;
+  color:#ffffff;
+}
+
+.main1 {
+  position: relative;
+  top: 75px;
+}
+
+.maintext {
+  height: 800px;
+  background-color: #ffffff;
+} 
+
+.lefttext{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #000;
+}
+
+.flex {
+display: flex;
+justify-content: space-between;
+margin-top: 40px;
+}
+
+.flex .item {
+  width: 49%;
+  position: relative;
+}
+
+.flex .item .text {
+  max-width: 290px;
+  color: #000;
+  font-weight: bold;
+  background-color: #55acee;
+  padding: 15px 0;
+  margin: 0 auto;
+  position: absolute;
+  top: auto;
+  left: 0;
+  right: 0;
+}
+
+.flex .item .title {
+  font-size: 1.25rem;
+  margin-bottom: 2px;
+}

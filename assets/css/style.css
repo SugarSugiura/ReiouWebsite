@@ -301,14 +301,12 @@ inline-blockを設定している
 }
 
 #menu2 {
-  border-left: solid;
-  border-width: 1px;
+  border-left: 1px solid ;
 }
 
 #menu3 {
-  border-left: solid;
-  border-right: solid;
-  border-width: 1px;
+  border-left:1px solid;
+  border-right:1px solid;
 }
 
 .pc-area {

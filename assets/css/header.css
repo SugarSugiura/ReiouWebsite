@@ -1,127 +1,405 @@
 @charset "UTF-8";
 
-html {
-  font-size: 100%;
+:root {
+  --main-color: #004097;
+  --transition-color: 0.2s;
 }
-body {
-  background-color: #f1f1f1;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.875rem;
-}
-ul {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  color: #fff;
+
+* {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0px;
 }
 
 header {
   width: 100%;
   background-color: #fff;
 }
-h1 {
-  height: 140px;
-  line-height: 140px;
-  font-size: 1.625rem;
-  text-align: center;
-}
+
 nav {
   background-color: #121212;
 }
 
+#header {
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  position: fixed;
+  z-index: 10;
+  box-shadow: 0px 3px 10px #a5a5a5;
+}
+
+.header_container {
+display: flex;
+flex-direction:row;
+height:100%;
+}
+
+#header .site-title {
+padding: 10px 1vw;
+/*header自体の位置(間隔)*/
+flex-basis:10%;
+text-align: center;
+}
 /*
-グローバルナビゲーション
-「position: relative;」で、サブメニュー（Wide）の基準位置として設定
+「display: inline-block;」でリンクを親要素の範囲に広げる
+※blockを指定すると横幅いっぱいまで広がってしまうため、
+inline-blockを設定している
 */
-.menu {
-  max-width: 1000px;
+
+#header .site-title a {
+  display: block;
+  height: 100%;
+}
+
+#navi {
+background-color: var(--main-color);
+    /*
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
-  position: relative;
+  */
 }
+
+#navi a {
+  color: #fff;
+}
+
+.menu {
+height: 100%;
+display: flex;
+justify-content: space-between;
+position: relative;
+padding: 0;
+}
+
 .menu > li {
-  width: 25%;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
+width: 25%;
+height: 100%;
+line-height: 400%;
+text-align: center;
 }
-.menu > li:hover {
-  background-color: #3c3636;
-}
-/*
-「display: block;」でリンク範囲を親要素と同じ範囲まで広げる
-*/
+
 .menu > li a {
   display: block;
 }
-/*
-ドロップダウン用のメニュー
-初期状態は表示しないため、「visibility: hidden;」で非表示にしておく
-*/
-.menu-second {
-  visibility: hidden;
+
+.single:hover::before {
+  width: 100%;
 }
 
-/*
-Menu Single
-「position: relative;」で、サブメニュー（Single）の基準位置として設定
-*/
+.single::before {
+  content: "";
+  width: 0;
+  height: 3px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  transition: width .3s ease;
+}
+
 .menu > .single {
   position: relative;
 }
-/*
-「position: absolute;」で、singleクラスを基準に所定の位置に配置する
-*/
+
+.menu-second {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
+  border-radius: 0.5rem;
+  /* border-left: 4px solid transparent; */
+}
+
+.menu-second li:hover {
+  background-color: #55acee;
+  border-radius: 0.5rem;
+  
+}
+
+
 .single .menu-second {
   width: 100%;
-  background-color: #3c3636;
-  position: absolute;
-  top: 50px;
+  background-color: #444;
+  position: relative;
+  top: 0px;
   left: 0;
 }
 .single .menu-second li a:hover {
-  opacity: 0.7;
-}
-/*
-ホバー時にサブメニュー（Single）を表示する
-*/
-.single:hover .menu-second {
-  visibility: visible;
-}
-/*
-Menu Wide
-「position: absolute;」で、menuクラスを基準に所定の位置に配置する
-*/
-.wide .menu-second {
-  width: 100%;
-  background-color: #3c3636;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 50px;
-  left: 0;
-}
-.wide .menu-second li {
-  width: 25%;
-}
-.wide .menu-second li a:hover {
-  opacity: 0.7;
-}
-/*
-ホバー時にサブメニュー（Wide）を表示する
-*/
-.wide:hover .menu-second {
-  visibility: visible;
+  /* opacity: 0.7; */
+  transition: opacity 0.5s;
+  border-left: solid;
 }
 
-/*-------------------------------------------
-SP
--------------------------------------------*/
-@media screen and (max-width: 600px) {
-  body {
-    font-size: 0.75rem;
+.single:hover .menu-second {
+  visibility: visible;
+  opacity: 1;
+}
+
+#menu2 {
+  border-left: 1px solid ;
+}
+
+#menu3 {
+  border-left:1px solid;
+  border-right:1px solid;
+}
+
+.pc-area {
+  display: block;
+  /* pc版を表示 */
+  flex-basis: 80%;
+}
+.phone-area {
+  display: none;
+  /* スマホ版を非表示 */
+}
+.toggle_btn {
+  right: 20px;
+  display: none;
+  /* スマホ版を非表示 */
+}
+
+#navi li {
+  font-size: 15px;
+  /* padding: 10px 60px 10px 0; */
+  margin: auto;
+  letter-spacing: 0.1em;
+  font-weight: 550;
+  /*ヘッダー枠内のmenuの位置*/
+  /*margin-right: 0px;*/
+  /*ヘッダー枠内のmenuの間隔*/
+}
+
+@media screen and (max-width: 767px) {
+  .pc-area {
+    display: none;
+    /* pc版を非表示 */
   }
+  .phone-area {
+    display: block;
+    /* スマホ版を表示 */
+  }
+  /*-------------------------------------------
+  header
+  -------------------------------------------*/
+  #header .site-title {
+    padding: 20px 16px;
+  }
+
+  /*
+  「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
+  ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+  設定している場合は、z-indexの数値が大きい方が前面に表示される
+  */
+  /*
+「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
+※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+設定している場合は、z-indexの数値が大きい方が前面に表示される
+*/
+#header {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.header_container {
+  display: block;
+  left: 15px;
+  position: relative;
+}
+
+
+
+.test {
+  visibility: hidden;
+}
+/*
+ハンバーガーメニュー
+メニューが閉じている時は、「left: -300px;」で画面左に隠し、
+「opacity: 0;」で非表示にしている
+*/
+
+#navi-phone {
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: -1000px;
+  padding-top: 60px;
+  z-index: 100;
+  transition: opacity 0.3s;
+  background: #008c95;
+  padding: 80px 8vw 8vw 8vw;
+  opacity: 0;
+  z-index: 0;
+}
+
+.phone_menu_wrapper {
+  width: 100%;
+  margin-bottom: 6.6vw;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#navi-phone a {
+  display: flex;
+  align-items: center;
+  font-size: 3.7vw;
+  font-weight: 600;
+  border-bottom: 1px solid #fff;
+  padding: 4vw 4vw 4vw 16vw;
+  color: #fff;
+  text-decoration: none;
+}
+
+#navi-phone a:before {
+  width: 4.8vw;
+  height: 4.8vw;
+  content: "";
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 70vw;
+  margin: auto;
+  border-radius: 25%;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+#navi-phone a:after {
+  content: "";
+  display: block;
+  background-size: contain;
+  position: absolute;
+  width: 1.7vw;
+  height: 1.7vw;
+  top: 0;
+  bottom: 0;
+  left: 71vw;
+  margin: auto;
+  border-top: 1px solid rgb(255, 255, 255);
+  border-right: 1px solid rgb(255, 255, 255);
+  transform: rotate(45deg);
+    
+}
+
+#navi-phone li {
+  position: relative;
+}
+/*
+ハンバーガーメニュー
+メニューが開いている時は、「left: 0;」「opacity: 1;」で
+画面左に表示する
+*/
+.open #navi-phone {
+  left: 0;
+  opacity: 1;
+  z-index: 20;
+}
+.toggle_btn {
+  display: block;
+  /* スマホ版を表示 */
+  width: 30px;
+  height: 30px;
+  position: relative;
+  transition: all 0.5s;
+  cursor: pointer;
+  z-index: 101;
+}
+/*
+ハンバーガーメニューの線の設定（メニューが閉じている時）
+*/
+.toggle_btn span {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: #333;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+/*
+1本目の線の位置を設定
+*/
+.open .toggle_btn span:nth-child(1) {
+  top: 7px;
+}
+
+.toggle_btn span:nth-child(1) {
+  top: 6px;
+}
+/*
+2本目の線の位置を設定
+*/
+.toggle_btn span:nth-child(2) {
+  bottom: 14px;
+}
+
+.toggle_btn span:nth-child(3) {
+  bottom: 6px;
+}
+
+/*
+ハンバーガーメニューの線の設定（メニューが開いている時）
+線の色を白に変更
+*/
+.open .toggle_btn span {
+  background-color: #fff;
+}
+/*
+1本目の線を-45度回転
+*/
+.open .toggle_btn span:nth-child(1) {
+  -webkit-transform: translateY(4px) rotate(-45deg);
+  transform: translateY(8px) rotate(-45deg);
+}
+/*
+2本目の線を透過
+*/
+.open .toggle_btn span:nth-child(2) { 
+opacity: 0;
+} 
+/*
+3本目の線を45度回転
+*/
+.open .toggle_btn span:nth-child(3) {
+  -webkit-transform: translateY(-4px) rotate(45deg);
+  transform: translateY(-7px) rotate(45deg);
+}
+
+#mask {
+  display: none;
+  transition: all 0.5s;
+}
+/*
+メニューを開いている時は、全体を黒背景にする
+*/
+/* .open #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .8;
+  z-index: 10;
+  cursor: pointer;
+} */
 }

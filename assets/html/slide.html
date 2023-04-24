@@ -4,6 +4,7 @@
       <meta charset="utf-8">
       <title>令王</title>
       <link rel="stylesheet" href="../css/slide.css">
+      <link rel="stylesheet" href="../css/header.css">
       <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
       <!--JQuery読み込み-->
@@ -13,42 +14,84 @@
       <style>
         .container {
           display: flex;
-          justify-content: center;
-          padding-top: 85px;
+          justify-content: right;
+          padding-top: 70px;
         }
         shogi-player-wc {
           flex-basis: 600px;
         }
         iframe {
-          flex-basis: 65vw;
-          height: 800px;
+          flex-basis: 68%;
+          height: 658px;
+          /*width: 1024px;
+          position: relative;
+          right: 90px;*/
         }
       </style>
     </head>
 
     <body>
-        <header id="header">
-            <h1 class="site-title wrapper" style="margin: 0;"><!--空白でclass名を2つ指定-->
-              <a href="../../index.html"><img src="../../assets/img/REIOUlogo.png" alt="REIOU"></a>
+      <header id="header">
+        <div></div>          
+        <div class="header_container">
+          <div class="site-title"><!--空白でclass名を2つ指定-->
+            <a href="../../index.html"><img src="../img/REIOUlogo.png" alt="REIOU"></a>
+          </div>
+          <nav id="navi" class="pc-area"><!--元は-->
+            <ul class="menu active"><!--元はmenu-->
+              <li class="single">
+                <a href="index.html" id="menu1" class="single_text">学習</a>
+                <ul class="menu-second">
+                  <li><a href="assets/html/slide.html">Single Child</a></li>
+                  <li><a href="#">Single Child</a></li>
+                  <li><a href="#">Single Child</a></li>
+                </ul>
+              </li>
+              <li class="single active">
+                <a href="#" id="menu2" class="single_text">戦法一覧<!----></a>
+                <ul class="menu-second">
+                  <li><a href="#">角換わり戦法</a></li>
+                  <li><a href="#">ネタ戦法</a></li>
+                </ul>
+              </li>
+              <li class="single active">
+                <a href="#" id="menu3" class="single_text">紹介<!----></a>
+              </li>
+              <li class="single active">
+                <a href="#" id="menu4" class="single_text">プラン<!---->
+                </a>
+              </li>
+              <!--<li><a href="#">お問い合わせ</a></li>-->
+            </ul>
+                <!--<ul class="login">
+                    <li><a href="#">無料版</a></li>
+                    <li><a href="#">ログイン</a></li>
+              </ul>-->
+          </nav>
+          <div style="flex-basis: 10%;" class="test">
+            <h1>
+              仮予定地
             </h1>
-                
-            <nav id="navi-phone" class="phone-area">
-              <ul class="phone_menu_wrapper">
-                <li><a href="index.html" class="btn">学習</a></li>
-                <li><a href="#" class="btn">戦法一覧</a></li>
-                <li><a href="#" class="btn">紹介</a></li>
-                <li><a href="#" class="btn">プラン</a></li>
-                <li><a href="#" class="btn">お問い合わせ</a></li>
-              </ul>
-            </nav>
-            <div class="toggle_btn">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-      
-            <div id="mask"></div>
-          </header>
+          </div>
+        </div>
+        
+        
+        <nav id="navi-phone" class="phone-area">
+          <ul class="phone_menu_wrapper">
+            <li><a href="index.html" style="border-top: 1px solid #fff;">学習</a></li>
+            <li><a href="#">戦法一覧</a></li>
+            <li><a href="#">紹介</a></li>
+            <li><a href="#">プラン</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </nav>
+        <div class="toggle_btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div id="mask"></div>
+      </header>
 
           <!--ここからスライドショーの記述-->
           
@@ -189,6 +232,11 @@
 
           <script src="https://cdn.jsdelivr.net/npm/shogi-player@0.0.380/dist/shogi-player-wc.min.js"></script>
   <div class="container">
+    <div style="flex-basis:32%; background-color:aqua; display:flex; justify-content:center;">
+      <div style="width: 80%; margin:auto; height:600px; background-color:#fff">
+
+      </div>
+    </div>
     <iframe src="../../test.html"></iframe>
     <!-- <shogi-player-wc
   sp_controller="is_controller_on"

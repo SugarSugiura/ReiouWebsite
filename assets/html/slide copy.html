@@ -9,14 +9,13 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
       <!--JQuery読み込み-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-      <!-- <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.0"></script> -->
+      <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.0"></script>
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <style>
         .container {
           display: flex;
           justify-content: right;
           padding-top: 70px;
-          height: 100%;
         }
         shogi-player-wc {
           flex-basis: 600px;
@@ -29,6 +28,86 @@
           right: 90px;*/
         }
       </style>
+      <script type="module">
+        import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
+        export class ShogiBoard extends LitElement {
+          static styles = css`
+            :host {
+              display: block;
+              /*border: 1px solid hsl(0 0% 0% / 0.1);*/
+              padding: 1rem;
+            }
+            .container {
+              display: flex;
+              justify-content: center;
+              gap: 1rem;
+            }
+            shogi-player-wc {
+              flex-basis: 640px;
+            }
+            shogi-player-wc::part(root) {
+              --sp_board_color: LightSkyBlue;
+            }
+            .comment {
+              border: 1px solid hsl(0 0% 0% / 0.10);
+              background-color: hsl(0 0% 0% / 0.02);
+              border-radius: 4px;
+              flex-basis: 320px;
+              position: relative;
+            }
+            .comment-body {
+              position: absolute;
+              top: 1rem;
+              left: 1rem;
+              bottom: 1rem;
+              right: 1rem;
+    
+              overflow-y: scroll;
+    
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+            }
+            .comment-body p {
+              margin: 0;
+            }
+          `
+    
+          static properties = {
+            source: { type: String },
+            comment_lines: { type: Array },
+          }
+    
+          constructor() {
+            super()
+            this.source ??= "position sfen 4k4/9/9/9/9/9/9/9/9 b 2r2b4g4s4n4l18p 1"
+            this.comment_lines = null
+          }
+    
+          render() {
+            return html`
+              <div class="container">
+                <shogi-player-wc
+                  sp_mode="view"
+                  sp_body="${this.source}"
+                  sp_comment="false"
+                  sp_mobile_vertical="false"
+                  sp_turn="0"
+                  @ev_comment_change="${e => this.comment_lines = e.detail[0]}"
+                  sp_controller="true"
+                ></shogi-player-wc>
+                <div class="comment">
+                  <div class="comment-body">
+                    ${(this.comment_lines || []).map(e => html`<p>${e}</p>`)}
+                  </div>
+                </div>
+              </div>
+            `
+          }
+        }
+        customElements.define("shogi-board", ShogiBoard)
+      </script>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
     </head>
 
     <body>
@@ -227,7 +306,9 @@
             </div>
             
           </div>
-          
+          <div class="slide_openButton_container">
+            <label class="slide_openButton btn" for="slide_close"><p>スライドをもう１度見る！</p></label>
+          </div>
 
           <script src="https://cdn.jsdelivr.net/npm/shogi-player@0.0.380/dist/shogi-player-wc.min.js"></script>
   <div class="container">
@@ -239,11 +320,85 @@
         <input type="radio" name="Q1" value="c">△
         <input type="button" value="採点" onclick="saiten()">
       </form>
-      <div class="slide_openButton_container">
-        <label class="slide_openButton btn" for="slide_close"><p>スライドをもう１度見る！</p></label>
-      </div>
     </div>
-    <iframe src="../../test.html"></iframe>
+    <div style="flex-basis: 78%;">
+      <shogi-board source="<
+*使用ソフトはdlshogi
+  1 ２六歩(27)
+  2 ３四歩(33)
+  3 ２五歩(26)
+  4 ３三角(22)
+  5 ７六歩(77)
+  6 ４四歩(43)
+  7 ４八銀(39)
+  8 ３二飛(82)
+  9 ３六歩(37)
+ 10 ９四歩(93)
+ 11 ９六歩(97)
+ 12 ６二玉(51)
+ 13 ６八玉(59)
+ 14 ４二銀(31)
+ 15 ７八玉(68)
+ 16 ７二銀(71)
+ 17 ５八金(49)
+ 18 ７一玉(62)
+ 19 ４六歩(47)
+ 20 ５二金(41)
+ 21 ３七桂(29)
+ 22 ８二玉(71)
+ 23 ４五歩(46)
+ *テーマ図:+400
+*
+*この局面での振り飛車側の応手としては、45同歩か35歩が考えられる。
+*結論としては、
+*35歩
+* →最善手順を尽くして先手+800
+*45同歩
+* →最善手順を尽くして先手+1000
+*
+*
+*
+*
+  24 同 歩(44)
+  25 ２四歩(25)
+  26 同 歩(23)
+  27 ３三角成(88)       ( 0:00/00:00:00)
+  28 同 銀(42)
+  29 ４五桂(37)
+*ここでは22銀か44銀が考えられるが、44銀と上がらせることができれば基本的に居飛車の攻めが成功した形となる。
+*※部分図で紹介してもいいか
+*
+  30 ２二銀(33)
+  31 ６六角打   
+*角の打ち場所は66と88がおすすめ.。
+*66は端に利かしているため駒を持った際に攻めやすい。
+*88角は角がいじめられにくい。
+*
+*Sugar的には将来的に角がいじめられる展開は少なめな印象であるため、66角がおすすめ。
+*角交換のような展開も多いためあまり気にせず好きなほうに打つとよい。
+  32 ４二飛(32)
+  33 ２四飛(28)
+  34 ２三歩打   
+  35 ３四飛(24)
+*ここでは28角と33歩が考えられるが、28角は長すぎるため(先手優勢にはなる)33歩の紹介だけでいいか
+  36 ３三歩打   
+  37 ４四飛(34)
+  38 同　飛(42)
+  39 同　角(66)
+  40 ４三飛打   
+  41 ５三角成(44)       ( 0:00/00:00:00)
+*45飛は54馬で飛車桂両取りがかかる。41飛には32馬、25飛にも21馬で銀が助からず優勢となる。
+  42 同　金(52)
+  43 同　桂成(45)       ( 0:00/00:00:00)
+  44 同　飛(43)
+  45 ３二飛打   
+  46 ５二飛(53)
+  47 ４二金打   
+*ここまでくれば飛車を逃げれば22飛成、同飛同飛成31金も45龍から42歩の垂れ歩くらいで居飛車優勢
+*+800
+"></shogi-board>
+    </div>
+    <!-- <iframe src="../../test.html"></iframe> -->
     <!-- <shogi-player-wc
   sp_controller="is_controller_on"
   sp_slider="is_slider_on"

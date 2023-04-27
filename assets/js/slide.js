@@ -51,3 +51,11 @@ window.addEventListener("DOMContentLoaded", function(){
   }, 100);  //この値で何秒ごとに実行するかが決まる
 });
 
+function saiten(){
+  var elem = document.getElementById("quiz");
+  if (elem.Q1.value == "a") {
+    alert("正解です");
+  } else {
+    alert("不正解です");
+  }
+}

@@ -1,0 +1,202 @@
+@charset "UTF-8";
+
+:root {
+  --main-color: #004097;
+  --transition-color: 0.2s;
+}
+
+* {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0px;
+}
+
+/*-------------------------------------------
+footer　※以下コピペ理解未完
+-------------------------------------------*/
+#footer {
+  font-size: 0.875rem;
+  background-color: var(--main-color);
+  color: #ffffff;
+}
+
+#footer .content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+#footer .item {
+  width: 30%;
+  text-align: left;
+}
+
+#footer .footer-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+#footer ul.service-list {
+  text-align: left;
+  width: fit-content;
+}
+
+/* #footer ul.service-list li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+} */
+
+#footer ul.service-list li a {
+  color: #fff;
+}
+
+#footer ul.service-list .arrow {
+  position: relative;
+  display: inline-block;
+  padding-left: 12px;
+}
+/*
+疑似要素で三角矢印を表示
+border～プロパティで三角を作り、positionで位置調整
+*/
+#footer ul.service-list .arrow::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -6px;
+}
+#footer .menu-list {
+  /* border-bottom: solid  1px #777; */
+  width: fit-content;
+}
+#footer .menu-list > li {
+  text-align: left;
+  margin: auto;
+}
+
+#footer .menu-list a {
+  color: #fff
+} 
+
+#footer .copyright {
+  font-size: 0.750rem;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.service {
+  border-right: solid;
+  border-left: solid;
+  padding-left: 40px;
+}
+
+.support {
+  border-right: solid;
+}
+
+.sns {
+  border-right: solid;
+}
+
+.follow-me {
+  list-style: none;
+  margin: 0 0 -8px;
+  overflow: hidden;
+  padding: 0;
+}
+.follow-me li {
+  float: left;
+  margin: 0 8px 8px 0;
+  padding: 0;
+}
+.follow-me li a::before {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #fff;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 16px;
+  height: 44px; /* Button height */
+  line-height: 44px; /* Button height */
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  text-align: center;
+  width: 44px; /* Button width */
+}
+.follow-me li a:hover::before {
+  opacity: 0.7;
+}
+
+.follow-me li a[href*="twitter.com"]::before        { background-color: #55acee; content: "\f099"; }
+
+
+
+/*
+otoiawase
+.select, .input, .radio, .textarea
+*/
+/*
+#top {
+  padding-top: 150px;
+}
+*/
+.select {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-width: 500px;
+}
+.input {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-width: 500px;
+}
+.radio {
+  margin: auto;
+}
+.textarea {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-width: 500px;
+  min-height: 100px;
+}
+label, input, textarea, select, button {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  /*-------------------------------------------
+  footer
+  -------------------------------------------*/
+  #footer .content {
+    flex-direction: column;
+  }
+  #footer .item {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .service {
+    border-right: none;
+    border-left: none;
+    padding-left: 0; 
+  }
+
+  .support {
+    border-right: none;
+  }
+
+  #footer .footer-title {
+    margin-bottom: 10px;
+  }
+
+}
+

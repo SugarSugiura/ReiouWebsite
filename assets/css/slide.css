@@ -498,3 +498,7 @@ shogi-player
 .sp {
   z-index: 9;
 }
+
+.emphasize {
+  background-color: aqua;
+}

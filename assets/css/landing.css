@@ -1073,10 +1073,9 @@ opacity: 0;
   display: flex;
   justify-content: center; 
   align-items: center;
-  height: 300px;
   width: 100%;
   height: 400px;
-  background-color: #81d7ff;
+  background-color: #b5e7ff;
   padding: 1rem 0;
   position: relative ;
   top: 75px; 
@@ -1103,7 +1102,6 @@ opacity: 0;
   position: relative;
   left: 50px;
   display: block;
-  text-align:right
 }
 
 .mainback1 {
@@ -1123,7 +1121,6 @@ opacity: 0;
 
 .tatle2 {
   display: block;
-  /* font-size: 30px; */
 }
 
 .title3 {
@@ -1133,7 +1130,7 @@ opacity: 0;
 
 .textback {
   width: 100%; 
-  height: 600px; 
+  height: 300px; 
   background-color: white; 
   padding: 1em;
 }
@@ -1141,7 +1138,7 @@ opacity: 0;
 .titleback3 {
   text-align: left;
   width: 35%; 
-  height: 100px; 
+  height: 200px; 
   background-color: rgb(255, 255, 255); 
   float: left;  
 }
@@ -1149,7 +1146,7 @@ opacity: 0;
 .titleback3-1 {
   text-align: center; 
   width: 30%; 
-  height: 100px; 
+  height: 200px; 
   background-color: rgb(255, 255, 255); 
   float: left;  
 }
@@ -1157,7 +1154,7 @@ opacity: 0;
 .titleback4 {
   text-align: right;
   width: 35%; 
-  height: 100px; 
+  height: 200px; 
   background-color: white; 
   float: left; 
 } 
@@ -1232,9 +1229,15 @@ opacity: 0;
   padding: 0;
 }
 
+.hukidasi {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+}
+
 .contentsback {
   width: 100%;
-  height: 1300px;
+  height: 1400px;
   background-color: burlywood; 
   padding: 1em; 
   color: rgb(0, 0, 0);
@@ -1243,6 +1246,10 @@ opacity: 0;
 .contents {
   width: 100%;
   height: 1200px;
+}
+
+.set {
+  height: 400px;
 }
 
 .moji {
@@ -1276,36 +1283,27 @@ opacity: 0;
   text-align: center;
 }
 
-.plan-list {
-  width: 50%;
-  height: 400px;
-  margin: 0 auto;
+.flex_test-box {
+ height: 400px;
+  background-color: #bed0ff;     /* 背景色指定 */
+  padding:  10px;             /* 余白指定 */
+  display: flex;
+  align-items:stretch;
+  justify-content:center;
 }
 
-.plan-left {
-  text-align: center;
-  width: 50%;
-  height: 300px;
-  float: left;
-  border: #ff0000 1px solid; /*境界線の指定*/
-  padding:10px;
+.flex_test-item {
+  padding: 10px;
+  color:  #fff;               /* 文字色 */
+  margin:  10px;              /* 外側の余白 */
+  border-radius:  5px;        /* 角丸指定 */
+  width: 30%;                 /* 幅指定 */
 }
-
-  .plan-left p {
-  margin:0;
-  padding:0;
-  }
-
-.plan-right {
-  text-align: center;
-  width: 50%;
-  height: 300px;
-  float: left;
-  border: #ff0000 1px solid; /*境界線の指定*/
-  padding:10px;
-} 
-
-.plan-right p {
-  margin:0;
-  padding:0;
-  }
+ 
+.flex_test-item:nth-child(1) {
+  background-color:  #2196F3; /* 背景色指定 */
+}
+ 
+.flex_test-item:nth-child(2) {
+  background-color:  #4CAF50; /* 背景色指定 */
+}

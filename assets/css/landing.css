@@ -1255,7 +1255,7 @@ opacity: 0;
 .moji {
   display:inline-block; 
   width: 49%; 
-  transform: translate(0%, -250%);
+  transform: translate(0%, -200%);
 }
 
 .border_ {

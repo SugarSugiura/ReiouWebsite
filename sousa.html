@@ -130,29 +130,6 @@
 
     
     setInterval(() => console.log(turn), 1000);
-    //setInterval(() => console.log(elem.getAttribute("turn")), 1000);
-
-    
-    /*window.addEventListener("DOMContentLoaded", function(){
-      // 0.100秒ごとに実行
-     setInterval(() => {
-      console.log(item);
-     }, 1000);  //この値で何秒ごとに実行するかが決まる
-   });*/
-
-   setInterval(() => {
-      // ファイルをUTF-8として非同期で読み込む
-    fs.readFile("assets/kif/habkifsfen.txt", { encoding: "utf8" }).then(file => {
-      console.log(file);
-    });
-   }
-  , 1000);
-    import { program } from "commander";
-    import * as fs from "node:fs/promises";
-
-    program.parse(process.argv);
-
-    
   </script>
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
 <body>

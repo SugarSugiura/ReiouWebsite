@@ -12,6 +12,31 @@
   <script>
     var item;
     var turn = 0;
+    var sfen;
+
+    function read_file() {
+      // XMLHttpRequestオブジェクトを作成
+      var rec = new XMLHttpRequest();
+
+      // ファイルのURLを指定
+      rec.open('GET', 'assets/kif/habkifsfen.txt', true);
+
+      // 読み込み開始
+      rec.send();
+
+      // レスポンスタイプを指定
+      rec.responseType = 'text';
+
+      // 読み込み完了時の処理
+      rec.onload = function() {
+        if (rec.status === 200) {
+          console.log(rec.responseText);
+          sfen = rec.responseText;
+        }
+      };
+
+      
+    }
   </script>
   <script type="module">
     import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
@@ -80,8 +105,8 @@
         
         setInterval(() => {
           if (turn < 127) {
-            //sp_instance.api_turn_add(1, {cycle: true});
-            //turn = turn + 1;
+            sp_instance.api_turn_add(1, {cycle: true});
+            turn = turn + 1;
           }
         }, 100)
       }
@@ -99,7 +124,7 @@
               @ev_short_sfen_change="${e => item = e.detail[0]}"
               sp_controller="true"
               sp_pass_css="${this.pass_css}"
-              sp_debug="true"
+              sp_debug="false"
             ></shogi-player-wc>
             <div class="comment">
               <div class="comment-body">
@@ -112,13 +137,23 @@
 
       
 
+
+
     }
     customElements.define("shogi-board", ShogiBoard);
+
+
+
+
     setInterval(() => {
       if (turn < 127) {
         console.log(item);
       }
+      if (turn == 127) {
+        read_file();
+      }
     }, 100);
+    
   </script>
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
 <body>

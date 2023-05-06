@@ -12,7 +12,59 @@
   <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
   <script>
     let item;
-    let turn;
+    let turn = 0;
+    let sfen;
+
+    //textファイル読み込み
+    function read_file() {
+      // XMLHttpRequestオブジェクトを作成
+      var rec = new XMLHttpRequest();
+
+      // ファイルのURLを指定
+      rec.open('GET', 'assets/kif/habkifsfen.txt', true);
+
+      // 読み込み開始
+      rec.send();
+
+      // レスポンスタイプを指定
+      rec.responseType = 'text';
+
+      // 読み込み完了時の処理
+      rec.onload = function() {
+        if (rec.status === 200) {
+          //console.log(rec.responseText); //rec.responceTextがファイルの中の文字列
+          sfen = rec.responseText;
+          //line_string(sfen, 100);
+          //console.log(sfen[sfen.length]);
+          //console.log(sfen.slice(0, sfen.indexOf('\n')))  //この中身は1行目を取得している
+        }
+      };
+
+      
+
+      
+    }
+
+    //strの文字列のnum行目を取得できる
+    function line_string(str, num) {
+      var count = 0;
+      var last = 0;
+      for (var i = 0; i < str.length; i++) {
+        if (str[i] == "\n") {
+          //console.log(i);
+          count++;
+          if (count == num) {
+            return str.slice(last + 1, str.indexOf("\n", last + 1));
+          }
+          last = i;
+        }
+        
+      }
+    }
+
+    window.onload = function(){
+      read_file();
+    }
   </script>
   <script type="module">
     import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
@@ -64,7 +116,9 @@
         source: { type: String },
         comment_lines: { type: Array },
         turn: { type: String },
-        pass_css: { type: String }
+        pass_css: { type: String },
+        human_sfen: { type: String }
+
       }
 
       constructor() {
@@ -73,6 +127,7 @@
         this.comment_lines = null
         this.turn = null
         this.pass_css = null
+        
       }
 
     
@@ -90,8 +145,8 @@
               sp_turn="${this.turn}"
               @ev_comment_change="${e => this.comment_lines = e.detail[0]}"
               @ev_play_mode_move="${e => e.detail[0].sfen}"
-              @ev_short_sfen_change="${e => item = e.detail[0]}"
-              @ev_turn_offset_change="${e => turn = e.detail[0]}"
+              @ev_short_sfen_change="${e => this.ai_move(e)}"
+              @ev_turn_offset_change="${e => turn++}"
               @ev_turn_offset_max_change="${e => e.detail[0]}"
               sp_controller="true"
               sp_human_side="both"
@@ -108,8 +163,19 @@
         `
       }
 
+      ai_move (e) {
+        console.log(turn);
+        if ((turn % 2) == 1) {
+          elem.setAttribute("source", line_string(sfen, turn + 2));
+          if (e.detail[0] != line_string(sfen, turn + 1)) {
+            alert("間違いです");
+            turn = turn - 2;
+            elem.setAttribute("source", line_string(sfen, turn + 1));
+          }
+        }
+      }
       
-      
+
 
 
       
@@ -119,17 +185,6 @@
     }
     customElements.define("shogi-board", ShogiBoard);
     var elem = document.getElementById("shogi");
-
-    
-
-    setInterval(() => {
-      if (turn == 1) {
-        elem.setAttribute("source", "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d");
-      }
-    }, 1000);
-
-    
-    setInterval(() => console.log(turn), 1000);
   </script>
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
 <body>

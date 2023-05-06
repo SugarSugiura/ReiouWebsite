@@ -14,6 +14,7 @@
     var turn = 0;
     var sfen;
 
+    //textファイル読み込み
     function read_file() {
       // XMLHttpRequestオブジェクトを作成
       var rec = new XMLHttpRequest();
@@ -30,13 +31,40 @@
       // 読み込み完了時の処理
       rec.onload = function() {
         if (rec.status === 200) {
-          console.log(rec.responseText);
+          //console.log(rec.responseText); //rec.responceTextがファイルの中の文字列
           sfen = rec.responseText;
+          line_string(sfen, 100);
+          //console.log(sfen[sfen.length]);
+          //console.log(sfen.slice(0, sfen.indexOf('\n')))  //この中身は1行目を取得している
         }
       };
 
       
+
+      
     }
+
+    //strの文字列のnum行目を取得できる
+    function line_string(str, num) {
+      var count = 0;
+      var last = 0;
+      for (var i = 0; i < str.length; i++) {
+        if (str[i] == "\n") {
+          //console.log(i);
+          count++;
+          if (count == num) {
+            console.log(str.slice(last + 1, str.indexOf("\n", last + 1)));
+          }
+          last = i;
+        }
+        
+      }
+    }
+
+    window.onload = function(){
+        read_file();
+      }
+
   </script>
   <script type="module">
     import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
@@ -99,7 +127,7 @@
         this.pass_css = null
       }
 
-      firstUpdated() {
+      /*firstUpdated() {
         const el = this.renderRoot.querySelector("shogi-player-wc")
         const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__
         
@@ -109,7 +137,7 @@
             turn = turn + 1;
           }
         }, 100)
-      }
+      }*/
 
       render() {
         return html`
@@ -146,11 +174,12 @@
 
 
     setInterval(() => {
-      if (turn < 127) {
+      /*if (turn < 127) {
         console.log(item);
-      }
+      }*/
       if (turn == 127) {
         read_file();
+        line_string(sfen, 2)
       }
     }, 100);
     

@@ -14,6 +14,7 @@
     let item;
     let turn = 0;
     let sfen;
+    let turn_flg = true;
 
     //textファイル読み込み
     function read_file() {
@@ -117,8 +118,8 @@
         comment_lines: { type: Array },
         turn: { type: String },
         pass_css: { type: String },
-        human_sfen: { type: String }
-
+        human_sfen: { type: String },
+        ai_sfen: { tyoe: String }
       }
 
       constructor() {
@@ -127,7 +128,8 @@
         this.comment_lines = null
         this.turn = null
         this.pass_css = null
-        
+        this.human_sfen = ""
+        this.ai_sfen = ""
       }
 
     
@@ -144,9 +146,9 @@
               sp_piece_variant="paper"
               sp_turn="${this.turn}"
               @ev_comment_change="${e => this.comment_lines = e.detail[0]}"
-              @ev_play_mode_move="${e => e.detail[0].sfen}"
-              @ev_short_sfen_change="${e => this.ai_move(e)}"
-              @ev_turn_offset_change="${e => turn++}"
+              @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
+              @ev_short_sfen_change="${e => console.log(e.detail[0])}"
+              @ev_turn_offset_change="${e => e.detail[0]}"
               @ev_turn_offset_max_change="${e => e.detail[0]}"
               sp_controller="true"
               sp_human_side="both"
@@ -163,28 +165,44 @@
         `
       }
 
-      ai_move (e) {
-        console.log(turn);
-        if ((turn % 2) == 1) {
-          elem.setAttribute("source", line_string(sfen, turn + 2));
-          if (e.detail[0] != line_string(sfen, turn + 1)) {
-            alert("間違いです");
-            turn = turn - 2;
-            elem.setAttribute("source", line_string(sfen, turn + 1));
-          }
-        }
+      ev_play_mode_move(e) {
+        this.human_sfen = e.detail[0].sfen                // 人間の指し手を受け取って
+        const sfen = this.ai_best_move(this.human_sfen)   // AIに渡すと応手が返ってくるので
+        this.source = sfen                               // 局面に反映する
       }
       
+      // ☗76歩には☖34歩とし☗22角成に同銀とするだけのAI
+      ai_best_move(sfen) {
+        if (sfen === "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f") {
+          return "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 8c8d"
+        }
+        if (sfen === "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+") {
+          return "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b"
+        }
+      }
 
+    
 
+      ai_move(e) {
+        if (e.detail[0] == "1") {
+          elem.setAttribute("source", "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 8c8d");
+        }
+      }
 
-      
-   
-      
-
+      turn_add() {
+        if (turn_flg) {
+          turn++;
+        } else {
+          turn--;
+        }
+      }
+    
     }
     customElements.define("shogi-board", ShogiBoard);
     var elem = document.getElementById("shogi");
+    setInterval(() => {
+      //console.log(turn);
+    }, 100);
   </script>
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
 <body>

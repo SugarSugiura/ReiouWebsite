@@ -1,0 +1,243 @@
+<!doctype html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.1"></script>
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <style>
+    html {
+      overflow: hidden;
+    }
+  </style>
+  <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
+  <script type="module">
+    import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
+    export class ShogiBoard extends LitElement {
+      static styles = css`
+        :host {
+          display: block;
+          /*border: 1px solid hsl(0 0% 0% / 0.1);*/
+          padding-top: 80px;
+          padding: 80px 1rem 1rem 1rem;
+          height: 100%
+        }
+        .container {
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+        }
+        shogi-player-wc {
+          flex-basis: 90vh;
+        }
+        shogi-player-wc::part(root) {
+          --sp_board_color: LightSkyBlue;
+        }
+        .comment {
+          border: 1px solid hsl(0 0% 0% / 0.10);
+          background-color: hsl(0 0% 0% / 0.02);
+          border-radius: 4px;
+          flex-basis: 40vh;
+          position: relative;
+        }
+        .comment-body {
+          position: absolute;
+          top: 1rem;
+          left: 1rem;
+          bottom: 1rem;
+          right: 1rem;
+
+          overflow-y: scroll;
+
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .comment-body p {
+          margin: 0;
+        }
+      `
+
+      static properties = {
+        source: { type: String },
+        comment_lines: { type: Array },
+        turn: { type: String },
+        pass_css: { type: String }
+      }
+
+      constructor() {
+        super()
+        this.source ??= "position sfen 4k4/9/9/9/9/9/9/9/9 b 2r2b4g4s4n4l18p 1"
+        this.comment_lines = null
+        this.turn = null
+        this.pass_css = null
+      }
+
+      render() {
+        return html`
+          <div class="container">
+         
+            <shogi-player-wc
+              sp_mode="view"
+              sp_body="${this.source}"
+              sp_comment="false"
+              sp_mobile_vertical="false"
+              sp_turn="${this.turn}"
+              @ev_comment_change="${e => this.comment_lines = e.detail[0]}"
+              sp_controller="true"
+              sp_pass_css="${this.pass_css}"
+            ></shogi-player-wc>
+            <div class="comment">
+              <div class="comment-body">
+                ${(this.comment_lines || []).map(e => html`<p>${e}</p>`)}
+              </div>
+            </div>
+          </div>
+        `
+      }
+    }
+    customElements.define("shogi-board", ShogiBoard)
+  </script>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
+<body>
+  <!-- <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px"> -->
+  <header id="header">
+    <div></div>          
+    <div class="header_container">
+      <div class="site-title"><!--空白でclass名を2つ指定-->
+        <a href="../../index.html"><img src="assets/img/REIOUlogo.png" alt="REIOU"></a>
+      </div>
+      <nav id="navi" class="pc-area"><!--元は-->
+        <ul class="menu active"><!--元はmenu-->
+          <li class="single">
+            <a href="index.html" id="menu1" class="single_text">学習</a>
+            <ul class="menu-second">
+              <li><a href="assets/html/slide.html">Single Child</a></li>
+              <li><a href="#">Single Child</a></li>
+              <li><a href="#">Single Child</a></li>
+            </ul>
+          </li>
+          <li class="single active">
+            <a href="#" id="menu2" class="single_text">戦法一覧<!----></a>
+            <ul class="menu-second">
+              <li><a href="#">角換わり戦法</a></li>
+              <li><a href="#">ネタ戦法</a></li>
+            </ul>
+          </li>
+          <li class="single active">
+            <a href="#" id="menu3" class="single_text">紹介<!----></a>
+          </li>
+          <li class="single active">
+            <a href="#" id="menu4" class="single_text">プラン<!---->
+            </a>
+          </li>
+          <!--<li><a href="#">お問い合わせ</a></li>-->
+        </ul>
+            <!--<ul class="login">
+                <li><a href="#">無料版</a></li>
+                <li><a href="#">ログイン</a></li>
+          </ul>-->
+      </nav>
+      <div style="flex-basis: 10%;" class="test">
+        <h1>
+          仮予定地
+        </h1>
+      </div>
+    </div>
+    
+    
+    <nav id="navi-phone" class="phone-area">
+      <ul class="phone_menu_wrapper">
+        <li><a href="index.html" style="border-top: 1px solid #fff;">学習</a></li>
+        <li><a href="#">戦法一覧</a></li>
+        <li><a href="#">紹介</a></li>
+        <li><a href="#">プラン</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <div class="toggle_btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div id="mask"></div>
+  </header>
+  <shogi-board id="shogi" turn="0" source="
+  *使用ソフトはdlshogi
+    1 ２六歩(27)        ( 0:00/00:00:00)
+    2 ３四歩(33)        ( 0:00/00:00:00)
+    3 ２五歩(26)        ( 0:00/00:00:00)
+    4 ３三角(22)        ( 0:00/00:00:00)
+    5 ７六歩(77)        ( 0:00/00:00:00)
+    6 ４四歩(43)        ( 0:00/00:00:00)
+    7 ４八銀(39)        ( 0:00/00:00:00)
+    8 ３二飛(82)        ( 0:00/00:00:00)
+    9 ３六歩(37)        ( 0:00/00:00:00)
+    10 ９四歩(93)        ( 0:00/00:00:00)
+    11 ９六歩(97)        ( 0:00/00:00:00)
+    12 ６二玉(51)        ( 0:00/00:00:00)
+    13 ６八玉(59)        ( 0:00/00:00:00)
+    14 ４二銀(31)        ( 0:00/00:00:00)
+    15 ７八玉(68)        ( 0:00/00:00:00)
+    16 ７二銀(71)        ( 0:00/00:00:00)
+    17 ５八金(49)        ( 0:00/00:00:00)
+    18 ７一玉(62)        ( 0:00/00:00:00)
+    19 ４六歩(47)        ( 0:00/00:00:00)
+    20 ５二金(41)        ( 0:00/00:00:00)
+    21 ３七桂(29)        ( 0:00/00:00:00)
+    22 ８二玉(71)        ( 0:00/00:00:00)
+    23 ４五歩(46)        ( 0:00/00:00:00)
+  *テーマ図:+400
+  *
+  *この局面での振り飛車側の応手としては、45同歩か35歩が考えられる。
+  *結論としては、
+  *35歩
+  * →最善手順を尽くして先手+800
+  *45同歩
+  * →最善手順を尽くして先手+1000
+  *
+  *
+  *
+  *
+    24 同 歩(44)        ( 0:00/00:00:00)
+    25 ２四歩(25)        ( 0:00/00:00:00)
+    26 同 歩(23)        ( 0:00/00:00:00)
+    27 ３三角成(88)       ( 0:00/00:00:00)
+    28 同 銀(42)        ( 0:00/00:00:00)
+    29 ４五桂(37)        ( 0:00/00:00:00)
+  *ここでは22銀か44銀が考えられるが、44銀と上がらせることができれば基本的に居飛車の攻めが成功した形となる。
+  *※部分図で紹介してもいいか
+  *
+    30 ２二銀(33)        ( 0:00/00:00:00)
+    31 ６六角打           ( 0:00/00:00:00)
+  *角の打ち場所は66と88がおすすめ.。
+  *66は端に利かしているため駒を持った際に攻めやすい。
+  *88角は角がいじめられにくい。
+  *
+  *Sugar的には将来的に角がいじめられる展開は少なめな印象であるため、66角がおすすめ。
+  *角交換のような展開も多いためあまり気にせず好きなほうに打つとよい。
+    32 ４二飛(32)        ( 0:00/00:00:00)
+    33 ２四飛(28)        ( 0:00/00:00:00)
+    34 ２三歩打           ( 0:00/00:00:00)
+    35 ３四飛(24)        ( 0:00/00:00:00)
+  *ここでは28角と33歩が考えられるが、28角は長すぎるため(先手優勢にはなる)33歩の紹介だけでいいか
+    36 ３三歩打           ( 0:00/00:00:00)
+    37 ４四飛(34)        ( 0:00/00:00:00)
+    38 同　飛(42)        ( 0:00/00:00:00)
+    39 同　角(66)        ( 0:00/00:00:00)
+    40 ４三飛打           ( 0:00/00:00:00)
+    41 ５三角成(44)       ( 0:00/00:00:00)
+  *45飛は54馬で飛車桂両取りがかかる。41飛には32馬、25飛にも21馬で銀が助からず優勢となる。
+    42 同　金(52)        ( 0:00/00:00:00)
+    43 同　桂成(45)       ( 0:00/00:00:00)
+    44 同　飛(43)        ( 0:00/00:00:00)
+    45 ３二飛打           ( 0:00/00:00:00)
+    46 ５二飛(53)        ( 0:00/00:00:00)
+    47 ４二金打           ( 0:00/00:00:00)
+  *ここまでくれば飛車を逃げれば22飛成、同飛同飛成31金も45龍から42歩の垂れ歩くらいで居飛車優勢
+  *+800
+
+  "></shogi-board>
+
+<script src="assets/js/test.js"></script>
+</body></html>

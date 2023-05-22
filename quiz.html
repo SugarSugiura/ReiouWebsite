@@ -11,6 +11,33 @@
     }
   </style>
   <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
+  <script>
+    let quiz_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f";
+    let quiz_num = "第2問" 
+    var elem_2 = document.getElementById("shogi");  //idからHTMLElementを取得
+
+    function set_quiz_sfen(sfen, next_sfen, num) {
+      var elem = document.getElementById("shogi");  //idからHTMLElementを取得
+      console.log(elem);
+      elem.setAttribute("source", sfen);  //source属性を上書き
+      quiz_sfen = next_sfen;
+      quiz_num = "現在の問題：" + num;
+    }
+
+    function set_quiz_num() {
+      var elem = document.getElementById("current_quiz_num_2");
+      console.log(elem);
+    }
+      
+    
+      window.addEventListener("DOMContentLoaded", function(){
+        // 0.100秒ごとに実行
+       setInterval(() => {
+          //console.log(elem_2);
+       }, 100);  //この値で何秒ごとに実行するかが決まる
+     });
+
+  </script>
   <script type="module">
     import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
     export class ShogiBoard extends LitElement {
@@ -77,7 +104,7 @@
 
       constructor() {
         super()
-        this.source ??= "position sfen l4B2l/5sn1p/2+Pp1ggkn/p3p1p2/2rP1P2R/P3PSP2/9/1gPK5/L7L b 2SNPbgn5p 1"
+        this.source ??= "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
         this.comment_lines = null
         this.turn = null
         this.pass_css = null
@@ -88,6 +115,10 @@
           <div class="container">
             <div class="quiz-comment">
               <p>次の一手を指してください</p>
+              <p id="current_quiz_num"></p>
+              <input type="button" value="第1問" onclick="set_quiz_sfen('position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1', 'position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f')" style="position: absolute; top: 100px">
+              <input type="button" value="第2問" onclick="set_quiz_sfen('position sfen l4B2l/5sn1p/2+Pp1ggkn/p3p1p2/2rP1P2R/P3PSP2/9/1gPK5/L7L b 2SNPbgn5p 1', 'position sfen l4B2l/5sn1p/2+Pp1ggkn/p3p1p2/2rP1P2R/P3PSP2/9/1gPK5/L7L b 2SNPbgn5p 1 moves 6h5g')" style="position: absolute; top: 150px">
+              <input type="button" value="表示" onclick="set_quiz_num()" style="position: absolute; top: 200px">
             </div>
             <shogi-player-wc
               sp_mode="play"
@@ -105,22 +136,23 @@
       }
 
       ev_play_mode_move(e) {
-        if (e.detail[0].sfen == "position sfen l4B2l/5sn1p/2+Pp1ggkn/p3p1p2/2rP1P2R/P3PSP2/9/1gPK5/L7L b 2SNPbgn5p 1 moves 6h5g") {
+        if (e.detail[0].sfen == quiz_sfen) {
           alert("正解です");
         } else {
           alert("不正解です");
-          const el = this.renderRoot.querySelector("shogi-player-wc")
-          const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__
-          sp_instance.api_turn_add(-1)
+          const el = this.renderRoot.querySelector("shogi-player-wc");
+          const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
+          sp_instance.api_turn_add(-1);
         }
       }
+
+      
     }
     var elem = document.getElementById("shogi");
     customElements.define("shogi-board", ShogiBoard)
   </script>
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
 <body>
-  <!-- <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px"> -->
   <header id="header">
     <div></div>          
     <div class="header_container">

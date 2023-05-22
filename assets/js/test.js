@@ -12,6 +12,11 @@ function SetKoma(tebann, pos, koma, oldPos) {
   elem.setAttribute("turn", tebann);  //その手番に移動
 }
 
+function SetSfen(sfen) {
+  var elem = document.getElementById("shogi");  //idからHTMLElementを取得
+  elem.setAttribute("source", sfen);  //source属性を上書き
+}
+
 function EmphasizeSquare(rows, cols) {
   var elem = document.getElementById("shogi");  //idからHTMLElementを取得
 

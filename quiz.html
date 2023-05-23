@@ -5,6 +5,7 @@
   <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.1"></script>
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/header.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
   <style>
     html {
       overflow: hidden;
@@ -12,30 +13,34 @@
   </style>
   <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
   <script>
-    let quiz_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f";
+    let answer_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f";
     let quiz_num = "第2問" 
-    var elem_2 = document.getElementById("shogi");  //idからHTMLElementを取得
+    
 
-    function set_quiz_sfen(sfen, next_sfen, num) {
+    function set_quiz_sfen(sfen, next_sfen_move) {
       var elem = document.getElementById("shogi");  //idからHTMLElementを取得
-      console.log(elem);
       elem.setAttribute("source", sfen);  //source属性を上書き
-      quiz_sfen = next_sfen;
-      quiz_num = "現在の問題：" + num;
+      answer_sfen = sfen + " moves " + next_sfen_move;
     }
 
     function set_quiz_num() {
       var elem = document.getElementById("current_quiz_num_2");
       console.log(elem);
     }
+
+    function change_quiz_content(content) {
+      var elem_q = document.getElementById("test");
+      console.log(elem_q);
+      //elem_q.innerHTML = content;
+    }
       
-    
-      window.addEventListener("DOMContentLoaded", function(){
-        // 0.100秒ごとに実行
-       setInterval(() => {
-          //console.log(elem_2);
-       }, 100);  //この値で何秒ごとに実行するかが決まる
-     });
+
+    window.addEventListener("DOMContentLoaded", function(){
+      // 0.100秒ごとに実行
+      setInterval(() => {
+        //console.log(elem_2);
+      }, 100);  //この値で何秒ごとに実行するかが決まる
+    });
 
   </script>
   <script type="module">
@@ -83,14 +88,14 @@
         .comment-body p {
           margin: 0;
         }
-        .quiz-comment {
+        .quiz {
           border: 1px solid hsl(0 0% 0% / 0.10);
           background-color: hsl(0 0% 0% / 0.02);
           border-radius: 4px;
           flex-basis: 40vh;
           position: relative;
         }
-        .quiz-comment p {
+        .quiz p {
           text-align: center;
         }
       `
@@ -99,7 +104,8 @@
         source: { type: String },
         comment_lines: { type: Array },
         turn: { type: String },
-        pass_css: { type: String }
+        pass_css: { type: String },
+        quiz_content: { type: String }
       }
 
       constructor() {
@@ -108,17 +114,18 @@
         this.comment_lines = null
         this.turn = null
         this.pass_css = null
+        this.quiz_content = "ここに最初の問題の説"
       }
 
       render() {
         return html`
-          <div class="container">
-            <div class="quiz-comment">
+          <div id="test" class="container">
+            <div class="quiz">
               <p>次の一手を指してください</p>
-              <p id="current_quiz_num"></p>
-              <input type="button" value="第1問" onclick="set_quiz_sfen('position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1', 'position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f')" style="position: absolute; top: 100px">
-              <input type="button" value="第2問" onclick="set_quiz_sfen('position sfen l4B2l/5sn1p/2+Pp1ggkn/p3p1p2/2rP1P2R/P3PSP2/9/1gPK5/L7L b 2SNPbgn5p 1', 'position sfen l4B2l/5sn1p/2+Pp1ggkn/p3p1p2/2rP1P2R/P3PSP2/9/1gPK5/L7L b 2SNPbgn5p 1 moves 6h5g')" style="position: absolute; top: 150px">
-              <input type="button" value="表示" onclick="set_quiz_num()" style="position: absolute; top: 200px">
+              <p id="quiz-content">${this.quiz_content}</p>
+              <input type="button" value="第1問" @click="${e => this.change('第1問の説明')}" onclick="set_quiz_sfen('position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1', '2g2f')" style="position: absolute; top: 100px">
+              <input type="button" value="第2問" @click="${e => this.change('第2問の説明だ！')}" onclick="set_quiz_sfen('position sfen l4B2l/5sn1p/2+Pp1ggkn/p3p1p2/2rP1P2R/P3PSP2/9/1gPK5/L7L b 2SNPbgn5p 1', '6h5g')" style="position: absolute; top: 150px">
+              <input type="button" value="表示" @click="${e => this.change()}" style="position: absolute; top: 200px">
             </div>
             <shogi-player-wc
               sp_mode="play"
@@ -126,6 +133,7 @@
               sp_comment="false"
               sp_mobile_vertical="false"
               sp_turn="${this.turn}"
+              sp_human_side="black"
               @ev_comment_change="${e => this.comment_lines = e.detail[0]}"
               @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
               sp_pass_css="${this.pass_css}"
@@ -136,14 +144,20 @@
       }
 
       ev_play_mode_move(e) {
-        if (e.detail[0].sfen == quiz_sfen) {
+        if (e.detail[0].sfen == answer_sfen) {
+          audio("correct");
           alert("正解です");
         } else {
+          audio("wrong");
           alert("不正解です");
           const el = this.renderRoot.querySelector("shogi-player-wc");
           const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
           sp_instance.api_turn_add(-1);
         }
+      }
+
+      change(comment) {
+        this.quiz_content = comment;
       }
 
       
@@ -153,6 +167,12 @@
   </script>
 <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
 <body>
+  <audio id="correct">
+    <source src="assets/sound/Quiz-Buzzer01-1.mp3" type="audio/mp3">
+  </audio>
+  <audio id="wrong">
+    <source src="assets/sound/Quiz-Wrong_Buzzer02-1.mp3" type="audio/mp3">
+  </audio>
   <header id="header">
     <div></div>          
     <div class="header_container">

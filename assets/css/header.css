@@ -2,6 +2,7 @@
 
 :root {
   --main-color: #004097;
+  --sub-color:  #5E8DC3;
   --transition-color: 0.2s;
 }
 
@@ -114,7 +115,7 @@ text-align: center;
 }
 
 .menu-second li:hover {
-  background-color: #55acee;
+  background-color: var(--sub-color);
   border-radius: 0.5rem;
   
 }

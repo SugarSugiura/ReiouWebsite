@@ -6,15 +6,56 @@
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/header.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
     html {
       overflow: hidden;
     }
+    
+    .explosion {
+      position: absolute; 
+      width: 600px;
+      height: 600px;
+      pointer-events: none; 
+      
+      .particle {
+        position: absolute; 
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        animation: pop 1s reverse forwards; 
+      }
+    }
+
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+      }
+      to {
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+      }
+    }
   </style>
   <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
   <script>
-    let answer_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f";
-    let quiz_num = "第2問" 
+    const first_explanation = "７五の地点で銀交換が行われたところです。盤面全体を広く見て、一気に優勢になる方法を発見して下さい。";
+    const second_explanation = "今、後手が６五歩と攻めてきました。しかし、相手の陣形には弱点があります。それを見つけてうまく攻めて下さい。";
+    const third_explanation = "相手の陣形をよく見て、駒得する手を考えて下さい。";
+    const first_sfen = "position sfen ln3g1nl/4gskb1/3p1p1p1/p3p1p1p/1prP5/P3P3P/1PB2PPP1/2R1G1SK1/LNS2G1NL b Psp 1";
+    const second_sfen = "position sfen lr4knl/6g2/2ng1ssp1/p1p1ppp1p/1p1p3P1/P1PPP1P1P/1PSG1PN2/1KG4R1/LN6L b BSb 1";
+    const third_sfen = "position sfen ln1g1r1nl/1ks6/pppp3pb/5sp1p/3Npp1P1/2P3P1P/PP1P1P3/1BKSG2R1/L2G4L b SNgp 1";
+    const first_answer = "7g2b+";
+    const second_answer = "B*7b";
+    const third_answer = "N*5c";
+    const first_comment = "正解は２二角成。王手なので同玉の一手ですが、そこで７五飛と、飛車をただで取れます。これを素抜きと言いますが、このように飛車が向かい合った形では常に起こり得る可能性があり、お互い充分注意する必要があります。";
+    const second_comment = "正解は７二角。６六歩と取り込まれても、すぐに８一角成と飛車を取るのではなく、一旦６六同銀としておけば、依然飛車金両取りが残ったままになります。";
+    const third_comment = "同銀と取っても、同桂不成とすれば、飛金の両取りになったままです。３二銀も攻めとしては成立する場合もありますが、この場合はちょっと重い感じがします。";
+
+
+    let answer_sfen = first_sfen + " moves " + first_answer;
     
 
     function set_quiz_sfen(sfen, next_sfen_move) {
@@ -92,11 +133,21 @@
           border: 1px solid hsl(0 0% 0% / 0.10);
           background-color: hsl(0 0% 0% / 0.02);
           border-radius: 4px;
-          flex-basis: 40vh;
+          flex-basis: 50vh;
           position: relative;
+          padding: 20px;
         }
         .quiz p {
           text-align: center;
+        }
+        .quiz-button {
+          flex-basis: 30vh;
+          position: relative;
+        }
+        .quiz-button input {
+          position: relative;
+          display: block;
+          margin: 10px auto;
         }
       `
 
@@ -105,27 +156,31 @@
         comment_lines: { type: Array },
         turn: { type: String },
         pass_css: { type: String },
-        quiz_content: { type: String }
+        quiz_content: { type: String },
+        current_quiz_num: { type: Number }
       }
 
       constructor() {
         super()
-        this.source ??= "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
+        this.source ??= first_sfen
         this.comment_lines = null
         this.turn = null
         this.pass_css = null
-        this.quiz_content = "ここに最初の問題の説"
+        this.quiz_content = first_explanation
+        this.current_quiz_num = 1;
       }
 
       render() {
         return html`
-          <div id="test" class="container">
+          <div class="container">
+            <div class="quiz-button">
+              <input type="button" value="第1問" @click="${e => this.change(first_explanation, 1)}" onclick="set_quiz_sfen(first_sfen, first_answer)">
+              <input type="button" value="第2問" @click="${e => this.change(second_explanation, 2)}" onclick="set_quiz_sfen(second_sfen, second_answer)">
+              <input type="button" value="第3問" @click="${e => this.change(third_explanation, 3)}" onclick="set_quiz_sfen(third_sfen, third_answer)">
+            </div>
             <div class="quiz">
               <p>次の一手を指してください</p>
               <p id="quiz-content">${this.quiz_content}</p>
-              <input type="button" value="第1問" @click="${e => this.change('第1問の説明')}" onclick="set_quiz_sfen('position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1', '2g2f')" style="position: absolute; top: 100px">
-              <input type="button" value="第2問" @click="${e => this.change('第2問の説明だ！')}" onclick="set_quiz_sfen('position sfen l4B2l/5sn1p/2+Pp1ggkn/p3p1p2/2rP1P2R/P3PSP2/9/1gPK5/L7L b 2SNPbgn5p 1', '6h5g')" style="position: absolute; top: 150px">
-              <input type="button" value="表示" @click="${e => this.change()}" style="position: absolute; top: 200px">
             </div>
             <shogi-player-wc
               sp_mode="play"
@@ -145,8 +200,10 @@
 
       ev_play_mode_move(e) {
         if (e.detail[0].sfen == answer_sfen) {
+          explode(700, 400);
           audio("correct");
-          alert("正解です");
+          //alert("正解です");
+          this.set_comment();
         } else {
           audio("wrong");
           alert("不正解です");
@@ -156,8 +213,25 @@
         }
       }
 
-      change(comment) {
+      change(comment, num) {
         this.quiz_content = comment;
+        this.current_quiz_num = num;
+      }
+
+      set_comment() {
+        switch(this.current_quiz_num) {
+          case 1:
+            this.quiz_content = first_comment;
+            break;
+          case 2:
+            this.quiz_content = second_comment;
+            break;
+          case 3:
+            this.quiz_content = third_comment;
+            break;
+          default:
+            this.quiz_content = first_comment;
+        }
       }
 
       

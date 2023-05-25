@@ -38,6 +38,31 @@
         opacity: 1;
       }
     }
+    #correct-txt {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      transition: all 0.5s;
+    }
+
+    #correct-txt span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 100px;
+    }
+
+    .invisible {
+      transform: translate(0, 100%);
+      opacity: 0;
+    }
+
+    .visible {
+      transform: translate(0, 0);
+      opacity: 1;
+      z-index: 100;
+    }
   </style>
   <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
   <script>
@@ -82,6 +107,9 @@
         //console.log(elem_2);
       }, 100);  //この値で何秒ごとに実行するかが決まる
     });
+
+
+    
 
   </script>
   <script type="module">
@@ -201,6 +229,7 @@
       ev_play_mode_move(e) {
         if (e.detail[0].sfen == answer_sfen) {
           explode(700, 400);
+          appear_correct_txt();
           audio("correct");
           //alert("正解です");
           this.set_comment();
@@ -308,6 +337,9 @@
     </div>
     <div id="mask"></div>
   </header>
+  <div id="correct-txt" class="invisible">
+    <span>正解！</span>
+  </div>
   <shogi-board id="shogi" turn="0"></shogi-board>
 
 <script src="assets/js/test.js"></script>

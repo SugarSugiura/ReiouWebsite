@@ -241,7 +241,9 @@ top-title ヘッダーの次に来る初心者向けのとこ
     width: 90%;
 }
 .product-list p {
-    font-size: 0.75rem;
+    font-size: 1rem;
+    font-family: 游明朝;
+    font-weight: 500;
 }
 
 .product-list-title {

@@ -67,3 +67,18 @@ function explode(x, y) {
 function rand(min, max) {
   return Math.floor(Math.random() * (max + 1)) + min;
 }
+
+const $target = $("#correct-txt")
+
+function appear_correct_txt() {
+  var elem = document.getElementById("correct-txt");
+  console.log(elem);
+  elem.classList.remove("invisible");
+  elem.classList.add("visible");
+  //$target.addClass("visible");
+
+  setTimeout(() => {
+    elem.classList.remove("visible");
+    elem.classList.add("invisible");
+  }, 2000);
+}

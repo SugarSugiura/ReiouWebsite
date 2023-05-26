@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/header.css">
   <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.2"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
     html {
       overflow: hidden;
@@ -144,54 +145,70 @@
       render() {
         return html`
           <div class="container">
+            <input type="button" value="採点" @click="${e => this.turn_change()}" style="position: absolute;left:0%; top: 200px">
             <shogi-player-wc
               sp_mode="play"
               sp_body="${this.source}"
-              sp_comment="false"
-              sp_event_log="false"
               sp_mobile_vertical="false"
               sp_piece_variant="paper"
-              sp_turn="${this.turn}"
-              @ev_comment_change="${e => this.comment_lines = e.detail[0]}"
               @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
-              @ev_turn_offset_change="${e => turn = e.detail[0]}"
+              @ev_turn_offset_change="${e => this.turn = e.detail[0]}"
               sp_controller="true"
               sp_human_side="both"
               sp_dev_tools_position="left"
               sp_pass_css="${this.pass_css}"
               sp_debug="false"
             ></shogi-player-wc>
-            <div class="comment">
-              <div class="comment-body">
-                ${(this.comment_lines || []).map(e => html`<p>${e}</p>`)}
-              </div>
-            </div>
           </div>
         `
       }
 
       ev_play_mode_move(e) {
-        if (e.detail[0].sfen == line_string(sfen, turn + 1)) {
-          
-          setTimeout(() => {
-            alert("正解です");
-            console.log(turn);
-            this.source = line_string(sfen, turn + 1);
-            console.log(this.source);
-          }, 1000*0.5);
-          
-        } else {
-          const el = this.renderRoot.querySelector("shogi-player-wc");
+        /*this.human_sfen = e.detail[0].sfen;
+        setTimeout(() => {
+          const kif = this.ai_best_move(this.human_sfen)
+          if (kif == null) {
+            //alert("不正解です");
+            setTimeout(() => {
+              const el = this.renderRoot.querySelector("shogi-player-wc");
+              const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
+              sp_instance.api_turn_add(-1);
+            }, 1000 * 0.5)
+            
+          }
+          this.ai_sfen = kif
+        }, 1000 * 0.5)*/
+
+        setTimeout(() => {
+          const correct_sfen = line_string(sfen, this.turn);
+          const next_sfen = line_string(sfen, this.turn + 1);
+          if (e.detail[0].sfen == correct_sfen) {
+              this.source = next_sfen;
+          } else {
+            alert("不正解です");
+            const el = this.renderRoot.querySelector("shogi-player-wc");
+            const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
+            sp_instance.api_turn_add(-1);
+          }
+        }, 1000*0.5)
+
+        
+      }
+
+      turn_change() {
+        const el = this.renderRoot.querySelector("shogi-player-wc");
           const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
           sp_instance.api_turn_add(-1);
-        }
       }
       
       
 
       // ☗76歩には☖34歩とし☗22角成に同銀とするだけのAI
-      ai_best_move() {
-        return line_string(sfen, turn + 2);
+      ai_best_move(e) {
+        console.log(this.turn);
+        if (e === line_string(sfen, this.turn)) {
+          return line_string(sfen, this.turn + 1);
+        }
       }
 
       

@@ -1,0 +1,11 @@
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b 3c2b
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b 3c2b 4b3a+
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b 3c2b 4b3a+ 2b3a
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b 3c2b 4b3a+ 2b3a R*4a
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b 3c2b 4b3a+ 2b3a R*4a 3a2b
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b 3c2b 4b3a+ 2b3a R*4a 3a2b G*3b
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b 3c2b 4b3a+ 2b3a R*4a 3a2b G*3b 2b3b
+position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1 moves S*5c 4b3c B*4b 3c2b 4b3a+ 2b3a R*4a 3a2b G*3b 2b3b 4a4b+

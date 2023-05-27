@@ -1122,7 +1122,8 @@ opacity: 0;
   width: 100%;
   background-color: #004097;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 
 .freemoji {
@@ -1217,9 +1218,9 @@ opacity: 0;
   padding: 7px 10px;
   min-width: 120px;
   max-width: 100%;
-  color: #555;
+  color: #000000;
   font-size: 16px;
-  background: #80b5ff;
+  background: #bad7ff;
   border-radius: 15px;
 }
 
@@ -1230,7 +1231,7 @@ opacity: 0;
   left: 100%;
   margin-top: -15px;
   border: 15px solid transparent;
-  border-left: 15px solid #80b5ff;
+  border-left: 15px solid #bad7ff;
 }
 
 .balloon1-right p {
@@ -1246,9 +1247,9 @@ opacity: 0;
   padding: 7px 10px;
   min-width: 120px;
   max-width: 100%;
-  color: #555;
+  color: #000000;
   font-size: 16px;
-  background: #9cc5ff;
+  background: #bad7ff;
   border-radius: 10px;
 }
 
@@ -1259,7 +1260,7 @@ opacity: 0;
   left: -30px;
   margin-top: -15px;
   border: 15px solid transparent;
-  border-right: 15px solid #9cc5ff;
+  border-right: 15px solid #bad7ff;
 }
 
 .balloon1-left p {
@@ -1275,7 +1276,7 @@ opacity: 0;
 
 .contentsback {
   width: 100%;
-  height: 1400px;
+  height: 1600px;
   background-color: burlywood; 
   padding: 1em; 
   color: rgb(0, 0, 0);

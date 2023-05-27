@@ -1,181 +1,140 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <div>
-        <head>
-            <meta charset="utf-8">
-            <title>令王</title>
-            <meta name="description" content="テキストテキストテキストテキストテキストテキストテキストテキスト">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="shortcut icon" href="img/favicon.ico">
-            <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-            <link rel="stylesheet" href="assets/css/aigakariheader.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="js/jquery.inview.min.js"></script>
-            <script src="assets/js/top.js"></script>
-        </head>
-    <header id="header">
-        <h1 class="site-title wrapper"><!--空白でclass名を2つ指定-->
-          <a href="REIOUwebsite.html"><img src="assets/img/REIOUlogo.png" alt="REIOU"></a>
-        </h1>
-        <nav id="navi" class="pc-area"><!--元は-->
-          <ul class="wrapper"><!--元はmenu-->
-            <li class="single">
-              <a href="#">学習<!----></a>
-              <ul class="menu-second">
-                <li><a href="#">Single Child</a></li>
-                <li><a href="#">Single Child</a></li>
-                <li><a href="#">Single Child</a></li>
-              </ul>
-            </li>
-            <li><a href="#">戦法一覧<!----></a></li>
-            <li><a href="#">紹介<!----></a></li>
-            <li><a href="#">プラン<!----></a></li>
-            <!--<li><a href="#">お問い合わせ</a></li>-->
-          </ul>
-          <!--<ul class="login">
-              <li><a href="#">無料版</a></li>
-              <li><a href="#">ログイン</a></li>
-          </ul>-->
-        </nav>
-        <nav id="navi-phone" class="phone-area">
-          <ul class="wrapper">
-            <li><a href="#">学習</a></li>
-            <li><a href="#">戦法一覧</a></li>
-            <li><a href="#">紹介</a></li>
-            <li><a href="#">プラン</a></li>
-            <li><a href="#">お問い合わせ</a></li>
-          </ul>
-        </nav>
-        <div class="toggle_btn">
-          <span></span>
-          <span></span>
-        </div>
-  
-        <div id="mask"></div>
-    </header>
-  
-      <!--ヘッダーとmainの間にタイトルをつけたいならこれをいれた方がいいか-->
-      <div id="top-title" class="wrapper">
-        <article>
-          <h2 class="article-title">初心者はこちらから！！！</h2>
-          <h2 class="article-subtitle">駒の動かし方</h2>
-          <a href="hazimete.html">
-            <img src="assets/img/ranking1.jpg" alt="テキストテキストテキスト">
-          </a>
-  
-          <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  
-          <div id="app">{{ message }}</div>
-  
-          <script>
-            const {createApp} = Vue
-  
-            createApp({
-              data() {
-                return {
-                  message: '将棋盤をここに表示する'
-                }
-              }
-            }).mount('#app')
-          </script>
-  
-  
-        </article>
-      </div>
-      <!--上にタイトルをつけたいならこれをいれた方がいいか-->
-  
-      <main>
-        <div id="top" class="wrapper">
-          <ul class="product-list">
-            <li>
-              <a href="aigakari.html">
-                <img src="assets/img/main1.jpg" alt="">
-                <p>【居飛車】</p>
-                <p>相掛かり戦法</p>
-              </a>
-            </li>
-            <li>
-              <a href="kakugawari.html">
-                <img src="assets/img/main1.jpg" alt="">
-                <p>【居飛車】</p>
-                <p>角換わり戦法</p>
-              </a>
-            </li>
-            <li>
-              <a href="yagura.html">
-                <img src="assets/img/main1.jpg" alt="">
-                <p>【居飛車】</p>
-                <p>矢倉戦法</p>
-              </a>
-            </li>
-            <li>
-              <a href="sanken.html">
-                <img src="assets/img/main1.jpg" alt="">
-                <p>【振り飛車】</p>
-                <p>三間飛車戦法</p>
-              </a>
-            </li>
-            <li>
-              <a href="shiken.html">
-                <img src="assets/img/main1.jpg" alt="">
-                <p>【振り飛車】</p>
-                <p>四間飛車戦法</p>
-              </a>
-            </li>
-            <li>
-              <a href="nakahisya.html">
-                <img src="assets/img/main1.jpg" alt="">
-                <p>【振り飛車】</p>
-                <p>中飛車戦法</p>
-              </a>
-            </li>
-          </ul>
-          <a class="link-text" href="REIOUproducts.html#koma-move">View More</a>
-          <!--View Moreを押下するとさらに戦法一覧が表示される、productsのmoreから表示できるとなおよい-->
-        </div>
-      </main>
-  
-      <footer id="footer">
-        <div class="content wrapper">
-          <section class="item">
-            <h3 class="footer-title">About</h3>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <ul class="about-list">
-              <li><a href="REIOUunnei.html" class="arrow">令王運営の詳細</a></li>
-              <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼" class="arrow">お仕事のご依頼</a></li>
-              <li><a href="otoiawase" class="arrow">お問い合わせ</a></li>
-            </ul>
-          </section>
-  
-          <section class="item">
-            <h3 class="footer-title">Menu</h3>
-            <ul class="menu-list">
-              <li><a href="#">NEW</a></li>
-              <li><a href="#">CATEGORY</a></li>
-              <li><a href="#">COLUMN</a></li>
-              <li><a href="#">SERIES</a></li>
-              <li><a href="#">Q&A</a></li>
-            </ul>
-          </section>
-  
-          <section class="item">
-            <h3 class="footer-title">Twitter</h3>
-            <a class="twitter-timeline" data-height="315" href="https://twitter.com/Sugar_Sugiura">Tweets by 令王</a>
-            <script async src="https://platform.twitter.com/widgets.js"></script>
-          </section>
-        </div>
-        <button class="fixed_banner">
-          <a href="リンク先URL">
-            <img class="fixed_banner_pc" src="バナー画像ファイル名" alt="">
-            <img class="fixed_banner_sp" src="バナー画像ファイル名" alt="">
-          </a>
-        </button>
-  
-        <p class="copyright">&copy; REIOU</p>
-      </footer>
-    </div>
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.1"></script>
+  <style>
+    html {
+      overflow: hidden;
+    }
+  </style>
+  <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
+  <script>
+    var item;
+    var turn = 0;
+    var str = "";
+
+    function download() {
+      const blob = new Blob([str], {type: "text/plain"});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'ファイル名.txt';
+      link.click();
+    }
+  </script>
+  <script type="module">
+    import {LitElement, css, html} from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
+    export class ShogiBoard extends LitElement {
+      static styles = css`
+        :host {
+          display: block;
+          /*border: 1px solid hsl(0 0% 0% / 0.1);*/
+          padding: 1rem;
+          height: 100%
+        }
+        .container {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+        }
+        shogi-player-wc {
+          flex-basis: 97vh;
+        }
+        shogi-player-wc::part(root) {
+          --sp_board_color: LightSkyBlue;
+        }
+        .comment {
+          border: 1px solid hsl(0 0% 0% / 0.10);
+          background-color: hsl(0 0% 0% / 0.02);
+          border-radius: 4px;
+          flex-basis: 40vh;
+          position: relative;
+        }
+        .comment-body {
+          position: absolute;
+          top: 1rem;
+          left: 1rem;
+          bottom: 1rem;
+          right: 1rem;
+
+          overflow-y: scroll;
+
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .comment-body p {
+          margin: 0;
+        }
+      `
+
+      static properties = {
+        source: {type: String},
+        comment_lines: {type: Array},
+        turn: {type: String},
+        pass_css: {type: String}
+      }
+
+      constructor() {
+        super()
+        this.source = ""
+        this.comment_lines = null
+        //this.turn = null
+        this.pass_css = null
+      }
+
+
+
+      render() {
+        return html`
+          <div class="container">
+            <shogi-player-wc
+              sp_mode="play"
+              sp_body="${this.source}"
+              sp_mobile_vertical="false"
+              @ev_short_sfen_change="${e => item = e.detail[0]}"
+              @ev_play_mode_move="${e => this.set_sfen(e)}"
+              sp_pass_css="${this.pass_css}"
+              sp_debug="false"
+              sp_controller="true"
+            ></shogi-player-wc>
+          </div>
+        `
+      }
+
+      set_sfen(e) {
+        str = str + e.detail[0].sfen + "\n";
+      }
+    }
+    customElements.define("shogi-board", ShogiBoard);
+    /*setInterval(() => {
+      if (turn < 127) {
+        console.log(item);
+        str = str + item + "\n";
+      }
+      if (turn == 127) {
+
+        turn = turn + 1;
+      }
+    }, 100);*/
+
+
+
+
+
+
+
+
+  </script>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"
+    rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf">
+</head>
+
+<body>
+  <input type="button" value="採点" onclick="download()" style="position: absolute; top: 100px" left: 0>
+  <shogi-board id="shogi"></shogi-board>
+</body>
+
 </html>

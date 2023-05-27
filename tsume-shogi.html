@@ -26,7 +26,7 @@
       var rec = new XMLHttpRequest();
 
       // ファイルのURLを指定
-      rec.open('GET', 'assets/kif/habkifsfen.txt', true);
+      rec.open('GET', 'assets/kif/tsume-shogi-sample.txt', true);
 
       // 読み込み開始
       rec.send();
@@ -134,13 +134,13 @@
 
       constructor() {
         super()
-        this.source = ""
+        this.source = "position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1"
         this.comment_lines = null
         this.turn = null
         this.pass_css = null
         this.human_sfen = ""
         this.ai_sfen = ""
-        this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
+        this.first_sfen = "position sfen 3b3n1/5k3/7pp/4P4/4pppP1/9/9/9/9 b RBGSr3g3s3n4l11p 1"
       }
 
     
@@ -150,7 +150,7 @@
           <div class="container">
             <input type="button" value="最初から" @click="${e => {this.source = this.first_sfen}}" style="position: absolute; left: 0; top: 150px">
             <div>
-              <p>相掛かり棒銀</p>
+              <p>詰将棋</p>
             </div>
             <shogi-player-wc
               sp_mode="play"
@@ -170,30 +170,17 @@
       }
 
       ev_play_mode_move(e) {
-        /*this.human_sfen = e.detail[0].sfen;
-        setTimeout(() => {
-          const kif = this.ai_best_move(this.human_sfen)
-          if (kif == null) {
-            //alert("不正解です");
-            setTimeout(() => {
-              const el = this.renderRoot.querySelector("shogi-player-wc");
-              const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
-              sp_instance.api_turn_add(-1);
-            }, 1000 * 0.5)
-            
-          }
-          this.ai_sfen = kif
-        }, 1000 * 0.5)*/
-
         setTimeout(() => {
           const correct_sfen = line_string(sfen, this.turn);
           const next_sfen = line_string(sfen, this.turn + 1);
           if (e.detail[0].sfen == correct_sfen) {
+            console.log(next_sfen);
+            console.log(correct_sfen)
             if (next_sfen == undefined) {
               this.source = correct_sfen;
             } else {
               this.source = next_sfen;
-            } 
+            }
           } else {
             alert("不正解です");
             const el = this.renderRoot.querySelector("shogi-player-wc");

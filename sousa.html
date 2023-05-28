@@ -170,21 +170,6 @@
       }
 
       ev_play_mode_move(e) {
-        /*this.human_sfen = e.detail[0].sfen;
-        setTimeout(() => {
-          const kif = this.ai_best_move(this.human_sfen)
-          if (kif == null) {
-            //alert("不正解です");
-            setTimeout(() => {
-              const el = this.renderRoot.querySelector("shogi-player-wc");
-              const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
-              sp_instance.api_turn_add(-1);
-            }, 1000 * 0.5)
-            
-          }
-          this.ai_sfen = kif
-        }, 1000 * 0.5)*/
-
         setTimeout(() => {
           const correct_sfen = line_string(sfen, this.turn);
           const next_sfen = line_string(sfen, this.turn + 1);

@@ -184,6 +184,27 @@ label, input, textarea, select, button {
     margin-bottom: 30px;
   }
 
+  #footer .footer-title {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .service-list {
+    margin: 0 auto;
+  }
+
+  #footer .service-list li {
+    text-align: center;
+  }
+
+  .menu-list {
+    margin: 0 auto;
+  }
+
+  #footer .menu-list > li {
+    text-align: center;
+  }
+
   .service {
     border-right: none;
     border-left: none;
@@ -194,9 +215,20 @@ label, input, textarea, select, button {
     border-right: none;
   }
 
-  #footer .footer-title {
-    margin-bottom: 10px;
+  .sns {
+    border-right: none;
   }
+
+  .follow-me {
+    display: flex;
+    justify-content: center;
+  }
+
+  .follow-me li {
+    margin: 0;
+  }
+
+  
 
 }
 

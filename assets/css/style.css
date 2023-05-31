@@ -152,9 +152,7 @@ top-title ヘッダーの次に来る初心者向けのとこ
 #top-title {
   /*display: flex;*/
   justify-content: space-between;
-  padding-top: 100px;
-  /*margin-bottom: 60px;*/
-  padding-bottom: 20px;
+  padding: 100px 2rem 1rem 2rem;
 }
 
 #top-title a {
@@ -213,6 +211,7 @@ top-title ヘッダーの次に来る初心者向けのとこ
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+    padding-bottom: 1rem;
 }
 .product-list li {
     /*戦法リストのサイズ、1列4つ入れるなら23%*/
@@ -429,7 +428,13 @@ SP
 -------------------------------------------*/
 
 @media screen and (max-width: 991px) {
+  #top-title {
+    
+  }
 
+  .product-list li {
+    width: 31%;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -490,8 +495,7 @@ SP
   -------------------------------------------*/
 
   .product-list li {
-    margin-top:  10px;
-    margin-bottom: 10px;
+    width: 48%;
   }
 }
 

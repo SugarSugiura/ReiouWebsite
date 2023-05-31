@@ -14,6 +14,9 @@
   </style>
   <script>
     var kif;
+    var kif_1;
+    var kif_2;
+
 
     function read_file(file) {
       const rec = new XMLHttpRequest();
@@ -29,8 +32,30 @@
     }
 
     window.onload = function(){
-      read_file("assets/kif/kif-2-sample.txt");
+      read_file("assets/kif/aigakari_1.txt");
+      setTimeout(() => {
+        kif_1 = kif;
+        set_first_kif();
+        read_file("assets/kif/aigakari_2.txt");
+        setTimeout(() => {
+          kif_2 = kif;
+        }, 100);
+      }, 100);
+      
+      
+        //set_first_kif();
     }
+
+    function get_kif(kif) {
+      return kif;
+    }
+
+    function set_first_kif() {
+      const elem = document.getElementById("shogi");
+      elem.setAttribute("source", kif_1);
+    }
+
+    
   </script>
   <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
   <script type="module">
@@ -103,7 +128,8 @@
         comment_lines: { type: Array },
         turn: { type: String },
         pass_css: { type: String },
-        kif: { type: String }
+        kif: { type: String },
+        turn_max: { type: Number }
       }
 
       constructor() {
@@ -113,6 +139,7 @@
         this.turn = null
         this.pass_css = null
         this.kif = null;
+        this.turn_max = null;
       }
 
       firstUpdated() {
@@ -136,6 +163,7 @@
               sp_mobile_vertical="false"
               @ev_comment_change="${e => this.comment_lines = e.detail[0]}"
               @ev_turn_offset_change="${e => this.change(e)}"
+              @ev_turn_offset_max_change="${e => this.turn_max = e.detail[0]}"
               sp_controller="true"
               sp_debug="false"
               sp_pass_css="${this.pass_css}"
@@ -151,7 +179,7 @@
 
       change(e) {
         const elem = this.shadowRoot.getElementById('change_sfen');
-        if (e.detail[0] == 47) {
+        if (e.detail[0] == this.turn_max) {
           elem.style.display = "inline-block";
           
         } else {
@@ -161,8 +189,8 @@
       }
 
       test() {
-        console.log(kif);
-        this.source = kif;
+        this.source = kif_2;
+        this.turn = "4";
       }
 
       

@@ -1083,8 +1083,8 @@ opacity: 0;
   align-items: center;
   width: 100%;
   height: 400px;
-  background-color: #b5e7ff;
-  padding: 1rem;
+  background-color: #ffffff;
+ 
   position: relative ;
   top: 75px; 
 }
@@ -1255,7 +1255,7 @@ opacity: 0;
 .backimg {
   height: 200px;
   width: 100%;
-  background-image: url("../img/2020-3-29-28\ 020.jpeg");
+  background-image: url("../img/haikei.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover

@@ -152,7 +152,7 @@ top-title ヘッダーの次に来る初心者向けのとこ
 #top-title {
   /*display: flex;*/
   justify-content: space-between;
-  padding: 100px 2rem 1rem 2rem;
+  padding: 100px 2rem 2rem 2rem;
 }
 
 #top-title a {
@@ -173,8 +173,10 @@ top-title ヘッダーの次に来る初心者向けのとこ
   border-width: 20px;
   border-style: solid;
   border-color: #ffffff;
-  transition: border-color var(--transition-color);
+  align-items: center;
+  transition: border-color 0.2s;
 }
+
 
 #top-title article {
   width: 100%;
@@ -190,21 +192,33 @@ top-title ヘッダーの次に来る初心者向けのとこ
 /*初心者向けリストの下タイトル*/
 #top-title .article-subtitle {
   font-size: 20px;
-  margin: 65px 0px 65px 30px;
+  margin:0 auto;
+}
+
+.top-left {
+  padding: 1rem;
+  flex-basis: 50%;
 }
 
 .top-right {
-  text-align: center;
-  display: inline-block;
-  
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
 }
 
 .top-right img {
   border-radius: 5px;
   width: 480px;
-  margin: 65px 0;
+  margin: 50px 0;
 }
 
+.list-title-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
 /*main*/
 .product-list {
     display: flex;
@@ -428,10 +442,6 @@ SP
 -------------------------------------------*/
 
 @media screen and (max-width: 991px) {
-  #top-title {
-    
-  }
-
   .product-list li {
     width: 31%;
   }
@@ -446,6 +456,10 @@ SP
   body {
     overflow-x: hidden;
   }
+
+  .wrapper {
+    max-width: 500px;
+  }
   /*-------------------------------------------
   top-title
   -------------------------------------------*/
@@ -456,20 +470,31 @@ SP
   }
   /*Galaxy Foldでは"駒の動かし方"が2行になるため調整必要*/
 
+  .top-container {
+    flex-direction: column;
+  }
+
   #top-title article {
     width: 100%;
     margin-bottom: 30px;
   }
 
+  .top-left {
+    padding: 1vw;
+  }
+
   .top-right img {
-    border-radius: 5px;
-    width: 480px;
-    margin: 0;
-}
+    margin: 1vw 0;
+  }
 
   #top-title .article-subtitle {
-    font-size: 10px;
-    margin: 30px 0px 30px 15px;
+    font-size: 3vw;
+  }
+
+  .list-title-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
   /*-------------------------------------------
@@ -480,6 +505,9 @@ SP
   }
   main {
     width: 100%;
+  }
+  .product-list p {
+    font-size: 16px;
   }
 
   /*-------------------------------------------
@@ -494,6 +522,12 @@ SP
   product-list
   -------------------------------------------*/
 
+  .product-list li {
+    width: 48%;
+  }
+}
+
+@media screen and (max-width: 440px) {
   .product-list li {
     width: 91%;
   }

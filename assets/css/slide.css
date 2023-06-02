@@ -10,14 +10,14 @@ html {
   font-size: 100%;
   /* scroll-behavior: smooth; */
 	height: 100%;
-  overflow: hidden;
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
 
 body {
   color: #333;
   font-size: 1rem;
   font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
-	height: 100%;
   /* background-color: rgb(245, 245, 245); */
 }
 

@@ -242,7 +242,7 @@ text-align: center;
   padding-top: 60px;
   z-index: 100;
   transition: opacity 0.3s;
-  background: #008c95;
+  background: var(--main-color);
   padding: 80px 8vw 8vw 8vw;
   opacity: 0;
   z-index: 0;

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/slide.css">
   <style>
     html {
-      overflow: hidden;
+      overflow: scroll;
     }
   </style>
   <script>
@@ -67,7 +67,7 @@
           /*border: 1px solid hsl(0 0% 0% / 0.1);*/
           padding-top: 80px;
           padding: 80px 1rem 1rem 1rem;
-          height: 100%
+          height: 100%;
         }
         .container {
           display: flex;
@@ -75,7 +75,7 @@
           gap: 1rem;
         }
         shogi-player-wc {
-          flex-basis: 90vh;
+          flex-basis: 44%;
         }
         shogi-player-wc::part(root) {
           --sp_board_color: LightSkyBlue;
@@ -84,7 +84,7 @@
           border: 1px solid hsl(0 0% 0% / 0.10);
           background-color: hsl(0 0% 0% / 0.02);
           border-radius: 4px;
-          flex-basis: 40vh;
+          flex-basis: 24%;
           position: relative;
         }
         .comment-body {
@@ -107,7 +107,7 @@
           border: 1px solid hsl(0 0% 0% / 0.10);
           background-color: hsl(0 0% 0% / 0.02);
           border-radius: 4px;
-          flex-basis: 40vh;
+          flex-basis: 24%;
           position: relative;
         }
         .explane-body {
@@ -121,6 +121,46 @@
           flex-direction: column;
           gap: 1rem;
         }
+
+        @media screen and (max-width: 991px) {
+          .container {
+            flex-wrap: wrap;
+          }
+          shogi-player-wc {
+            flex-basis: auto;
+            width: 50%;
+          }
+          .explane {
+            flex-basis: auto;
+            width: 40%;
+          }
+          .comment {
+            flex-basis: auto;
+            width: 40%;
+            height: 200px;
+          }
+        }
+
+        @media screen and (max-width: 767px) {
+          .container {
+            flex-direction: column;
+            flex-wrap: inherit;
+          }
+          shogi-player-wc {
+            flex-basis: content;
+            width: auto;
+          }
+          .comment {
+            order: 1;
+            flex-basis: 300px;
+            width: auto;
+          }
+          .explane {
+            order: 2;
+            flex-basis: 300px;
+            width: auto;
+          }
+        }        
       `
 
       static properties = {

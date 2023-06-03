@@ -5,26 +5,10 @@
   --transition-color: 0.2s;
 }
 
-/*リセットCSSデフォルトの設定を消去*/ 
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
-  margin:0;
-  padding:0;
-  border:0;
-  outline:0;
-  font-size:100%;
-  vertical-align:baseline;
-  background:transparent;
+* {
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0px;
 }
 
 /*ここは試験用*/
@@ -51,7 +35,6 @@ html {
 body {
     color: #333;
     font-size: 1rem;
-    font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
     background-color: rgb(245, 245, 245);
     margin: 0;
 }
@@ -212,49 +195,51 @@ top-title ヘッダーの次に来る初心者向けのとこ
 
 /*main*/
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding-bottom: 1rem;
 }
 .product-list li {
-    /*戦法リストのサイズ、1列4つ入れるなら23%*/
-    width: 32%;
-    /*戦法リストの間隔幅*/
-    margin-top: 20px;
-    margin-bottom: 20px;
+  /*戦法リストのサイズ、1列4つ入れるなら23%*/
+  width: 23%;
 }
 
 .product-list > li > div {
-  background-color: #fff;
-  border-radius:20px; box-shadow:
-  rgb(230, 230, 230) 0px 2px 6px;
-  text-align: center;
+background-color: #fff;
+border-radius:20px; box-shadow:
+rgb(230, 230, 230) 0px 2px 6px;
+text-align: center;
 }
 
 .product-list a {
-  height: 100%;
-  display:block;
-  transition: all 0.2s;
-  border-radius:20px;
+height: 100%;
+display:block;
+transition: all 0.2s;
+border-radius:20px;
 }
 
 .product-list img {
-    vertical-align: top;
-    margin: 20px 5px 0px 5px;
-    width: 90%;
+  vertical-align: top;
+  margin: 20px 5px 0px 5px;
+  width: 90%;
 }
 .product-list p {
-    font-size: 0.75rem;
+  font-size: 0.8vw;
+  font-family: 游明朝;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
 }
 
 .product-list-title {
-  padding-top: 10px;
-  padding-bottom: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
 }
 
 .product-list li div a:hover {
-  background-color: var(--main-color);
-  color: white;
+background-color: var(--main-color);
+color: white;
 }
 
 /*-------------------------------------------
@@ -554,6 +539,12 @@ pop-up
 SP
 -------------------------------------------*/
 
+@media screen and (max-width: 991px) {
+  .product-list li {
+    width: 31%;
+  }
+}
+
 @media screen and (max-width: 767px) {
 
   html {
@@ -562,6 +553,10 @@ SP
 
   body {
     overflow-x: hidden;
+  }
+
+  .wrapper {
+    max-width: 500px;
   }
 
   /*-------------------------------------------
@@ -599,6 +594,12 @@ SP
   main {
     width: 100%;
   }
+  .product-list p {
+    font-size: 16px;
+  }
+  .product-list li {
+    width: 48%;
+  }
 
   /*-------------------------------------------
   aside
@@ -606,15 +607,6 @@ SP
   #sidebar {
     width: 100%;
     padding: 0;
-  }
-
-  /*-------------------------------------------
-  product-list
-  -------------------------------------------*/
-
-  .product-list li {
-    margin-top:  10px;
-    margin-bottom: 10px;
   }
 
   /*-------------------------------------------
@@ -642,6 +634,12 @@ SP
     margin-bottom: 10px;
   }
 
+}
+
+@media screen and (max-width: 440px) {
+  .product-list li {
+    width: 91%;
+  }
 }
 
 .follow-me {

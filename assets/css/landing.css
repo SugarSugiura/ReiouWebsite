@@ -1083,7 +1083,7 @@ opacity: 0;
   align-items: center;
   width: 100%;
   height: 400px;
-  background-color: #ffffff;
+  background-color: #b5e7ff;
  
   position: relative ;
   top: 75px; 
@@ -1110,6 +1110,7 @@ opacity: 0;
   position: relative;
   left: 50px;
   display: block;
+  height: 100%;
 }
 
 .mainback1 {
@@ -1266,6 +1267,7 @@ opacity: 0;
   font-size: 60px;
   color: #ffffff;
   text-align: center;
+  font-weight: 1500;
 }
 
 .hukidasi {

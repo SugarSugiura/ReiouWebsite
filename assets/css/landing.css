@@ -1256,7 +1256,7 @@ opacity: 0;
 .backimg {
   height: 200px;
   width: 100%;
-  background-image: url("../img/haikei.jpg");
+  background-image: url("../img/gasitu.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover
@@ -1280,7 +1280,7 @@ opacity: 0;
   width: 100%;
   height: 1600px;
   background-color: burlywood;  
-  background-image: url(../img/kami.jpg);
+  background-image: url(../img/kami2.jpg);
   background-size: cover; 
   padding: 1em; 
   color: rgb(0, 0, 0);

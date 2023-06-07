@@ -115,6 +115,15 @@
           gap: 1rem;
         }
 
+        .slide_openButton {
+          cursor:pointer;
+          position: relative;
+          font-size: 20px;
+          color: #ffffff;
+          background-color: #62e7ff;
+          width: 100%;
+        }
+
         @media screen and (max-width: 991px) {
           .container {
             flex-wrap: wrap;
@@ -313,10 +322,10 @@
           <div class="slide_bg">
             <section id="slide1_container">
               <div id="slide1" class="slide_wrapper">
-                <div class="slide1_inside_areaA">
+                <!-- <div class="slide1_inside_areaA">
                   <h1 class="slide-title">棒銀戦法</h1>
                   <p class="description">
-                    棒銀とは銀将を棒のように                          
+                    棒銀とは銀将を棒のように
                     まっすぐ進めて攻めることから                          
                     この名が付きました。
                     <br>
@@ -331,15 +340,37 @@
                     それではやっていきましょう！
                   </p>
                   <img style="display: block; margin: 0 auto 40px auto;  width: 60vw; max-width: 900px; bottom: -40px; position:relative;" src="assets/img/棒銀_1.png" width="50%">
+                </div> -->
+                <div style="flex-basis: 20%">
+                  <h1 class="slide-title">棒銀戦法</h1>
                 </div>
-                
+                <div style="flex-basis: 20%;">
+                  <p>
+                    棒銀とは銀将を棒のように
+                    まっすぐ進めて攻めることから                          
+                    この名が付きました。
+                    <br>
+                    総じて速攻性に優れ、                    
+                    1から4筋を絡めると侮れない破壊力を持ちます。                      
+                    <br>
+                    「覚えやすい戦法」「将棋の基本」として、                     
+                    初心者の方に一番人気の高い戦法です。
+                    <br>
+                    プロの対局でもしばしば現れ、有名な加藤一二三九段は棒銀戦法を得意としています。
+                    <br>
+                    それではやっていきましょう！
+                  </p>
+                </div>
+                <div style="flex-basis: 60%;">
+                  <img src="assets/img/棒銀_1.png">
+                </div>
               </div>
             </section>
           </div>
           <div class="slide_bg">
             <section id="slide2_container">
               <div id="slide2" class="slide_wrapper">
-                <div class="slide2_inside_areaA">
+                <!-- <div class="slide2_inside_areaA">
                   <div class="slide_headline">
                     <span>大きい見出し</span>
                   </div>
@@ -351,14 +382,14 @@
                 </div>
                 <div class="slide2_inside_areaC">
                   <img src="../img/aigakariPopup.png">
-                </div>
+                </div> -->
               </div>
             </section>
           </div>
           <div class="slide_bg">
             <section id="slide3_container">
               <div id="slide3" class="slide_wrapper">
-                <div class="slide3_inside_areaA">
+                <!-- <div class="slide3_inside_areaA">
                   <div class="slide_headline">
                     <span>大きい見出し</span>
                   </div>
@@ -378,7 +409,7 @@
                   <div>
                     <img src="../img/aigakariPopup.png">
                   </div>
-                </div>
+                </div> -->
                 <!-- <div class="slide3_inside_areaD">
                   <img src="../img/aigakari.jpg">
                 </div> -->
@@ -401,9 +432,13 @@
               </div>
             </section>
           </div>
-          <section id="slide5">
-            <img src="../../img/slide_05.png" alt="" width="600" height="400">
-          </section>
+          <div class="slide_bg">
+            <section id="slide5_container">
+              <div id="slide5" class="slide_wrapper">
+                <img src="../../img/slide_05.png" alt="" width="100" height="400">
+              </div>
+            </section>
+          </div>
         </div>
         <p id="left-arrow" class="arrow prev">
           <i class="ico"></i>

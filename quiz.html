@@ -11,6 +11,12 @@
     html {
       overflow: hidden;
     }
+
+    @media screen and (max-width: 767px) {
+      html {
+        overflow: scroll;
+      }
+    }
     
     .explosion {
       position: absolute;
@@ -180,6 +186,11 @@
           display: block;
           margin: 10px auto;
         }
+        @media screen and (max-width: 767px) {
+          .container {
+            flex-direction: column;
+          }
+        }
       `
 
       static properties = {
@@ -209,10 +220,6 @@
               <input type="button" value="第2問" @click="${e => this.change(second_explanation, 2)}" onclick="set_quiz_sfen(second_sfen, second_answer)">
               <input type="button" value="第3問" @click="${e => this.change(third_explanation, 3)}" onclick="set_quiz_sfen(third_sfen, third_answer)">
             </div>
-            <div class="quiz">
-              <p>次の一手を指してください</p>
-              <p id="quiz-content">${this.quiz_content}</p>
-            </div>
             <shogi-player-wc
               sp_mode="play"
               sp_body="${this.source}"
@@ -225,6 +232,10 @@
               sp_pass_css="${this.pass_css}"
               sp_debug="false"
             ></shogi-player-wc>
+            <div class="quiz">
+              <p>次の一手を指してください</p>
+              <p id="quiz-content">${this.quiz_content}</p>
+            </div>
           </div>
         `
       }

@@ -196,211 +196,297 @@ text-align: center;
   設定している場合は、z-indexの数値が大きい方が前面に表示される
   */
   /*
-「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
-※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
-設定している場合は、z-indexの数値が大きい方が前面に表示される
-*/
-#header {
-  width: 100%;
-  height: 60px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
+  「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
+  ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
+  設定している場合は、z-indexの数値が大きい方が前面に表示される
+  */
+  #header {
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
 
-.header_container {
-  display: block;
-  left: 15px;
-  position: relative;
-}
+  .header_container {
+    display: block;
+    left: 15px;
+    position: relative;
+  }
 
 
 
-.test {
-  visibility: hidden;
-}
-/*
-ハンバーガーメニュー
-メニューが閉じている時は、「left: -300px;」で画面左に隠し、
-「opacity: 0;」で非表示にしている
-*/
+  .test {
+    visibility: hidden;
+  }
+  /*--------------------------------------------------------
+  ハンバーガーメニュー
+  メニューが閉じている時は、「left: -300px;」で画面左に隠し、
+  「opacity: 0;」で非表示にしている
+  ---------------------------------------------------------*/
 
-#navi-phone {
-  display: block;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: -1000px;
-  padding-top: 60px;
-  z-index: 100;
-  transition: opacity 0.3s;
-  background: var(--main-color);
-  padding: 80px 8vw 8vw 8vw;
+  #navi-phone {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: -1000px;
+    padding-top: 60px;
+    z-index: 100;
+    transition: opacity 0.3s;
+    background: #293949;
+    padding: 80px 8vw 8vw 8vw;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  .phone-menu {
+    width: 100%;
+    max-width: 360px;
+    margin: 30px auto 20px;
+    background: #FFF;
+    /* -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px; */
+  }
+ 
+ .phone-menu .link {
+   cursor: pointer;
+   display: block;
+   padding: 15px 15px 15px 42px;
+   color: #fff;
+   background-color: #293949;
+   font-size: 14px;
+   font-weight: 700;
+   border-bottom: 1px solid #CCC;
+   position: relative;
+   -webkit-transition: all 0.4s ease;
+   -o-transition: all 0.4s ease;
+   transition: all 0.4s ease;
+ }
+ 
+ .phone-menu li:last-child .link {
+   border-bottom: 0;
+ }
+ 
+ .phone-menu li i {
+   position: absolute;
+   top: 16px;
+   left: 12px;
+   font-size: 18px;
+   color: #fff;
+   -webkit-transition: all 0.4s ease;
+   -o-transition: all 0.4s ease;
+   transition: all 0.4s ease;
+ }
+ 
+ .phone-menu li i.fa-chevron-down {
+   right: 12px;
+   left: auto;
+   font-size: 16px;
+ }
+ 
+ .phone-menu li.open .link {
+   color: #4aa5f0;
+ }
+ 
+ .phone-menu li.open i {
+   color: #4aa5f0;
+ }
+ .phone-menu li.open i.fa-chevron-down {
+   -webkit-transform: rotate(180deg);
+   -ms-transform: rotate(180deg);
+   -o-transform: rotate(180deg);
+   transform: rotate(180deg);
+ }
+ 
+ .phone-menu li.default .phone-submenu {display: block;}
+ /**
+  * phone-submenu
+  -----------------------------*/
+  .phone-submenu {
+    display: none;
+    background: #23313f;
+    font-size: 14px;
+  }
+ 
+  .phone-submenu li {
+    border-bottom: 1px solid #4b4a5e;
+  }
+ 
+  .phone-submenu a {
+    display: block;
+    text-decoration: none;
+    color: #d9d9d9;
+    padding: 12px;
+    padding-left: 42px;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+  }
+ 
+  .phone-submenu a:hover {
+    background: #b63b4d;
+    color: #FFF;
+  }
+
+
+
+
+
+  /* #navi-phone a {
+    display: flex;
+    align-items: center;
+    font-size: 3.7vw;
+    font-weight: 600;
+    border-bottom: 1px solid #fff;
+    padding: 4vw 4vw 4vw 16vw;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  #navi-phone a:before {
+    width: 4.8vw;
+    height: 4.8vw;
+    content: "";
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 70vw;
+    margin: auto;
+    border-radius: 25%;
+    border: 1px solid rgb(255, 255, 255);
+  }
+
+  #navi-phone a:after {
+    content: "";
+    display: block;
+    background-size: contain;
+    position: absolute;
+    width: 1.7vw;
+    height: 1.7vw;
+    top: 0;
+    bottom: 0;
+    left: 71vw;
+    margin: auto;
+    border-top: 1px solid rgb(255, 255, 255);
+    border-right: 1px solid rgb(255, 255, 255);
+    transform: rotate(45deg);
+      
+  }
+
+  #navi-phone li {
+    position: relative;
+  } */
+  /*
+  ハンバーガーメニュー
+  メニューが開いている時は、「left: 0;」「opacity: 1;」で
+  画面左に表示する
+  */
+  .open #navi-phone {
+    left: 0;
+    opacity: 1;
+    z-index: 20;
+  }
+  .toggle_btn {
+    display: block;
+    /* スマホ版を表示 */
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transition: all 0.5s;
+    cursor: pointer;
+    z-index: 101;
+  }
+  /*
+  ハンバーガーメニューの線の設定（メニューが閉じている時）
+  */
+  .toggle_btn span {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: #333;
+    border-radius: 4px;
+    transition: all 0.5s;
+  }
+  /*
+  1本目の線の位置を設定
+  */
+  .open .toggle_btn span:nth-child(1) {
+    top: 7px;
+  }
+
+  .toggle_btn span:nth-child(1) {
+    top: 6px;
+  }
+  /*
+  2本目の線の位置を設定
+  */
+  .toggle_btn span:nth-child(2) {
+    bottom: 14px;
+  }
+
+  .toggle_btn span:nth-child(3) {
+    bottom: 6px;
+  }
+
+  /*
+  ハンバーガーメニューの線の設定（メニューが開いている時）
+  線の色を白に変更
+  */
+  .open .toggle_btn span {
+    background-color: #fff;
+  }
+  /*
+  1本目の線を-45度回転
+  */
+  .open .toggle_btn span:nth-child(1) {
+    -webkit-transform: translateY(4px) rotate(-45deg);
+    transform: translateY(8px) rotate(-45deg);
+  }
+  /*
+  2本目の線を透過
+  */
+  .open .toggle_btn span:nth-child(2) { 
   opacity: 0;
-  z-index: 0;
-}
+  } 
+  /*
+  3本目の線を45度回転
+  */
+  .open .toggle_btn span:nth-child(3) {
+    -webkit-transform: translateY(-4px) rotate(45deg);
+    transform: translateY(-7px) rotate(45deg);
+  }
 
-.phone_menu_wrapper {
-  width: 100%;
-  margin-bottom: 6.6vw;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-#navi-phone a {
-  display: flex;
-  align-items: center;
-  font-size: 3.7vw;
-  font-weight: 600;
-  border-bottom: 1px solid #fff;
-  padding: 4vw 4vw 4vw 16vw;
-  color: #fff;
-  text-decoration: none;
-}
-
-#navi-phone a:before {
-  width: 4.8vw;
-  height: 4.8vw;
-  content: "";
-  display: block;
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 70vw;
-  margin: auto;
-  border-radius: 25%;
-  border: 1px solid rgb(255, 255, 255);
-}
-
-#navi-phone a:after {
-  content: "";
-  display: block;
-  background-size: contain;
-  position: absolute;
-  width: 1.7vw;
-  height: 1.7vw;
-  top: 0;
-  bottom: 0;
-  left: 71vw;
-  margin: auto;
-  border-top: 1px solid rgb(255, 255, 255);
-  border-right: 1px solid rgb(255, 255, 255);
-  transform: rotate(45deg);
-    
-}
-
-#navi-phone li {
-  position: relative;
-}
-/*
-ハンバーガーメニュー
-メニューが開いている時は、「left: 0;」「opacity: 1;」で
-画面左に表示する
-*/
-.open #navi-phone {
-  left: 0;
-  opacity: 1;
-  z-index: 20;
-}
-.toggle_btn {
-  display: block;
-  /* スマホ版を表示 */
-  width: 30px;
-  height: 30px;
-  position: relative;
-  transition: all 0.5s;
-  cursor: pointer;
-  z-index: 101;
-}
-/*
-ハンバーガーメニューの線の設定（メニューが閉じている時）
-*/
-.toggle_btn span {
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background-color: #333;
-  border-radius: 4px;
-  transition: all 0.5s;
-}
-/*
-1本目の線の位置を設定
-*/
-.open .toggle_btn span:nth-child(1) {
-  top: 7px;
-}
-
-.toggle_btn span:nth-child(1) {
-  top: 6px;
-}
-/*
-2本目の線の位置を設定
-*/
-.toggle_btn span:nth-child(2) {
-  bottom: 14px;
-}
-
-.toggle_btn span:nth-child(3) {
-  bottom: 6px;
-}
-
-/*
-ハンバーガーメニューの線の設定（メニューが開いている時）
-線の色を白に変更
-*/
-.open .toggle_btn span {
-  background-color: #fff;
-}
-/*
-1本目の線を-45度回転
-*/
-.open .toggle_btn span:nth-child(1) {
-  -webkit-transform: translateY(4px) rotate(-45deg);
-  transform: translateY(8px) rotate(-45deg);
-}
-/*
-2本目の線を透過
-*/
-.open .toggle_btn span:nth-child(2) { 
-opacity: 0;
-} 
-/*
-3本目の線を45度回転
-*/
-.open .toggle_btn span:nth-child(3) {
-  -webkit-transform: translateY(-4px) rotate(45deg);
-  transform: translateY(-7px) rotate(45deg);
-}
-
-#mask {
-  display: none;
-  transition: all 0.5s;
-}
-/*
-メニューを開いている時は、全体を黒背景にする
-*/
-/* .open #mask {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: .8;
-  z-index: 10;
-  cursor: pointer;
-} */
+  #mask {
+    display: none;
+    transition: all 0.5s;
+  }
+  /*
+  メニューを開いている時は、全体を黒背景にする
+  */
+  /* .open #mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .8;
+    z-index: 10;
+    cursor: pointer;
+  } */
 }

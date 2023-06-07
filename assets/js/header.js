@@ -1,30 +1,27 @@
-// let menu_id;
+//スマホ用メニュー
+$(function() {
+	var Accordion = function(el, multiple) {
+		this.el = el || {};
+		this.multiple = multiple || false;
 
-// document.addEventListener("mouseover", function(event) {
-//   menu_id = $(event.target).attr("id");
-//   console.log(menu_id);
-//   if (menu_id == "menu1" || menu_id == "menu2" || menu_id == "menu3" || menu_id == "menu4"
-//       || menu_id == "menu1_sub") {
-//     document.getElementById(menu_id).classList.toggle("single_text");
-//   }
-// })
+		// Variables privadas
+		var links = this.el.find('.link');
+		// Evento
+		links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+	}
 
-// document.addEventListener("mouseout", function(event) {
-//   menu_id = $(event.target).attr("id");
-//   if (menu_id == "menu1" || menu_id == "menu2" || menu_id == "menu3" || menu_id == "menu4") {
-//     document.getElementById(menu_id).classList.toggle("single_text");
-//   }
-// })
+	Accordion.prototype.dropdown = function(e) {
+		var $el = e.data.el;
+			$this = $(this),
+			$next = $this.next();
 
-  
-  $('ul.menu li').mouseover(function(){
-    $('ul.menu li a').addClass('dark').removeClass('light');
-  });
+		$next.slideToggle();
+		$this.parent().toggleClass('open');
 
-  $('ul.menu li a').mouseover(function(){
-    $('ul.menu li').addClass('light');
-  });
-  
-  $('ul.menu li').mouseout(function(){
-    $('ul.menu li a').addClass('light').removeClass('dark');
-  });
+		if (!e.data.multiple) {
+			$el.find('.phone-submenu').not($next).slideUp().parent().removeClass('open');
+		};
+	}	
+
+	var accordion = new Accordion($('#phone-menu'), false);
+});

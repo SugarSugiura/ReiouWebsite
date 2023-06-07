@@ -634,6 +634,15 @@ SP
     margin-bottom: 10px;
   }
 
+  /*-------------------------------------------
+  pop-up
+  -------------------------------------------*/
+
+  .window {
+    /* max-width: 760px;
+    height: 480px; */
+  }
+
 }
 
 @media screen and (max-width: 440px) {

@@ -22,6 +22,10 @@ time, mark, audio, video {
   background:transparent;
 }
 
+ul {
+  list-style-type: none;
+}
+
 li {
   list-style: none;
 }

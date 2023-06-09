@@ -221,6 +221,39 @@ top-title ヘッダーの次に来る初心者向けのとこ
   display:block;
   transition: all 0.2s;
   border-radius:20px;
+  padding-top: 20px;
+}
+
+.logo {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo:before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.logo > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;  
+  background-image: url("../img/shogiban-kuro.png");
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo > div > div {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 1000;
+  -webkit-text-stroke: 1.5px blue;
 }
 
 .product-list img {

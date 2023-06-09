@@ -280,18 +280,16 @@ text-align: center;
  .phone-menu li i {
    position: absolute;
    top: 16px;
-   left: 12px;
+   right: 12px;
    font-size: 18px;
    color: #fff;
    -webkit-transition: all 0.4s ease;
    -o-transition: all 0.4s ease;
    transition: all 0.4s ease;
  }
- 
- .phone-menu li i.fa-chevron-down {
-   right: 12px;
-   left: auto;
-   font-size: 16px;
+
+ .phone-menu li i:before {
+  content: "\f067";
  }
  
  .phone-menu li.open .link {
@@ -301,11 +299,8 @@ text-align: center;
  .phone-menu li.open i {
    color: #4aa5f0;
  }
- .phone-menu li.open i.fa-chevron-down {
-   -webkit-transform: rotate(180deg);
-   -ms-transform: rotate(180deg);
-   -o-transform: rotate(180deg);
-   transform: rotate(180deg);
+ .phone-menu li.open i:before {
+   content: "\f068";
  }
  
  .phone-menu li.default .phone-submenu {display: block;}

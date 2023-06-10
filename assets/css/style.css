@@ -242,18 +242,40 @@ top-title ヘッダーの次に来る初心者向けのとこ
   left: 0;
   bottom: 0;
   right: 0;  
-  background-image: url("../img/shogiban-kuro.png");
+  background-image: url("../img/shogiban.png");
   background-size: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.logo > div > div {
+.logo-text {
   color: #fff;
+  position: relative;
+  width: 100%;
+  /* background: linear-gradient(rgba(69, 56, 64, 0.7), rgba(0, 0, 0, 0.7), rgba(65, 63, 51, 0.7)); */
   font-size: 35px;
-  font-weight: 1000;
-  -webkit-text-stroke: 1.5px blue;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.logo-red {
+  text-shadow: -1px -1px 4px red, -1px 0 4px red, -1px 1px 4px red,
+                  0 -1px 4px red,                    0 1px 4px red,
+                1px -1px 4px red,  1px 0 4px red,  1px 1px 4px red;
+}
+
+.logo-text:before {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 100%;
+  background-image: linear-gradient(rgba(69, 56, 64, 0.7), rgba(0, 0, 0, 0.7), rgba(65, 63, 51, 0.7)); 
+  filter: blur(10px);
+  content: "";
+  z-index: -1;
 }
 
 .product-list img {

@@ -43,7 +43,8 @@
           flex-basis: 97vh;
         }
         shogi-player-wc::part(root) {
-          --sp_board_color: LightSkyBlue;
+          --sp_board_color: #cc9900;
+          --sp_pass_style=".place_5_3 { background-color: LightPink; }"
         }
         .comment {
           border: 1px solid hsl(0 0% 0% / 0.10);
@@ -141,7 +142,10 @@
 
 <body>
   <input type="button" value="ダウンロード" onclick="download()" style="position: absolute; top: 100px" left: 0>
-  <shogi-board id="shogi"></shogi-board>
+  <shogi-board id="shogi" pass_css="
+  .place_5_3 { background-color: LightPink; }
+  .place_5_4 { background-color: LightPink; }
+  "></shogi-board>
 </body>
 
 </html>

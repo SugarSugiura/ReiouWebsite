@@ -3,6 +3,16 @@
 :root {
   --main-color: #004097;
   --transition-color: 0.2s;
+  --logo-red: red;
+  --logo-blue: blue;
+  --logo-green: #288a49a0;
+  --logo-yellow: #ab8c00;
+  --logo-lightBlue: #00a78e;
+  --logo-orange: #fd8c1c;
+  --logo-pink: #ea3992;
+  --logo-darkBlue: #03a9a9;
+  --logo-brown: #964b00;
+  --logo-purple: #990099;
 }
 
 * {
@@ -37,6 +47,14 @@ body {
     font-size: 1rem;
     background-color: rgb(245, 245, 245);
     margin: 0;
+}
+
+main {
+  padding-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 260.4px);
 }
 
 a {
@@ -93,6 +111,7 @@ li {
   display: flex;
   justify-content: space-between;
   position: relative;
+  width: 100%;
 }
 
 .btn {
@@ -127,7 +146,7 @@ li {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  padding-bottom: 1rem;
+  width: 100%;
 }
 .product-list li {
   /*戦法リストのサイズ、1列4つ入れるなら23%*/
@@ -135,17 +154,126 @@ li {
 }
 
 .product-list > li > div {
-background-color: #fff;
-border-radius:20px; box-shadow:
-rgb(230, 230, 230) 0px 2px 6px;
-text-align: center;
+  background-color: #fff;
+  border-radius:20px; box-shadow:
+  rgb(230, 230, 230) 0px 2px 6px;
+  text-align: center;
 }
 
 .product-list a {
-height: 100%;
-display:block;
-transition: all 0.2s;
-border-radius:20px;
+  height: 100%;
+  display:block;
+  transition: all 0.2s;
+  border-radius:20px;
+  padding-top: 20px;
+}
+
+.logo {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo:before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.logo > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;  
+  background-image: url("../img/shogiban.png");
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-text {
+  color: #fff;
+  position: relative;
+  width: 100%;
+  /* background: linear-gradient(rgba(69, 56, 64, 0.7), rgba(0, 0, 0, 0.7), rgba(65, 63, 51, 0.7)); */
+  font-size: 2em;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.logo-red {
+  text-shadow: -1px -1px 4px var(--logo-red), -1px 0 4px var(--logo-red), -1px 1px 4px var(--logo-red),
+                  0 -1px 4px var(--logo-red),                    0 1px 4px var(--logo-red),
+                1px -1px 4px var(--logo-red),  1px 0 4px var(--logo-red),  1px 1px 4px var(--logo-red);
+}
+
+.logo-blue {
+  text-shadow: -1px -1px 4px var(--logo-blue), -1px 0 4px var(--logo-blue), -1px 1px 4px var(--logo-blue),
+                  0 -1px 4px var(--logo-blue),                    0 1px 4px var(--logo-blue),
+                1px -1px 4px var(--logo-blue),  1px 0 4px var(--logo-blue),  1px 1px 4px var(--logo-blue);
+}
+
+.logo-green {
+  text-shadow: -1px -1px 4px var(--logo-green), -1px 0 4px var(--logo-green), -1px 1px 4px var(--logo-green),
+                  0 -1px 4px var(--logo-green),                    0 1px 4px var(--logo-green),
+                1px -1px 4px var(--logo-green),  1px 0 4px var(--logo-green),  1px 1px 4px var(--logo-green);
+}
+
+.logo-yellow {
+  text-shadow: -1px -1px 4px var(--logo-yellow), -1px 0 4px var(--logo-yellow), -1px 1px 4px var(--logo-yellow),
+                  0 -1px 4px var(--logo-yellow),                    0 1px 4px var(--logo-yellow),
+                1px -1px 4px var(--logo-yellow),  1px 0 4px var(--logo-yellow),  1px 1px 4px var(--logo-yellow);
+}
+
+.logo-lightBlue {
+  text-shadow: -1px -1px 4px var(--logo-lightBlue), -1px 0 4px var(--logo-lightBlue), -1px 1px 4px var(--logo-lightBlue),
+                  0 -1px 4px var(--logo-lightBlue),                    0 1px 4px var(--logo-lightBlue),
+                1px -1px 4px var(--logo-lightBlue),  1px 0 4px var(--logo-lightBlue),  1px 1px 4px var(--logo-lightBlue);
+}
+
+.logo-orange {
+  text-shadow: -1px -1px 4px var(--logo-orange), -1px 0 4px var(--logo-orange), -1px 1px 4px var(--logo-orange),
+                  0 -1px 4px var(--logo-orange),                    0 1px 4px var(--logo-orange),
+                1px -1px 4px var(--logo-orange),  1px 0 4px var(--logo-orange),  1px 1px 4px var(--logo-orange);
+}
+
+.logo-pink {
+  text-shadow: -1px -1px 4px var(--logo-pink), -1px 0 4px var(--logo-pink), -1px 1px 4px var(--logo-pink),
+                  0 -1px 4px var(--logo-pink),                    0 1px 4px var(--logo-pink),
+                1px -1px 4px var(--logo-pink),  1px 0 4px var(--logo-pink),  1px 1px 4px var(--logo-pink);
+}
+
+.logo-darkBlue {
+  text-shadow:  -1px -1px 4px var(--logo-darkBlue), -1px 0 4px var(--logo-darkBlue), -1px 1px 4px var(--logo-darkBlue),
+                  0 -1px 4px var(--logo-darkBlue),                          0 1px 4px var(--logo-darkBlue),
+                1px -1px 4px var(--logo-darkBlue),  1px 0 4px var(--logo-darkBlue),  1px 1px 4px var(--logo-darkBlue);
+}
+
+.logo-brown {
+  text-shadow:  -1px -1px 4px var(--logo-brown), -1px 0 4px var(--logo-brown), -1px 1px 4px var(--logo-brown),
+                  0 -1px 4px var(--logo-brown),                          0 1px 4px var(--logo-brown),
+                1px -1px 4px var(--logo-brown),  1px 0 4px var(--logo-brown),  1px 1px 4px var(--logo-brown);
+}
+
+.logo-purple {
+  text-shadow:  -1px -1px 4px var(--logo-purple), -1px 0 4px var(--logo-purple), -1px 1px 4px var(--logo-purple),
+                  0 -1px 4px var(--logo-purple),                          0 1px 4px var(--logo-purple),
+                1px -1px 4px var(--logo-purple),  1px 0 4px var(--logo-purple),  1px 1px 4px var(--logo-purple);
+}
+
+.logo-text:before {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 100%;
+  background-image: linear-gradient(rgba(69, 56, 64, 0.7), rgba(0, 0, 0, 0.7), rgba(65, 63, 51, 0.7)); 
+  filter: blur(10px);
+  content: "";
+  z-index: -1;
 }
 
 .product-list img {
@@ -521,6 +649,8 @@ SP
   }
   main {
     width: 100%;
+    padding-bottom: 1rem;
+    padding-top: calc(1rem + 60px);
   }
   .product-list p {
     font-size: 16px;

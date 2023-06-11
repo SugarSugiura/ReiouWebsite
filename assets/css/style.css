@@ -254,7 +254,7 @@ top-title ヘッダーの次に来る初心者向けのとこ
   position: relative;
   width: 100%;
   /* background: linear-gradient(rgba(69, 56, 64, 0.7), rgba(0, 0, 0, 0.7), rgba(65, 63, 51, 0.7)); */
-  font-size: 35px;
+  font-size: 2em;
   font-weight: bold;
   z-index: 2;
 }
@@ -263,6 +263,42 @@ top-title ヘッダーの次に来る初心者向けのとこ
   text-shadow: -1px -1px 4px red, -1px 0 4px red, -1px 1px 4px red,
                   0 -1px 4px red,                    0 1px 4px red,
                 1px -1px 4px red,  1px 0 4px red,  1px 1px 4px red;
+}
+
+.logo-blue {
+  text-shadow: -1px -1px 4px blue, -1px 0 4px blue, -1px 1px 4px blue,
+                  0 -1px 4px blue,                    0 1px 4px blue,
+                1px -1px 4px blue,  1px 0 4px blue,  1px 1px 4px blue;
+}
+
+.logo-green {
+  text-shadow: -1px -1px 4px #288a49a0, -1px 0 4px #288a49a0, -1px 1px 4px #288a49a0,
+                  0 -1px 4px #288a49a0,                    0 1px 4px #288a49a0,
+                1px -1px 4px #288a49a0,  1px 0 4px #288a49a0,  1px 1px 4px #288a49a0;
+}
+
+.logo-yellow {
+  text-shadow: -1px -1px 4px #ab8c00, -1px 0 4px #ab8c00, -1px 1px 4px #ab8c00,
+                  0 -1px 4px #ab8c00,                    0 1px 4px #ab8c00,
+                1px -1px 4px #ab8c00,  1px 0 4px #ab8c00,  1px 1px 4px #ab8c00;
+}
+
+.logo-lightBlue {
+  text-shadow: -1px -1px 4px #00ccff, -1px 0 4px #00ccff, -1px 1px 4px #00ccff,
+                  0 -1px 4px #00ccff,                    0 1px 4px #00ccff,
+                1px -1px 4px #00ccff,  1px 0 4px #00ccff,  1px 1px 4px #00ccff;
+}
+
+.logo-orange {
+  text-shadow: -1px -1px 4px #ff9933, -1px 0 4px #ff9933, -1px 1px 4px #ff9933,
+                  0 -1px 4px #ff9933,                    0 1px 4px #ff9933,
+                1px -1px 4px #ff9933,  1px 0 4px #ff9933,  1px 1px 4px #ff9933;
+}
+
+.logo-pink {
+  text-shadow: -1px -1px 4px #ea3992, -1px 0 4px #ea3992, -1px 1px 4px #ea3992,
+                  0 -1px 4px #ea3992,                    0 1px 4px #ea3992,
+                1px -1px 4px #ea3992,  1px 0 4px #ea3992,  1px 1px 4px #ea3992;
 }
 
 .logo-text:before {
@@ -278,11 +314,6 @@ top-title ヘッダーの次に来る初心者向けのとこ
   z-index: -1;
 }
 
-.product-list img {
-    vertical-align: top;
-    margin: 20px 5px 0px 5px;
-    width: 90%;
-}
 .product-list p {
     font-size: 0.8vw;
     /* font-family: 游明朝; */

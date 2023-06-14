@@ -1132,23 +1132,19 @@ opacity: 0;
   text-align: center;
 }
 
-.tatleback2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.titleback2 {
   width: 100%; 
   height: 160px; 
   background-color: white; 
   padding: 1em;
-}
-
-.tatle2 {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .title3 {
-  text-align: center;
   font-size: 35px;
+  text-align: center;
 }
 
 .textback {
@@ -1244,7 +1240,7 @@ opacity: 0;
   padding: 0;
 }
 
- .hukidasi2 {
+.hukidasi2 {
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -1252,14 +1248,6 @@ opacity: 0;
   text-align: center;
   line-height: 40px;
 } 
-
-.titleback5 {
-  width: 100%; 
-  height: 100px; 
-  background-color: rgb(253, 253, 253); 
-  padding: 1em;
-  text-align: center;
-}
 
 .backimg {
   height: 200px;
@@ -1286,7 +1274,7 @@ opacity: 0;
 
 .contentsback {
   width: 100%;
-  height: 1600px;
+  height: 1630px;
   background-color: burlywood;  
   background-image: url(../img/kami2.jpg);
   background-size: cover; 
@@ -1321,9 +1309,23 @@ opacity: 0;
   line-height: 50px;
 }
 
+.rule {
+  height: 600px;
+  width: 100%;
+}
+
+.comamove {
+  height: 600px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .backcolor4 {
   width: 100%;
-  height: 500px;
+  height: 1200px;
   background-color: #ffffff;
   padding: 1em;
 }
@@ -1335,12 +1337,12 @@ opacity: 0;
   padding: 1em;
 }
 
-.plan {
+/* .plan {
   width: 100%;
   height: 80px;
   font-size: 35px;
   text-align: center;
-}
+} */
 
 .flex_test-box {
  height: 400px;

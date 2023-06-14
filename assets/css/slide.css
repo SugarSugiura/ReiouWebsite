@@ -109,6 +109,12 @@ li {
   font-size: 20px;
 }
 
+.last {
+  font-size: 80px;
+}
+
+
+
 .slide_openButton_container {
   
 }
@@ -492,6 +498,10 @@ shogi-player
 @media screen and (max-width: 767px) {
   .slide_closeButton_container {
     right: 30px;
+  }
+
+  .last {
+    font-size: 50px;
   }
 
   .slide-title {

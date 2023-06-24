@@ -588,6 +588,10 @@ SP
   .product-list li {
     width: 48%;
   }
+
+  .logo-text {
+    font-size: 1.7em;
+  }
 }
 
 @media screen and (max-width: 440px) {

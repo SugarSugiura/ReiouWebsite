@@ -27,6 +27,7 @@
       };  
     }
 
+    //この部分で棋譜を読み込んでいる
     window.onload = function(){
       read_file("assets/kif/aigakari_1.txt");
       setTimeout(() => {
@@ -138,7 +139,7 @@
           }
           .comment {
             flex-basis: auto;
-            width: 40%;
+            width: 70%;
             height: 200px;
           }
         }
@@ -231,6 +232,7 @@
       }
 
       test() {
+
         this.source = kif_2;
         this.turn = "4";
       }

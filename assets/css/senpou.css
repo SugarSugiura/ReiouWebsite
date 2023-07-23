@@ -457,8 +457,8 @@ pop-up
 }
 .window {
   width: 90vw;
-  max-width: 380px;
-  height: 240px;
+  max-width: 418px;
+  height: 264px;
   background-color: var(--main-color);
   border-radius: 6px;
   display: flex;

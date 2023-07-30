@@ -18,15 +18,16 @@
     let turn;
     let sfen;
     let turn_flg = true;
+    let comments;
     
 
     //textファイル読み込み
-    function read_file() {
+    function read_file_sfen(file) {
       // XMLHttpRequestオブジェクトを作成
       var rec = new XMLHttpRequest();
 
       // ファイルのURLを指定
-      rec.open('GET', 'assets/kif/habkifsfen.txt', true);
+      rec.open('GET', file, true);
 
       // 読み込み開始
       rec.send();
@@ -48,6 +49,22 @@
       
 
       
+    }
+
+    function read_file_comments(file) {
+      var rec = new XMLHttpRequest();
+
+      rec.open('GET', file, true);
+
+      rec.send();
+
+      rec.responseType = 'text';
+
+      rec.onload = function() {
+        if (rec.status === 200) {
+          comments = rec.responseText;
+        }
+      };
     }
 
     //strの文字列のnum行目を取得できる
@@ -72,7 +89,8 @@
     }
 
     window.onload = function(){
-      read_file();
+      read_file_sfen('assets/kif/habkifsfen.txt');
+      read_file_comments('assets/kif/comments.txt');
     }
   </script>
   <script type="module">
@@ -80,51 +98,50 @@
     export class ShogiBoard extends LitElement {
       static styles = css`
         :host {
-          display: block;
+          padding-top: 60px;
+          display: flex;
+          min-height: 100vh;
           /*border: 1px solid hsl(0 0% 0% / 0.1);*/
-          padding-top: 80px;
-          padding: 80px 1rem 1rem 1rem;
-          height: 100%
         }
         .container {
+          position: relative;
           display: flex;
-          justify-content: center;
-          gap: 1rem;
+          width: 100%;
+          /*justify-content: center;
+          gap: 1rem;*/
         }
+
+        .explane {
+          flex: 1 1 0%;  
+        }
+
         shogi-player-wc {
-          flex-basis: 90vh;
+          flex-basis: 100vh;
         }
+
+        .comments-container {
+          flex: 1 1 0%;
+          margin: 1rem;
+        }
+
+        .comments {
+          width: 100%;
+          height: 100%;
+          padding: 1rem;
+
+        }
+        
+        
+
         shogi-player-wc::part(root) {
           --sp_board_color: white;
-        }
-        .comment {
-          border: 1px solid hsl(0 0% 0% / 0.10);
-          background-color: hsl(0 0% 0% / 0.02);
-          border-radius: 4px;
-          flex-basis: 40vh;
-          position: relative;
-        }
-        .comment-body {
-          position: absolute;
-          top: 1rem;
-          left: 1rem;
-          bottom: 1rem;
-          right: 1rem;
-
-          overflow-y: scroll;
-
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .comment-body p {
-          margin: 0;
         }
       `
 
       static properties = {
         source: { type: String },
         comment_lines: { type: Array },
+        comments: { type: String },
         turn: { type: String },
         pass_css: { type: String },
         human_sfen: { type: String },
@@ -136,6 +153,7 @@
         super()
         this.source = ""
         this.comment_lines = null
+        this.comments = ""
         this.turn = null
         this.pass_css = null
         this.human_sfen = ""
@@ -148,9 +166,8 @@
       render() {
         return html`
           <div class="container">
-            <input type="button" value="最初から" @click="${e => {this.source = this.first_sfen}}" style="position: absolute; left: 0; top: 150px">
-            <div>
-              <p>相掛かり棒銀</p>
+            <div class="explane">
+              
             </div>
             <shogi-player-wc
               sp_mode="play"
@@ -165,6 +182,9 @@
               sp_pass_css="${this.pass_css}"
               sp_debug="false"
             ></shogi-player-wc>
+            <div class="comments-container">
+              <p>${this.comments}</p>
+            </div>
           </div>
         `
       }
@@ -195,8 +215,18 @@
           const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
           sp_instance.api_turn_add(-1);
       }
+
       
+
+      change_comments() {
+        this.comments = line_string(comments, this.turn);
+      }
       
+      firstUpdated() {
+        setInterval(() => {
+          this.change_comments();
+        }, 100)
+      }
 
       // ☗76歩には☖34歩とし☗22角成に同銀とするだけのAI
       ai_best_move(e) {

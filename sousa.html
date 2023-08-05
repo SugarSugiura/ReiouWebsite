@@ -77,9 +77,9 @@
           count++;
           if (count == num) {
             if (num == 1) {
-              return str.slice(last, str.indexOf("\n", last + 1));
+              return str.slice(last, str.indexOf("\n", last + 1) - 1);
             } else {
-              return str.slice(last + 1, str.indexOf("\n", last + 1));
+              return str.slice(last + 1, str.indexOf("\n", last + 1) - 1);
             }
           }
           last = i;
@@ -98,7 +98,7 @@
     export class ShogiBoard extends LitElement {
       static styles = css`
         :host {
-          padding-top: 60px;
+          padding-top: 76px;
           display: flex;
           min-height: 100vh;
           /*border: 1px solid hsl(0 0% 0% / 0.1);*/
@@ -112,7 +112,7 @@
         }
 
         .explane {
-          flex: 1 1 0%;  
+          flex: 1 1 0%;
         }
 
         shogi-player-wc {
@@ -155,7 +155,7 @@
         this.comment_lines = null
         this.comments = ""
         this.turn = null
-        this.pass_css = null
+        this.pass_css = ".place_5_5 {background-color: blue;}"
         this.human_sfen = ""
         this.ai_sfen = ""
         this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
@@ -176,7 +176,7 @@
               sp_piece_variant="paper"
               @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
               @ev_turn_offset_change="${e => this.turn = e.detail[0]}"
-              sp_controller="false"
+              sp_controller="true"
               sp_human_side="black"
               sp_dev_tools_position="left"
               sp_pass_css="${this.pass_css}"
@@ -193,7 +193,10 @@
         setTimeout(() => {
           const correct_sfen = line_string(sfen, this.turn);
           const next_sfen = line_string(sfen, this.turn + 1);
-          if (e.detail[0].sfen == correct_sfen) {
+          this.human_sfen = e.detail[0].sfen;
+          console.log(correct_sfen);
+          console.log(e.detail[0].sfen);
+          if (this.human_sfen == correct_sfen) {
             if (next_sfen == undefined) {
               this.source = correct_sfen;
             } else {
@@ -223,10 +226,13 @@
       }
       
       firstUpdated() {
-        setInterval(() => {
-          this.change_comments();
-        }, 100)
+        setTimeout(() => {
+          setInterval(() => {
+            this.change_comments();
+          }, 100)
+        }, 1000)
       }
+      
 
       // ☗76歩には☖34歩とし☗22角成に同銀とするだけのAI
       ai_best_move(e) {

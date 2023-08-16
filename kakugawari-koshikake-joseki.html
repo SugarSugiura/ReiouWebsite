@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/header.css">
-  <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.2"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
     html {
@@ -17,7 +17,10 @@
     let item;
     let turn;
     let sfen;
+    let sfen_1;
     let sfen_2;
+    let sfen_3;
+    let sfen_4;
     let turn_flg = true;
     let comments;
     
@@ -40,7 +43,9 @@
       rec.onload = function() {
         if (rec.status === 200) {
           //console.log(rec.responseText); //rec.responceTextがファイルの中の文字列
-          sfen = rec.responseText;
+          sfen_1 = rec.responseText;
+
+          sfen = sfen_1;
           //line_string(sfen, 100);
           //console.log(sfen[sfen.length]);
           //console.log(sfen.slice(0, sfen.indexOf('\n')))  //この中身は1行目を取得している
@@ -65,6 +70,48 @@
       rec.onload = function() {
         if (rec.status === 200) {
           sfen_2 = rec.responseText;
+        }
+      };
+    }
+
+    function read_file_sfen_3(file) {
+      // XMLHttpRequestオブジェクトを作成
+      var rec = new XMLHttpRequest();
+
+      // ファイルのURLを指定
+      rec.open('GET', file, true);
+
+      // 読み込み開始
+      rec.send();
+
+      // レスポンスタイプを指定
+      rec.responseType = 'text';
+
+      // 読み込み完了時の処理
+      rec.onload = function() {
+        if (rec.status === 200) {
+          sfen_3 = rec.responseText;
+        }
+      };
+    }
+
+    function read_file_sfen_4(file) {
+      // XMLHttpRequestオブジェクトを作成
+      var rec = new XMLHttpRequest();
+
+      // ファイルのURLを指定
+      rec.open('GET', file, true);
+
+      // 読み込み開始
+      rec.send();
+
+      // レスポンスタイプを指定
+      rec.responseType = 'text';
+
+      // 読み込み完了時の処理
+      rec.onload = function() {
+        if (rec.status === 200) {
+          sfen_4 = rec.responseText;
         }
       };
     }
@@ -107,8 +154,10 @@
     }
 
     window.onload = function(){
-      read_file_sfen('assets/kif/kakugawari-koshikake.txt');
+      read_file_sfen('assets/kif/kakugawari-koshikake-1.txt');
       read_file_sfen_2('assets/kif/kakugawari-koshikake-2.txt');
+      read_file_sfen_3('assets/kif/kakugawari-koshikake-3.txt');
+      read_file_sfen_4('assets/kif/kakugawari-koshikake-4.txt');
       read_file_comments('assets/kif/comments.txt');
     }
   </script>
@@ -165,7 +214,8 @@
         pass_css: { type: String },
         human_sfen: { type: String },
         ai_sfen: { type: String },
-        first_sfen: { type: String }
+        first_sfen: { type: String },
+        chapter: { type: Number}
       }
 
       constructor() {
@@ -178,6 +228,7 @@
         this.human_sfen = ""
         this.ai_sfen = ""
         this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
+        this.chapter = 1;
       }
 
     
@@ -246,8 +297,31 @@
       }
 
       change_sfen() {
-        this.source = sfen_2;
-        this.turn = "36";
+        switch(this.chapter){
+          case 1:
+            sfen = sfen_2;
+            this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4c4d";
+            this.turn = "37";
+            this.chapter = 2;
+            break;
+          case 2:
+            sfen = sfen_3;
+            this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 6d6e";
+            this.turn = "37";
+            this.chapter = 3;
+            break;
+          case 3:
+            sfen = sfen_4;
+            this.source ="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4b5b";
+            this.turn = "37";
+            this.chapter = 4;
+            break;
+          default:
+            sfen = sfen_1;
+            this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
+            this.turn = "0";
+            this.chapter = 1;
+        }  
       }
       
       firstUpdated() {

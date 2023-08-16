@@ -172,7 +172,8 @@
         turn: { type: String },
         pass_css: { type: String },
         kif: { type: String },
-        turn_max: { type: Number }
+        turn_max: { type: Number },
+        chapter: { type: Number }
       }
 
       constructor() {
@@ -183,6 +184,7 @@
         this.pass_css = null
         this.kif = null;
         this.turn_max = null;
+        this.chapter = 1;
       }
 
       firstUpdated() {
@@ -232,7 +234,6 @@
       }
 
       test() {
-
         this.source = kif_2;
         this.turn = "4";
       }

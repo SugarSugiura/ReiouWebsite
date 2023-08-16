@@ -10,7 +10,12 @@
     html {
       overflow: hidden;
     }
- 
+    
+    @media screen and (max-width: 767px) {
+          html {
+            overflow: auto;
+          }
+        }
   </style>
   <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
   <script>
@@ -179,12 +184,18 @@
           gap: 1rem;*/
         }
 
+
+
         .explane {
           flex: 1 1 0%;
         }
 
         shogi-player-wc {
           flex-basis: 100vh;
+        }
+
+        shogi-player-wc::part(root) {
+          --sp_board_color: goldenrod;
         }
 
         .comments-container {
@@ -198,11 +209,14 @@
           padding: 1rem;
 
         }
-        
-        
 
-        shogi-player-wc::part(root) {
-          --sp_board_color: white;
+        @media screen and (max-width: 767px) {
+          html {
+            overflow: auto;
+          }
+          .container {
+            flex-direction: column;
+          }
         }
       `
 
@@ -236,20 +250,19 @@
       render() {
         return html`
           <div class="container">
-            <div class="explane">
-              
-            </div>
+            
             <shogi-player-wc
               sp_mode="play"
               sp_body="${this.source}"
               sp_mobile_vertical="false"
-              sp_piece_variant="paper"
+              sp_piece_variant="nureyon"
               @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
               @ev_turn_offset_change="${e => this.turn = e.detail[0]}"
               sp_controller="true"
               sp_human_side="black"
               sp_dev_tools_position="left"
               sp_pass_css="${this.pass_css}"
+              sp_coordinate="true"
               sp_debug="false"
             ></shogi-player-wc>
             <div class="comments-container">
@@ -301,25 +314,21 @@
           case 1:
             sfen = sfen_2;
             this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4c4d";
-            this.turn = "37";
             this.chapter = 2;
             break;
           case 2:
             sfen = sfen_3;
             this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 6d6e";
-            this.turn = "37";
             this.chapter = 3;
             break;
           case 3:
             sfen = sfen_4;
             this.source ="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4b5b";
-            this.turn = "37";
             this.chapter = 4;
             break;
           default:
             sfen = sfen_1;
             this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
-            this.turn = "0";
             this.chapter = 1;
         }  
       }

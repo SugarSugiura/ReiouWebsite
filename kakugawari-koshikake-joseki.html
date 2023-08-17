@@ -10,12 +10,24 @@
     html {
       overflow: hidden;
     }
+
+    @media (orientation: portrait){
+      html {
+        overflow: auto;
+      }
+    }
+
+    @media screen and (max-width: 991px) {
+      html {
+        overflow: auto;
+      }
+        }
     
     @media screen and (max-width: 767px) {
-          html {
-            overflow: auto;
-          }
-        }
+      html {
+        overflow: auto;
+      }
+    }
   </style>
   <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
   <script>
@@ -28,6 +40,10 @@
     let sfen_4;
     let turn_flg = true;
     let comments;
+    let comments_1;
+    let comments_2;
+    let comments_3;
+    let comments_4;
     
 
     //textファイル読み込み
@@ -132,7 +148,55 @@
 
       rec.onload = function() {
         if (rec.status === 200) {
-          comments = rec.responseText;
+          comments_1 = rec.responseText;
+        }
+      };
+    }
+
+    function read_file_comments_2(file) {
+      var rec = new XMLHttpRequest();
+
+      rec.open('GET', file, true);
+
+      rec.send();
+
+      rec.responseType = 'text';
+
+      rec.onload = function() {
+        if (rec.status === 200) {
+          comments_2 = rec.responseText;
+        }
+      };
+    }
+
+    function read_file_comments_3(file) {
+      var rec = new XMLHttpRequest();
+
+      rec.open('GET', file, true);
+
+      rec.send();
+
+      rec.responseType = 'text';
+
+      rec.onload = function() {
+        if (rec.status === 200) {
+          comments_3 = rec.responseText;
+        }
+      };
+    }
+
+    function read_file_comments_4(file) {
+      var rec = new XMLHttpRequest();
+
+      rec.open('GET', file, true);
+
+      rec.send();
+
+      rec.responseType = 'text';
+
+      rec.onload = function() {
+        if (rec.status === 200) {
+          comments_4 = rec.responseText;
         }
       };
     }
@@ -163,7 +227,10 @@
       read_file_sfen_2('assets/kif/kakugawari-koshikake-2.txt');
       read_file_sfen_3('assets/kif/kakugawari-koshikake-3.txt');
       read_file_sfen_4('assets/kif/kakugawari-koshikake-4.txt');
-      read_file_comments('assets/kif/comments.txt');
+      read_file_comments('assets/kif/comments-1.txt');
+      read_file_comments_2('assets/kif/comments-2.txt')
+      read_file_comments_3('assets/kif/comments-3.txt')
+      read_file_comments_4('assets/kif/comments-4.txt')
     }
   </script>
   <script type="module">
@@ -191,7 +258,8 @@
         }
 
         shogi-player-wc {
-          flex-basis: 100vh;
+          flex-basis: 98vh;
+          margin-top: 1rem;
         }
 
         shogi-player-wc::part(root) {
@@ -201,6 +269,8 @@
         .comments-container {
           flex: 1 1 0%;
           margin: 1rem;
+          border: solid 1px black;
+          padding: 0 1rem
         }
 
         .comments {
@@ -210,10 +280,16 @@
 
         }
 
-        @media screen and (max-width: 767px) {
-          html {
-            overflow: auto;
+        @media (orientation: portrait){
+          .container {
+            flex-direction: column;
           }
+          shogi-player-wc {
+          flex-basis: 90vw;
+          }
+        }
+
+        @media screen and (max-width: 991px) {
           .container {
             flex-direction: column;
           }
@@ -229,20 +305,22 @@
         human_sfen: { type: String },
         ai_sfen: { type: String },
         first_sfen: { type: String },
-        chapter: { type: Number}
+        chapter: { type: Number},
+        turn_max: { type: Number }
       }
 
       constructor() {
         super()
         this.source = ""
         this.comment_lines = null
-        this.comments = "角換わり腰掛銀は王道の戦法のひとつ。細かい攻めをつなげていき、少しずつ敵陣を崩していく、という方針で指します。"
+        this.comments = ""
         this.turn = null
         //this.pass_css = ".place_5_5 {background-color: blue;}"
         this.human_sfen = ""
         this.ai_sfen = ""
         this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
         this.chapter = 1;
+        this.turn_max = 37;
       }
 
     
@@ -257,8 +335,8 @@
               sp_mobile_vertical="false"
               sp_piece_variant="nureyon"
               @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
-              @ev_turn_offset_change="${e => this.turn = e.detail[0]}"
-              sp_controller="true"
+              @ev_turn_offset_change="${e => this.ev_turn_offset_change(e)}"
+              sp_controller="false"
               sp_human_side="black"
               sp_dev_tools_position="left"
               sp_pass_css="${this.pass_css}"
@@ -267,15 +345,17 @@
             ></shogi-player-wc>
             <div class="comments-container">
               <p>${this.comments}</p>
-              <input id="change_sfen" type="button" value="第2章" @click="${this.change_sfen}">
+              <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen}">
             </div>
           </div>
         `
       }
-
+      
       ev_play_mode_move(e) {
         setTimeout(() => {
-          const correct_sfen = line_string(sfen, this.turn);
+          var correct_sfen = line_string(sfen, this.turn);
+          correct_sfen = correct_sfen.replace(/\r/g, '');
+          correct_sfen = correct_sfen.replace(/\n/g, '');
           const next_sfen = line_string(sfen, this.turn + 1);
           this.human_sfen = e.detail[0].sfen;
           console.log(correct_sfen);
@@ -297,6 +377,18 @@
         
       }
 
+      ev_turn_offset_change(e) {
+        this.turn = e.detail[0];
+        const elem = this.shadowRoot.getElementById("change-chapter");
+        if (e.detail[0] == this.turn_max) {
+          elem.style.display = "inline-block";
+          
+        } else {
+          elem.style.display = "none";
+        } 
+      }
+      
+
       turn_change() {
         const el = this.renderRoot.querySelector("shogi-player-wc");
           const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
@@ -306,37 +398,54 @@
       
 
       change_comments() {
-        this.comments = line_string(comments, this.turn);
+        this.comments = line_string(comments, this.turn + 1);
       }
 
+      //章の切り替えを行う関数
       change_sfen() {
         switch(this.chapter){
           case 1:
             sfen = sfen_2;
+            comments = comments_2;
             this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4c4d";
             this.chapter = 2;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第３章へ");
+            this.turn_max = 55;
             break;
           case 2:
             sfen = sfen_3;
+            comments = comments_3;
             this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 6d6e";
             this.chapter = 3;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第４章へ");
+            this.turn_max = 46;
             break;
           case 3:
             sfen = sfen_4;
+            comments = comments_4;
             this.source ="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4b5b";
             this.chapter = 4;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第１章へ");
+            this.turn_max = 71;
             break;
           default:
             sfen = sfen_1;
+            comments = comments_1;
             this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
             this.chapter = 1;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第２章へ");
+            this.turn_max = 37;
+            break;
         }  
       }
       
       firstUpdated() {
         setTimeout(() => {
+          comments = comments_1;
           setInterval(() => {
-            if (this.turn >= 2) {
+            console.log(this.turn);
+            
+            if (this.turn >= 0) {
               this.change_comments();
             }
           }, 100)
@@ -419,7 +528,7 @@
     </div>
     <div id="mask"></div>
   </header>
-  <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px">
+  <!-- <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px"> -->
 <shogi-board id="shogi"></shogi-board>
 
 <script src="assets/js/test.js"></script>

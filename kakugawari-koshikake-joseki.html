@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/slide.css">
   <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
@@ -21,7 +22,7 @@
       html {
         overflow: auto;
       }
-        }
+    }
     
     @media screen and (max-width: 767px) {
       html {
@@ -529,6 +530,158 @@
     <div id="mask"></div>
   </header>
   <!-- <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px"> -->
+
+  <input type="checkbox" id="slide_close" checked> <!--閉じるボタンのチェックボックスここに記述してよいのかはわからない-->
+  <div id="slide_all" class="slideshow_wrapper">
+    <div class="slideshow_container">
+      <div class="slideshow">
+        <input type="radio" name="slideshow" id="switch1" checked>
+        <input type="radio" name="slideshow" id="switch2">
+        <input type="radio" name="slideshow" id="switch3">
+        <input type="radio" name="slideshow" id="switch4">
+        <input type="radio" name="slideshow" id="switch5">
+        <div class="slide_closeButton_container">
+          <div style="position: relative; display: inline-block">
+            <label class="slide_closeButton" for="slide_close">×</label>
+          </div>
+        </div>
+        <div id="slide" class="slideContents">
+          <div class="slide_bg">
+            <section id="slide1_container">
+              <div id="slide1" class="slide_wrapper">
+                <div style="flex-basis: 20%">
+                  <h1 class="slide-title">ひねり飛車</h1>
+                </div>
+                <div style="flex-basis: 20%;">
+                  <p>
+                    ひねり飛車は縦歩取りと別名されていた時期もありました。
+                    <br>
+                    近年では居飛車相掛かり戦法の一種として定跡所に登場しています。
+                  </p>
+                </div>
+                <div style="flex-basis: 60%;">
+                    <div class="logo">
+                      <div>
+                        <div class="logo-text logo-pink">
+                          ひねり飛車
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="slide_bg">
+            <section id="slide2_container">
+              <div id="slide2" class="slide_wrapper">
+                <div class="slide-txt">
+                  <div>
+                    <p>
+                      ①角換わり腰掛銀の基本図。バランス良く構えるのが現代流。
+                      <br>
+                      ②基本図から△４四歩には▲４五歩と開戦！
+                    </p>
+                  </div>
+                </div>
+                <div class="slide-img-double">
+                  <div class="slide-img-1">
+                    <img src="assets\img\kakugawari-koshikake1.png" alt="" >
+                    <p>第１図</p>
+                  </div>
+                  <div class="slide-img-2">
+                    <img src="assets\img\kakugawari-koshikake2.png" alt="" >
+                    <p>第２図</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="slide_bg">
+            <section id="slide3_container">
+              <div id="slide3" class="slide_wrapper">
+                <div class="slide-txt">
+                  <div>
+                    <p>
+                      ③基本図から△６五歩には堂々と迎え撃つ！
+                      <br>
+                      ④基本図から△５二玉の待機戦術には、十分に形を整えてから襲い掛かる！
+                    </p>
+                  </div>
+                </div>
+                <div class="slide-img-double">
+                  <div class="slide-img-1">
+                    <div>
+                      <img src="assets\img\kakugawari-koshikake3.png" alt="" >
+                      <p>第３図</p>
+                    </div>
+                  </div>
+                  <div class="slide-img-2">
+                    <div>
+                      <img src="assets\img\kakugawari-koshikake4.png" alt="" >
+                      <p>第４図</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="slide_bg">
+            <section id="slide5_container">
+              <div id="slide5" class="slide_wrapper">
+                <div>
+                  <div class="slide-txt-last">
+                    <p>ここでスライドは終わりです
+                      <br>
+                      それではやっていきましょう！
+                    </p>
+                  </div>
+                  <div style="position:relative; z-index:10000">
+                    <div style="display: inline-block">
+                      <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="slide_bg">
+            <section id="slide5_container">
+              <div id="slide5" class="slide_wrapper">
+                <div>
+                  <div class="slide-txt-last">
+                    <p>ここでスライドは終わりです
+                      <br>
+                      それではやっていきましょう！
+                    </p>
+                  </div>
+                  <div style="position:relative; z-index:10000">
+                    <div style="display: inline-block">
+                      <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <p id="left-arrow" class="arrow prev">
+          <i class="ico"></i>
+          <label for="switch1"></label>
+          <label for="switch2"></label>
+          <label for="switch3"></label>
+          <label for="switch4"></label>
+        </p>
+        <p id="right-arrow" class="arrow next">
+          <i class="ico"></i>
+          <label for="switch1"></label>
+          <label for="switch2"></label>
+          <label for="switch3"></label>
+          <label for="switch4"></label>
+        </p>
+      </div>
+    </div>
+    
+  </div>
 <shogi-board id="shogi"></shogi-board>
 
 <script src="assets/js/test.js"></script>

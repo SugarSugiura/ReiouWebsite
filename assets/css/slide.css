@@ -67,7 +67,7 @@ li {
 	z-index: 100;
 	inset: 0px;
 	background-color: rgba(0, 0, 0, 0.7);
-	position: absolute;
+	position: fixed;
 	display: block;
 }
 
@@ -261,17 +261,20 @@ input[name="slideshow"] {
   flex-basis: 20%;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 1rem;
 }
 
+.slide-txt div {
+  flex-basis: 80%;
+}
+
 .slide-txt p {
-  flex-basis: 100%;
   font-size: 2.5rem;
   font-family: UDデジタル教科書体;
   line-height: 60px;
   text-align: left;
   color: white;
-  padding-left: 300px;
   font-weight: 600;
 }
 
@@ -573,7 +576,7 @@ shogi-player
     width: 40vw;
     margin: 0 auto;
     max-width: 800px;
-    min-width: 325px;
+    min-width: 280px;
   }
 
   .logo-text {
@@ -599,8 +602,8 @@ shogi-player
   }
   
   .slide-txt p {
-    flex-basis: 100%;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    line-height: 30px;
   }
 
   .slide-txt-last p {
@@ -618,6 +621,12 @@ shogi-player
     flex-direction: column;
     top: -20px;
   }
+
+  .slide-img-double p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}
   
   .slide-img-1{
     position: relative;

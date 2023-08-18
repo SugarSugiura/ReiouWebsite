@@ -29,21 +29,21 @@
 }
 
 html {
-    font-size: 100%;
-    scroll-behavior: smooth;
+  font-size: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
-    color: #333;
-    font-size: 1rem;
-    background-color: #f9fbfe;
-    margin: 0;
+  color: #333;
+  font-size: 1rem;
+  background-color: #f9fbfe;
+  margin: 0;
 }
 
 a {
-    color: #333;
-    text-decoration: none;   
-    cursor: pointer; 
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* a:hover {
@@ -52,7 +52,6 @@ a {
 
 img {
   max-width: 100%;
-  
 }
 
 main img {
@@ -62,7 +61,7 @@ main img {
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 

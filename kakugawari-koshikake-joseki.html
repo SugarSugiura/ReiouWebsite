@@ -18,7 +18,7 @@
       }
     }
 
-    @media screen and (max-width: 991px) {
+    @media screen and (max-width: 1400px) {
       html {
         overflow: auto;
       }
@@ -223,6 +223,8 @@
       }
     }
 
+    
+
     window.onload = function(){
       read_file_sfen('assets/kif/kakugawari-koshikake-1.txt');
       read_file_sfen_2('assets/kif/kakugawari-koshikake-2.txt');
@@ -252,8 +254,6 @@
           gap: 1rem;*/
         }
 
-
-
         .explane {
           flex: 1 1 0%;
         }
@@ -265,20 +265,34 @@
 
         shogi-player-wc::part(root) {
           --sp_board_color: goldenrod;
+          --sp_board_piece_size: 1.0;
+        }
+
+        .sidebar-container {
+          flex: 1 1 0%;
+          margin: 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: space-between;
         }
 
         .comments-container {
-          flex: 1 1 0%;
-          margin: 1rem;
+          width : 100%;
           border: solid 1px black;
-          padding: 0 1rem
+          padding: 0 1rem;
+          border-radius: 5px;
         }
 
-        .comments {
-          width: 100%;
-          height: 100%;
-          padding: 1rem;
+        .sub-container {
+          width: calc(49.5% - 3rem);
+          border: solid 1px black;
+          border-radius: 5px;
+          padding: 0 1rem;
+        }
 
+         + .sub-container {
+          display: none;
         }
 
         @media (orientation: portrait){
@@ -290,7 +304,7 @@
           }
         }
 
-        @media screen and (max-width: 991px) {
+        @media screen and (max-width: 1400px) {
           .container {
             flex-direction: column;
           }
@@ -328,13 +342,14 @@
 
       render() {
         return html`
+        
           <div class="container">
             
             <shogi-player-wc
               sp_mode="play"
               sp_body="${this.source}"
               sp_mobile_vertical="false"
-              sp_piece_variant="nureyon"
+              sp_piece_variant="portella"
               @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
               @ev_turn_offset_change="${e => this.ev_turn_offset_change(e)}"
               sp_controller="false"
@@ -344,8 +359,20 @@
               sp_coordinate="true"
               sp_debug="false"
             ></shogi-player-wc>
-            <div class="comments-container">
-              <p>${this.comments}</p>
+            <div class="sidebar-container">
+              <div class="comments-container">
+                <p>${this.comments}</p>
+              </div>
+              <div class="sub-container">
+                <p>現在の手数：${this.turn}手目</p>
+                <p>ヒント</p>
+              </div>
+              
+              
+              <div class="sub-container">
+                <input type="checkbox" id="slide-open" @click="${this.open_slide}" style="display: none">
+                <label for="slide-open"><p>スライドをもう一度見る</p></label>
+              </div>
               <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen}">
             </div>
           </div>
@@ -438,6 +465,11 @@
             this.turn_max = 37;
             break;
         }  
+      }
+
+      open_slide() {
+        document.getElementById("slide_close").checked = true;;
+        
       }
       
       firstUpdated() {
@@ -550,7 +582,7 @@
             <section id="slide1_container">
               <div id="slide1" class="slide_wrapper">
                 <div style="flex-basis: 20%">
-                  <h1 class="slide-title">ひねり飛車</h1>
+                  <h1 class="slide-title">角換わり腰掛銀</h1>
                 </div>
                 <div style="flex-basis: 20%;">
                   <p>
@@ -562,8 +594,8 @@
                 <div style="flex-basis: 60%;">
                     <div class="logo">
                       <div>
-                        <div class="logo-text logo-pink">
-                          ひねり飛車
+                        <div class="logo-text logo-yellow">
+                          角換わり<br>腰掛け銀
                         </div>
                       </div>
                     </div>

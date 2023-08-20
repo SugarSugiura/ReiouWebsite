@@ -63,7 +63,7 @@ li {
 	display: none;
 }
 
-#slide_close:checked +.slideshow_wrapper {
+#slide_close:checked + .slideshow_wrapper {
 	z-index: 100;
 	inset: 0px;
 	background-color: rgba(0, 0, 0, 0.7);
@@ -71,7 +71,7 @@ li {
 	display: block;
 }
 
-#slide_close:checked +.slide_openButton {
+#slide_close:checked + .slide_openButton {
   display: none;
 }
 

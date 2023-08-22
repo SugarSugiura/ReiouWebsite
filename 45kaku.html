@@ -39,6 +39,7 @@
     let sfen_2;
     let sfen_3;
     let sfen_4;
+    let sfen_5;
     let turn_flg = true;
     let comments;
     let comments_1;
@@ -138,6 +139,27 @@
       };
     }
 
+    function read_file_sfen_5(file) {
+      // XMLHttpRequestオブジェクトを作成
+      var rec = new XMLHttpRequest();
+
+      // ファイルのURLを指定
+      rec.open('GET', file, true);
+
+      // 読み込み開始
+      rec.send();
+
+      // レスポンスタイプを指定
+      rec.responseType = 'text';
+
+      // 読み込み完了時の処理
+      rec.onload = function() {
+        if (rec.status === 200) {
+          sfen_5 = rec.responseText;
+        }
+      };
+    }
+
     function read_file_comments(file) {
       var rec = new XMLHttpRequest();
 
@@ -223,13 +245,14 @@
       }
     }
 
-    
+    sfen_1 = read_file_sfen('assets/kif/45kaku-1.txt');
 
     window.onload = function(){
-      read_file_sfen('assets/kif/kakugawari-koshikake-1.txt');
-      read_file_sfen_2('assets/kif/kakugawari-koshikake-2.txt');
-      read_file_sfen_3('assets/kif/kakugawari-koshikake-3.txt');
-      read_file_sfen_4('assets/kif/kakugawari-koshikake-4.txt');
+      read_file_sfen('assets/kif/45kaku-1.txt');
+      read_file_sfen_2('assets/kif/45kaku-2.txt');
+      read_file_sfen_3('assets/kif/45kaku-3.txt');
+      read_file_sfen_4('assets/kif/45kaku-4.txt');
+      read_file_sfen_5('assets/kif/45kaku-5.txt')
       read_file_comments('assets/kif/comments-1.txt');
       read_file_comments_2('assets/kif/comments-2.txt');
       read_file_comments_3('assets/kif/comments-3.txt');
@@ -326,16 +349,16 @@
 
       constructor() {
         super()
-        this.source = ""
+        this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f"
         this.comment_lines = null
         this.comments = ""
         this.turn = null
         //this.pass_css = ".place_5_5 {background-color: blue;}"
         this.human_sfen = ""
         this.ai_sfen = ""
-        this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
+        this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f"
         this.chapter = 1
-        this.turn_max = 37
+        this.turn_max = 15
       }
 
     
@@ -350,10 +373,11 @@
               sp_body="${this.source}"
               sp_mobile_vertical="false"
               sp_piece_variant="portella"
+              sp_viewpoint="white"
               @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
               @ev_turn_offset_change="${e => this.ev_turn_offset_change(e)}"
               sp_controller="false"
-              sp_human_side="black"
+              sp_human_side="white"
               sp_dev_tools_position="left"
               sp_pass_css="${this.pass_css}"
               sp_coordinate="true"
@@ -362,6 +386,7 @@
             <div class="sidebar-container">
               <div class="comments-container">
                 <p>${this.comments}</p>
+                <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen}">
               </div>
               <div class="sub-container">
                 <p>現在の手数：${this.turn}手目</p>
@@ -373,7 +398,7 @@
                 <input type="checkbox" id="slide-open" @click="${this.open_slide}" style="display: none">
                 <label for="slide-open"><p>スライドをもう一度見る</p></label>
               </div>
-              <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen}">
+              
             </div>
           </div>
         `
@@ -435,10 +460,10 @@
           case 1:
             sfen = sfen_2;
             comments = comments_2;
-            this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4c4d";
+            this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 8c8d 2f2e 8d8e 7g7f 3c3d 6i7h 4a3b 2e2d 2c2d 2h2d 8e8f 8g8f 8b8f 2d3d 2b8h+";
             this.chapter = 2;
             this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第３章へ");
-            this.turn_max = 55;
+            this.turn_max = 24;
             break;
           case 2:
             sfen = sfen_3;
@@ -453,6 +478,14 @@
             comments = comments_4;
             this.source ="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4b5b";
             this.chapter = 4;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第５章へ");
+            this.turn_max = 71;
+            break;
+          case 4:
+            sfen = sfen_5;
+            comments = comments_5;
+            this.source ="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4b5b";
+            this.chapter = 5;
             this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第１章へ");
             this.turn_max = 71;
             break;

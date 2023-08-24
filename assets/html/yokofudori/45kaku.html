@@ -1,0 +1,627 @@
+<!doctype html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/header.css">
+  <link rel="stylesheet" href="../../css/slide.css">
+  <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    html {
+      overflow: hidden;
+    }
+
+    @media (orientation: portrait){
+      html {
+        overflow: auto;
+      }
+    }
+
+    @media screen and (max-width: 1400px) {
+      html {
+        overflow: auto;
+      }
+    }
+    
+    @media screen and (max-width: 767px) {
+      html {
+        overflow: auto;
+      }
+    }
+  </style>
+  <!-- <script defer src="../../dist/wc/production/shogi-player-wc.js"></script> -->
+  <script>
+    let item;
+    let turn;
+    let sfen;
+    let turn_flg = true;
+    let comments;
+    var sfen_chapter = ["", "", "", "", "", ""];
+    var comments_chapter = ["", "", "", "", "", ""];
+    
+
+    //textファイル読み込み
+    function read_file_sfen() {
+      // XMLHttpRequestオブジェクトを作成
+      let rec = new Array(), i;
+      
+      for (let i = 1; i <= 5; i++) {
+        rec[i] = new XMLHttpRequest();
+        url = "../../kif/yokofudori/45kaku/sfen-" + i + ".txt";
+        // ファイルのURLを指定
+        rec[i].open('GET', url, true);
+
+        // レスポンスタイプを指定
+        rec[i].responseType = 'text';
+
+        // 読み込み完了時の処理
+        rec[i].onload = function() {
+          if (rec[i].status === 200) {
+            //console.log(rec.responseText); //rec.responceTextがファイルの中の文字列
+            
+            sfen_chapter[i] = rec[i].responseText;
+
+            if (i == 1) sfen = sfen_chapter[i];
+          }
+        };
+
+        // 読み込み開始
+        rec[i].send();
+      }
+    }
+
+    function read_file_comments() {
+      // XMLHttpRequestオブジェクトを作成
+      let rec = new Array(), i;
+      
+      for (let i = 1; i <= 5; i++) {
+        rec[i] = new XMLHttpRequest();
+        url = "../../kif/yokofudori/45kaku/comments-" + i + ".txt";
+        // ファイルのURLを指定
+        rec[i].open('GET', url, true);
+
+        // レスポンスタイプを指定
+        rec[i].responseType = 'text';
+
+        // 読み込み完了時の処理
+        rec[i].onload = function() {
+          if (rec[i].status === 200) {
+            //console.log(rec.responseText); //rec.responceTextがファイルの中の文字列
+            
+            comments_chapter[i] = rec[i].responseText;
+
+            if (i == 1) comments = comments_chapter[i];
+          }
+        };
+
+        // 読み込み開始
+        rec[i].send();
+      }
+    }
+
+    //strの文字列のnum行目を取得できる
+    function line_string(str, num) {
+      var count = 0;
+      var last = 0;
+      for (var i = 0; i < str.length; i++) {
+        if (str[i] == "\n") {
+          //console.log(i);
+          count++;
+          if (count == num) {
+            if (num == 1) {
+              return str.slice(last, str.indexOf("\n", last + 1));
+            } else {
+              return str.slice(last + 1, str.indexOf("\n", last + 1));
+            }
+          }
+          last = i;
+        }
+        
+      }
+    }
+
+    window.onload = function(){
+      read_file_sfen();
+      
+      read_file_comments();
+      
+    }
+  </script>
+  <script type="module">
+    import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
+    export class ShogiBoard extends LitElement {
+      static styles = css`
+        :host {
+          padding-top: 76px;
+          display: flex;
+          min-height: 100vh;
+          /*border: 1px solid hsl(0 0% 0% / 0.1);*/
+        }
+        .container {
+          position: relative;
+          display: flex;
+          width: 100%;
+          /*justify-content: center;
+          gap: 1rem;*/
+        }
+
+        .explane {
+          flex: 1 1 0%;
+        }
+
+        shogi-player-wc {
+          flex-basis: 98vh;
+          margin-top: 1rem;
+        }
+
+        shogi-player-wc::part(root) {
+          --sp_board_color: goldenrod;
+          --sp_board_piece_size: 1.0;
+        }
+
+        .sidebar-container {
+          flex: 1 1 0%;
+          margin: 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          justify-content: space-between;
+        }
+
+        .comments-container {
+          width : 100%;
+          border: solid 1px black;
+          padding: 0 1rem;
+          border-radius: 5px;
+        }
+
+        .sub-container {
+          width: calc(49.5% - 3rem);
+          border: solid 1px black;
+          border-radius: 5px;
+          padding: 0 1rem;
+        }
+
+         + .sub-container {
+          display: none;
+        }
+
+        @media (orientation: portrait){
+          .container {
+            flex-direction: column;
+          }
+          shogi-player-wc {
+          flex-basis: 90vw;
+          }
+        }
+
+        @media screen and (max-width: 1400px) {
+          .container {
+            flex-direction: column;
+          }
+        }
+      `
+
+      static properties = {
+        source: { type: String },
+        comment_lines: { type: Array },
+        comments: { type: String },
+        turn: { type: String },
+        pass_css: { type: String },
+        human_sfen: { type: String },
+        ai_sfen: { type: String },
+        first_sfen: { type: String },
+        chapter: { type: Number},
+        turn_max: { type: Number },
+        human_side:{ type: String }
+      }
+
+      constructor() {
+        super()
+        this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f"
+        this.comment_lines = null
+        this.comments = ""
+        this.turn = null
+        //this.pass_css = ".place_5_5 {background-color: blue;}"
+        this.human_sfen = ""
+        this.ai_sfen = ""
+        this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f"
+        this.chapter = 1
+        this.turn_max = 15
+        this.human_side = "white"
+      }
+
+    
+
+      render() {
+        return html`
+        
+          <div class="container">
+            
+            <shogi-player-wc
+              sp_mode="play"
+              sp_body="${this.source}"
+              sp_mobile_vertical="false"
+              sp_piece_variant="portella"
+              sp_viewpoint="white"
+              @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
+              @ev_turn_offset_change="${e => this.ev_turn_offset_change(e)}"
+              sp_controller="false"
+              sp_human_side="${this.human_side}"
+              sp_dev_tools_position="left"
+              sp_pass_css="${this.pass_css}"
+              sp_coordinate="true"
+              sp_debug="false"
+            ></shogi-player-wc>
+            <div class="sidebar-container">
+              <div class="comments-container">
+                <p>${this.comments}</p>
+                <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen}">
+              </div>
+              <div class="sub-container">
+                <p>現在の手数：${this.turn}手目</p>
+                <p>ヒント</p>
+              </div>
+              
+              
+              <div class="sub-container">
+                <input type="checkbox" id="slide-open" @click="${this.open_slide}" style="display: none">
+                <label for="slide-open"><p>スライドをもう一度見る</p></label>
+              </div>
+              
+            </div>
+          </div>
+        `
+      }
+      
+      ev_play_mode_move(e) {
+        setTimeout(() => {
+          var correct_sfen = line_string(sfen, this.turn);
+          correct_sfen = correct_sfen.replace(/\r/g, '');
+          correct_sfen = correct_sfen.replace(/\n/g, '');
+          const next_sfen = line_string(sfen, this.turn + 1);
+          this.human_sfen = e.detail[0].sfen;
+          console.log(correct_sfen);
+          console.log(e.detail[0].sfen);
+          if (this.human_sfen == correct_sfen) {
+            if (next_sfen == undefined) {
+              this.source = correct_sfen;
+            } else {
+              this.source = next_sfen;
+            } 
+          } else {
+            alert("不正解です");
+            const el = this.renderRoot.querySelector("shogi-player-wc");
+            const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
+            sp_instance.api_turn_add(-1);
+          }
+        }, 1000*0.5)
+
+        
+      }
+
+      ev_turn_offset_change(e) {
+        this.turn = e.detail[0];
+        const elem = this.shadowRoot.getElementById("change-chapter");
+        if (e.detail[0] == this.turn_max) {
+          elem.style.display = "inline-block";
+          this.human_side = "none";
+        } else {
+          elem.style.display = "none";
+          this.human_side = "white";
+        } 
+      }
+      
+
+      turn_change() {
+        const el = this.renderRoot.querySelector("shogi-player-wc");
+          const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
+          sp_instance.api_turn_add(-1);
+      }
+
+      
+
+      change_comments() {
+        this.comments = line_string(comments, this.turn + 1);
+      }
+
+      //章の切り替えを行う関数
+      change_sfen() {
+        switch(this.chapter){
+          case 1:
+            sfen = sfen_chapter[2];
+            comments = comments_chapter[2];
+            this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 8c8d 2f2e 8d8e 7g7f 3c3d 6i7h 4a3b 2e2d 2c2d 2h2d 8e8f 8g8f 8b8f 2d3d";
+            this.chapter = 2;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第３章へ");
+            this.shadowRoot.getElementById("change-chapter").style.display = "none";
+            this.human_side = "white";
+            this.turn_max = 24;
+            break;
+          case 2:
+            sfen = sfen_chapter[3];
+            comments = comments_chapter[3];
+            this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 8c8d 2f2e 8d8e 7g7f 3c3d 6i7h 4a3b 2e2d 2c2d 2h2d 8e8f 8g8f 8b8f 2d3d 2b8h+ 7i8h P*2h 3i2h B*4e 3d2d";
+            this.chapter = 3;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第４章へ");
+            this.turn_max = 27;
+            break;
+          case 3:
+            sfen = sfen_chapter[4];
+            comments = comments_chapter[4];
+            this.source ="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4b5b";
+            this.chapter = 4;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第５章へ");
+            this.turn_max = 71;
+            break;
+          case 4:
+            sfen = sfen_chapter[5];
+            comments = comments_chapter[5];
+            this.source ="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 8c8d 2g2f 8d8e 8h7g 4a3b 2f2e 3c3d 7i6h 2b7g+ 6h7g 3a2b 3i4h 2b3c 4g4f 7a6b 3g3f 6c6d 2i3g 5a4b 4h4g 6b6c 6i7h 7c7d 2h2i 8a7c 5i6h 8b8a 4i4h 6a6b 9g9f 9c9d 1g1f 1c1d 6g6f 6c5d 4g5f 4b5b";
+            this.chapter = 5;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第１章へ");
+            this.turn_max = 71;
+            break;
+          default:
+            sfen = sfen_chapter[1];
+            comments = comments_chapter[1];
+            this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f";
+            this.chapter = 1;
+            this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第２章へ");
+            this.turn_max = 15;
+            break;
+        }  
+      }
+
+      open_slide() {
+        document.getElementById("slide_close").checked = true;;
+        
+      }
+      
+      firstUpdated() {
+        setTimeout(() => {
+
+          setInterval(() => {
+            console.log(this.turn);
+            if (this.turn >= 0) {
+              this.change_comments();
+            }
+          }, 100)
+        }, 1000)
+      }
+      
+
+      // ☗76歩には☖34歩とし☗22角成に同銀とするだけのAI
+      ai_best_move(e) {
+        console.log(this.turn);
+        if (e === line_string(sfen, this.turn)) {
+          return line_string(sfen, this.turn + 1);
+        }
+      }
+    }
+    customElements.define("shogi-board", ShogiBoard);
+    var elem = document.getElementById("shogi");
+  </script>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" id="bdf2da9503326784806e006ec9c11bcf"></head>
+  <body>
+    <header id="header">
+      <div></div>          
+      <div class="header_container">
+        <div class="site-title"><!--空白でclass名を2つ指定-->
+          <a href="index.html"><img src="../../img/REIOUlogo.png" alt="REIOU"></a>
+        </div>
+        <nav id="navi" class="pc-area"><!--元は-->
+          <ul class="menu active"><!--元はmenu-->
+            <li class="single">
+              <a href="index.html" id="menu1" class="single_text">学習</a>
+              <ul class="menu-second">
+                <li><a href="index.html">戦法定跡</a></li>
+                <li><a href="quiz.html">次の一手</a></li>
+                <li><a href="tsume-shogi.html">詰将棋</a></li>
+                <li><a href="../../html/slide.html">YouTube動画</a></li>
+              </ul>
+            </li>
+            <li class="single active">
+              <a href="test.html" id="menu2" class="single_text">記事<!----></a>
+              <ul class="menu-second">
+                <li><a href="shogi-player.html">棋戦情報</a></li>
+                <li><a href="quiz.html">プロの棋譜解説</a></li>
+              </ul>
+            </li>
+            <li class="single active">
+              <a href="sousa.html" id="menu3" class="single_text">紹介<!----></a>
+            </li>
+            <li class="single active">
+              <a href="create-tume-shogi.html" id="menu4" class="single_text">プラン<!---->
+              </a>
+            </li>
+            <!--<li><a href="#">お問い合わせ</a></li>-->
+          </ul>
+              <!--<ul class="login">
+                  <li><a href="#">無料版</a></li>
+                  <li><a href="#">ログイン</a></li>
+            </ul>-->
+        </nav>
+        <div style="flex-basis: 10%;" class="test">
+          <h1>
+            仮予定地
+          </h1>
+        </div>
+      </div>
+      
+      
+      <nav id="navi-phone" class="phone-area">
+        <ul class="phone_menu_wrapper">
+          <li><a href="index.html" style="border-top: 1px solid #fff;">学習</a></li>
+          <li><a href="#">戦法一覧</a></li>
+          <li><a href="#">紹介</a></li>
+          <li><a href="#">プラン</a></li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <div class="toggle_btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="mask"></div>
+    </header>
+    <!-- <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px"> -->
+
+    <input type="checkbox" id="slide_close" checked> <!--閉じるボタンのチェックボックスここに記述してよいのかはわからない-->
+    <div id="slide_all" class="slideshow_wrapper">
+      <div class="slideshow_container">
+        <div class="slideshow">
+          <input type="radio" name="slideshow" id="switch1" checked>
+          <input type="radio" name="slideshow" id="switch2">
+          <input type="radio" name="slideshow" id="switch3">
+          <input type="radio" name="slideshow" id="switch4">
+          <input type="radio" name="slideshow" id="switch5">
+          <div class="slide_closeButton_container">
+            <div style="position: relative; display: inline-block">
+              <label class="slide_closeButton" for="slide_close">×</label>
+            </div>
+          </div>
+          <div id="slide" class="slideContents">
+            <div class="slide_bg">
+              <section id="slide1_container">
+                <div id="slide1" class="slide_wrapper">
+                  <div style="flex-basis: 20%">
+                    <h1 class="slide-title">角換わり腰掛銀</h1>
+                  </div>
+                  <div style="flex-basis: 20%;">
+                    <p>
+                      ひねり飛車は縦歩取りと別名されていた時期もありました。
+                      <br>
+                      近年では居飛車相掛かり戦法の一種として定跡所に登場しています。
+                    </p>
+                  </div>
+                  <div style="flex-basis: 60%;">
+                      <div class="logo">
+                        <div>
+                          <div class="logo-text logo-yellow">
+                            角換わり<br>腰掛け銀
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide2_container">
+                <div id="slide2" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ①角換わり腰掛銀の基本図。バランス良く構えるのが現代流。
+                        <br>
+                        ②基本図から△４四歩には▲４五歩と開戦！
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../..\img\kakugawari-koshikake1.png" alt="" >
+                      <p>第１図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../..\img\kakugawari-koshikake2.png" alt="" >
+                      <p>第２図</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide3_container">
+                <div id="slide3" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ③基本図から△６五歩には堂々と迎え撃つ！
+                        <br>
+                        ④基本図から△５二玉の待機戦術には、十分に形を整えてから襲い掛かる！
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <div>
+                        <img src="../..\img\kakugawari-koshikake3.png" alt="" >
+                        <p>第３図</p>
+                      </div>
+                    </div>
+                    <div class="slide-img-2">
+                      <div>
+                        <img src="../..\img\kakugawari-koshikake4.png" alt="" >
+                        <p>第４図</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide5_container">
+                <div id="slide5" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
+                      </p>
+                    </div>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide5_container">
+                <div id="slide5" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
+                      </p>
+                    </div>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <p id="left-arrow" class="arrow prev">
+            <i class="ico"></i>
+            <label for="switch1"></label>
+            <label for="switch2"></label>
+            <label for="switch3"></label>
+            <label for="switch4"></label>
+          </p>
+          <p id="right-arrow" class="arrow next">
+            <i class="ico"></i>
+            <label for="switch1"></label>
+            <label for="switch2"></label>
+            <label for="switch3"></label>
+            <label for="switch4"></label>
+          </p>
+        </div>
+      </div>
+      
+    </div>
+    <shogi-board id="shogi"></shogi-board>
+
+    <script src="../../js/test.js"></script>
+  </body>
+</html>

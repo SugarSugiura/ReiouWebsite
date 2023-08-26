@@ -1420,3 +1420,32 @@ opacity: 0;
   font-family: NSimSun;
   background-color:  #4CAF50; /* 背景色指定 */
 }
+
+@media screen and (max-width: 767px){
+  /*アカウント登録はこちらから*/
+  .freemoji {
+    font-size: 15px;
+  }
+
+  /*将棋についてこう思っていませんか*/
+  .title3{
+    font-size: 20px;
+  }
+
+  .balloon1-right , .balloon1-left{
+    font-size: 10px;
+  }
+
+  .centermoji{
+    font-size: 35px;
+  }
+  
+  .moji{
+    font-size: 10px;
+  }
+
+  .learn_img,.souchan_img,.shidou_img,.jouseki_img{
+    width: 80%;
+  }
+  
+}

@@ -141,7 +141,7 @@ input[name="slideshow"] {
 /* :::::: slideContents :::::: */
 .slideContents {
 	display: flex;
-	width: 500%;
+	width: 1000%;
 	text-align: center;
 	-webkit-user-select: none;
 	user-select: none;
@@ -160,7 +160,7 @@ input[name="slideshow"] {
 
 .slide_bg {
   background: seagreen;
-  width: 100%;
+  width: 50%;
   height: 100%;
   border-radius: 0.5rem;
   border: solid 10px tan;
@@ -329,7 +329,7 @@ input[name="slideshow"] {
   color: white;
 }
 
-#slide5 {
+#slide-last {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -464,19 +464,44 @@ input[name="slideshow"] {
   border-radius: 0.5rem;
 }
 #switch2:checked ~ .slideContents {
-	transform: translateX(-20%);
+	transform: translateX(-10%);
   border-radius: 0.5rem;
 }
 #switch3:checked ~ .slideContents {
-	transform: translateX(-40%);
+	transform: translateX(-20%);
   border-radius: 0.5rem;
 }
 #switch4:checked ~ .slideContents {
-	transform: translateX(-60%);
+	transform: translateX(-30%);
   border-radius: 0.5rem;
 }
 #switch5:checked ~ .slideContents {
+	transform: translateX(-40%);
+  border-radius: 0.5rem;
+}
+
+#switch6:checked ~ .slideContents {
+	transform: translateX(-50%);
+  border-radius: 0.5rem;
+}
+
+#switch7:checked ~ .slideContents {
+	transform: translateX(-60%);
+  border-radius: 0.5rem;
+}
+
+#switch8:checked ~ .slideContents {
+	transform: translateX(-70%);
+  border-radius: 0.5rem;
+}
+
+#switch9:checked ~ .slideContents {
 	transform: translateX(-80%);
+  border-radius: 0.5rem;
+}
+
+#switch10:checked ~ .slideContents {
+	transform: translateX(-90%);
   border-radius: 0.5rem;
 }
 
@@ -488,10 +513,20 @@ input[name="slideshow"] {
 #switch3:checked ~ .prev label[for="switch2"],
 #switch4:checked ~ .prev label[for="switch3"],
 #switch5:checked ~ .prev label[for="switch4"],
+#switch6:checked ~ .prev label[for="switch5"],
+#switch7:checked ~ .prev label[for="switch6"],
+#switch8:checked ~ .prev label[for="switch7"],
+#switch9:checked ~ .prev label[for="switch8"],
+#switch10:checked ~ .prev label[for="switch9"],
 #switch1:checked ~ .next label[for="switch2"],
 #switch2:checked ~ .next label[for="switch3"],
 #switch3:checked ~ .next label[for="switch4"],
-#switch4:checked ~ .next label[for="switch5"] {
+#switch4:checked ~ .next label[for="switch5"],
+#switch5:checked ~ .next label[for="switch6"],
+#switch6:checked ~ .next label[for="switch7"],
+#switch7:checked ~ .next label[for="switch8"],
+#switch8:checked ~ .next label[for="switch9"],
+#switch9:checked ~ .next label[for="switch10"] {
 	pointer-events: auto;
 }
 

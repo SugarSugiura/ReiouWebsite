@@ -5,7 +5,12 @@
       <title>令王</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../css/reset.css">
+      <link rel="stylesheet" href="..//css/font.css">
       <link rel="stylesheet" href="../css/landing.css">
+      <link rel="stylesheet" href="../css/header.css">  <!--ヘッダーファイルを分けたヘッダーの変更をしたい場合はここを変更
+        　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　htmlのほうも別ファイルで作るのもありかも-->
+        <link rel="stylesheet" href="../css/footer.css">  <!--上記と同様にフッターファイルも分けた-->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
       <!--JQuery読み込み-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,31 +20,32 @@
       <header id="header">
         <div></div>          
         <div class="header_container">
-          <h1 class="site-title"><!--空白でclass名を2つ指定-->
-            <a href="index.html"><img src="../img/REIOUlogo.png" alt="REIOU"></a>
-          </h1>
+          <div class="site-title"><!--空白でclass名を2つ指定-->
+            <a href="../../index.html"><img src="../img/REIOUlogo.png" alt="REIOU"></a>
+          </div>
           <nav id="navi" class="pc-area"><!--元は-->
             <ul class="menu active"><!--元はmenu-->
               <li class="single">
                 <a href="index.html" id="menu1" class="single_text">学習</a>
                 <ul class="menu-second">
-                  <li><a href="assets/html/slide.html">Single Child</a></li>
-                  <li><a href="#">Single Child</a></li>
-                  <li><a href="#">Single Child</a></li>
+                  <li><a href="index.html">戦法定跡</a></li>
+                  <li><a href="quiz.html">次の一手</a></li>
+                  <li><a href="tsume-shogi.html">詰将棋</a></li>
+                  <li><a href="assets/html/slide.html">YouTube動画</a></li>
                 </ul>
               </li>
               <li class="single active">
-                <a href="#" id="menu2" class="single_text">戦法一覧<!----></a>
+                <a href="test.html" id="menu2" class="single_text">記事<!----></a>
                 <ul class="menu-second">
-                  <li><a href="#">角換わり戦法</a></li>
-                  <li><a href="#">ネタ戦法</a></li>
+                  <li><a href="joseki-slide.html">棋戦情報</a></li>
+                  <li><a href="quiz.html">プロの棋譜解説</a></li>
                 </ul>
               </li>
               <li class="single active">
-                <a href="#" id="menu3" class="single_text">紹介<!----></a>
+                <a href="sousa.html" id="menu3" class="single_text">紹介<!----></a>
               </li>
               <li class="single active">
-                <a href="#" id="menu4" class="single_text">プラン<!---->
+                <a href="create-tume-shogi.html" id="menu4" class="single_text">プラン<!---->
                 </a>
               </li>
               <!--<li><a href="#">お問い合わせ</a></li>-->
@@ -51,21 +57,47 @@
           </nav>
           <div style="flex-basis: 10%;" class="test">
             <h1>
-              仮予定地
+              
             </h1>
           </div>
         </div>
         
-        
         <nav id="navi-phone" class="phone-area">
-          <ul class="phone_menu_wrapper">
-            <li><a href="index.html" class="btn">学習</a></li>
-            <li><a href="#" class="btn">戦法一覧</a></li>
-            <li><a href="#" class="btn">紹介</a></li>
-            <li><a href="#" class="btn">プラン</a></li>
-            <li><a href="#" class="btn">お問い合わせ</a></li>
+          <ul id="phone-menu" class="phone-menu">
+            <li>
+              <div class="link">
+                学習<i class="fa"></i>
+              </div>
+              <ul class="phone-submenu">
+                  <li><a href="index.html">戦法定跡</a></li>
+                  <li><a href="quiz.html">次の一手</a></li>
+                  <li><a href="tsume-shogi.html">詰将棋</a></li>
+                  <li><a href="assets/html/slide.html">YouTube動画</a></li>
+              </ul>
+            </li>
+            <li>
+              <div class="link">
+                記事<i class="fa"></i>
+              </div>
+              <ul class="phone-submenu">
+                <li><a href="joseki-slide.html">棋戦情報</a></li>
+                <li><a href="quiz.html">プロの棋譜解説</a></li>
+              </ul>
+            </li>
+            <li>
+              <div class="link">
+                紹介<i class="fa"></i>
+              </div>
+            </li>
+            <li>
+              <div class="link">
+                プラン<i class="fa"></i>
+              </div>
+            </li>
+            <!-- <li><a href="#">お問い合わせ</a></li> -->
           </ul>
         </nav>
+        
         <div class="toggle_btn">
           <span></span>
           <span></span>
@@ -80,9 +112,7 @@
           <p>令王</p>
         </div>
         <div class="text01">
-         <p>完全勝利をあなたに
-         <br>キャッチフレーズ
-         </p>
+         <p>将棋の世界へ、軽やかな一歩<br>初心者でも楽しめる将棋学習</p>
         </div>
         <div class="titleimg1">
          <img src="../img/online.jpg";>
@@ -274,31 +304,32 @@
       </main>
 
 
-      <footer id="footer">
+      <footer id="footer" style="position: static;">
         <div class="content wrapper">
           <!-- <section class="item"> アプリができたとき用
 
           </section> -->
           <section class="item service">
             <h3 class="footer-title">サービス</h3>
-              <ul class="service-list">
-                <li><a href="REIOUunnei.html">コース一覧</a></li>
-                <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼">Q&A</a></li>
-                <li><a href="otoiawase">お問い合わせ</a></li>
-              </ul>
+            <ul class="service-list">
+              <li><a href="assets/html/landing.html">トップページ</a></li>
+              <li><a href="REIOUunnei.html">コース一覧</a></li>
+              <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼">Q&A</a></li>
+              <li><a href="otoiawase">お問い合わせ</a></li>
+            </ul>
           </section>
   
           <section class="item support">
             <h3 class="footer-title">サポート</h3>
               <ul class="menu-list">
-              <li><a href="#">運営会社</a></li>
-              <li><a href="#" >利用規約</a></li>
-              <li><a href="#">プライバシーポリシー</a></li>
+                <li><a href="#">運営会社</a></li>
+                <li><a href="#" >利用規約</a></li>
+                <li><a href="#">プライバシーポリシー</a></li>
               <!-- <li><a href="#">特定商取引法に基づく表示</a></li> -->
             </ul>
           </section>
   
-          <section class="item">
+          <section class="item sns">
             <h3 class="footer-title">SNS</h3>
             <ul class="follow-me">
               <li><a href="https://twitter.com/Sugar_Sugiura"></a></li>
@@ -311,7 +342,7 @@
         <p class="copyright">&copy; REIOU</p>
       </footer>
       
-      <script src="assets/js/main.js"></script>
+      <script src="../js/main.js"></script>
       <!-- <script src="assets/js/header.js"></script> -->
     </body>
 </html>

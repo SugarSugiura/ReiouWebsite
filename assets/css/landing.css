@@ -5,34 +5,6 @@
   --transition-color: 0.2s;
 }
 
-/*リセットCSSデフォルトの設定を消去*/ 
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
-  margin:0;
-  padding:0;
-  border:0;
-  outline:0;
-  font-size:100%;
-  vertical-align:baseline;
-  background:transparent;
-}
-
-*{
-  box-sizing: border-box;
-  border-style: solid;
-  border-width: 0px;
-}
-
 /*ここは試験用*/
 
 hr {
@@ -169,620 +141,9 @@ li {
     text-align: center;
 }
 */
-/*-------------------------------------------
-ヘッダー
--------------------------------------------*/
-#header {
-    width: 100%;
-    height: 75px;
-    background-color: #fff;
-    position: fixed;
-    z-index: 10;
-    box-shadow: 0px 3px 10px #a5a5a5;
-}
 
-.header_container {
-  display: flex;
-  flex-direction:row;
-  height:100%;
-}
 
-#header .site-title {
-  padding: 20px 16px;
-  /*header自体の位置(間隔)*/
-  flex-basis:10%;
-  text-align: center;
-}
-/*
-「display: inline-block;」でリンクを親要素の範囲に広げる
-※blockを指定すると横幅いっぱいまで広がってしまうため、
-inline-blockを設定している
-*/
 
-#header .site-title a {
-    display: inline-block;
-}
-
-#navi {
-  background-color: var(--main-color);
-      /*
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    */
-}
-
-#navi a {
-    color: #fff;
-}
-
-.menu {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 0;
-}
-
-.menu > li {
-  width: 25%;
-  height: 75px;
-  line-height: 75px;
-  text-align: center;
-}
-
-.menu > li:hover {
-
-}
-/* 
-.light {
-  opacity: 1;
-} 
-
-.dark {
-  opacity: 0.7;
-} */
-
-
-
-/* .menu > li:hover {
-  background-color: #7bc0d3;
-} */
-
-/* .active:hover .single_text {
-  opacity: 0.7;
-} */
-
-.menu > li a {
-  display: block;
-}
-
-.single:hover::before {
-  width: 100%;
-}
-
-.single::before {
-  content: "";
-  width: 0;
-  height: 3px;
-  background-color: #fff;
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 3px;
-  transition: width .3s ease;
-}
-
-.menu > .single {
-  position: relative;
-}
-
-.menu-second {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.5s, visibility 0.5s;
-  border-radius: 0.5rem;
-  /* border-left: 4px solid transparent; */
-}
-
-.menu-second li:hover {
-  background-color: #55acee;
-  border-radius: 0.5rem;
-  
-}
-
-
-.single .menu-second {
-  width: 100%;
-  background-color: #444;
-  position: relative;
-  top: 0px;
-  left: 0;
-}
-.single .menu-second li a:hover {
-  /* opacity: 0.7; */
-  transition: opacity 0.5s;
-  border-left: solid;
-}
-
-.single:hover .menu-second {
-  visibility: visible;
-  opacity: 1;
-}
-
-#menu2 {
-  border-left: solid;
-  border-width: 1px;
-}
-
-#menu3 {
-  border-left: solid;
-  border-right: solid;
-  border-width: 1px;
-}
-
-.pc-area {
-  display: block;
-  /* pc版を表示 */
-  flex-basis: 80%;
-}
-.phone-area {
-  display: none;
-  /* スマホ版を非表示 */
-}
-.toggle_btn {
-  right: 20px;
-  display: none;
-  /* スマホ版を非表示 */
-}
-/*
-nav li {
-    font-size: 0.875rem;
-    ヘッダー枠内の文字の大きさ
-    padding: 10px 40px 10px 40px;
-    ヘッダー枠内の空白調整
-}
-*/
-/*
-nav .menu,
-nav .login {
-  display: flex;
-  align-items: center;
-  max-width: 1200px;
-  padding: 0 16px;
-  margin: 0 auto;
-}
-*/
-
-/*
-nav .login li {
-  padding: 10px 80px 10px 0px;
-  margin-left: 0px;
-  ヘッダー枠内のloginの間隔
-}
-*/
-
-/* #navi ul {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-} */
-
-#navi li {
-  font-size: 15px;
-  /* padding: 10px 60px 10px 0; */
-  margin: auto;
-  letter-spacing: 0.1em;
-  font-weight: 550;
-  /*ヘッダー枠内のmenuの位置*/
-  /*margin-right: 0px;*/
-  /*ヘッダー枠内のmenuの間隔*/
-}
-/*
-#navi li {
-  font-size: 0.875rem;
-  padding: 10px 0 10px 0;
-  margin: 0 auto;
-}
-*/
-
-/*-------------------------------------------
-top-title ヘッダーの次に来る初心者向けのとこ
--------------------------------------------*/
-
-#top-title {
-  /*display: flex;*/
-  justify-content: space-between;
-  padding-top: 150px;
-  /*margin-bottom: 60px;*/
-  padding-bottom: 20px;
-}
-
-#top-title a:hover .top-container {
-  border-color: var(--main-color);
-}
-
-.top-container {
-  background-color:#fff;
-  display:flex;
-  margin:0 auto;
-  border-radius: 20px;
-  flex-direction: row;
-  box-shadow: rgb(230, 230, 230) 0px 2px 6px;
-  border-width: 20px;
-  border-style: solid;
-  border-color: #ffffff;
-  transition: border-color var(--transition-color);
-}
-
-#top-title article {
-  width: 100%;
-  height: 100%;
-}
-
-/*初心者向けリストの上タイトル*/
-#top-title .article-title {
-  font-size: 20px;
-  margin: 10px 0 15px 0;
-}
-
-/*初心者向けリストの下タイトル*/
-#top-title .article-subtitle {
-  font-size: 20px;
-  margin: 65px 0px 65px 30px;
-}
-
-.top-right {
-  text-align: center;
-  display: inline-block;
-  
-}
-
-.top-right img {
-  border-radius: 5px;
-  width: 480px;
-  margin: 65px 0;
-}
-
-/*main*/
-.product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.product-list li {
-    /*戦法リストのサイズ、1列4つ入れるなら23%*/
-    width: 32%;
-    /*戦法リストの間隔幅*/
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.product-list > li > div {
-  background-color: #fff;
-  border-radius:20px; box-shadow:
-  rgb(230, 230, 230) 0px 2px 6px;
-  text-align: center;
-}
-
-.product-list a {
-  height: 100%;
-  display:block;
-  transition: all 0.2s;
-  border-radius:20px;
-}
-
-.product-list img {
-    vertical-align: top;
-    margin: 20px 5px 0px 5px;
-    width: 90%;
-}
-.product-list p {
-    font-size: 0.75rem;
-}
-
-.product-list-title {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.product-list li div a:hover {
-  background-color: var(--main-color);
-  color: white;
-}
-
-/*-------------------------------------------
-TOP、PRODUCTS
--------------------------------------------*/
-
-.link-text {
-  display: block;
-  text-align: center;
-  margin-bottom: 20px; /*View Moreのbottom間隔*/
-}
-
-/*-------------------------------------------
-footer　※以下コピペ理解未完
--------------------------------------------*/
-#footer {
-  font-size: 0.875rem;
-  background-color: var(--main-color);
-  color: #ffffff;
-}
-
-#footer .content {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 100px;
-  padding-bottom: 50px;
-}
-#footer .item {
-  width: 30%;
-  text-align: left;
-}
-
-#footer .footer-title {
-  font-size: 1.125rem;
-  font-weight: bold;
-  margin-bottom: 30px;
-}
-#footer ul.service-list {
-  text-align: left;
-  width: fit-content;
-}
-
-/* #footer ul.service-list li {
-  padding-top: 5px;
-  padding-bottom: 5px;
-} */
-
-#footer ul.service-list li a {
-  color: #fff;
-}
-
-#footer ul.service-list .arrow {
-  position: relative;
-  display: inline-block;
-  padding-left: 12px;
-}
-/*
-疑似要素で三角矢印を表示
-border～プロパティで三角を作り、positionで位置調整
-*/
-#footer ul.service-list .arrow::before {
-  content: '';
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 6px 0 6px 8px;
-  border-color: transparent transparent transparent #ffffff;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  margin-top: -6px;
-}
-#footer .menu-list {
-  /* border-bottom: solid  1px #777; */
-  width: fit-content;
-}
-#footer .menu-list > li {
-  text-align: left;
-  margin: auto;
-}
-
-#footer .menu-list a {
-  color: #fff
-} 
-
-#footer .copyright {
-  font-size: 0.750rem;
-  text-align: center;
-  padding: 10px 0;
-}
-
-.service {
-  border-right: solid;
-  border-left: solid;
-  padding-left: 40px;
-}
-
-.support {
-  border-right: solid;
-}
-
-/*
-otoiawase
-.select, .input, .radio, .textarea
-*/
-/*
-#top {
-  padding-top: 150px;
-}
-*/
-.select {
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  min-width: 500px;
-}
-.input {
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  min-width: 500px;
-}
-.radio {
-  margin: auto;
-}
-.textarea {
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  min-width: 500px;
-  min-height: 100px;
-}
-label, input, textarea, select, button {
-  cursor: pointer;
-}
-
-  /*-------------------------------------------
-pop-up
--------------------------------------------*/
-/* .open-pop-up {
-  cursor:pointer; マウスオーバーでカーソルの形状を変えることで、クリックできる要素だとわかりやすいように
-} */
-#pop-up {
-  display: none;  /* label でコントロールするので input は非表示に */
-  
-}
-.overlay {
-  display: none;  /* input にチェックが入るまでは非表示に */
-}
-#pop-up:checked +.overlay {
-  display: block;
-  z-index: 9999;
-  background-color: #00000070;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-}
-.window {
-  width: 90vw;
-  max-width: 380px;
-  height: 240px;
-  background-color: var(--main-color);
-  border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 游明朝;
-}
-.text {
-  font-size: 18px;
-  margin: 0;
-}
-.close-pop-up {
-  cursor:pointer;
-  position: absolute;
-  top: 0px;
-  right: 5px;
-  font-size: 20px;
-  color: #fff;
-}
-
-.window span {
-  color:#fff
-}
-
-.title-pop-up {
-  position: absolute;
-  top: 25px;
-  font-size: 40px;
-  font-weight: 900;
-}
-
-.description-pop-up {
-  position: absolute;
-  top: 100px;
-  border-top: solid;
-  font-size: 20px;
-  padding: 20px 20px 0px;
-  font-weight: 200;
-}
-
-#move-page {
-  position: absolute;
-  top: 66%;
-  left: 46%;
-}
-
-/*吹き出し1*/
-.article-title {
-  position: relative;
-  padding: 1.5rem 2rem;
-  border: 3px solid #d8d8d8;
-  border-radius: 10px;
-  background: #f9f9f9;
-}
-
-.article-title:before {
-  position: absolute;
-  bottom: -14px;
-  left: 1em;
-  width: 0;
-  height: 0;
-  content: '';
-  border-width: 14px 12px 0 12px;
-  border-style: solid;
-  border-color: #d8d8d8 transparent transparent transparent;
-}
-
-.article-title:after {
-  position: absolute;
-  bottom: -10px;
-  left: 1em;
-  width: 0;
-  height: 0;
-  content: '';
-  border-width: 14px 12px 0 12px;
-  border-style: solid;
-  border-color: #f9f9f9 transparent transparent transparent;
-}
-/*吹き出し2*/
-
-.balloon5 {
-  width: 100%;
-  margin: 1.5em 0;
-  overflow: hidden;
-}
-
-.balloon5 .faceicon {
-  float: left;
-  margin-right: -90px;
-  width: 80px;
-}
-
-.balloon5 .faceicon img{
-  width: 100%;
-  height: auto;
-  border: solid 3px #d7ebfe;
-  border-radius: 50%;
-}
-
-.balloon5 .chatting {
-  width: 100%;
-}
-
-.says {
-  display: inline-block;
-  position: relative; 
-  margin: 5px 0 0 105px;
-  padding: 17px 13px;
-  border-radius: 12px;
-  background: #d7ebfe;
-}
-
-.says:after {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  top: 18px; 
-  left: -24px;
-  border: 12px solid transparent;
-  border-right: 12px solid #d7ebfe;
-}
-
-.says p {
-  margin: 0;
-  padding: 0;
-}
 /*吹き出し2終わり*/
 
 /*-------------------------------------------
@@ -807,190 +168,7 @@ SP
     display: block;
     /* スマホ版を表示 */
   }
-  /*-------------------------------------------
-  header
-  -------------------------------------------*/
-  #header .site-title {
-    padding: 20px 16px;
-  }
-
-  /*
-  「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
-  ※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
-  設定している場合は、z-indexの数値が大きい方が前面に表示される
-  */
-  /*
-「position: fixed;」でヘッダーを固定し、「z-index: 10;」で前面に表示
-※他のコンテンツでpositionをrelative、absolute、fixedのいずれかに
-設定している場合は、z-indexの数値が大きい方が前面に表示される
-*/
-#header {
-  width: 100%;
-  height: 80px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-
-.header_container {
-  display: block;
-  left: 15px;
-  position: relative;
-}
-
-
-
-.test {
-  visibility: hidden;
-}
-/*
-ハンバーガーメニュー
-メニューが閉じている時は、「left: -300px;」で画面左に隠し、
-「opacity: 0;」で非表示にしている
-*/
-#navi-phone {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  width: 300px;
-  color: #fff;
-  padding: 36px 50px;
-  transition: all 0.5s;
-  z-index: 20;
-  opacity: 0;
-}
-#navi-phone a {
-  color: #fff;
-}
-#navi-phone li {
-  margin-bottom: 14px;
-}
-/*
-ハンバーガーメニュー
-メニューが開いている時は、「left: 0;」「opacity: 1;」で
-画面左に表示する
-*/
-.open #navi-phone {
-  left: 0;
-  opacity: 1;
-}
-.toggle_btn {
-  display: block;
-  /* スマホ版を表示 */
-  width: 30px;
-  height: 30px;
-  position: relative;
-  transition: all 0.5s;
-  cursor: pointer;
-  z-index: 20;
-}
-/*
-ハンバーガーメニューの線の設定（メニューが閉じている時）
-*/
-.toggle_btn span {
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background-color: #333;
-  border-radius: 4px;
-  transition: all 0.5s;
-}
-/*
-1本目の線の位置を設定
-*/
-.toggle_btn span:nth-child(1) {
-  top: 10px;
-}
-/*
-2本目の線の位置を設定
-*/
-.toggle_btn span:nth-child(2) {
-  bottom: 10px;
-}
-
-.toggle_btn span:nth-child(3) {
-  bottom: 2px;
-}
-
-/*
-ハンバーガーメニューの線の設定（メニューが開いている時）
-線の色を白に変更
-*/
-.open .toggle_btn span {
-  background-color: #fff;
-}
-/*
-1本目の線を-45度回転
-*/
-.open .toggle_btn span:nth-child(1) {
-  -webkit-transform: translateY(4px) rotate(-45deg);
-  transform: translateY(8px) rotate(-45deg);
-}
-/*
-2本目の線を透過
-*/
-.open .toggle_btn span:nth-child(2) { 
-opacity: 0;
-} 
-/*
-3本目の線を45度回転
-*/
-.open .toggle_btn span:nth-child(3) {
-  -webkit-transform: translateY(-4px) rotate(45deg);
-  transform: translateY(-7px) rotate(45deg);
-}
-
-#mask {
-  display: none;
-  transition: all 0.5s;
-}
-/*
-メニューを開いている時は、全体を黒背景にする
-*/
-.open #mask {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: .8;
-  z-index: 10;
-  cursor: pointer;
-}
-
-  /*-------------------------------------------
-  top-title
-  -------------------------------------------*/
-
-  #top-title {
-    padding-top: 100px;
-    flex-direction: column;
-  }
-  /*Galaxy Foldでは"駒の動かし方"が2行になるため調整必要*/
-
-  #top-title article {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-
-  .top-right img {
-    border-radius: 5px;
-    width: 480px;
-    margin: 0;
-}
-
-  #top-title .article-subtitle {
-    font-size: 10px;
-    margin: 30px 0px 30px 15px;
-  }
+  
 
   /*-------------------------------------------
   container
@@ -1009,73 +187,9 @@ opacity: 0;
     width: 100%;
     padding: 0;
   }
-
-  /*-------------------------------------------
-  product-list
-  -------------------------------------------*/
-
-  .product-list li {
-    margin-top:  10px;
-    margin-bottom: 10px;
-  }
-
-  /*-------------------------------------------
-  footer
-  -------------------------------------------*/
-  #footer .content {
-    flex-direction: column;
-  }
-  #footer .item {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-
-  .service {
-    border-right: none;
-    border-left: none;
-    padding-left: 0; 
-  }
-
-  .support {
-    border-right: none;
-  }
-
-  #footer .footer-title {
-    margin-bottom: 10px;
-  }
-
 }
 
-.follow-me {
-  list-style: none;
-  margin: 0 0 -8px;
-  overflow: hidden;
-  padding: 0;
-}
-.follow-me li {
-  float: left;
-  margin: 0 8px 8px 0;
-  padding: 0;
-}
-.follow-me li a::before {
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  color: #fff;
-  display: inline-block;
-  font-family: FontAwesome;
-  font-size: 16px;
-  height: 44px; /* Button height */
-  line-height: 44px; /* Button height */
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
-  text-align: center;
-  width: 44px; /* Button width */
-}
-.follow-me li a:hover::before {
-  opacity: 0.7;
-}
-
-.follow-me li a[href*="twitter.com"]::before        { background-color: #55acee; content: "\f099"; }
+  
 
 .titleback1 {
   display: flex;
@@ -1084,37 +198,41 @@ opacity: 0;
   width: 100%;
   height: 600px;
   background-color: #b5e7ff;
-  position: relative ;
-  top: 75px; 
+  padding-top: 60px;
+  padding: 60px 1rem 0 1rem;
 }
 
 .title-text1 {
   display: block;
   width:300px;
-  writing-mode: vertical-rl;
   font-family: "HG正楷書体-PRO","serif";
   font-size: 240px;
   text-align:center;
   color:#000000;
 }
 
+.title-text1 p {
+}
+
 .text01 {
-  width: 120px;
-  writing-mode: vertical-rl; 
+  width: 300px; 
   font-size: 30px;
   color:#000000;
 }
 
+.text01 p {
+  writing-mode: vertical-rl;
+  margin: 0 auto;
+}
+
 .titleimg1 {
   position: relative;
-  left: 150px;
   display: block;
   /* height: 100%;  */
 }
 
 .mainback1 {
   position: relative;
-  top: 75px;
 } 
 
 .free {
@@ -1124,12 +242,14 @@ opacity: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 1rem;
 }
 
 .freemoji {
   color: #ffffff;
   font-size:30px;
   text-align: right;
+  padding-right: 1rem;
 }
 
 .f1 {
@@ -1232,6 +352,7 @@ opacity: 0;
 .balloon1-right p {
   margin: 0;
   padding: 0;
+  line-height: 30px;
 }
 
 .balloon1-left {
@@ -1240,7 +361,6 @@ opacity: 0;
   display: inline-block;
   margin: 1.5em 0 1.5em 15px;
   padding: 7px 10px;
-  min-width: 140px;
   max-width: 100%;
   color: #000000;
   font-size: 25px;
@@ -1261,6 +381,7 @@ opacity: 0;
 .balloon1-left p {
   margin: 0;
   padding: 0;
+  line-height: 30px;
 }
 
 .hukidasi2 {
@@ -1319,7 +440,6 @@ opacity: 0;
 
 .moji {
   width: 50%; 
-  height: 100px;
   position: relative;
   top: 100px;
   font-size: 20px;
@@ -1422,9 +542,21 @@ opacity: 0;
 }
 
 @media screen and (max-width: 767px){
+
+  .text01 p {
+    margin: 0 auto;
+  }
+
+  .titleimg1 {
+    display: none;
+  }
   /*アカウント登録はこちらから*/
   .freemoji {
     font-size: 15px;
+  }
+
+  .textback {
+    height: 250px;
   }
 
   /*将棋についてこう思っていませんか*/
@@ -1441,11 +573,34 @@ opacity: 0;
   }
   
   .moji{
-    font-size: 10px;
+    width: 100%;
+    font-size: 0.8rem;
+    top: 0;
+    order: 0;
   }
 
   .learn_img,.souchan_img,.shidou_img,.jouseki_img{
     width: 80%;
+    order: 1;
+  }
+
+  .set {
+    flex-direction: column;
+    padding-bottom: 1rem;
+  }
+
+  .titleback3-1 img {
+    margin-top: 70px;
+  }
+
+  .balloon1-left p {
+    line-height: 20px;
+    font-size: 0.8rem;
+  }
+
+  .balloon1-right p {
+    line-height: 20px;
+    font-size: 0.8rem;
   }
   
 }

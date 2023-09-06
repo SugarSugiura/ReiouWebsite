@@ -1,11 +1,3 @@
-let sfen;
-let comments;
-
-
-
-
-
-
 //strの文字列のnum行目を取得できる
 function line_string(str, num) {
   var count = 0;
@@ -111,8 +103,11 @@ export class ShogiBoard extends LitElement {
     human_side: { type: String },
     sfen_chapter: { type: Array },
     comments_chapter: { type: Array },
-    chapter_num : { type: Number },
-    max_line_num : { type: Array },
+    chapter_num: { type: Number },
+    max_line_num: { type: Array },
+    current_comments: { type: String },
+    current_sfen: { type: String },
+    branch_num: { type: Array }
   }
 
   constructor() {
@@ -125,13 +120,16 @@ export class ShogiBoard extends LitElement {
     this.human_sfen = "";
     this.ai_sfen = "";
     this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
-    this.chapter = 1;
+    this.current_chapter = 1;
     this.turn_max = 37;
     this.human_side = "black";
     this.sfen_chapter = ["", "", "", "", "", ""];
     this.comments_chapter = ["", "", "", "", "", ""];
-    this.chapter_num = 4;
+    this.max_chapter_num = 4;
     this.max_line_num = [0, 0, 0, 0, 0, 0];
+    this.current_comments = "";
+    this.current_sfen = "";
+    this.branch_num = [0, 0, 38, 38, 38, 0];
   }
 
   
@@ -140,7 +138,7 @@ export class ShogiBoard extends LitElement {
     this.read_file_comments();
     setTimeout(() => {
       this.set_max_line_num();
-      for (let i = 1; i <= this.chapter_num; i++) {
+      for (let i = 1; i <= this.max_chapter_num; i++) {
         console.log(this.max_line_num[i]);
       }
     }, 1000 * 0.5)
@@ -153,7 +151,7 @@ export class ShogiBoard extends LitElement {
     // XMLHttpRequestオブジェクトを作成
     let rec = new Array();
   
-    for (let i = 1; i <= this.chapter_num; i++) {
+    for (let i = 1; i <= this.max_chapter_num; i++) {
       rec[i] = new XMLHttpRequest();
   
       let url = "../../kif/kakugawari/koshikakegin/sfen-" + i + ".txt";
@@ -170,7 +168,7 @@ export class ShogiBoard extends LitElement {
   
           this.sfen_chapter[i] = rec[i].responseText;
   
-          if (i == 1) sfen = this.sfen_chapter[i];
+          if (i == 1) this.current_sfen= this.sfen_chapter[i];
         }
       };
   
@@ -183,7 +181,7 @@ export class ShogiBoard extends LitElement {
     // XMLHttpRequestオブジェクトを作成
     let rec = new Array();
   
-    for (let i = 1; i <= this.chapter_num; i++) {
+    for (let i = 1; i <= this.max_chapter_num; i++) {
       rec[i] = new XMLHttpRequest();
       let url = "../../kif/kakugawari/koshikakegin/comments-" + i + ".txt";
       // ファイルのURLを指定
@@ -199,7 +197,7 @@ export class ShogiBoard extends LitElement {
   
           this.comments_chapter[i] = rec[i].responseText;
   
-          if (i == 1) comments = this.comments_chapter[i];
+          if (i == 1) this.current_comments = this.comments_chapter[i];
         }
       };
   
@@ -211,7 +209,7 @@ export class ShogiBoard extends LitElement {
 
   set_max_line_num() {
     let count = 0;
-    for (let i = 1; i <= this.chapter_num; i++) {
+    for (let i = 1; i <= this.max_chapter_num; i++) {
       count = 0;
       for (let j = 0; j <= this.sfen_chapter[i].length; j++) {
         if (this.sfen_chapter[i][j] == "\n") {
@@ -246,14 +244,12 @@ export class ShogiBoard extends LitElement {
       <div class="sidebar-container">
         <div class="comments-container">
           <p>${this.comments}</p>
-          <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen}">
+          <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}">
         </div>
         <div class="sub-container">
           <p>現在の手数：${this.turn}手目</p>
           <p>ヒント</p>
         </div>
-        
-        
         <div class="sub-container">
           <input type="checkbox" id="slide-open" @click="${this.open_slide}" style="display: none">
           <label for="slide-open"><p>スライドをもう一度見る</p></label>
@@ -267,10 +263,10 @@ export class ShogiBoard extends LitElement {
 
   ev_play_mode_move(e) {
     setTimeout(() => {
-      var correct_sfen = line_string(sfen, this.turn);
+      var correct_sfen = line_string(this.current_sfen, this.turn);
       correct_sfen = correct_sfen.replace(/\r/g, '');
       correct_sfen = correct_sfen.replace(/\n/g, '');
-      const next_sfen = line_string(sfen, this.turn + 1);
+      const next_sfen = line_string(this.current_sfen, this.turn + 1);
       this.human_sfen = e.detail[0].sfen;
       console.log(correct_sfen);
       console.log(e.detail[0].sfen);
@@ -296,7 +292,7 @@ export class ShogiBoard extends LitElement {
     if (this.turn == 0) {
       this.comments = "第１章 基本図まで △４五角戦法は奇襲戦法の戦法のひとつ。 派手な応酬が多く、正確に受けきれなければ一瞬で優勢まで築くこともできます。まずは横歩取りの進行でいきましょう。飛車先を突いていってください。";
     } else {
-      this.comments = line_string(comments, this.turn + 1);
+      this.comments = line_string(this.current_comments, this.turn + 1);
     }
 
     const elem = this.shadowRoot.getElementById("change-chapter");
@@ -319,58 +315,58 @@ export class ShogiBoard extends LitElement {
 
 
   change_comments() {
-    this.comments = line_string(comments, this.turn + 1);
+    this.comments = line_string(this.current_comments, this.turn + 1);
   }
 
   //章の切り替えを行う関数
   change_sfen() {
-    switch (this.chapter) {
+    switch (this.current_chapter) {
       case 1:
-        sfen = this.sfen_chapter[2];
-        comments = this.comments_chapter[2];
-        this.source = line_string(sfen, this.max_line_num[this.chapter] + 1);
-        this.chapter = 2;
+        this.current_sfen= this.sfen_chapter[2];
+        this.current_comments = this.comments_chapter[2];
+        this.source = line_string(this.current_sfen, this.max_line_num[this.current_chapter] + 1);
+        this.current_chapter = 2;
         this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第３章へ");
         this.turn_max = this.max_line_num[2];
         break;
       case 2:
-        sfen = this.sfen_chapter[3];
-        comments = this.comments_chapter[3];
-        this.source = line_string(sfen, this.max_line_num[this.chapter] + 1);
-        this.chapter = 3;
+        this.current_sfen= this.sfen_chapter[3];
+        this.current_comments = this.comments_chapter[3];
+        this.source = line_string(this.current_sfen, this.max_line_num[this.current_chapter] + 1);
+        this.current_chapter = 3;
         this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第４章へ");
         this.turn_max = this.max_line_num[3]
         break;
       case 3:
-        sfen = this.sfen_chapter[4];
-        comments = this.comments_chapter[4];
-        this.source = line_string(sfen, this.max_line_num[this.chapter] + 1);
-        this.chapter = 4;
+        this.current_sfen= this.sfen_chapter[4];
+        this.current_comments = this.comments_chapter[4];
+        this.source = line_string(this.current_sfen, this.max_line_num[this.current_chapter] + 1);
+        this.current_chapter = 4;
         this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第１章へ");
         this.turn_max = this.max_line_num[4];
         break;
       default:
-        sfen = this.sfen_chapter[1];
-        comments = this.comments_chapter[1];
+        this.current_sfen= this.sfen_chapter[1];
+        this.current_comments = this.comments_chapter[1];
         this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL";
-        this.chapter = 1;
+        this.current_chapter = 1;
         this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第２章へ");
         this.turn_max = this.max_line_num[1];
         break;
     }
   }
 
-  open_slide() {
-    document.getElementById("slide_close").checked = true;
-
+  change_sfen_t() {
+    this.current_sfen = this.sfen_chapter[this.current_chapter + 1];
+    this.source = line_string(this.current_sfen, this.branch_num[this.current_chapter + 1]);
+    this.current_comments = this.comments_chapter[this.current_chapter + 1];
+    this.turn_max = this.max_line_num[this.current_chapter + 1];
+    this.current_chapter++;
+    this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第" + (this.current_chapter + 1) + "章へ");
   }
 
-  // ☗76歩には☖34歩とし☗22角成に同銀とするだけのAI
-  ai_best_move(e) {
-    console.log(this.turn);
-    if (e === line_string(sfen, this.turn)) {
-      return line_string(sfen, this.turn + 1);
-    }
+  open_slide() {
+    document.getElementById("slide_close").checked = true;
   }
 }
 customElements.define("shogi-board", ShogiBoard);

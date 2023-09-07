@@ -28,12 +28,18 @@ export class ShogiBoard extends LitElement {
     min-height: 100vh;
     /*border: 1px solid hsl(0 0% 0% / 0.1);*/
   }
+
+  p {
+    margin: 0;
+  }
+
   .container {
     position: relative;
     display: flex;
     width: 100%;
     /*justify-content: center;
     gap: 1rem;*/
+    max-height: calc(100vh - 60px);
   }
 
   .explane {
@@ -61,17 +67,78 @@ export class ShogiBoard extends LitElement {
 
   .comments-container {
     width : 100%;
+    height: calc(100% - 1rem);
     border: solid 1px black;
-    padding: 0 1rem;
     border-radius: 5px;
+    display: flex;
+
   }
 
   .sub-container {
     width: calc(49.5% - 3rem);
     border: solid 1px black;
     border-radius: 5px;
-    padding: 0 1rem;
+    padding: 1rem;
+    height: 44%;
   }
+
+  .icon-container {
+    padding: 1rem;
+  }
+
+  .chat-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    overflow-y: scroll;
+  }
+
+  .chat-message {
+    display: inline-block;
+    max-width: 100%; /* メッセージの最大幅を調整 */
+    min-width: 50%;
+    min-height: 20px;
+    margin: 10px 0;
+    position: relative;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .chat-message-addition {
+    display: inline-block;
+    max-width: 100%; /* メッセージの最大幅を調整 */
+    min-width: 50%;
+    min-height: 20px;
+    margin: 10px 0;
+    position: relative;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .incoming {
+    background-color: #E5E5EA; /* 受信メッセージの背景色 */
+    color: #000; /* 受信メッセージのテキスト色 */
+    text-align: left;
+  }
+
+  /* 吹き出しの三角形を追加 */
+  .chat-message:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+
+.incoming:before {
+    border-left: 10px solid #E5E5EA; /* 受信メッセージの背景色に合わせる */
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    transform: rotate(-45deg);
+    top: 28px;
+    left: -6px;
+  }
+  
 
   @media (orientation: portrait){
     .container {
@@ -83,8 +150,29 @@ export class ShogiBoard extends LitElement {
   }
 
   @media screen and (max-width: 1400px) {
+    :host {
+      font-size: 8px;
+    }
+
     .container {
       flex-direction: column;
+    }
+
+    .comments-container {
+      max-height: 70%;
+
+    }
+
+    .sidebar-container {
+      max-width: 100%;
+    }
+
+    .icon-container {
+      max-width: 20%;
+    }
+
+    .icon-container img{
+      max-width: 100%;
     }
   }
   `
@@ -132,6 +220,8 @@ export class ShogiBoard extends LitElement {
     this.branch_num = [0, 0, 38, 38, 38, 0];
   }
 
+ 
+
   
   firstUpdated() {
     this.read_file_sfen();
@@ -141,10 +231,7 @@ export class ShogiBoard extends LitElement {
       for (let i = 1; i <= this.max_chapter_num; i++) {
         console.log(this.max_line_num[i]);
       }
-    }, 1000 * 0.5)
-    
-    
-    
+    }, 1000 * 0.5);
   }
 
   read_file_sfen() {
@@ -223,6 +310,9 @@ export class ShogiBoard extends LitElement {
 
 
   render() {
+    const first_comment = "第１章 基本図まで*△４五角戦法は奇襲戦法の戦法のひとつ。 派手な応酬が多く、正確に受けきれなければ一瞬で優勢まで築くこともできます。まずは横歩取りの進行でいきましょう。*飛車先を突いていってください。";
+    const lines = first_comment.split('*');
+    
     return html`
     <div class="container">
 
@@ -243,16 +333,19 @@ export class ShogiBoard extends LitElement {
       ></shogi-player-wc>
       <div class="sidebar-container">
         <div class="comments-container">
-          <p>${this.comments}</p>
-          <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}">
-        </div>
-        <div class="sub-container">
-          <p>現在の手数：${this.turn}手目</p>
+          <div class="icon-container">
+            <img src="../../img/sugar_icon.jpg">
+            <p>現在の手数：${this.turn}手目</p>
           <p>ヒント</p>
-        </div>
-        <div class="sub-container">
-          <input type="checkbox" id="slide-open" @click="${this.open_slide}" style="display: none">
-          <label for="slide-open"><p>スライドをもう一度見る</p></label>
+            <input type="checkbox" id="slide-open" @click="${this.open_slide}" style="display: none">
+            <label for="slide-open"><p>スライドをもう一度見る</p></label>
+          </div>
+          <div  id="chat" class="chat-container">
+            <div class="chat-message incoming">
+              ${lines.map(line => html`<p>${line}</p>`)}
+            </div>
+          </div>
+          <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}">
         </div>
       </div>
     </div>
@@ -271,6 +364,7 @@ export class ShogiBoard extends LitElement {
       console.log(correct_sfen);
       console.log(e.detail[0].sfen);
       if (this.human_sfen == correct_sfen) {
+        
         if (next_sfen == undefined) {
           this.source = correct_sfen;
         } else {
@@ -290,7 +384,7 @@ export class ShogiBoard extends LitElement {
     this.turn = e.detail[0];
 
     if (this.turn == 0) {
-      this.comments = "第１章 基本図まで △４五角戦法は奇襲戦法の戦法のひとつ。 派手な応酬が多く、正確に受けきれなければ一瞬で優勢まで築くこともできます。まずは横歩取りの進行でいきましょう。飛車先を突いていってください。";
+      this.comments = "第１章 基本図まで*△４五角戦法は奇襲戦法の戦法のひとつ。 派手な応酬が多く、正確に受けきれなければ一瞬で優勢まで築くこともできます。まずは横歩取りの進行でいきましょう。*飛車先を突いていってください。";
     } else {
       this.comments = line_string(this.current_comments, this.turn + 1);
     }
@@ -303,6 +397,11 @@ export class ShogiBoard extends LitElement {
       elem.style.display = "none";
       this.human_side = "black";
     }
+
+    if (this.turn >= 1 && this.turn%2 == 0) {
+      this.add_comment();
+    }
+
   }
 
 
@@ -316,6 +415,17 @@ export class ShogiBoard extends LitElement {
 
   change_comments() {
     this.comments = line_string(this.current_comments, this.turn + 1);
+  }
+
+  add_comment() {
+    const dynamicElement = document.createElement("p");
+    console.log(this.comments);
+    const lines = this.comments.split('*');
+    console.log(lines);
+    dynamicElement.textContent = lines;
+    dynamicElement.classList.add('chat-message-addition');
+    dynamicElement.classList.add('incoming');
+    this.shadowRoot.getElementById("chat").appendChild(dynamicElement);
   }
 
   //章の切り替えを行う関数

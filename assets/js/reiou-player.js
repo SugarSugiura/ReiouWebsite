@@ -27,6 +27,13 @@ export class ShogiBoard extends LitElement {
     display: flex;
     min-height: 100vh;
     /*border: 1px solid hsl(0 0% 0% / 0.1);*/
+    font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0px;
   }
 
   p {
@@ -39,7 +46,8 @@ export class ShogiBoard extends LitElement {
     width: 100%;
     /*justify-content: center;
     gap: 1rem;*/
-    max-height: calc(100vh - 60px);
+    max-height: calc(100vh - 76px);
+    box-sizing: border-box;
   }
 
   .explane {
@@ -67,7 +75,7 @@ export class ShogiBoard extends LitElement {
 
   .comments-container {
     width : 100%;
-    height: calc(100% - 1rem);
+    height: 100%;
     border: solid 1px black;
     border-radius: 5px;
     display: flex;
@@ -87,7 +95,7 @@ export class ShogiBoard extends LitElement {
   }
 
   .chat-container {
-    width: 100%;
+    width: 70%;
     margin: 0 auto;
     padding: 1rem;
     overflow-y: scroll;
@@ -130,8 +138,8 @@ export class ShogiBoard extends LitElement {
   }
 
 
-.incoming:before {
-    border-left: 10px solid #E5E5EA; /* 受信メッセージの背景色に合わせる */
+  .incoming:before {
+    border-left: 10px solid #E5E5EA;
     border-right: 10px solid transparent;
     border-bottom: 10px solid transparent;
     transform: rotate(-45deg);
@@ -150,25 +158,19 @@ export class ShogiBoard extends LitElement {
   }
 
   @media screen and (max-width: 1400px) {
-    :host {
-      font-size: 8px;
-    }
-
     .container {
       flex-direction: column;
-    }
-
-    .comments-container {
-      max-height: 70%;
-
+      height: calc(100vh - 76px);
     }
 
     .sidebar-container {
-      max-width: 100%;
+      font-size: 1rem;
+      max-height: 366px;
     }
 
     .icon-container {
-      max-width: 20%;
+      max-width: 30%;
+      font-size: 0.5rem;
     }
 
     .icon-container img{
@@ -348,6 +350,7 @@ export class ShogiBoard extends LitElement {
           <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}">
         </div>
       </div>
+      <div></div>
     </div>
     `
   }

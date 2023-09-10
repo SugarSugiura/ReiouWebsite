@@ -19,7 +19,7 @@ function line_string(str, num) {
   }
 }
 
-import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
+import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
 export class ShogiBoard extends LitElement {
   static styles = css`
   :host {
@@ -132,8 +132,12 @@ export class ShogiBoard extends LitElement {
     /* box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);*/
   }
 
+  .chat-top {
+    font-weight: 600;
+  }
+
   /* 吹き出しの三角形を追加 */
-  .chat-message:before {
+  .chat-top:before {
     content: "";
     position: absolute;
     width: 0;
@@ -224,10 +228,11 @@ export class ShogiBoard extends LitElement {
     max_line_num: { type: Array },
     current_comments: { type: String },
     current_sfen: { type: String },
-    branch_num: { type: Array },
+    branch_num: { type: String },
     file_path: { type: String }, 
     max_chapter_num: { type: Number },
-    first_sfen: { type: String }
+    first_sfen: { type: String },
+    first_comment: { type: String }
   }
 
   static fromAttribute(name, value) {
@@ -241,8 +246,22 @@ export class ShogiBoard extends LitElement {
     }
     else if (name === "first_sfen") {
       return value;
+    } else if (name === "branch_num") {
+      return value;
+    } else if (name === "first_comment") {
+      return value;
     }
     return super.fromAttribute(name, value);
+  }
+
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has("file_path") ) { //branch_numにすると２回通るのでfile_pathで行っている
+      // カスタム属性の値をカンマで分割して配列に変換
+      this.branch_num = this.branch_num.split(',');
+      this.branch_num = this.branch_num.map(str => parseInt(str, 10));
+      console.log(this.branch_num);
+    }
   }
 
   constructor() {
@@ -258,11 +277,12 @@ export class ShogiBoard extends LitElement {
     this.comments_chapter = ["", "", "", "", "", ""];
     this.max_line_num = [0, 0, 0, 0, 0, 0];
     this.current_comments = "";
+    this.branch_num = "";
     this.current_sfen = "";
-    this.branch_num = [0, 0, 38, 38, 38, 0];
     this.turn_max = 100;
     this.file_path = "";
     this.max_chapter_num = 0;
+    this.viewpoint = "";
   }
 
  
@@ -278,6 +298,7 @@ export class ShogiBoard extends LitElement {
       }
     }, 1000 * 0.5);
     this.source = this.first_sfen;
+    this.viewpoint = this.human_side;
   }
 
   read_file_sfen() {
@@ -358,7 +379,7 @@ export class ShogiBoard extends LitElement {
 
 
   render() {
-    const first_comment = "第１章 基本図まで*△４五角戦法は奇襲戦法の戦法のひとつ。 派手な応酬が多く、正確に受けきれなければ一瞬で優勢まで築くこともできます。まずは横歩取りの進行でいきましょう。*飛車先を突いていってください。";
+    const first_comment = this.first_comment;
     const lines = first_comment.split('*');
     
     return html`
@@ -369,7 +390,7 @@ export class ShogiBoard extends LitElement {
         sp_body="${this.source}"
         sp_mobile_vertical="false"
         sp_piece_variant="portella"
-        sp_viewpoint="${this.human_side}"
+        sp_viewpoint="${this.viewpoint}"
         @ev_play_mode_move="${e => this.ev_play_mode_move(e)}"
         @ev_turn_offset_change="${e => this.ev_turn_offset_change(e)}"
         sp_controller="false"
@@ -391,11 +412,11 @@ export class ShogiBoard extends LitElement {
             </div>
           </div>
           <div  id="chat" class="chat-container">
-            <div class="chat-message incoming">
+            <div class="chat-message incoming chat-top">
               ${lines.map(line => html`<p>${line}</p>`)}
             </div>
+            <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}">
           </div>
-          <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}">
         </div>
         <div class="foot-button-container">
           <div>
@@ -416,11 +437,11 @@ export class ShogiBoard extends LitElement {
 
   ev_play_mode_move(e) {
     setTimeout(() => {
-      var correct_sfen = line_string(this.current_sfen, this.turn); //sfenの文字列からこの手番の正しい手を格納
+      var correct_sfen = line_string(this.current_sfen, this.turn);     //sfenの文字列からこの手番の正しい手を格納
       correct_sfen = correct_sfen.replace(/\r/g, '');
-      correct_sfen = correct_sfen.replace(/\n/g, ''); //改行コードなどを取り除く
-      const next_sfen = line_string(this.current_sfen, this.turn + 1); //AIが指す手を格納
-      this.human_sfen = e.detail[0].sfen; //人間が指した手を格納
+      correct_sfen = correct_sfen.replace(/\n/g, '');                   //改行コードなどを取り除く
+      const next_sfen = line_string(this.current_sfen, this.turn + 1);  //AIが指す手を格納
+      this.human_sfen = e.detail[0].sfen;                               //人間が指した手を格納
       if (this.human_sfen == correct_sfen) {
         
         if (next_sfen == undefined) {
@@ -434,7 +455,7 @@ export class ShogiBoard extends LitElement {
         alert("不正解です");
         const el = this.renderRoot.querySelector("shogi-player-wc");
         const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
-        sp_instance.api_turn_add(-1); //不正解の時は１手戻る
+        sp_instance.api_turn_add(-1);                                             //不正解の時は１手戻る
       }
     }, 1000 * 0.5)
   }
@@ -444,7 +465,7 @@ export class ShogiBoard extends LitElement {
 
     const elem = this.shadowRoot.getElementById("change-chapter"); //chapterを切り替えるボタンを通常見えないようにしている
     if (e.detail[0] == this.turn_max) {                            //chapterの最後の手まで行くと出現
-      elem.style.display = "inline-block";
+      elem.style.display = "inline-block";this.branch_num;
       this.human_side = "none";
     } else {
       elem.style.display = "none";
@@ -459,9 +480,12 @@ export class ShogiBoard extends LitElement {
   add_comment() {
     const dynamicElement = document.createElement("p");
     dynamicElement.innerHTML = this.comments.replace("*", "<br>"); //*の部分で改行できるように
-    dynamicElement.classList.add('chat-message-addition'); //クラスを追加
-    dynamicElement.classList.add('incoming');
-    this.shadowRoot.getElementById("chat").appendChild(dynamicElement); //id="chat"の中にこの<p>を挿入
+    dynamicElement.classList.add("chat-message-addition"); //クラスを追加
+    dynamicElement.classList.add("incoming");
+    dynamicElement.classList.add("chat-top");
+    var oldElement = this.shadowRoot.getElementById("chat").querySelector(".chat-top"); // 古い要素を取得
+    oldElement.classList.remove("chat-top"); // クラスを削除
+    this.shadowRoot.getElementById("chat").insertBefore(dynamicElement, this.shadowRoot.getElementById("chat").firstChild); //id="chat"の中にこの<p>を挿入
   }
 
   //章の切り替えを行う関数
@@ -503,12 +527,23 @@ export class ShogiBoard extends LitElement {
   }
 
   change_sfen_t() {
+    var elem = this.shadowRoot.querySelectorAll(".chat-message-addition");
+    elem.forEach(function(element) {
+      element.remove();
+    });
+    this.shadowRoot.getElementById("chat").querySelector(".chat-message").classList.add("chat-top");
+
+
     this.current_sfen = this.sfen_chapter[this.current_chapter + 1];
+    this.human_side = this.viewpoint;
+    this.shadowRoot.getElementById("change-chapter").style.display ="none";
     this.source = line_string(this.current_sfen, this.branch_num[this.current_chapter + 1]);
     this.current_comments = this.comments_chapter[this.current_chapter + 1];
+    this.first_comment = line_string(this.current_comments, this.turn);
     this.turn_max = this.max_line_num[this.current_chapter + 1];
     this.current_chapter++;
     this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第" + (this.current_chapter + 1) + "章へ");
+
   }
 
   open_slide() {

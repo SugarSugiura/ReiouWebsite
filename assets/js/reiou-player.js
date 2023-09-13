@@ -22,193 +22,218 @@ function line_string(str, num) {
 import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
 export class ShogiBoard extends LitElement {
   static styles = css`
-  :host {
-    padding-top: 76px;
-    display: flex;
-    min-height: 100vh;
-    /*border: 1px solid hsl(0 0% 0% / 0.1);*/
-    font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
-  }
-
-  * {
-    box-sizing: border-box;
-    border-style: solid;
-    border-width: 0px;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .container {
-    position: relative;
-    display: flex;
-    width: 100%;
-    /*justify-content: center;
-    gap: 1rem;*/
-    max-height: calc(100vh - 76px);
-    box-sizing: border-box;
-  }
-
-  .explane {
-    flex: 1 1 0%;
-  }
-
-  shogi-player-wc {
-    flex-basis: 98vh;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  shogi-player-wc::part(root) {
-    --sp_board_color: goldenrod;
-    --sp_board_piece_size: 1.0;
-  }
-
-  .sidebar-container {
-    flex: 1 1 0%;
-    margin: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-between;
-  }
-
-  .comments-container {
-    width : 100%;
-    height: 100%;
-    border: solid 1px black;
-    border-radius: 5px;
-    display: flex;
-
-  }
-
-  .sub-container {
-    width: calc(49.5% - 3rem);
-    border: solid 1px black;
-    border-radius: 5px;
-    padding: 1rem;
-    height: 44%;
-  }
-
-  .icon-container {
-    padding: 1rem;
-    width: 30%;
-  }
-
-  .chat-container {
-    width: 70%;
-    margin: 0 auto;
-    padding: 1rem;
-    overflow-y: scroll;
-  }
-
-  .chat-message {
-    display: inline-block;
-    max-width: 100%; /* メッセージの最大幅を調整 */
-    min-width: 50%;
-    min-height: 20px;
-    margin: 10px 0;
-    position: relative;
-    padding: 1rem;
-    border-radius: 10px;
-  }
-
-  .chat-message-addition {
-    display: block;
-    max-width: 100%; /* メッセージの最大幅を調整 */
-    min-width: 50%;
-    min-height: 20px;
-    margin: 10px 0;
-    position: relative;
-    padding: 1rem;
-    border-radius: 10px;
-  }
-
-  .incoming {
-    background-color: #E5E5EA; /* 受信メッセージの背景色 */
-    color: #000; /* 受信メッセージのテキスト色 */
-    text-align: left;
-    /* box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);*/
-  }
-
-  .chat-top {
-    font-weight: 600;
-  }
-
-  /* 吹き出しの三角形を追加 */
-  .chat-top:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-  }
-
-
-  .incoming:before {
-    border-left: 10px solid #E5E5EA;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    transform: rotate(-45deg);
-    top: 28px;
-    left: -6px;
-  }
-
-  .foot-button-container {
-    display: none;
-  }
-  
-
-  @media (orientation: portrait){
-    .container {
-      flex-direction: column;
+    :host {
+      padding-top: 76px;
+      display: flex;
+      min-height: 100vh;
+      /*border: 1px solid hsl(0 0% 0% / 0.1);*/
+      font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
+      --main-color: #004097;
+      --sub-color: #5E8DC3;
     }
+
+    * {
+      box-sizing: border-box;
+      border-style: solid;
+      border-width: 0px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      width: 100%;
+      /*justify-content: center;
+      gap: 1rem;*/
+      max-height: calc(100vh - 76px);
+      box-sizing: border-box;
+      overflow-y: scroll;
+    }
+
+    .explane {
+      flex: 1 1 0%;
+    }
+
     shogi-player-wc {
-      flex-basis: 90vw;
+      flex-basis: 94vh;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
     }
-  }
 
-  @media screen and (max-width: 1400px) {
-    .container {
-      height: calc(100vh - 76px);
-      flex-direction: column;
+    shogi-player-wc::part(root) {
+      --sp_board_color: goldenrod;
+      --sp_board_piece_size: 1.0;
     }
 
     .sidebar-container {
-      font-size: 1rem;
-      max-height: 366px;
-      margin: 0;
-      position: relative;
+      flex: 1 1 0%;
+      margin: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      
     }
 
     .comments-container {
-      position: relative;
-      border: none;
-      border-radius: none;
+      width : 100%;
+      height: 100%;
+      border: solid 10px var(--sub-color);
+      border-radius: 20px;
+      display: flex;
+      background-color: #fff;
+      min-height: 500px;
+    }
+
+    .sub-container {
+      width: calc(49.5% - 3rem);
+      border: solid 1px black;
+      border-radius: 5px;
+      padding: 1rem;
+      height: 44%;
     }
 
     .icon-container {
+      padding: 1rem;
       width: 30%;
-      font-size: 0.5rem;
-      z-index: 1;
+      text-align: center;
     }
 
-    .icon-container img{
+    .icon-container img {
       max-width: 100%;
+      border-radius: 5px;
+    }
+
+    .pc-button label {
+      border: 1px solid var(--sub-color);
+      color: var(--sub-color);
+      font-weight: 600;
+      border-radius: 5px;
+      display: block;
+      text-align: center;
+      margin: 8px auto 0px auto;
+      max-width: 120px;
+      transition: 0.5s;
+    }
+
+    .pc-button label:hover {
+      color: #fff;
+      background-color: var(--sub-color);
+
+    }
+
+    #chapter-button {
+      border: 1px solid var(--sub-color);
+      color: var(--sub-color);
+      font-weight: 600;
+      border-radius: 5px;
+      display: block;
+      text-align: center;
+      margin: 8px auto 0px auto;
+      max-width: 120px;
+      transition: 0.5s;
+    }
+
+    #chapter-button:hover {
+      color: #fff;
+      background-color: var(--sub-color);
+
+    }
+
+    .chat-container {
+      width: 70%;
+      margin: 0 auto;
+      padding: 1rem;
+      overflow-y: scroll;
+    }
+
+    .chat-message {
+      display: inline-block;
+      max-width: 100%; /* メッセージの最大幅を調整 */
+      min-width: 50%;
+      min-height: 20px;
+      margin: 10px 0;
+      position: relative;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .chat-message-addition {
+      display: block;
+      max-width: 100%; /* メッセージの最大幅を調整 */
+      min-width: 50%;
+      min-height: 20px;
+      margin: 10px 0;
+      position: relative;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .incoming {
+      background-color: rgb(149 255 149);
+      color: #000; /* 受信メッセージのテキスト色 */
+      text-align: left;
+      font-weight: 500;
+      /* box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);*/
+    }
+
+    .chat-top {
+      font-weight: 600;
+    }
+
+    /* 吹き出しの三角形を追加 */
+    .chat-top:before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+
+
+    .incoming:before {
+      border-left: 10px solid rgb(149 255 149);
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      transform: rotate(-45deg);
+      top: 28px;
+      left: -6px;
     }
 
     .foot-button-container {
-      width: 100%;
-      bottom: 0px;
-      display: flex;
-      background-color: burlywood;
+      display: none;
+    }
+    
+
+    @media (orientation: portrait){
+      .container {
+        flex-direction: column;
+      }
+      shogi-player-wc {
+        flex-basis: 90vw;
+      }
     }
 
-    .foot-button-container > div {
-      width: 50%;
+    @media screen and (max-width: 1200px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar-container {
+        max-height: 600px;
+      }
     }
-    .pc-button {
-      display: none;
+
+    @media screen and (max-width: 766px) {
+      .icon-container {
+        font-size: 10px;
+      }
+
+      .sidebar-container {
+        max-height: 400px;
+      }
     }
   }
   `
@@ -405,26 +430,33 @@ export class ShogiBoard extends LitElement {
           <div class="icon-container">
             <img src="../../img/sugar_icon.jpg">
             <p>現在の手数：${this.turn}手目</p>
+            <div>
+              <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}" style="display: none">
+              <label id="chapter-button" for="change-chapter">第${this.current_chapter + 1}章へ</label>
+            </div>
             <div class="pc-button">
-              <p>ヒント</p>
-              <input type="checkbox" id="slide-open" @click="${this.open_slide}" style="display: none">
-              <label for="slide-open"><p>スライドをもう一度見る</p></label>
+              <input type="checkbox" id="hint-button-pc" @click="${this.add_hint}" style="display: none">
+              <label for="hint-button-pc">ヒント</label>
+              <input type="checkbox" id="slide-open-pc" @click="${this.open_slide}" style="display: none">
+              <label for="slide-open-pc">スライド</label>
+              
             </div>
           </div>
           <div  id="chat" class="chat-container">
             <div class="chat-message incoming chat-top">
               ${lines.map(line => html`<p>${line}</p>`)}
             </div>
-            <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}">
+            
           </div>
         </div>
         <div class="foot-button-container">
           <div>
-            <p>ヒント</p>
+            <input type="checkbox" id="hint-button-phone" @click="${this.add_hint}" style="display: none">
+            <label for="hint-button-phone">ヒント</label>
           </div>
           <div>
-            <input type="checkbox" id="slide-open" @click="${this.open_slide}" style="display: none">
-            <label for="slide-open"><p>スライドをもう一度見る</p></label>
+            <input type="checkbox" id="slide-open-phone" @click="${this.open_slide}" style="display: none">
+            <label for="slide-open-phone">スライド</label>
           </div>
         </div>
       </div>
@@ -446,6 +478,8 @@ export class ShogiBoard extends LitElement {
         
         if (next_sfen == undefined) {
           this.source = correct_sfen;
+          this.comments = line_string(this.current_comments, this.turn + 2); //ここで次のコメントに切り替え
+          this.add_comment();                                                //コメントを表示
         } else {
           this.source = next_sfen;
           this.comments = line_string(this.current_comments, this.turn + 2); //ここで次のコメントに切り替え
@@ -457,16 +491,18 @@ export class ShogiBoard extends LitElement {
         const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
         sp_instance.api_turn_add(-1);                                             //不正解の時は１手戻る
       }
-    }, 1000 * 0.5)
+    }, 1000 * 0.5);
   }
 
   ev_turn_offset_change(e) {
     this.turn = e.detail[0]; //変数this.turnに現在の手数を格納
 
-    const elem = this.shadowRoot.getElementById("change-chapter"); //chapterを切り替えるボタンを通常見えないようにしている
+    const elem = this.shadowRoot.getElementById("chapter-button"); //chapterを切り替えるボタンを通常見えないようにしている
     if (e.detail[0] == this.turn_max) {                            //chapterの最後の手まで行くと出現
-      elem.style.display = "inline-block";this.branch_num;
-      this.human_side = "none";
+      if (!(this.max_line_num[this.max_chapter_num] == this.turn_max)) {
+        elem.style.display = "block";
+        this.human_side = "none";
+      }
     } else {
       elem.style.display = "none";
     }
@@ -479,7 +515,7 @@ export class ShogiBoard extends LitElement {
 
   add_comment() {
     const dynamicElement = document.createElement("p");
-    dynamicElement.innerHTML = this.comments.replace("*", "<br>"); //*の部分で改行できるように
+    dynamicElement.innerHTML = this.comments.replace(/\*/g, "<br>"); //*の部分で改行できるように
     dynamicElement.classList.add("chat-message-addition"); //クラスを追加
     dynamicElement.classList.add("incoming");
     dynamicElement.classList.add("chat-top");
@@ -488,42 +524,15 @@ export class ShogiBoard extends LitElement {
     this.shadowRoot.getElementById("chat").insertBefore(dynamicElement, this.shadowRoot.getElementById("chat").firstChild); //id="chat"の中にこの<p>を挿入
   }
 
-  //章の切り替えを行う関数
-  change_sfen() {
-    switch (this.current_chapter) {
-      case 1:
-        this.current_sfen= this.sfen_chapter[2];
-        this.current_comments = this.comments_chapter[2];
-        this.source = line_string(this.current_sfen, this.max_line_num[this.current_chapter] + 1);
-        this.current_chapter = 2;
-        this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第３章へ");
-        this.turn_max = this.max_line_num[2];
-        break;
-      case 2:
-        this.current_sfen= this.sfen_chapter[3];
-        this.current_comments = this.comments_chapter[3];
-        this.source = line_string(this.current_sfen, this.max_line_num[this.current_chapter] + 1);
-        this.current_chapter = 3;
-        this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第４章へ");
-        this.turn_max = this.max_line_num[3]
-        break;
-      case 3:
-        this.current_sfen= this.sfen_chapter[4];
-        this.current_comments = this.comments_chapter[4];
-        this.source = line_string(this.current_sfen, this.max_line_num[this.current_chapter] + 1);
-        this.current_chapter = 4;
-        this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第１章へ");
-        this.turn_max = this.max_line_num[4];
-        break;
-      default:
-        this.current_sfen= this.sfen_chapter[1];
-        this.current_comments = this.comments_chapter[1];
-        this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL";
-        this.current_chapter = 1;
-        this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第２章へ");
-        this.turn_max = this.max_line_num[1];
-        break;
-    }
+  add_hint() {
+    const dynamicElement = document.createElement("p");
+    dynamicElement.innerHTML = "これはヒントです";
+    dynamicElement.classList.add("chat-message-addition"); //クラスを追加
+    dynamicElement.classList.add("incoming");
+    dynamicElement.classList.add("chat-top");
+    var oldElement = this.shadowRoot.getElementById("chat").querySelector(".chat-top"); // 古い要素を取得
+    oldElement.classList.remove("chat-top"); // クラスを削除
+    this.shadowRoot.getElementById("chat").insertBefore(dynamicElement, this.shadowRoot.getElementById("chat").firstChild); //id="chat"の中にこの<p>を挿入
   }
 
   change_sfen_t() {
@@ -536,14 +545,13 @@ export class ShogiBoard extends LitElement {
 
     this.current_sfen = this.sfen_chapter[this.current_chapter + 1];
     this.human_side = this.viewpoint;
-    this.shadowRoot.getElementById("change-chapter").style.display ="none";
+    this.shadowRoot.getElementById("chapter-button").style.display ="none";
     this.source = line_string(this.current_sfen, this.branch_num[this.current_chapter + 1]);
     this.current_comments = this.comments_chapter[this.current_chapter + 1];
-    this.first_comment = line_string(this.current_comments, this.turn);
+    this.first_comment = line_string(this.current_comments, this.branch_num[this.current_chapter + 1]);
     this.turn_max = this.max_line_num[this.current_chapter + 1];
     this.current_chapter++;
     this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第" + (this.current_chapter + 1) + "章へ");
-
   }
 
   open_slide() {

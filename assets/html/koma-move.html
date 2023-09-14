@@ -48,12 +48,17 @@
           gap: 1rem;*/
         }
 
+        .tab-button {
+          width: 100%;
+          height: 50px;
+        }
+
         .explane {
           flex: 1 1 0%;
         }
 
         shogi-player-wc {
-          flex-basis: 98vh;
+          flex-basis: 94vh;
           margin-top: 1rem;
         }
 
@@ -87,7 +92,7 @@
 
       constructor() {
         super()
-        this.source = "position sfen 9/9/9/9/4L3L/9/9/9/9 b - 1"
+        this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
         this.comment_lines = null
         this.comments = ""
         this.turn = null
@@ -122,6 +127,10 @@
         this.human_side = "black"
       }
 
+      firstUpdated() {
+        this.lance();
+      }
+
     
 
       render() {
@@ -129,23 +138,200 @@
         return html`
         
           <div class="container">
-            
+            <div class="tab-button">
+
+            </div>
             <shogi-player-wc
               sp_mode="play"
               sp_body="${this.source}"
               sp_mobile_vertical="false"
               sp_piece_variant="portella"
               sp_viewpoint="black"
-              sp_controller="false"
+              sp_controller="true"
               sp_human_side="${this.human_side}"
               sp_dev_tools_position="left"
               sp_pass_css="${this.pass_css}"
               sp_coordinate="true"
               sp_debug="false"
+              sp_illegal_cancel="true"
             ></shogi-player-wc>
 
           </div>
         `
+      }
+
+      king() {
+        this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
+        this.pass_css = this.make_arrow(5, 4, "up");
+        this.pass_css += this.make_arrow(4, 4, "up_right");
+        this.pass_css += this.make_arrow(4, 5, "right");
+        this.pass_css += this.make_arrow(4, 6, "down_right");
+        this.pass_css += this.make_arrow(5, 6, "down");
+        this.pass_css += this.make_arrow(6, 6, "down_left");
+        this.pass_css += this.make_arrow(6, 5, "left");
+        this.pass_css += this.make_arrow(6, 4, "up_left");
+      }
+
+      gold() {
+        this.source = "position sfen 9/9/9/9/4G4/9/9/9/9 b - 1";
+        this.pass_css = this.make_arrow(5, 4, "up");
+        this.pass_css += this.make_arrow(4, 4, "up_right");
+        this.pass_css += this.make_arrow(4, 5, "right");
+        this.pass_css += this.make_arrow(5, 6, "down");
+        this.pass_css += this.make_arrow(6, 5, "left");
+        this.pass_css += this.make_arrow(6, 4, "up_left");
+      }
+
+      silver() {
+        this.source = "position sfen 9/9/9/9/4S4/9/9/9/9 b - 1";
+        this.pass_css = this.make_arrow(5, 4, "up");
+        this.pass_css += this.make_arrow(4, 4, "up_right");
+        this.pass_css += this.make_arrow(4, 6, "down_right");
+        this.pass_css += this.make_arrow(6, 6, "down_left");
+        this.pass_css += this.make_arrow(6, 4, "up_left");
+      }
+
+      pawn() {
+        this.source = "position sfen 9/9/9/9/4P4/9/9/9/9 b - 1";
+        this.pass_css = this.make_arrow(5, 4, "up");
+      }
+
+      rook() {
+        this.source = "position sfen 9/1R8/9/9/9/6p2/9/3l2R2/9 b - 1";
+        this.pass_css = this.make_arrow(3, 7, "up");
+        this.pass_css += this.make_stick(4, 8, "holizontal");
+        this.pass_css += this.make_arrow(5, 8, "left");
+        this.pass_css += this.make_arrow(8, 1, "up");
+        this.pass_css += this.make_arrow(9, 2, "left");
+        this.pass_css += this.make_arrow(1, 2, "right");
+        this.pass_css += this.make_arrow(8, 9, "down");
+        this.pass_css += this.make_stick(8, 3, "vertical");
+        this.pass_css += this.make_stick(8, 4, "vertical");
+        this.pass_css += this.make_stick(8, 5, "vertical");
+        this.pass_css += this.make_stick(8, 6, "vertical");
+        this.pass_css += this.make_stick(8, 7, "vertical");
+        this.pass_css += this.make_stick(8, 8, "vertical");
+        this.pass_css += this.make_stick(2, 2, "holizontal");
+        this.pass_css += this.make_stick(3, 2, "holizontal");
+        this.pass_css += this.make_stick(4, 2, "holizontal");
+        this.pass_css += this.make_stick(5, 2, "holizontal");
+        this.pass_css += this.make_stick(6, 2, "holizontal");
+        this.pass_css += this.make_stick(7, 2, "holizontal");
+      }
+
+      bishop() {
+        this.source = "position sfen 9/9/2B6/9/9/9/s3p4/9/2B6 b - 1";
+        this.pass_css = this.make_arrow(9, 1, "up_left");
+        this.pass_css += this.make_arrow(5, 1, "up_right");
+        this.pass_css += this.make_arrow(9, 5, "down_left");
+        this.pass_css += this.make_arrow(1, 9, "down_right");
+        this.pass_css += this.make_arrow(8, 8, "up_left");
+        this.pass_css += this.make_arrow(6, 8, "up_right");
+        this.pass_css += this.make_stick(8, 2, "diagonal_left");
+        this.pass_css += this.make_stick(6, 4, "diagonal_left");
+        this.pass_css += this.make_stick(5, 5, "diagonal_left");
+        this.pass_css += this.make_stick(4, 6, "diagonal_left");
+        this.pass_css += this.make_stick(3, 7, "diagonal_left");
+        this.pass_css += this.make_stick(2, 8, "diagonal_left");
+        this.pass_css += this.make_stick(6, 2, "diagonal_right");
+        this.pass_css += this.make_stick(8, 4, "diagonal_right");
+      }
+
+      knight() {
+        var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #05eaff;"
+        this.source = "position sfen 9/9/8P/9/7N1/2P6/2N6/9/7N1 b - 1";
+        this.pass_css = ".place_6_6" + common + " clip-path: polygon(35% 0, 45% 0, 10% 100%, 0% 100%);}";
+        this.pass_css += ".place_1_8"+ common + " clip-path: polygon(35% 0, 45% 0, 10% 100%, 0% 100%);}";
+        this.pass_css += ".place_8_6" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
+        this.pass_css += ".place_3_4" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
+        this.pass_css += ".place_3_8" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
+        this.pass_css += ".place_1_7" + common + " clip-path: polygon(39% 44%, 66% 29%, 74% 60%, 61% 54%, 45% 100%, 35% 100%, 52% 50%);}";
+        this.pass_css += ".place_6_5" + common + " clip-path: polygon(39% 44%, 66% 29%, 74% 60%, 61% 54%, 45% 100%, 35% 100%, 52% 50%);}";
+        this.pass_css += ".place_3_3" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
+        this.pass_css += ".place_3_7" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
+        this.pass_css += ".place_8_5" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
+      }
+
+      lance() {
+        this.source = "position sfen 9/9/2p6/9/9/9/9/9/2L5L b - 1";
+        this.pass_css = this.make_arrow(1, 1, "up");
+        this.pass_css += this.make_arrow(7, 4, "up");
+        this.pass_css += this.make_stick(1, 2, "vertical");
+        this.pass_css += this.make_stick(1, 3, "vertical");
+        this.pass_css += this.make_stick(1, 4, "vertical");
+        this.pass_css += this.make_stick(1, 5, "vertical");
+        this.pass_css += this.make_stick(1, 6, "vertical");
+        this.pass_css += this.make_stick(1, 7, "vertical");
+        this.pass_css += this.make_stick(1, 8, "vertical");
+        this.pass_css += this.make_stick(7, 5, "vertical");
+        this.pass_css += this.make_stick(7, 6, "vertical");
+        this.pass_css += this.make_stick(7, 7, "vertical");
+        this.pass_css += this.make_stick(7, 8, "vertical");
+      }
+
+      make_arrow(line, row, direction) {
+        var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #05eaff;";
+        switch (direction) {
+          case "up":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 45%, 30% 45%, 50% 20%, 70% 45%, 55% 45%, 55% 100%, 45% 100%);}";
+            break;
+
+          case "down":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 0, 55% 0, 55% 55%, 70% 55%, 50% 80%, 30% 55%, 45% 55%);}";
+            break;
+
+          case "right":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(0 45%, 55% 45%, 55% 30%, 80% 50%, 55% 70%, 55% 55%, 0 55%);}";
+            break;
+
+          case "left":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(20% 50%, 45% 30%, 45% 45%, 100% 45%, 100% 55%, 45% 55%, 45% 70%);}";
+            break;
+
+          case "up_right":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(40% 30%, 70% 30%, 70% 60%, 59% 48%, 7% 100%, 0 93%, 51% 41%);}";
+            break;
+
+          case "up_left":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(30% 30%, 60% 30%, 49% 42%, 100% 93%, 93% 100%, 41% 48%, 30% 60%);}";
+            break;
+
+          case "down_right":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(7% 0, 59% 52%, 70% 40%, 70% 70%, 40% 70%, 51% 58%, 0 7%);}";
+            break;
+
+          case "down_left":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(41% 52%, 93% 0, 100% 7%, 49% 59%, 60% 70%, 30% 70%, 30% 40%);}";
+            break;
+          
+          default:
+            return "";
+        }
+        
+      }
+
+      make_stick(line, row, direction) {
+        var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #05eaff;";
+        switch (direction) {
+          case "vertical":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 0, 55% 0, 55% 100%, 45% 100%);}";
+            break;
+
+          case "holizontal":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(100% 45%, 100% 55%, 0 55%, 0 45%);}";
+            break;
+          
+          case "diagonal_right":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(0 93%, 93% 0, 100% 0, 100% 7%, 7% 100%, 0 100%);}";
+            break;
+          
+          case "diagonal_left":
+            return ".place_" + line + "_" + row + common + " clip-path: polygon(93% 100%, 0 7%, 0 0, 7% 0, 100% 93%, 100% 100%);}";
+            break;
+
+          default:
+            return "";
+        }
       }
 
       

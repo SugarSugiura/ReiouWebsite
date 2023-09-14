@@ -50,7 +50,6 @@ export class ShogiBoard extends LitElement {
       gap: 1rem;*/
       max-height: calc(100vh - 76px);
       box-sizing: border-box;
-      overflow-y: scroll;
     }
 
     .explane {
@@ -85,7 +84,6 @@ export class ShogiBoard extends LitElement {
       border-radius: 20px;
       display: flex;
       background-color: #fff;
-      min-height: 500px;
     }
 
     .sub-container {
@@ -227,12 +225,24 @@ export class ShogiBoard extends LitElement {
     }
 
     @media screen and (max-width: 766px) {
+      :host {
+        padding-top: 60px;
+      }
+
       .icon-container {
         font-size: 10px;
       }
 
       .sidebar-container {
         max-height: 400px;
+        margin-top: 0;
+        margin-bottom: 2rem;
+      }
+
+      .container {
+
+        max-height: none;
+
       }
     }
   }
@@ -474,6 +484,9 @@ export class ShogiBoard extends LitElement {
       correct_sfen = correct_sfen.replace(/\n/g, '');                   //改行コードなどを取り除く
       const next_sfen = line_string(this.current_sfen, this.turn + 1);  //AIが指す手を格納
       this.human_sfen = e.detail[0].sfen;                               //人間が指した手を格納
+      
+      
+      
       if (this.human_sfen == correct_sfen) {
         
         if (next_sfen == undefined) {
@@ -497,6 +510,12 @@ export class ShogiBoard extends LitElement {
   ev_turn_offset_change(e) {
     this.turn = e.detail[0]; //変数this.turnに現在の手数を格納
 
+    if (this.turn != 0) {
+      this.play_sound("../../sound/koma-sound.mp3", 0.5 ,0);
+    }
+
+    
+
     const elem = this.shadowRoot.getElementById("chapter-button"); //chapterを切り替えるボタンを通常見えないようにしている
     if (e.detail[0] == this.turn_max) {                            //chapterの最後の手まで行くと出現
       if (!(this.max_line_num[this.max_chapter_num] == this.turn_max)) {
@@ -507,8 +526,15 @@ export class ShogiBoard extends LitElement {
       elem.style.display = "none";
     }
   }
-
-
+  
+  //サウンドのパス、音の大きさ(0-1)、関数を通ってから何秒後に流すのかを指定
+  play_sound(path, volume, delay) {
+    var audio = new Audio(path);
+    audio.volume = volume;
+    setTimeout(() => {
+      audio.play();
+    }, 1000 * delay);
+  }
 
 
 

@@ -171,15 +171,17 @@ export class ShogiBoard extends LitElement {
     }
 
     .incoming {
-      background-color: rgb(149 255 149);
-      color: #000; /* 受信メッセージのテキスト色 */
+      background-color: rgb(119, 255, 119);
+      color: rgb(0, 0, 0);
       text-align: left;
       font-weight: 500;
-      /* box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);*/
+      opacity: 0.6;
     }
 
     .chat-top {
       font-weight: 600;
+      opacity: 1;
+      background-color: rgb(149, 255, 149);
     }
 
     /* 吹き出しの三角形を追加 */

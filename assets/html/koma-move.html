@@ -1,450 +1,453 @@
 <!doctype html>
-<html><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/header.css">
-  <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="module">
-    import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
-    export class ShogiBoard extends LitElement {
-      static styles = css`
-        :host {
-          padding-top: 60px;
-          display: flex;
-          min-height: 100vh;
-          /*border: 1px solid hsl(0 0% 0% / 0.1);*/
-          --sub-color: #5E8DC3;
-        }
-        .container {
-          position: relative;
-          display: flex;
-          width: 100%;
-          /*justify-content: center;
-          gap: 1rem;*/
-          flex-direction: column;
-        }
-
-        .article-top {
-          width: 100%;
-          height: 240px;
-          position: relative;
-          z-index: 0;
-          overflow: hidden;
-        }
-
-        .article-top:before {
-          content: '';
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          background-image: url("../img/koma2.jpg");
-          background-repeat: no-repeat;
-          background-size: 100%;
-          background-position: center;
-          filter: blur(10px);
-          z-index: -1;
-        }
-
-        .tab-container {
-          margin: 1rem 1rem 0;
-          border: 1px solid rgba(0,0,0,0.12);
-        }
-
-        .top-content {
-          background-color: rgba(0,0,0,0.6);
-          height: 100%;
-          color: white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 2rem;
-          font-weight: 600;
-        }
-
-        .tab-button {
-          width: 100%;
-          display: flex;
-          align-items: end;
-          
-          border-bottom-width: 12.5%;
-        }
-
-        .tab-button-border {
-          //width: 12.5%;
-          border-bottom: 3px solid var(--sub-color);
-        }
-
-        .tab-button:before {
-          content: "";
-          
-          width: calc((100% - 2rem - 2px) / 8);
-          position: absolute;
-          transform: translateX(100%);
-        }
-
-        .piece-button {
-          border-bottom: none; 
-          width: -webkit-fill-available;
-          text-align: center;
-        }
-
-        
-
-        .tab-active {
-        }
-
-        shogi-player-wc {
-          flex-basis: 50%;
-          padding: 1rem;
-          //background-color: var(--sub-color);
-        }
-
-        shogi-player-wc::part(root) {
-          --sp_board_color: goldenrod;
-          --sp_board_piece_size: 1.0;
-        }
-
-        
-
-        .explane-container {
-          display: flex;
-        }
-
-        .piece-explane {
-          background-color: white;
-          width: -webkit-fill-available;
-        }
-
-        
-
-        @media screen and (max-width: 766px) {
+<html>
+  <head>
+    <title>駒の動かし方</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module">
+      import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
+      export class ShogiBoard extends LitElement {
+        static styles = css`
+          :host {
+            padding-top: 60px;
+            display: flex;
+            min-height: 100vh;
+            /*border: 1px solid hsl(0 0% 0% / 0.1);*/
+            --sub-color: #5E8DC3;
+          }
           .container {
+            position: relative;
+            display: flex;
+            width: 100%;
+            /*justify-content: center;
+            gap: 1rem;*/
             flex-direction: column;
           }
-        }
-      `
 
-      static properties = {
-        source: { type: String },
-        comment_lines: { type: Array },
-        comments: { type: String },
-        turn: { type: String },
-        pass_css: { type: String },
-        human_sfen: { type: String },
-        ai_sfen: { type: String },
-        first_sfen: { type: String },
-        chapter: { type: Number},
-        turn_max: { type: Number },
-        human_side:{ type: String }
-      }
+          .article-top {
+            width: 100%;
+            height: 240px;
+            position: relative;
+            z-index: 0;
+            overflow: hidden;
+          }
 
-      constructor() {
-        super()
-        this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
-        this.comment_lines = null
-        this.comments = ""
-        this.turn = null
-        this.pass_css = `.place_5_4::before{  content: "";
-                                              position: absolute;
-                                              width: 40%;
-                                              height: 40%;                                             
-                                              background-color: dimgray;
-                                              border-radius: 50%;
-                                            }
-                          .place_5_2::before{ content: "";
-                                              position: absolute;
-                                              display: inline-block;
-                                              width: 100%;
-                                              height: 100%;
-                                              background-color: #1E88E5;
-                                              clip-path: polygon(30% 25%, 50% 0, 70% 25%, 55% 25%, 55% 100%, 45% 100%, 45% 25%);
-                                            }
-                          .place_5_3::before{ content: "";
-                                              position: absolute;
-                                              display: inline-block;
-                                              width: 10%;
-                                              height: 100%;
-                                              background-color: #1E88E5;
-                                            }`
-                          
-        this.human_sfen = ""
-        this.ai_sfen = ""
-        this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
-        this.chapter = 1
-        this.turn_max = 37
-        this.human_side = "black"
-      }
+          .article-top:before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-image: url("../img/koma2.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: center;
+            filter: blur(10px);
+            z-index: -1;
+          }
 
-      firstUpdated() {
-        this.king();
-      }
+          .tab-container {
+            margin: 1rem 1rem 0;
+            border: 1px solid rgba(0,0,0,0.12);
+          }
 
-    
+          .top-content {
+            background-color: rgba(0,0,0,0.6);
+            height: 100%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 600;
+          }
 
-      render() {
-        const lines = this.comments.split('*');
-        return html`
-        
-          <div class="container">
+          .tab-button {
+            width: 100%;
+            display: flex;
+            align-items: end;
             
-            <div class="article-top">
-              <div class="top-content">
-                <div>
-                  将棋のルール
+            border-bottom-width: 12.5%;
+          }
+
+          .tab-button-border {
+            //width: 12.5%;
+            border-bottom: 3px solid var(--sub-color);
+          }
+
+          .tab-button:before {
+            content: "";
+            
+            width: calc((100% - 2rem - 2px) / 8);
+            position: absolute;
+            transform: translateX(100%);
+          }
+
+          .piece-button {
+            border-bottom: none; 
+            width: -webkit-fill-available;
+            text-align: center;
+          }
+
+          
+
+          .tab-active {
+          }
+
+          shogi-player-wc {
+            flex-basis: 50%;
+            padding: 1rem;
+            //background-color: var(--sub-color);
+          }
+
+          shogi-player-wc::part(root) {
+            --sp_board_color: goldenrod;
+            --sp_board_piece_size: 1.0;
+          }
+
+          
+
+          .explane-container {
+            display: flex;
+          }
+
+          .piece-explane {
+            background-color: white;
+            width: -webkit-fill-available;
+          }
+
+          
+
+          @media screen and (max-width: 766px) {
+            .container {
+              flex-direction: column;
+            }
+          }
+        `
+
+        static properties = {
+          source: { type: String },
+          comment_lines: { type: Array },
+          comments: { type: String },
+          turn: { type: String },
+          pass_css: { type: String },
+          human_sfen: { type: String },
+          ai_sfen: { type: String },
+          first_sfen: { type: String },
+          chapter: { type: Number},
+          turn_max: { type: Number },
+          human_side:{ type: String }
+        }
+
+        constructor() {
+          super()
+          this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
+          this.comment_lines = null
+          this.comments = ""
+          this.turn = null
+          this.pass_css = `.place_5_4::before{  content: "";
+                                                position: absolute;
+                                                width: 40%;
+                                                height: 40%;                                             
+                                                background-color: dimgray;
+                                                border-radius: 50%;
+                                              }
+                            .place_5_2::before{ content: "";
+                                                position: absolute;
+                                                display: inline-block;
+                                                width: 100%;
+                                                height: 100%;
+                                                background-color: #1E88E5;
+                                                clip-path: polygon(30% 25%, 50% 0, 70% 25%, 55% 25%, 55% 100%, 45% 100%, 45% 25%);
+                                              }
+                            .place_5_3::before{ content: "";
+                                                position: absolute;
+                                                display: inline-block;
+                                                width: 10%;
+                                                height: 100%;
+                                                background-color: #1E88E5;
+                                              }`
+                            
+          this.human_sfen = ""
+          this.ai_sfen = ""
+          this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
+          this.chapter = 1
+          this.turn_max = 37
+          this.human_side = "black"
+        }
+
+        firstUpdated() {
+          this.king();
+        }
+
+      
+
+        render() {
+          const lines = this.comments.split('*');
+          return html`
+          
+            <div class="container">
+              
+              <div class="article-top">
+                <div class="top-content">
+                  <div>
+                    将棋のルール
+                  </div>
+                </div>
+              </div>
+              <div class="tab-container">
+                <div class="tab-button tab-button-border">
+                  <div></div>
+                  <input id="king-button" type="button" @click="${this.king}" style="display: none">
+                  <label id="king-tab" for="king-button" class="piece-button tab-active">王将</label>
+                  <input id="gold-button" type="button" @click="${this.gold}" style="display: none">
+                  <label id="gold-tab" for="gold-button" class="piece-button">金将</label>
+                  <input id="silver-button" type="button" @click="${this.silver}" style="display: none">
+                  <label id="silver-tab" for="silver-button" class="piece-button">銀将</label>
+                  <input id="pawn-button" type="button" @click="${this.pawn}" style="display: none">
+                  <label id="pawn-tab" for="pawn-button" class="piece-button">歩兵</label>
+                  <input id="rook-button" type="button" @click="${this.rook}" style="display: none">
+                  <label id="rook-tab" for="rook-button" class="piece-button">飛車</label>
+                  <input id="bishop-button" type="button" @click="${this.bishop}" style="display: none">
+                  <label id="bishop-tab" for="bishop-button" class="piece-button">角行</label>
+                  <input id="knight-button" type="button" @click="${this.knight}" style="display: none">
+                  <label id="knight-tab" for="knight-button" class="piece-button">桂馬</label>
+                  <input id="lance-button" type="button" @click="${this.lance}" style="display: none">
+                  <label id="lance-tab" for="lance-button" class="piece-button">香車</label>
+                  <div></div>
+                </div>
+                <div class="explane-container">
+                  <shogi-player-wc
+                    sp_mode="play"
+                    sp_body="${this.source}"
+                    sp_mobile_vertical="false"
+                    sp_piece_variant="portella"
+                    sp_viewpoint="black"
+                    sp_controller="false"
+                    sp_human_side="${this.human_side}"
+                    sp_dev_tools_position="left"
+                    sp_pass_css="${this.pass_css}"
+                    sp_coordinate="true"
+                    sp_debug="false"
+                    sp_illegal_cancel="true"
+                  ></shogi-player-wc>
+                  <div class="piece-explane"></div>
                 </div>
               </div>
             </div>
-            <div class="tab-container">
-              <div class="tab-button tab-button-border">
-                <div></div>
-                <input id="king-button" type="button" @click="${this.king}" style="display: none">
-                <label id="king-tab" for="king-button" class="piece-button tab-active">王将</label>
-                <input id="gold-button" type="button" @click="${this.gold}" style="display: none">
-                <label id="gold-tab" for="gold-button" class="piece-button">金将</label>
-                <input id="silver-button" type="button" @click="${this.silver}" style="display: none">
-                <label id="silver-tab" for="silver-button" class="piece-button">銀将</label>
-                <input id="pawn-button" type="button" @click="${this.pawn}" style="display: none">
-                <label id="pawn-tab" for="pawn-button" class="piece-button">歩兵</label>
-                <input id="rook-button" type="button" @click="${this.rook}" style="display: none">
-                <label id="rook-tab" for="rook-button" class="piece-button">飛車</label>
-                <input id="bishop-button" type="button" @click="${this.bishop}" style="display: none">
-                <label id="bishop-tab" for="bishop-button" class="piece-button">角行</label>
-                <input id="knight-button" type="button" @click="${this.knight}" style="display: none">
-                <label id="knight-tab" for="knight-button" class="piece-button">桂馬</label>
-                <input id="lance-button" type="button" @click="${this.lance}" style="display: none">
-                <label id="lance-tab" for="lance-button" class="piece-button">香車</label>
-                <div></div>
-              </div>
-              <div class="explane-container">
-                <shogi-player-wc
-                  sp_mode="play"
-                  sp_body="${this.source}"
-                  sp_mobile_vertical="false"
-                  sp_piece_variant="portella"
-                  sp_viewpoint="black"
-                  sp_controller="false"
-                  sp_human_side="${this.human_side}"
-                  sp_dev_tools_position="left"
-                  sp_pass_css="${this.pass_css}"
-                  sp_coordinate="true"
-                  sp_debug="false"
-                  sp_illegal_cancel="true"
-                ></shogi-player-wc>
-                <div class="piece-explane"></div>
-              </div>
-            </div>
-          </div>
-        `
-      }
-
-      remove_active() {
-        var tab_button_elem;
-        tab_button_elem = this.shadowRoot.querySelectorAll(".piece-button");
-        for (var i = 0; i < tab_button_elem.length; i++) {
-          tab_button_elem[i].classList.remove("tab-active");
+          `
         }
 
-        console.log(this.shadowRoot.querySelector(".tab-button"));
+        remove_active() {
+          var tab_button_elem;
+          tab_button_elem = this.shadowRoot.querySelectorAll(".piece-button");
+          for (var i = 0; i < tab_button_elem.length; i++) {
+            tab_button_elem[i].classList.remove("tab-active");
+          }
 
-      }
+          console.log(this.shadowRoot.querySelector(".tab-button"));
 
-      king() {
-        this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
-        this.pass_css = this.make_arrow(5, 4, "up");
-        this.pass_css += this.make_arrow(4, 4, "up_right");
-        this.pass_css += this.make_arrow(4, 5, "right");
-        this.pass_css += this.make_arrow(4, 6, "down_right");
-        this.pass_css += this.make_arrow(5, 6, "down");
-        this.pass_css += this.make_arrow(6, 6, "down_left");
-        this.pass_css += this.make_arrow(6, 5, "left");
-        this.pass_css += this.make_arrow(6, 4, "up_left");
-        this.remove_active();
-        this.shadowRoot.getElementById("king-tab").classList.add("tab-active");
-      }
+        }
 
-      gold() {
-        this.source = "position sfen 9/9/9/9/4G4/9/9/9/9 b - 1";
-        this.pass_css = this.make_arrow(5, 4, "up");
-        this.pass_css += this.make_arrow(4, 4, "up_right");
-        this.pass_css += this.make_arrow(4, 5, "right");
-        this.pass_css += this.make_arrow(5, 6, "down");
-        this.pass_css += this.make_arrow(6, 5, "left");
-        this.pass_css += this.make_arrow(6, 4, "up_left");
-        this.remove_active();
-        this.shadowRoot.getElementById("gold-tab").classList.add("tab-active");
-      }
+        king() {
+          this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
+          this.pass_css = this.make_arrow(5, 4, "up");
+          this.pass_css += this.make_arrow(4, 4, "up_right");
+          this.pass_css += this.make_arrow(4, 5, "right");
+          this.pass_css += this.make_arrow(4, 6, "down_right");
+          this.pass_css += this.make_arrow(5, 6, "down");
+          this.pass_css += this.make_arrow(6, 6, "down_left");
+          this.pass_css += this.make_arrow(6, 5, "left");
+          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.remove_active();
+          this.shadowRoot.getElementById("king-tab").classList.add("tab-active");
+        }
 
-      silver() {
-        this.source = "position sfen 9/9/9/9/4S4/9/9/9/9 b - 1";
-        this.pass_css = this.make_arrow(5, 4, "up");
-        this.pass_css += this.make_arrow(4, 4, "up_right");
-        this.pass_css += this.make_arrow(4, 6, "down_right");
-        this.pass_css += this.make_arrow(6, 6, "down_left");
-        this.pass_css += this.make_arrow(6, 4, "up_left");
-        this.remove_active();
-        this.shadowRoot.getElementById("silver-tab").classList.add("tab-active");
-      }
+        gold() {
+          this.source = "position sfen 9/9/9/9/4G4/9/9/9/9 b - 1";
+          this.pass_css = this.make_arrow(5, 4, "up");
+          this.pass_css += this.make_arrow(4, 4, "up_right");
+          this.pass_css += this.make_arrow(4, 5, "right");
+          this.pass_css += this.make_arrow(5, 6, "down");
+          this.pass_css += this.make_arrow(6, 5, "left");
+          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.remove_active();
+          this.shadowRoot.getElementById("gold-tab").classList.add("tab-active");
+        }
 
-      pawn() {
-        this.source = "position sfen 9/9/9/9/4P4/9/9/9/9 b - 1";
-        this.pass_css = this.make_arrow(5, 4, "up");
-        this.remove_active();
-        this.shadowRoot.getElementById("pawn-tab").classList.add("tab-active");
-      }
+        silver() {
+          this.source = "position sfen 9/9/9/9/4S4/9/9/9/9 b - 1";
+          this.pass_css = this.make_arrow(5, 4, "up");
+          this.pass_css += this.make_arrow(4, 4, "up_right");
+          this.pass_css += this.make_arrow(4, 6, "down_right");
+          this.pass_css += this.make_arrow(6, 6, "down_left");
+          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.remove_active();
+          this.shadowRoot.getElementById("silver-tab").classList.add("tab-active");
+        }
 
-      rook() {
-        this.source = "position sfen 9/1R8/9/9/9/6p2/9/3l2R2/9 b - 1";
-        this.pass_css = this.make_arrow(3, 7, "up");
-        this.pass_css += this.make_stick(4, 8, "holizontal");
-        this.pass_css += this.make_arrow(5, 8, "left");
-        this.pass_css += this.make_arrow(8, 1, "up");
-        this.pass_css += this.make_arrow(9, 2, "left");
-        this.pass_css += this.make_arrow(1, 2, "right");
-        this.pass_css += this.make_arrow(8, 9, "down");
-        this.pass_css += this.make_stick(8, 3, "vertical");
-        this.pass_css += this.make_stick(8, 4, "vertical");
-        this.pass_css += this.make_stick(8, 5, "vertical");
-        this.pass_css += this.make_stick(8, 6, "vertical");
-        this.pass_css += this.make_stick(8, 7, "vertical");
-        this.pass_css += this.make_stick(8, 8, "vertical");
-        this.pass_css += this.make_stick(2, 2, "holizontal");
-        this.pass_css += this.make_stick(3, 2, "holizontal");
-        this.pass_css += this.make_stick(4, 2, "holizontal");
-        this.pass_css += this.make_stick(5, 2, "holizontal");
-        this.pass_css += this.make_stick(6, 2, "holizontal");
-        this.pass_css += this.make_stick(7, 2, "holizontal");
-        this.remove_active();
-        this.shadowRoot.getElementById("rook-tab").classList.add("tab-active");
-      }
+        pawn() {
+          this.source = "position sfen 9/9/9/9/4P4/9/9/9/9 b - 1";
+          this.pass_css = this.make_arrow(5, 4, "up");
+          this.remove_active();
+          this.shadowRoot.getElementById("pawn-tab").classList.add("tab-active");
+        }
 
-      bishop() {
-        this.source = "position sfen 9/9/2B6/9/9/9/s3p4/9/2B6 b - 1";
-        this.pass_css = this.make_arrow(9, 1, "up_left");
-        this.pass_css += this.make_arrow(5, 1, "up_right");
-        this.pass_css += this.make_arrow(9, 5, "down_left");
-        this.pass_css += this.make_arrow(1, 9, "down_right");
-        this.pass_css += this.make_arrow(8, 8, "up_left");
-        this.pass_css += this.make_arrow(6, 8, "up_right");
-        this.pass_css += this.make_stick(8, 2, "diagonal_left");
-        this.pass_css += this.make_stick(6, 4, "diagonal_left");
-        this.pass_css += this.make_stick(5, 5, "diagonal_left");
-        this.pass_css += this.make_stick(4, 6, "diagonal_left");
-        this.pass_css += this.make_stick(3, 7, "diagonal_left");
-        this.pass_css += this.make_stick(2, 8, "diagonal_left");
-        this.pass_css += this.make_stick(6, 2, "diagonal_right");
-        this.pass_css += this.make_stick(8, 4, "diagonal_right");
-        this.remove_active();
-        this.shadowRoot.getElementById("bishop-tab").classList.add("tab-active");
-      }
+        rook() {
+          this.source = "position sfen 9/1R8/9/9/9/6p2/9/3l2R2/9 b - 1";
+          this.pass_css = this.make_arrow(3, 7, "up");
+          this.pass_css += this.make_stick(4, 8, "holizontal");
+          this.pass_css += this.make_arrow(5, 8, "left");
+          this.pass_css += this.make_arrow(8, 1, "up");
+          this.pass_css += this.make_arrow(9, 2, "left");
+          this.pass_css += this.make_arrow(1, 2, "right");
+          this.pass_css += this.make_arrow(8, 9, "down");
+          this.pass_css += this.make_stick(8, 3, "vertical");
+          this.pass_css += this.make_stick(8, 4, "vertical");
+          this.pass_css += this.make_stick(8, 5, "vertical");
+          this.pass_css += this.make_stick(8, 6, "vertical");
+          this.pass_css += this.make_stick(8, 7, "vertical");
+          this.pass_css += this.make_stick(8, 8, "vertical");
+          this.pass_css += this.make_stick(2, 2, "holizontal");
+          this.pass_css += this.make_stick(3, 2, "holizontal");
+          this.pass_css += this.make_stick(4, 2, "holizontal");
+          this.pass_css += this.make_stick(5, 2, "holizontal");
+          this.pass_css += this.make_stick(6, 2, "holizontal");
+          this.pass_css += this.make_stick(7, 2, "holizontal");
+          this.remove_active();
+          this.shadowRoot.getElementById("rook-tab").classList.add("tab-active");
+        }
 
-      knight() {
-        var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #b5ffe0;"
-        this.source = "position sfen 9/9/8P/9/7N1/2P6/2N6/9/7N1 b - 1";
-        this.pass_css = ".place_6_6" + common + " clip-path: polygon(35% 0, 45% 0, 10% 100%, 0% 100%);}";
-        this.pass_css += ".place_1_8"+ common + " clip-path: polygon(35% 0, 45% 0, 10% 100%, 0% 100%);}";
-        this.pass_css += ".place_8_6" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
-        this.pass_css += ".place_3_4" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
-        this.pass_css += ".place_3_8" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
-        this.pass_css += ".place_1_7" + common + " clip-path: polygon(39% 44%, 66% 29%, 74% 60%, 61% 54%, 45% 100%, 35% 100%, 52% 50%);}";
-        this.pass_css += ".place_6_5" + common + " clip-path: polygon(39% 44%, 66% 29%, 74% 60%, 61% 54%, 45% 100%, 35% 100%, 52% 50%);}";
-        this.pass_css += ".place_3_3" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
-        this.pass_css += ".place_3_7" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
-        this.pass_css += ".place_8_5" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
-        this.remove_active();
-        this.shadowRoot.getElementById("knight-tab").classList.add("tab-active");
-      }
+        bishop() {
+          this.source = "position sfen 9/9/2B6/9/9/9/s3p4/9/2B6 b - 1";
+          this.pass_css = this.make_arrow(9, 1, "up_left");
+          this.pass_css += this.make_arrow(5, 1, "up_right");
+          this.pass_css += this.make_arrow(9, 5, "down_left");
+          this.pass_css += this.make_arrow(1, 9, "down_right");
+          this.pass_css += this.make_arrow(8, 8, "up_left");
+          this.pass_css += this.make_arrow(6, 8, "up_right");
+          this.pass_css += this.make_stick(8, 2, "diagonal_left");
+          this.pass_css += this.make_stick(6, 4, "diagonal_left");
+          this.pass_css += this.make_stick(5, 5, "diagonal_left");
+          this.pass_css += this.make_stick(4, 6, "diagonal_left");
+          this.pass_css += this.make_stick(3, 7, "diagonal_left");
+          this.pass_css += this.make_stick(2, 8, "diagonal_left");
+          this.pass_css += this.make_stick(6, 2, "diagonal_right");
+          this.pass_css += this.make_stick(8, 4, "diagonal_right");
+          this.remove_active();
+          this.shadowRoot.getElementById("bishop-tab").classList.add("tab-active");
+        }
 
-      lance() {
-        this.source = "position sfen 9/9/2p6/9/9/9/9/9/2L5L b - 1";
-        this.pass_css = this.make_arrow(1, 1, "up");
-        this.pass_css += this.make_arrow(7, 4, "up");
-        this.pass_css += this.make_stick(1, 2, "vertical");
-        this.pass_css += this.make_stick(1, 3, "vertical");
-        this.pass_css += this.make_stick(1, 4, "vertical");
-        this.pass_css += this.make_stick(1, 5, "vertical");
-        this.pass_css += this.make_stick(1, 6, "vertical");
-        this.pass_css += this.make_stick(1, 7, "vertical");
-        this.pass_css += this.make_stick(1, 8, "vertical");
-        this.pass_css += this.make_stick(7, 5, "vertical");
-        this.pass_css += this.make_stick(7, 6, "vertical");
-        this.pass_css += this.make_stick(7, 7, "vertical");
-        this.pass_css += this.make_stick(7, 8, "vertical");
-        this.remove_active();
-        this.shadowRoot.getElementById("lance-tab").classList.add("tab-active");
-      }
+        knight() {
+          var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #b5ffe0;"
+          this.source = "position sfen 9/9/8P/9/7N1/2P6/2N6/9/7N1 b - 1";
+          this.pass_css = ".place_6_6" + common + " clip-path: polygon(35% 0, 45% 0, 10% 100%, 0% 100%);}";
+          this.pass_css += ".place_1_8"+ common + " clip-path: polygon(35% 0, 45% 0, 10% 100%, 0% 100%);}";
+          this.pass_css += ".place_8_6" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
+          this.pass_css += ".place_3_4" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
+          this.pass_css += ".place_3_8" + common + " clip-path: polygon(55% 0, 65% 0, 100% 100%, 90% 100%);}";
+          this.pass_css += ".place_1_7" + common + " clip-path: polygon(39% 44%, 66% 29%, 74% 60%, 61% 54%, 45% 100%, 35% 100%, 52% 50%);}";
+          this.pass_css += ".place_6_5" + common + " clip-path: polygon(39% 44%, 66% 29%, 74% 60%, 61% 54%, 45% 100%, 35% 100%, 52% 50%);}";
+          this.pass_css += ".place_3_3" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
+          this.pass_css += ".place_3_7" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
+          this.pass_css += ".place_8_5" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
+          this.remove_active();
+          this.shadowRoot.getElementById("knight-tab").classList.add("tab-active");
+        }
 
-      make_arrow(line, row, direction) {
-        var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #b5ffe0;";
-        switch (direction) {
-          case "up":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 45%, 30% 45%, 50% 20%, 70% 45%, 55% 45%, 55% 100%, 45% 100%);}";
-            break;
+        lance() {
+          this.source = "position sfen 9/9/2p6/9/9/9/9/9/2L5L b - 1";
+          this.pass_css = this.make_arrow(1, 1, "up");
+          this.pass_css += this.make_arrow(7, 4, "up");
+          this.pass_css += this.make_stick(1, 2, "vertical");
+          this.pass_css += this.make_stick(1, 3, "vertical");
+          this.pass_css += this.make_stick(1, 4, "vertical");
+          this.pass_css += this.make_stick(1, 5, "vertical");
+          this.pass_css += this.make_stick(1, 6, "vertical");
+          this.pass_css += this.make_stick(1, 7, "vertical");
+          this.pass_css += this.make_stick(1, 8, "vertical");
+          this.pass_css += this.make_stick(7, 5, "vertical");
+          this.pass_css += this.make_stick(7, 6, "vertical");
+          this.pass_css += this.make_stick(7, 7, "vertical");
+          this.pass_css += this.make_stick(7, 8, "vertical");
+          this.remove_active();
+          this.shadowRoot.getElementById("lance-tab").classList.add("tab-active");
+        }
 
-          case "down":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 0, 55% 0, 55% 55%, 70% 55%, 50% 80%, 30% 55%, 45% 55%);}";
-            break;
+        make_arrow(line, row, direction) {
+          var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #b5ffe0;";
+          switch (direction) {
+            case "up":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 45%, 30% 45%, 50% 20%, 70% 45%, 55% 45%, 55% 100%, 45% 100%);}";
+              break;
 
-          case "right":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(0 45%, 55% 45%, 55% 30%, 80% 50%, 55% 70%, 55% 55%, 0 55%);}";
-            break;
+            case "down":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 0, 55% 0, 55% 55%, 70% 55%, 50% 80%, 30% 55%, 45% 55%);}";
+              break;
 
-          case "left":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(20% 50%, 45% 30%, 45% 45%, 100% 45%, 100% 55%, 45% 55%, 45% 70%);}";
-            break;
+            case "right":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(0 45%, 55% 45%, 55% 30%, 80% 50%, 55% 70%, 55% 55%, 0 55%);}";
+              break;
 
-          case "up_right":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(40% 30%, 70% 30%, 70% 60%, 59% 48%, 7% 100%, 0 93%, 51% 41%);}";
-            break;
+            case "left":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(20% 50%, 45% 30%, 45% 45%, 100% 45%, 100% 55%, 45% 55%, 45% 70%);}";
+              break;
 
-          case "up_left":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(30% 30%, 60% 30%, 49% 42%, 100% 93%, 93% 100%, 41% 48%, 30% 60%);}";
-            break;
+            case "up_right":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(40% 30%, 70% 30%, 70% 60%, 59% 48%, 7% 100%, 0 93%, 51% 41%);}";
+              break;
 
-          case "down_right":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(7% 0, 59% 52%, 70% 40%, 70% 70%, 40% 70%, 51% 58%, 0 7%);}";
-            break;
+            case "up_left":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(30% 30%, 60% 30%, 49% 42%, 100% 93%, 93% 100%, 41% 48%, 30% 60%);}";
+              break;
 
-          case "down_left":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(41% 52%, 93% 0, 100% 7%, 49% 59%, 60% 70%, 30% 70%, 30% 40%);}";
-            break;
+            case "down_right":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(7% 0, 59% 52%, 70% 40%, 70% 70%, 40% 70%, 51% 58%, 0 7%);}";
+              break;
+
+            case "down_left":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(41% 52%, 93% 0, 100% 7%, 49% 59%, 60% 70%, 30% 70%, 30% 40%);}";
+              break;
+            
+            default:
+              return "";
+          }
           
-          default:
-            return "";
         }
+
+        make_stick(line, row, direction) {
+          var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #b5ffe0;";
+          switch (direction) {
+            case "vertical":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 0, 55% 0, 55% 100%, 45% 100%);}";
+              break;
+
+            case "holizontal":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(100% 45%, 100% 55%, 0 55%, 0 45%);}";
+              break;
+            
+            case "diagonal_right":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(0 93%, 93% 0, 100% 0, 100% 7%, 7% 100%, 0 100%);}";
+              break;
+            
+            case "diagonal_left":
+              return ".place_" + line + "_" + row + common + " clip-path: polygon(93% 100%, 0 7%, 0 0, 7% 0, 100% 93%, 100% 100%);}";
+              break;
+
+            default:
+              return "";
+          }
+        }
+
+        
         
       }
-
-      make_stick(line, row, direction) {
-        var common = "::before{ content: ''; position: absolute; display: inline-block; width: 100%; height: 100%; background-color: #b5ffe0;";
-        switch (direction) {
-          case "vertical":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(45% 0, 55% 0, 55% 100%, 45% 100%);}";
-            break;
-
-          case "holizontal":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(100% 45%, 100% 55%, 0 55%, 0 45%);}";
-            break;
-          
-          case "diagonal_right":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(0 93%, 93% 0, 100% 0, 100% 7%, 7% 100%, 0 100%);}";
-            break;
-          
-          case "diagonal_left":
-            return ".place_" + line + "_" + row + common + " clip-path: polygon(93% 100%, 0 7%, 0 0, 7% 0, 100% 93%, 100% 100%);}";
-            break;
-
-          default:
-            return "";
-        }
-      }
-
-      
-      
-    }
-    customElements.define("shogi-board", ShogiBoard);
-  </script></head>
+      customElements.define("shogi-board", ShogiBoard);
+    </script>
+  </head>
   <body>
     <header id="header">
       <div></div>          

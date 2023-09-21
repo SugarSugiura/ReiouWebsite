@@ -65,31 +65,67 @@
             font-weight: 600;
           }
 
-          .tab-button {
+          .tab-button-container {
             width: 100%;
+            height: 50px;
+            line-height: 50px;
             display: flex;
             align-items: end;
-            
-            border-bottom-width: 12.5%;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
           }
 
-          .tab-button-border {
-            //width: 12.5%;
-            border-bottom: 3px solid var(--sub-color);
-          }
-
-          .tab-button:before {
+          .tab-button-container:before {
             content: "";
-            
+            border-bottom: 3px solid var(--sub-color);
             width: calc((100% - 2rem - 2px) / 8);
             position: absolute;
+            transition: transform 0.225s cubic-bezier(0.35, 0, 0.25, 1), 0.5s cubic-bezier(0.35, 0, 0.25, 1);
+            
+          }
+
+          .tab-clicked {
+            background-color: rgb(0, 0, 0);
+          }
+
+          .tab-button-border-1:before {
+            transform: translateX(0%);
+          }
+
+          .tab-button-border-2:before {
             transform: translateX(100%);
           }
 
+          .tab-button-border-3:before {
+            transform: translateX(200%);
+          }
+
+          .tab-button-border-4:before {
+            transform: translateX(300%);
+          }
+
+          .tab-button-border-5:before {
+            transform: translateX(400%);
+          }
+
+          .tab-button-border-6:before {
+            transform: translateX(500%);
+          }
+
+          .tab-button-border-7:before {
+            transform: translateX(600%);
+          }
+
+          .tab-button-border-8:before {
+            transform: translateX(700%);
+          }
+
+
           .piece-button {
+            height: 100%;
             border-bottom: none; 
             width: -webkit-fill-available;
             text-align: center;
+            transition: 0.5s;
           }
 
           
@@ -177,6 +213,7 @@
           this.chapter = 1
           this.turn_max = 37
           this.human_side = "black"
+          this.isClicked = false;
         }
 
         firstUpdated() {
@@ -199,10 +236,10 @@
                 </div>
               </div>
               <div class="tab-container">
-                <div class="tab-button tab-button-border">
+                <div class="tab-button-container tab-button-border-1">
                   <div></div>
                   <input id="king-button" type="button" @click="${this.king}" style="display: none">
-                  <label id="king-tab" for="king-button" class="piece-button tab-active">王将</label>
+                  <label id="king-tab" for="king-button" class="piece-button tab-active ${this.isClicked ? 'tab-clicked' : ''}" @mousedown=${this.toggleClick}>王将</label>
                   <input id="gold-button" type="button" @click="${this.gold}" style="display: none">
                   <label id="gold-tab" for="gold-button" class="piece-button">金将</label>
                   <input id="silver-button" type="button" @click="${this.silver}" style="display: none">
@@ -242,15 +279,24 @@
         }
 
         remove_active() {
-          var tab_button_elem;
-          tab_button_elem = this.shadowRoot.querySelectorAll(".piece-button");
+          var tab_button_elem = this.shadowRoot.querySelectorAll(".piece-button");
+          var button_container = this.shadowRoot.querySelector(".tab-button-container");
           for (var i = 0; i < tab_button_elem.length; i++) {
             tab_button_elem[i].classList.remove("tab-active");
+            button_container.classList.remove("tab-button-border-" + (i + 1));
           }
 
-          console.log(this.shadowRoot.querySelector(".tab-button"));
 
         }
+
+        toggleClick() {
+          this.isClicked = !this.isClicked;
+          setTimeout(() => {
+            this.isClicked = false;
+          }, 100);
+          this.requestUpdate(); // レンダリングの更新をトリガー
+        }
+        
 
         king() {
           this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
@@ -264,6 +310,7 @@
           this.pass_css += this.make_arrow(6, 4, "up_left");
           this.remove_active();
           this.shadowRoot.getElementById("king-tab").classList.add("tab-active");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-1");
         }
 
         gold() {
@@ -276,6 +323,7 @@
           this.pass_css += this.make_arrow(6, 4, "up_left");
           this.remove_active();
           this.shadowRoot.getElementById("gold-tab").classList.add("tab-active");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-2");
         }
 
         silver() {
@@ -287,6 +335,7 @@
           this.pass_css += this.make_arrow(6, 4, "up_left");
           this.remove_active();
           this.shadowRoot.getElementById("silver-tab").classList.add("tab-active");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-3");
         }
 
         pawn() {
@@ -294,6 +343,7 @@
           this.pass_css = this.make_arrow(5, 4, "up");
           this.remove_active();
           this.shadowRoot.getElementById("pawn-tab").classList.add("tab-active");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-4");
         }
 
         rook() {
@@ -319,6 +369,7 @@
           this.pass_css += this.make_stick(7, 2, "holizontal");
           this.remove_active();
           this.shadowRoot.getElementById("rook-tab").classList.add("tab-active");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-5");
         }
 
         bishop() {
@@ -339,6 +390,7 @@
           this.pass_css += this.make_stick(8, 4, "diagonal_right");
           this.remove_active();
           this.shadowRoot.getElementById("bishop-tab").classList.add("tab-active");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-6");
         }
 
         knight() {
@@ -356,6 +408,7 @@
           this.pass_css += ".place_8_5" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
           this.remove_active();
           this.shadowRoot.getElementById("knight-tab").classList.add("tab-active");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-7");
         }
 
         lance() {
@@ -375,6 +428,7 @@
           this.pass_css += this.make_stick(7, 8, "vertical");
           this.remove_active();
           this.shadowRoot.getElementById("lance-tab").classList.add("tab-active");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-8");
         }
 
         make_arrow(line, row, direction) {

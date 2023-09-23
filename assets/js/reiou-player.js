@@ -42,7 +42,7 @@ export class ShogiBoard extends LitElement {
       margin: 0;
     }
 
-    .video_container {
+    .video-container {
       position: absolute;
       z-index: 1000;
       transform: translateX(-50%) translateY(-50%);
@@ -212,6 +212,13 @@ export class ShogiBoard extends LitElement {
 
     .foot-button-container {
       display: none;
+    }
+
+    .close {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      z-index: 9999;
     }
     
 
@@ -427,22 +434,7 @@ export class ShogiBoard extends LitElement {
   }
 
 
-  connectedCallback() {
-    super.connectedCallback();
-    // ビデオのendedイベントをリッスンして、ビデオが終了したら処理を実行
-    this.shadowRoot.querySelector('video').addEventListener('ended', this.handleVideoEnded);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    // コンポーネントがデタッチされるときにイベントリスナーを削除
-    this.shadowRoot.querySelector('video').removeEventListener('ended', this.handleVideoEnded);
-  }
-
-  handleVideoEnded() {
-    // ビデオが終了したら、isVideoEnded プロパティを true に設定
-    this.isVideoEnded = true;
-  }
+ 
 
 
 
@@ -451,7 +443,9 @@ export class ShogiBoard extends LitElement {
     const lines = first_comment.split('*');
     
     return html`
-    <div class="video_container">
+    <div class="video-container">
+      <input id="close-video-button" type="button" @click="${this.handleVideoEnded}" style="display: none">
+      <label class="close" for="close-video-button">✖</label>
       <video controls width="640" height="360" ?hidden=${this.isVideoEnded}>
         <source src=${this.video_url} type="video/mp4">
         Your browser does not support the video tag.
@@ -512,6 +506,10 @@ export class ShogiBoard extends LitElement {
       <div></div>
     </div>
     `
+  }
+
+  handleVideoEnded() {
+    this.shadowRoot.querySelector(".video-container").style.display = "none";
   }
 
 

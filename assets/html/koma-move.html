@@ -9,7 +9,7 @@
     <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module">
-      import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
+      import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
       export class ShogiBoard extends LitElement {
         static styles = css`
           :host {
@@ -84,7 +84,47 @@
           }
 
           .tab-clicked {
-            background-color: rgb(0, 0, 0);
+            background-color: rgb(203 203 255);
+          }
+
+          .ripple-container {
+            pointer-events: none;
+            position: absolute;
+            overflow: hidden;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transition: all 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+          }
+
+          .riplle {
+            background-color: rgb(255, 64, 129);
+            border-color: rgb(255, 64, 129);
+            width: 100.745px;
+            height: 100.745px;
+            margin-top: -50.3723px;
+            margin-left: -50.3723px;
+            left: 50%;
+            top: 50%;
+            opacity: 0.20;
+            transform: scale(1);
+            transform-origin: 50% 50%;
+            border-radius: 50%;
+            transition: left 1.8s cubic-bezier(0.25, 0.8, 0.25, 1), top 1.8s cubic-bezier(0.25, 0.8, 0.25, 1), margin 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), border 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), width 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), height 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 1.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          }
+
+          .ripple[active] {
+            transform: scale(4);
+            z-index: 1;
+            opacity: 0;
+          }
+
+          @keyframes ripple-animation {
+            to {
+              transform: scale(4);
+              opacity: 0;
+            }
           }
 
           .tab-button-border-1:before {
@@ -126,7 +166,12 @@
             width: -webkit-fill-available;
             text-align: center;
             transition: 0.5s;
+            position: relative;
+            overflow: hidden;
+            z-index: -1;
           }
+
+          
 
           
 
@@ -213,7 +258,9 @@
           this.chapter = 1
           this.turn_max = 37
           this.human_side = "black"
-          this.isClicked = false;
+          this.rippleX = 0;
+          this.rippleY = 0;
+          this.isRippling = false;
         }
 
         firstUpdated() {
@@ -239,21 +286,21 @@
                 <div class="tab-button-container tab-button-border-1">
                   <div></div>
                   <input id="king-button" type="button" @click="${this.king}" style="display: none">
-                  <label id="king-tab" for="king-button" class="piece-button tab-active ${this.isClicked ? 'tab-clicked' : ''}" @mousedown=${this.toggleClick}>王将</label>
+                  <label id="king-tab" for="king-button" class="piece-button tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}"}>王将</label>
                   <input id="gold-button" type="button" @click="${this.gold}" style="display: none">
-                  <label id="gold-tab" for="gold-button" class="piece-button">金将</label>
+                  <label id="gold-tab" for="gold-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}"><div>金将</div></label>
                   <input id="silver-button" type="button" @click="${this.silver}" style="display: none">
-                  <label id="silver-tab" for="silver-button" class="piece-button">銀将</label>
+                  <label id="silver-tab" for="silver-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">銀将</label>
                   <input id="pawn-button" type="button" @click="${this.pawn}" style="display: none">
-                  <label id="pawn-tab" for="pawn-button" class="piece-button">歩兵</label>
+                  <label id="pawn-tab" for="pawn-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">歩兵</label>
                   <input id="rook-button" type="button" @click="${this.rook}" style="display: none">
-                  <label id="rook-tab" for="rook-button" class="piece-button">飛車</label>
+                  <label id="rook-tab" for="rook-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">飛車</label>
                   <input id="bishop-button" type="button" @click="${this.bishop}" style="display: none">
-                  <label id="bishop-tab" for="bishop-button" class="piece-button">角行</label>
+                  <label id="bishop-tab" for="bishop-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">角行</label>
                   <input id="knight-button" type="button" @click="${this.knight}" style="display: none">
-                  <label id="knight-tab" for="knight-button" class="piece-button">桂馬</label>
+                  <label id="knight-tab" for="knight-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">桂馬</label>
                   <input id="lance-button" type="button" @click="${this.lance}" style="display: none">
-                  <label id="lance-tab" for="lance-button" class="piece-button">香車</label>
+                  <label id="lance-tab" for="lance-button" class="piece-button tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">香車</label>
                   <div></div>
                 </div>
                 <div class="explane-container">
@@ -289,12 +336,38 @@
 
         }
 
-        toggleClick() {
-          this.isClicked = !this.isClicked;
+
+
+        add_click_color(event) {
+          // クリックした要素を取得します
+          const clickedElement = event.target;
+          console.log(clickedElement.children[0]);
+
+          clickedElement.classList.add("tab-clicked");
+          clickedElement.children[0].style.zIndex = 1;
+          clickedElement.children[0].style.transform = "scale(4)";
+          
+
+          // クリック位置を取得
+          const rect = this.getBoundingClientRect();
+          const offsetX = event.clientX - rect.left;
+          const offsetY = event.clientY - rect.top;
+
+          // クリック位置に波紋を設定
+          this.rippleX = offsetX;
+          this.rippleY = offsetY;
+          //this.isRippling = true;
+
           setTimeout(() => {
-            this.isClicked = false;
-          }, 100);
-          this.requestUpdate(); // レンダリングの更新をトリガー
+            clickedElement.classList.remove("tab-clicked");
+            this.isRippling = false;
+          }, 1000);
+        }
+
+        remove_click_color(event) {
+          const clickedElement = event.target;
+          clickedElement.classList.remove("tab-clicked");
+          //this.isRippling = false;
         }
         
 

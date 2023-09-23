@@ -19,7 +19,7 @@ function line_string(str, num) {
   }
 }
 
-import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
+import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"; 
 export class ShogiBoard extends LitElement {
   static styles = css`
     :host {
@@ -40,6 +40,14 @@ export class ShogiBoard extends LitElement {
 
     p {
       margin: 0;
+    }
+
+    .video_container {
+      position: absolute;
+      z-index: 1000;
+      transform: translateX(-50%) translateY(-50%);
+      left: 50%;
+      top: 50%;
     }
 
     .container {
@@ -269,7 +277,8 @@ export class ShogiBoard extends LitElement {
     file_path: { type: String }, 
     max_chapter_num: { type: Number },
     first_sfen: { type: String },
-    first_comment: { type: String }
+    first_comment: { type: String },
+    video_url: { type: String }
   }
 
   static fromAttribute(name, value) {
@@ -286,6 +295,8 @@ export class ShogiBoard extends LitElement {
     } else if (name === "branch_num") {
       return value;
     } else if (name === "first_comment") {
+      return value;
+    } else if (name === "video_url") {
       return value;
     }
     return super.fromAttribute(name, value);
@@ -320,6 +331,8 @@ export class ShogiBoard extends LitElement {
     this.file_path = "";
     this.max_chapter_num = 0;
     this.viewpoint = "";
+    this.video_url = "";
+    this.isVideoEnded = false;
   }
 
  
@@ -414,12 +427,36 @@ export class ShogiBoard extends LitElement {
   }
 
 
+  connectedCallback() {
+    super.connectedCallback();
+    // ビデオのendedイベントをリッスンして、ビデオが終了したら処理を実行
+    this.shadowRoot.querySelector('video').addEventListener('ended', this.handleVideoEnded);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    // コンポーネントがデタッチされるときにイベントリスナーを削除
+    this.shadowRoot.querySelector('video').removeEventListener('ended', this.handleVideoEnded);
+  }
+
+  handleVideoEnded() {
+    // ビデオが終了したら、isVideoEnded プロパティを true に設定
+    this.isVideoEnded = true;
+  }
+
+
 
   render() {
     const first_comment = this.first_comment;
     const lines = first_comment.split('*');
     
     return html`
+    <div class="video_container">
+      <video controls width="640" height="360" ?hidden=${this.isVideoEnded}>
+        <source src=${this.video_url} type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
     <div class="container">
 
       <shogi-player-wc

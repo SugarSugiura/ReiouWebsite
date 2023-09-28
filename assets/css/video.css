@@ -14,7 +14,8 @@
 
 html {
   background-color: #f9fbfe;
-  height: 100vh;
+  height: calc(100vh + 100px);
+  overflow-y: scroll;
 }
 
 a:visited {

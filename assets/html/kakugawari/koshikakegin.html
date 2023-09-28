@@ -2,6 +2,7 @@
 <html><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5E8DC3">
   <link rel="stylesheet" href="../../css/reset.css">
   <link rel="stylesheet" href="../../css/header.css">
   <link rel="stylesheet" href="../../css/slide.css">
@@ -10,30 +11,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
     html {
-      overflow: hidden;
+      overflow-y: scroll;
     }
 
-    body {
-      height: 100%;
-    }
-
-    @media (orientation: portrait){
-      html {
-        overflow: auto;
-      }
-    }
-
-    @media screen and (max-width: 1400px) {
-      html {
-        overflow: auto;
-      }
-    }
-    
-    @media screen and (max-width: 767px) {
-      html {
-        overflow: auto;
-      }
-    }
+   
+   
   </style>
   </head>
   <body>
@@ -41,7 +23,7 @@
       <div></div>          
       <div class="header_container">
         <div class="site-title"><!--空白でclass名を2つ指定-->
-          <a href="index.html"><img src="../../img/REIOUlogo.png" alt="REIOU"></a>
+          <a href="../../../index.html"><img src="../../img/REIOUlogo.png" alt="REIOU"></a>
         </div>
         <nav id="navi" class="pc-area"><!--元は-->
           <ul class="menu active"><!--元はmenu-->
@@ -110,6 +92,11 @@
           <input type="radio" name="slideshow" id="switch3">
           <input type="radio" name="slideshow" id="switch4">
           <input type="radio" name="slideshow" id="switch5">
+          <input type="radio" name="slideshow" id="switch6">
+          <input type="radio" name="slideshow" id="switch7">
+          <input type="radio" name="slideshow" id="switch8">
+          <input type="radio" name="slideshow" id="switch9">
+          <input type="radio" name="slideshow" id="switch10">
           <div class="slide_closeButton_container">
             <div style="position: relative; display: inline-block">
               <label class="slide_closeButton" for="slide_close">×</label>
@@ -132,8 +119,8 @@
                   <div style="flex-basis: 60%;">
                       <div class="logo">
                         <div>
-                          <div class="logo-text logo-yellow">
-                            角換わり<br>腰掛け銀
+                          <div class="logo-text logo-blue">
+                            角換わり右玉<br>
                           </div>
                         </div>
                       </div>
@@ -147,20 +134,14 @@
                   <div class="slide-txt">
                     <div>
                       <p>
-                        ①角換わり腰掛銀の基本図。バランス良く構えるのが現代流。
-                        <br>
-                        ②基本図から△４四歩には▲４五歩と開戦！
+                        ①角換わり腰掛銀の出だしから、玉を右に移動！
                       </p>
                     </div>
                   </div>
-                  <div class="slide-img-double">
-                    <div class="slide-img-1">
-                      <img src="../..\img\kakugawari-koshikake1.png" alt="" >
+                  <div class="slide-img-single">
+                    <div>
+                      <img src="../..\img\kakugawari-migigyoku1.png" alt="" >
                       <p>第１図</p>
-                    </div>
-                    <div class="slide-img-2">
-                      <img src="../..\img\kakugawari-koshikake2.png" alt="" >
-                      <p>第２図</p>
                     </div>
                   </div>
                 </div>
@@ -172,22 +153,58 @@
                   <div class="slide-txt">
                     <div>
                       <p>
-                        ③基本図から△６五歩には堂々と迎え撃つ！
+                        ①飛車先交換をとがめる桂頭攻め！
                         <br>
-                        ④基本図から△５二玉の待機戦術には、十分に形を整えてから襲い掛かる！
+                        ②持駒の角を駆使して反撃！
                       </p>
                     </div>
                   </div>
-                  <div class="slide-img-double">
-                    <div class="slide-img-1">
+                  <div class="slide-img-single">
+                    <div>
                       <div>
-                        <img src="../..\img\kakugawari-koshikake3.png" alt="" >
+                        <img src="../..\img\kakugawari-migigyoku2.png" alt="" >
+                        <p>第２図</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide4_container">
+                <div id="slide4" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ①相手が動いてこなくても積極的に攻めることは可能
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-single">
+                    <div>
+                      <div>
+                        <img src="../..\img\kakugawari-migigyoku3.png" alt="" >
                         <p>第３図</p>
                       </div>
                     </div>
-                    <div class="slide-img-2">
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide5_container">
+                <div id="slide5" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ①△５二金型にも桂頭攻めが急所！
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-single">
+                    <div>
                       <div>
-                        <img src="../..\img\kakugawari-koshikake4.png" alt="" >
+                        <img src="../..\img\kakugawari-migigyoku4.png" alt="" >
                         <p>第４図</p>
                       </div>
                     </div>
@@ -196,8 +213,29 @@
               </section>
             </div>
             <div class="slide_bg">
-              <section id="slide5_container">
-                <div id="slide5" class="slide_wrapper">
+              <section id="slide6_container">
+                <div id="slide6" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ①相手陣が偏っているときは薄い右辺を攻める！
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-single">
+                    <div>
+                      <div>
+                        <img src="../..\img\kakugawari-migigyoku5.png" alt="" >
+                        <p>第５図</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide7_container">
+                <div id="slide-last" class="slide_wrapper">
                   <div>
                     <div class="slide-txt-last">
                       <p>ここでスライドは終わりです
@@ -233,6 +271,21 @@
                 </div>
               </section>
             </div>
+            <div class="slide_bg">
+              <section id="slide5_container">
+                <div id="slide5" class="slide_wrapper">
+                  <img src="" alt="" width="100" height="400">
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide5_container">
+                <div id="slide5" class="slide_wrapper">
+                  <img src="" alt="" width="100" height="400">
+                </div>
+              </section>
+            </div>
+            
           </div>
           <p id="left-arrow" class="arrow prev">
             <i class="ico"></i>
@@ -240,6 +293,9 @@
             <label for="switch2"></label>
             <label for="switch3"></label>
             <label for="switch4"></label>
+            <label for="switch5"></label>
+            <label for="switch6"></label>
+            <label for="switch7"></label>
           </p>
           <p id="right-arrow" class="arrow next">
             <i class="ico"></i>
@@ -247,13 +303,24 @@
             <label for="switch2"></label>
             <label for="switch3"></label>
             <label for="switch4"></label>
+            <label for="switch5"></label>
+            <label for="switch6"></label>
+            <label for="switch7"></label>
           </p>
         </div>
       </div>
       
     </div>
-    <shogi-board id="shogi" file_path="kakugawari/koshikakegin" human_side="black" max_chapter_num = "4"></shogi-board>
+    <shogi-board  id="shogi"
+                  style="background-color: beige"
+                  file_path="kakugawari/koshikakegin"
+                  human_side="black"
+                  max_chapter_num = "4"
+                  first_sfen="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
+                  first_comment="第１章 基本図まで*角換わり腰掛銀は王道の戦法のひとつ。*細かい攻めをつなげていき、少しずつ敵陣を崩していく、という方針で指します。"
+                  branch_num="0,0,38,38,38,0"></shogi-board>
 
     <script src="../../js/test.js"></script>
   </body>
 </html>
+

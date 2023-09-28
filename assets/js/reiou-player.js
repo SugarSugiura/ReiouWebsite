@@ -42,13 +42,7 @@ export class ShogiBoard extends LitElement {
       margin: 0;
     }
 
-    .video-container {
-      position: absolute;
-      z-index: 1000;
-      transform: translateX(-50%) translateY(-50%);
-      left: 50%;
-      top: 50%;
-    }
+
 
     .container {
       position: relative;

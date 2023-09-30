@@ -42,6 +42,11 @@ export class ShogiBoard extends LitElement {
       margin: 0;
     }
 
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
 
 
     .container {
@@ -279,7 +284,10 @@ export class ShogiBoard extends LitElement {
     max_chapter_num: { type: Number },
     first_sfen: { type: String },
     first_comment: { type: String },
-    video_url: { type: String }
+    video_url: { type: String },
+    hint: { type:String },
+    hints_chapter: { type: Array },
+    current_hints: { type: String }
   }
 
   static fromAttribute(name, value) {
@@ -317,6 +325,7 @@ export class ShogiBoard extends LitElement {
     super()
     this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
     this.comments = "";
+    this.hint = "";
     this.turn = null;
     //this.pass_css =0 ".place_5_5 {background-color: blue;}";
     this.human_sfen = "";
@@ -324,10 +333,12 @@ export class ShogiBoard extends LitElement {
     this.human_side = "";
     this.sfen_chapter = ["", "", "", "", "", ""];
     this.comments_chapter = ["", "", "", "", "", ""];
+    this.hints_chapter = ["", "", "", "", "", ""];
     this.max_line_num = [0, 0, 0, 0, 0, 0];
     this.current_comments = "";
     this.branch_num = "";
     this.current_sfen = "";
+    this.current_hints = "";
     this.turn_max = 100;
     this.file_path = "";
     this.max_chapter_num = 0;
@@ -342,6 +353,7 @@ export class ShogiBoard extends LitElement {
   firstUpdated() {
     this.read_file_sfen();
     this.read_file_comments();
+    this.read_file_hints();
     setTimeout(() => {
       this.set_max_line_num();
       for (let i = 1; i <= this.max_chapter_num; i++) {
@@ -410,6 +422,36 @@ export class ShogiBoard extends LitElement {
       rec[i].send();
     }
   }
+
+  read_file_hints() {
+    // XMLHttpRequestオブジェクトを作成
+    let rec = new Array();
+  
+    for (let i = 1; i <= this.max_chapter_num; i++) {
+      rec[i] = new XMLHttpRequest();
+      let url = "../../kif/" + this.file_path + "/hints-" + i + ".txt";
+      // ファイルのURLを指定
+      rec[i].open('GET', url, true);
+  
+      // レスポンスタイプを指定
+      rec[i].responseType = 'text';
+  
+      // 読み込み完了時の処理
+      rec[i].onload = () => {
+        if (rec[i].status === 200) {
+          //console.log(rec.responseText); //rec.responceTextがファイルの中の文字列
+  
+          this.hints_chapter[i] = rec[i].responseText;
+  
+          if (i == 1) this.current_hints = this.hints_chapter[i];
+          this.hint = line_string(this.current_hints, 1);
+        }
+      };
+  
+      // 読み込み開始
+      rec[i].send();
+    }
+  }
   
 
   set_max_line_num() {
@@ -465,9 +507,11 @@ export class ShogiBoard extends LitElement {
             </div>
             <div class="pc-button">
               <input type="checkbox" id="hint-button-pc" @click="${this.add_hint}" style="display: none">
-              <label for="hint-button-pc">ヒント</label>
+              <label id="hint-button" for="hint-button-pc">ヒント</label>
               <input type="checkbox" id="slide-open-pc" @click="${this.open_slide}" style="display: none">
               <label for="slide-open-pc">スライド</label>
+              <a href="${"../../html/" + this.file_path + "-video.html"}"><label>動画ページ</label></a>
+
               
             </div>
           </div>
@@ -476,16 +520,6 @@ export class ShogiBoard extends LitElement {
               ${lines.map(line => html`<p>${line}</p>`)}
             </div>
             
-          </div>
-        </div>
-        <div class="foot-button-container">
-          <div>
-            <input type="checkbox" id="hint-button-phone" @click="${this.add_hint}" style="display: none">
-            <label for="hint-button-phone">ヒント</label>
-          </div>
-          <div>
-            <input type="checkbox" id="slide-open-phone" @click="${this.open_slide}" style="display: none">
-            <label for="slide-open-phone">スライド</label>
           </div>
         </div>
       </div>
@@ -520,11 +554,17 @@ export class ShogiBoard extends LitElement {
           this.source = next_sfen;
           this.comments = line_string(this.current_comments, this.turn + 2); //ここで次のコメントに切り替え
           this.add_comment();                                                //コメントを表示
+          this.hint = line_string(this.current_hints, this.turn + 2);        //次のヒントに切り替え
+          this.shadowRoot.getElementById("hint-button").style.display = "block";
         }
       } else {
         alert("不正解です");
         const el = this.renderRoot.querySelector("shogi-player-wc");
         const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
+        if (this.turn == this.turn_max) {
+          this.shadowRoot.getElementById("chapter-button").style.display = "none";
+          this.human_side = "black";
+        }
         sp_instance.api_turn_add(-1);                                             //不正解の時は１手戻る
       }
     }, 1000 * 0.5);
@@ -575,13 +615,15 @@ export class ShogiBoard extends LitElement {
 
   add_hint() {
     const dynamicElement = document.createElement("p");
-    dynamicElement.innerHTML = "これはヒントです";
+    dynamicElement.innerHTML = "ヒント：" + this.hint.replace(/\*/g, "<br>");
     dynamicElement.classList.add("chat-message-addition"); //クラスを追加
     dynamicElement.classList.add("incoming");
     dynamicElement.classList.add("chat-top");
     var oldElement = this.shadowRoot.getElementById("chat").querySelector(".chat-top"); // 古い要素を取得
     oldElement.classList.remove("chat-top"); // クラスを削除
     this.shadowRoot.getElementById("chat").insertBefore(dynamicElement, this.shadowRoot.getElementById("chat").firstChild); //id="chat"の中にこの<p>を挿入
+    this.shadowRoot.getElementById("hint-button").style.display = "none";
+
   }
 
   change_sfen_t() {
@@ -597,10 +639,13 @@ export class ShogiBoard extends LitElement {
     this.shadowRoot.getElementById("chapter-button").style.display ="none";
     this.source = line_string(this.current_sfen, this.branch_num[this.current_chapter + 1]);
     this.current_comments = this.comments_chapter[this.current_chapter + 1];
+    this.current_hints = this.hints_chapter[this.current_chapter + 1];
+    this.hint = line_string(this.current_hints, this.branch_num[this.current_chapter + 1]);
     this.first_comment = line_string(this.current_comments, this.branch_num[this.current_chapter + 1]);
     this.turn_max = this.max_line_num[this.current_chapter + 1];
     this.current_chapter++;
     this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第" + (this.current_chapter + 1) + "章へ");
+    this.shadowRoot.getElementById("hint-button").style.display = "block";
   }
 
   open_slide() {

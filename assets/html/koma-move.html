@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/koma-move.css">
     <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module">
@@ -98,33 +99,19 @@
             transition: all 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
           }
 
-          .riplle {
+          .ripple {
             background-color: rgb(255, 64, 129);
             border-color: rgb(255, 64, 129);
-            width: 100.745px;
-            height: 100.745px;
-            margin-top: -50.3723px;
-            margin-left: -50.3723px;
-            left: 50%;
-            top: 50%;
-            opacity: 0.20;
-            transform: scale(1);
+            width: 100px;
+            height: 100px;
+            /*margin-top: -50.3723px;
+            margin-left: -50.3723px;*/
+            opacity: 0;
+            transform: scale(0);
+            position: absolute;
             transform-origin: 50% 50%;
             border-radius: 50%;
-            transition: left 1.8s cubic-bezier(0.25, 0.8, 0.25, 1), top 1.8s cubic-bezier(0.25, 0.8, 0.25, 1), margin 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), border 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), width 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), height 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 1.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-          }
-
-          .ripple[active] {
-            transform: scale(4);
-            z-index: 1;
-            opacity: 0;
-          }
-
-          @keyframes ripple-animation {
-            to {
-              transform: scale(4);
-              opacity: 0;
-            }
+            transition:display 0.55s cubic-bezier(0.25, 0.8, 0.25, 1) , left 1.8s cubic-bezier(0.25, 0.8, 0.25, 1), top 1.8s cubic-bezier(0.25, 0.8, 0.25, 1), margin 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), border 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), width 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), height 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 1.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 5s cubic-bezier(0.25, 0.8, 0.25, 1);
           }
 
           .tab-button-border-1:before {
@@ -161,17 +148,30 @@
 
 
           .piece-button {
-            height: 100%;
-            border-bottom: none; 
-            width: -webkit-fill-available;
-            text-align: center;
-            transition: 0.5s;
-            position: relative;
+            pointer-events: none;
+            position: absolute;
             overflow: hidden;
-            z-index: -1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            color: rgba(0,0,0,0.54);
+            transition: all 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
           }
 
-          
+          down-color {
+            background-color: rgba(255, 64, 129, 0.1);
+          }
+
+          up-color {
+            background-color: transparent;
+          }
+
+          .koma-button {
+            width: 12.5%;
+            position: relative;
+            text-align: center;
+          }
 
           
 
@@ -220,7 +220,9 @@
           first_sfen: { type: String },
           chapter: { type: Number},
           turn_max: { type: Number },
-          human_side:{ type: String }
+          human_side: { type: String },
+          isRippling: { type: Boolean },
+          isMouseDown: { type: Boolean }
         }
 
         constructor() {
@@ -258,13 +260,40 @@
           this.chapter = 1
           this.turn_max = 37
           this.human_side = "black"
-          this.rippleX = 0;
-          this.rippleY = 0;
-          this.isRippling = false;
+          this.isRippling = false;   
+          this.isMousedown = false;
+          this.ripple_parent;
+          this.ripple_elem;
+          
+          window.addEventListener('mousedown', this.handleMouseDown);
+          window.addEventListener('mouseup', this.handleMouseUp);
         }
 
         firstUpdated() {
           this.king();
+        }
+
+        handleMouseDown() {
+          this.isMouseDown = true;
+          console.log(this.isMouseDown);
+        }
+
+        handleMouseUp() {
+          if (this.isMouseDown) {
+            document.getElementById("shogi");
+            console.log(document.getElementById("shogi"));
+            const elem = document.getElementById("shogi");
+            if (elem.isRippling) {
+              elem.ripple_parent.style.backgroundColor = "transparent";
+              elem.ripple_elem.style.opacity = 0;
+              elem.isRippling = false;
+              setTimeout(() => {
+                elem.ripple_parent.removeChild(elem.ripple_elem);
+              }, 1300);
+              elem.isRippling = false;
+            }
+            this.isMouseDown = false;
+          }
         }
 
       
@@ -285,9 +314,48 @@
               <div class="tab-container">
                 <div class="tab-button-container tab-button-border-1">
                   <div></div>
-                  <input id="king-button" type="button" @click="${this.king}" style="display: none">
-                  <label id="king-tab" for="king-button" class="piece-button tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}"}>王将</label>
-                  <input id="gold-button" type="button" @click="${this.gold}" style="display: none">
+                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.king}">
+                    <span class="tab-content">王将</span>
+                    <label id="king-tab" for="king-button" class="piece-button">
+                    </label>
+                  </div>
+                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.gold}">
+                    <span class="tab-content">金将</span>
+                    <label id="gold-tab" class="piece-button">
+                    </label>
+                  </div>
+                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.silver}">
+                    <span class="tab-content">銀将</span>
+                    <label id="silver-tab" class="piece-button">
+                    </label>
+                  </div>
+                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.pawn}">
+                    <span class="tab-content">歩兵</span>
+                    <label id="pawn-tab" class="piece-button">
+                    </label>
+                  </div>
+                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.rook}">
+                    <span class="tab-content">飛車</span>
+                    <label id="rook-tab" class="piece-button">
+                    </label>
+                  </div>
+                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.bishop}">
+                    <span class="tab-content">角行</span>
+                    <label id="bishop-tab" class="piece-button">
+                    </label>
+                  </div>
+                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.knight}">
+                    <span class="tab-content">桂馬</span>
+                    <label id="knight-tab" class="piece-button">
+                    </label>
+                  </div>
+                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.lance}">
+                    <span class="tab-content">香車</span>
+                    <label id="lance-tab" class="piece-button">
+                    </label>
+                  </div>
+                  
+                  <!-- <input id="gold-button" type="button" @click="${this.gold}" style="display: none">
                   <label id="gold-tab" for="gold-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}"><div>金将</div></label>
                   <input id="silver-button" type="button" @click="${this.silver}" style="display: none">
                   <label id="silver-tab" for="silver-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">銀将</label>
@@ -300,7 +368,7 @@
                   <input id="knight-button" type="button" @click="${this.knight}" style="display: none">
                   <label id="knight-tab" for="knight-button" class="piece-button" tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">桂馬</label>
                   <input id="lance-button" type="button" @click="${this.lance}" style="display: none">
-                  <label id="lance-tab" for="lance-button" class="piece-button tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">香車</label>
+                  <label id="lance-tab" for="lance-button" class="piece-button tab-active" @mousedown="${this.add_click_color}" @mouseup="${this.remove_click_color}">香車</label> -->
                   <div></div>
                 </div>
                 <div class="explane-container">
@@ -325,6 +393,8 @@
           `
         }
 
+
+
         remove_active() {
           var tab_button_elem = this.shadowRoot.querySelectorAll(".piece-button");
           var button_container = this.shadowRoot.querySelector(".tab-button-container");
@@ -333,6 +403,34 @@
             button_container.classList.remove("tab-button-border-" + (i + 1));
           }
 
+
+        }
+
+        create_ripple(event) {
+          this.isRippling = true;
+          const clickedElement = event.target;
+          this.ripple_parent = clickedElement.children[1];
+          
+          this.ripple_parent.style.backgroundColor = "rgba(255, 64, 129, 0.1)";
+          const newChildElement = document.createElement('div');
+          newChildElement.classList.add("ripple");
+          this.ripple_parent.appendChild(newChildElement);
+          this.ripple_elem = this.ripple_parent.children[0];
+          //clickedElement.children[2].children[0].style.display = "block";
+          //clickedElement.children[2].children[0].style.left = (event.clientX - clickedElement.getBoundingClientRect().left - 50) + "px"; //クリックしたleftの位置を代入
+          //clickedElement.children[2].children[0].style.top = (event.clientY - clickedElement.getBoundingClientRect().top - 50) + "px";   //クリックしたtopの位置を代入
+          
+
+
+          newChildElement.style.left = (event.clientX - clickedElement.getBoundingClientRect().left - 50) + "px"; //クリックしたleftの位置を代入
+          newChildElement.style.top = (event.clientY - clickedElement.getBoundingClientRect().top - 50) + "px";   //クリックしたtopの位置を代入
+          setTimeout(() => {
+            newChildElement.style.transform = "scale(5)"; //処理に時間差を入れてrippleクラスののtransitionが適用されるようにしている
+            newChildElement.style.opacity = 0.2;
+
+            // clickedElement.children[2].children[0].style.transform = "scale(5)"; //処理に時間差を入れてrippleクラスののtransitionが適用されるようにしている
+            // clickedElement.children[2].children[0].style.opacity = 0.2;
+          }, 1);
 
         }
 

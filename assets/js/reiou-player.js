@@ -178,7 +178,7 @@ export class ShogiBoard extends LitElement {
     }
 
     .incoming {
-      background-color: rgb(119, 255, 119);
+      background-color: rgb(149 245 255);
       color: rgb(0, 0, 0);
       text-align: left;
       font-weight: 500;
@@ -188,7 +188,7 @@ export class ShogiBoard extends LitElement {
     .chat-top {
       font-weight: 600;
       opacity: 1;
-      background-color: rgb(149, 255, 149);
+      background-color: rgb(149 245 255);
     }
 
     /* 吹き出しの三角形を追加 */
@@ -201,7 +201,7 @@ export class ShogiBoard extends LitElement {
 
 
     .incoming:before {
-      border-left: 10px solid rgb(149 255 149);
+      border-left: 10px solid rgb(149 245 255);
       border-right: 10px solid transparent;
       border-bottom: 10px solid transparent;
       transform: rotate(-45deg);
@@ -510,7 +510,7 @@ export class ShogiBoard extends LitElement {
               <label id="hint-button" for="hint-button-pc">ヒント</label>
               <input type="checkbox" id="slide-open-pc" @click="${this.open_slide}" style="display: none">
               <label for="slide-open-pc">スライド</label>
-              <a href="${"../../html/" + this.file_path + "-video.html"}"><label>動画ページ</label></a>
+              <a href="${"../../html/" + this.file_path + "-video.html"}" target="_blank"><label>動画ページ</label></a>
 
               
             </div>

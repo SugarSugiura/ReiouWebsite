@@ -51,7 +51,7 @@
           }
 
           .tab-container {
-            margin: 1rem 1rem 0;
+            margin: 1rem;
             border: 1px solid rgba(0,0,0,0.12);
           }
 
@@ -179,7 +179,7 @@
           }
 
           shogi-player-wc {
-            flex-basis: 50%;
+            flex-basis: 100%;
             padding: 1rem;
             //background-color: var(--sub-color);
           }
@@ -263,7 +263,7 @@
           this.isRippling = false;   
           this.isMousedown = false;
           this.ripple_parent;
-          this.ripple_elem;
+          this.ripple_elem = [];
           
           window.addEventListener('mousedown', this.handleMouseDown);
           window.addEventListener('mouseup', this.handleMouseUp);
@@ -285,11 +285,12 @@
             const elem = document.getElementById("shogi");
             if (elem.isRippling) {
               elem.ripple_parent.style.backgroundColor = "transparent";
-              elem.ripple_elem.style.opacity = 0;
-              elem.isRippling = false;
-              setTimeout(() => {
-                elem.ripple_parent.removeChild(elem.ripple_elem);
-              }, 1300);
+              for (let i = 0; i < elem.ripple_elem.length; i++) {
+                elem.ripple_elem[i].style.opacity = 0;
+              }
+              if (elem.ripple_elem.length >= 2) {
+                elem.ripple_parent.removeChild(elem.ripple_elem[0]);
+              }              
               elem.isRippling = false;
             }
             this.isMouseDown = false;
@@ -415,7 +416,7 @@
           const newChildElement = document.createElement('div');
           newChildElement.classList.add("ripple");
           this.ripple_parent.appendChild(newChildElement);
-          this.ripple_elem = this.ripple_parent.children[0];
+          this.ripple_elem = this.ripple_parent.children;
           //clickedElement.children[2].children[0].style.display = "block";
           //clickedElement.children[2].children[0].style.left = (event.clientX - clickedElement.getBoundingClientRect().left - 50) + "px"; //クリックしたleftの位置を代入
           //clickedElement.children[2].children[0].style.top = (event.clientY - clickedElement.getBoundingClientRect().top - 50) + "px";   //クリックしたtopの位置を代入

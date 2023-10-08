@@ -51,10 +51,14 @@
             z-index: -1;
           }
 
+          .middle-container {
+            display: flex;
+          }
+
           .tab-container {
             margin: 1rem;
             border: 1px solid rgba(0,0,0,0.12);
-            width: 60%;
+            flex-basis: 150%;
           }
 
           .top-content {
@@ -188,7 +192,7 @@
           shogi-player-wc {
             flex-basis: 100%;
             padding: 1rem;
-            //background-color: var(--sub-color);
+            background-color: white;
           }
 
           shogi-player-wc::part(root) {
@@ -204,6 +208,11 @@
 
           .piece-explane {
             background-color: white;
+            width: -webkit-fill-available;
+            padding: 1rem;
+          }
+
+          .sidebar-container {
             width: -webkit-fill-available;
             padding: 1rem;
           }
@@ -334,69 +343,74 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-container">
-                <div class="tab-button-container tab-button-border-1">
-                  <div></div>
-                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.king}">
-                    <span class="tab-content">王将</span>
-                    <label id="king-tab" for="king-button" class="piece-button">
-                    </label>
+              <div class="middle-container">
+                <div class="tab-container">
+                  <div class="tab-button-container tab-button-border-1">
+                    <div></div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.king}">
+                      <span class="tab-content">王将</span>
+                      <label id="king-tab" for="king-button" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.gold}">
+                      <span class="tab-content">金将</span>
+                      <label id="gold-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.silver}">
+                      <span class="tab-content">銀将</span>
+                      <label id="silver-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.pawn}">
+                      <span class="tab-content">歩兵</span>
+                      <label id="pawn-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.rook}">
+                      <span class="tab-content">飛車</span>
+                      <label id="rook-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.bishop}">
+                      <span class="tab-content">角行</span>
+                      <label id="bishop-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.knight}">
+                      <span class="tab-content">桂馬</span>
+                      <label id="knight-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.lance}">
+                      <span class="tab-content">香車</span>
+                      <label id="lance-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div></div>
                   </div>
-                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.gold}">
-                    <span class="tab-content">金将</span>
-                    <label id="gold-tab" class="piece-button">
-                    </label>
+                  <div class="explane-container">
+                    <shogi-player-wc
+                      sp_mode="play"
+                      sp_body="${this.source}"
+                      sp_mobile_vertical="false"
+                      sp_piece_variant="portella"
+                      sp_viewpoint="black"
+                      sp_controller="false"
+                      sp_human_side="${this.human_side}"
+                      sp_dev_tools_position="left"
+                      sp_pass_css="${this.pass_css}"
+                      sp_coordinate="true"
+                      sp_debug="false"
+                      sp_illegal_cancel="true"
+                    ></shogi-player-wc>
+                    <div class="piece-explane">
+                      ${exp_lines.map(e => html`<p>${e}</p>`)}
+                    </div>
                   </div>
-                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.silver}">
-                    <span class="tab-content">銀将</span>
-                    <label id="silver-tab" class="piece-button">
-                    </label>
-                  </div>
-                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.pawn}">
-                    <span class="tab-content">歩兵</span>
-                    <label id="pawn-tab" class="piece-button">
-                    </label>
-                  </div>
-                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.rook}">
-                    <span class="tab-content">飛車</span>
-                    <label id="rook-tab" class="piece-button">
-                    </label>
-                  </div>
-                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.bishop}">
-                    <span class="tab-content">角行</span>
-                    <label id="bishop-tab" class="piece-button">
-                    </label>
-                  </div>
-                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.knight}">
-                    <span class="tab-content">桂馬</span>
-                    <label id="knight-tab" class="piece-button">
-                    </label>
-                  </div>
-                  <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.lance}">
-                    <span class="tab-content">香車</span>
-                    <label id="lance-tab" class="piece-button">
-                    </label>
-                  </div>
-                  <div></div>
+                  
                 </div>
-                <div class="explane-container">
-                  <shogi-player-wc
-                    sp_mode="play"
-                    sp_body="${this.source}"
-                    sp_mobile_vertical="false"
-                    sp_piece_variant="portella"
-                    sp_viewpoint="black"
-                    sp_controller="false"
-                    sp_human_side="${this.human_side}"
-                    sp_dev_tools_position="left"
-                    sp_pass_css="${this.pass_css}"
-                    sp_coordinate="true"
-                    sp_debug="false"
-                    sp_illegal_cancel="true"
-                  ></shogi-player-wc>
-                  <div class="piece-explane">
-                    ${exp_lines.map(e => html`<p>${e}</p>`)}
-                  </div>
+                <div class="sidebar-container">
                 </div>
               </div>
             </div>

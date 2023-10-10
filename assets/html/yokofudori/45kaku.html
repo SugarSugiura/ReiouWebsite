@@ -83,6 +83,7 @@
     </header>
     <!-- <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px"> -->
 
+    <!--ここからスライド-->
     <input type="checkbox" id="slide_close" checked> <!--閉じるボタンのチェックボックスここに記述してよいのかはわからない-->
     <div id="slide_all" class="slideshow_wrapper">
       <div class="slideshow_container">
@@ -94,9 +95,7 @@
           <input type="radio" name="slideshow" id="switch5">
           <input type="radio" name="slideshow" id="switch6">
           <input type="radio" name="slideshow" id="switch7">
-          <input type="radio" name="slideshow" id="switch8">
-          <input type="radio" name="slideshow" id="switch9">
-          <input type="radio" name="slideshow" id="switch10">
+        
           <div class="slide_closeButton_container">
             <div style="position: relative; display: inline-block">
               <label class="slide_closeButton" for="slide_close">×</label>
@@ -107,20 +106,20 @@
               <section id="slide1_container">
                 <div id="slide1" class="slide_wrapper">
                   <div style="flex-basis: 20%">
-                    <h1 class="slide-title">４五角戦法</h1>
+                    <h1 class="slide-title">△４五角戦法</h1>
                   </div>
                   <div style="flex-basis: 20%;">
                     <p>
-                      ひねり飛車は縦歩取りと別名されていた時期もありました。
+                      △４五角戦法は後手番で指される戦法です。そのため先後逆で解説します。
                       <br>
-                      近年では居飛車相掛かり戦法の一種として定跡所に登場しています。
+                      過去には谷川十七世名人も公式戦で使用したことがありました。
                     </p>
                   </div>
                   <div style="flex-basis: 60%;">
                       <div class="logo">
                         <div>
-                          <div class="logo-text logo-blue">
-                            角換わり右玉<br>
+                          <div class="logo-text logo-green">
+                            △４五角戦法<br>
                           </div>
                         </div>
                       </div>
@@ -134,14 +133,20 @@
                   <div class="slide-txt">
                     <div>
                       <p>
-                        ①角換わり腰掛銀の出だしから、玉を右に移動！
+                        ①△４五角戦法は、まず第１図のように飛車先を突いていきます。
+                        <br>
+                        ②その後第２図のように角道を開け、金で角の頭を守ります。
                       </p>
                     </div>
                   </div>
-                  <div class="slide-img-single">
-                    <div>
-                      <img src="../..\img\kakugawari-migigyoku1.png" alt="" >
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../..//img/45kaku/45kaku1_1.png" alt="" >
                       <p>第１図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../..//img/45kaku/45kaku1_2.png" alt="" >
+                      <p>第２図</p>
                     </div>
                   </div>
                 </div>
@@ -153,17 +158,15 @@
                   <div class="slide-txt">
                     <div>
                       <p>
-                        ①飛車先交換をとがめる桂頭攻め！
-                        <br>
-                        ②持駒の角を駆使して反撃！
+                        ③お互い飛車先交換し、先手は▲３四飛（第３図）と<br>横歩取りの基本形に構えます。まずはこの形まで組んでみましょう！
                       </p>
                     </div>
                   </div>
                   <div class="slide-img-single">
                     <div>
                       <div>
-                        <img src="../..\img\kakugawari-migigyoku2.png" alt="" >
-                        <p>第２図</p>
+                        <img src="../../img/45kaku/45kaku1_3.png" alt="" >
+                        <p>第３図</p>
                       </div>
                     </div>
                   </div>
@@ -172,19 +175,17 @@
             </div>
             <div class="slide_bg">
               <section id="slide4_container">
-                <div id="slide4" class="slide_wrapper">
-                  <div class="slide-txt">
-                    <div>
-                      <p>
-                        ①相手が動いてこなくても積極的に攻めることは可能
+                <div id="slide-last" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
                       </p>
                     </div>
-                  </div>
-                  <div class="slide-img-single">
-                    <div>
-                      <div>
-                        <img src="../..\img\kakugawari-migigyoku3.png" alt="" >
-                        <p>第３図</p>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
                       </div>
                     </div>
                   </div>

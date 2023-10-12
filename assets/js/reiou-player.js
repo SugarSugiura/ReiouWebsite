@@ -287,7 +287,8 @@ export class ShogiBoard extends LitElement {
     video_url: { type: String },
     hint: { type:String },
     hints_chapter: { type: Array },
-    current_hints: { type: String }
+    current_hints: { type: String },
+    slide_num:  { type: String }
   }
 
   static fromAttribute(name, value) {
@@ -298,14 +299,15 @@ export class ShogiBoard extends LitElement {
       return parseInt(value, 10);
     } else if (name === "file_path") {
       return value;
-    }
-    else if (name === "first_sfen") {
+    } else if (name === "first_sfen") {
       return value;
     } else if (name === "branch_num") {
       return value;
     } else if (name === "first_comment") {
       return value;
     } else if (name === "video_url") {
+      return value;
+    } else if (name === "slide_num") {
       return value;
     }
     return super.fromAttribute(name, value);
@@ -317,7 +319,8 @@ export class ShogiBoard extends LitElement {
       // カスタム属性の値をカンマで分割して配列に変換
       this.branch_num = this.branch_num.split(',');
       this.branch_num = this.branch_num.map(str => parseInt(str, 10));
-      console.log(this.branch_num);
+      this.slide_num = this.slide_num.split(",");
+      this.slide_num = this.slide_num.map(str => parseInt(str, 10));
     }
   }
 
@@ -337,6 +340,7 @@ export class ShogiBoard extends LitElement {
     this.max_line_num = [0, 0, 0, 0, 0, 0];
     this.current_comments = "";
     this.branch_num = "";
+    this.slide_num = "";
     this.current_sfen = "";
     this.current_hints = "";
     this.turn_max = 100;
@@ -646,6 +650,10 @@ export class ShogiBoard extends LitElement {
     this.current_chapter++;
     this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第" + (this.current_chapter + 1) + "章へ");
     this.shadowRoot.getElementById("hint-button").style.display = "block";
+
+    document.querySelector(".slideContents").style.transform = "translateX(-" + this.slide_num[this.current_chapter]*5 + "%)";
+    console.log(this.slide_num[this.current_chapter]);
+    document.getElementById("slide_close").checked = true;
   }
 
   open_slide() {

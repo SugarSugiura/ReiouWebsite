@@ -141,7 +141,7 @@ input[name="slideshow"] {
 /* :::::: slideContents :::::: */
 .slideContents {
 	display: flex;
-	width: 1000%;
+	width: 2000%;
 	text-align: center;
 	-webkit-user-select: none;
 	user-select: none;
@@ -464,44 +464,94 @@ input[name="slideshow"] {
   border-radius: 0.5rem;
 }
 #switch2:checked ~ .slideContents {
-	transform: translateX(-10%);
+	transform: translateX(-5%);
   border-radius: 0.5rem;
 }
 #switch3:checked ~ .slideContents {
-	transform: translateX(-20%);
+	transform: translateX(-10%);
   border-radius: 0.5rem;
 }
 #switch4:checked ~ .slideContents {
-	transform: translateX(-30%);
+	transform: translateX(-15%);
   border-radius: 0.5rem;
 }
 #switch5:checked ~ .slideContents {
-	transform: translateX(-40%);
+	transform: translateX(-20%);
   border-radius: 0.5rem;
 }
 
 #switch6:checked ~ .slideContents {
-	transform: translateX(-50%);
+	transform: translateX(-25%);
   border-radius: 0.5rem;
 }
 
 #switch7:checked ~ .slideContents {
-	transform: translateX(-60%);
+	transform: translateX(-30%);
   border-radius: 0.5rem;
 }
 
 #switch8:checked ~ .slideContents {
-	transform: translateX(-70%);
+	transform: translateX(-35%);
   border-radius: 0.5rem;
 }
 
 #switch9:checked ~ .slideContents {
-	transform: translateX(-80%);
+	transform: translateX(-40%);
   border-radius: 0.5rem;
 }
 
 #switch10:checked ~ .slideContents {
+	transform: translateX(-45%);
+  border-radius: 0.5rem;
+}
+
+#switch11:checked ~ .slideContents {
+	transform: translateX(-50%);
+  border-radius: 0.5rem;
+}
+
+#switch12:checked ~ .slideContents {
+	transform: translateX(-55%);
+  border-radius: 0.5rem;
+}
+
+#switch13:checked ~ .slideContents {
+	transform: translateX(-60%);
+  border-radius: 0.5rem;
+}
+
+#switch14:checked ~ .slideContents {
+	transform: translateX(-65%);
+  border-radius: 0.5rem;
+}
+
+#switch15:checked ~ .slideContents {
+	transform: translateX(-70%);
+  border-radius: 0.5rem;
+}
+
+#switch16:checked ~ .slideContents {
+	transform: translateX(-75%);
+  border-radius: 0.5rem;
+}
+
+#switch17:checked ~ .slideContents {
+	transform: translateX(-80%);
+  border-radius: 0.5rem;
+}
+
+#switch18:checked ~ .slideContents {
+	transform: translateX(-85%);
+  border-radius: 0.5rem;
+}
+
+#switch19:checked ~ .slideContents {
 	transform: translateX(-90%);
+  border-radius: 0.5rem;
+}
+
+#switch20:checked ~ .slideContents {
+	transform: translateX(-95%);
   border-radius: 0.5rem;
 }
 
@@ -518,6 +568,16 @@ input[name="slideshow"] {
 #switch8:checked ~ .prev label[for="switch7"],
 #switch9:checked ~ .prev label[for="switch8"],
 #switch10:checked ~ .prev label[for="switch9"],
+#switch11:checked ~ .prev label[for="switch10"],
+#switch12:checked ~ .prev label[for="switch11"],
+#switch13:checked ~ .prev label[for="switch12"],
+#switch14:checked ~ .prev label[for="switch13"],
+#switch15:checked ~ .prev label[for="switch14"],
+#switch16:checked ~ .prev label[for="switch15"],
+#switch17:checked ~ .prev label[for="switch16"],
+#switch18:checked ~ .prev label[for="switch17"],
+#switch19:checked ~ .prev label[for="switch18"],
+#switch20:checked ~ .prev label[for="switch19"],
 #switch1:checked ~ .next label[for="switch2"],
 #switch2:checked ~ .next label[for="switch3"],
 #switch3:checked ~ .next label[for="switch4"],
@@ -526,7 +586,18 @@ input[name="slideshow"] {
 #switch6:checked ~ .next label[for="switch7"],
 #switch7:checked ~ .next label[for="switch8"],
 #switch8:checked ~ .next label[for="switch9"],
-#switch9:checked ~ .next label[for="switch10"] {
+#switch9:checked ~ .next label[for="switch10"],
+#switch10:checked ~ .next label[for="switch11"],
+#switch11:checked ~ .next label[for="switch12"],
+#switch12:checked ~ .next label[for="switch13"],
+#switch13:checked ~ .next label[for="switch14"],
+#switch14:checked ~ .next label[for="switch15"],
+#switch15:checked ~ .next label[for="switch16"],
+#switch16:checked ~ .next label[for="switch17"],
+#switch17:checked ~ .next label[for="switch18"],
+#switch18:checked ~ .next label[for="switch19"],
+#switch19:checked ~ .next label[for="switch20"]
+{
 	pointer-events: auto;
 }
 

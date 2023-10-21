@@ -4,7 +4,6 @@
     "start": "node dist/server.js",
     "build": "tsc",
     "postbuild": "cp -R src/views dist",
-    "build:esbuild": "esbuild --platform=node src/server.ts --bundle --outfile=src/out.js --allow-overwrite",
     "watch": "npx swc ./server.ts --watch --out-dir dist --source-maps --log-watch-compilation --copy-files"
   },
   "dependencies": {
@@ -13,17 +12,12 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-openid-connect": "^2.17.0",
-    "http-errors": "~1.8.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@swc/cli": "^0.1.62",
-    "@swc/core": "^1.3.93",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.20",
     "@types/morgan": "^1.9.7",
-    "chokidar": "^3.5.3",
-    "esbuild": "0.19.5",
     "typescript": "^5.2.2"
   }
 }

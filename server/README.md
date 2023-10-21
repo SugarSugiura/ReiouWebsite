@@ -11,3 +11,9 @@ cp .env.example .env # .env の内容を編集する
 npm run build
 npm start
 ```
+
+### Docker 起動
+
+```bash
+docker compose up --build
+```

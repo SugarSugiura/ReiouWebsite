@@ -3,8 +3,8 @@
   "scripts": {
     "start": "node dist/server.js",
     "build": "tsc",
-    "postbuild": "cp -R src/views dist",
-    "watch": "npx swc ./server.ts --watch --out-dir dist --source-maps --log-watch-compilation --copy-files"
+    "build:watch": "tsc --watch",
+    "postbuild": "cp -R src/views dist"
   },
   "dependencies": {
     "debug": "~3.2.7",

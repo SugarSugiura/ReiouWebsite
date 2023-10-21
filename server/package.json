@@ -1,9 +1,9 @@
 {
-  "name": "auth0-express-webapp-sample",
+  "name": "reiou server",
   "scripts": {
     "start": "node dist/server.js",
-    "build": "swc src --out-dir dist --source-maps --copy-files",
-    "watch": "swc src --watch --out-dir dist --source-maps --log-watch-compilation --copy-files"
+    "build": "swc ./server.ts --out-dir dist --source-maps --copy-files",
+    "watch": "swc ./server.ts --watch --out-dir dist --source-maps --log-watch-compilation --copy-files"
   },
   "dependencies": {
     "debug": "~3.2.7",

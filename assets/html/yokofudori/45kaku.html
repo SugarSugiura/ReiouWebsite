@@ -14,13 +14,13 @@
       overflow-y: scroll;
     }
 
-   
-   
+
+
   </style>
   </head>
   <body>
     <header id="header">
-      <div></div>          
+      <div></div>
       <div class="header_container">
         <div class="site-title"><!--空白でclass名を2つ指定-->
           <a href="../../../index.html"><img src="../../img/REIOUlogo.png" alt="REIOU"></a>
@@ -63,8 +63,8 @@
           </h1>
         </div>
       </div>
-      
-      
+
+
       <nav id="navi-phone" class="phone-area">
         <ul class="phone_menu_wrapper">
           <li><a href="index.html" style="border-top: 1px solid #fff;">学習</a></li>
@@ -88,24 +88,24 @@
     <div id="slide_all" class="slideshow_wrapper">
       <div class="slideshow_container">
         <div class="slideshow">
-          <input type="radio" name="slideshow" id="switch1" checked>
-          <input type="radio" name="slideshow" id="switch2">
-          <input type="radio" name="slideshow" id="switch3">
-          <input type="radio" name="slideshow" id="switch4">
-          <input type="radio" name="slideshow" id="switch5">
-          <input type="radio" name="slideshow" id="switch6">
-          <input type="radio" name="slideshow" id="switch7">
-          <input type="radio" name="slideshow" id="switch8">
-          <input type="radio" name="slideshow" id="switch9">
-          <input type="radio" name="slideshow" id="switch10">
-          <input type="radio" name="slideshow" id="switch11">
-          <input type="radio" name="slideshow" id="switch12">
-          <input type="radio" name="slideshow" id="switch13">
-          <input type="radio" name="slideshow" id="switch14">
-          <input type="radio" name="slideshow" id="switch15">
-          <input type="radio" name="slideshow" id="switch16">
-          <input type="radio" name="slideshow" id="switch17">
-        
+          <input class="slide-switch" type="radio" name="slideshow" id="switch1" checked>
+          <input class="slide-switch" type="radio" name="slideshow" id="switch2">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch3">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch4">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch5">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch6">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch7">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch8">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch9">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch10">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch11">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch12">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch13">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch14">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch15">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch16">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch17">
+
           <div class="slide_closeButton_container">
             <div style="position: relative; display: inline-block">
               <label class="slide_closeButton" for="slide_close">×</label>
@@ -566,7 +566,7 @@
             <label for="switch2"></label>
             <label for="switch3"></label>
             <label for="switch4"></label>
-            <label for="switch5"></label>
+            <!-- <label for="switch5"></label>
             <label for="switch6"></label>
             <label for="switch7"></label>
             <label for="switch8"></label>
@@ -578,7 +578,7 @@
             <label for="switch14"></label>
             <label for="switch15"></label>
             <label for="switch16"></label>
-            <label for="switch17"></label>
+            <label for="switch17"></label> -->
           </p>
           <p id="right-arrow" class="arrow next">
             <i class="ico"></i>
@@ -586,7 +586,7 @@
             <label for="switch2"></label>
             <label for="switch3"></label>
             <label for="switch4"></label>
-            <label for="switch5"></label>
+            <!-- <label for="switch5"></label>
             <label for="switch6"></label>
             <label for="switch7"></label>
             <label for="switch8"></label>
@@ -598,11 +598,11 @@
             <label for="switch14"></label>
             <label for="switch15"></label>
             <label for="switch16"></label>
-            <label for="switch17"></label>
+            <label for="switch17"></label> -->
           </p>
         </div>
       </div>
-      
+
     </div>
     <shogi-board  id="shogi"
                   style="background-color: #dcf5f0"
@@ -612,6 +612,7 @@
                   first_sfen="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f"
                   first_comment="第１章 基本図まで*△４五角戦法は奇襲戦法の戦法のひとつ。*派手な応酬が多く、正確に受けきれなければ一瞬で優勢まで築くこともできます。*まずは横歩取りの進行でいきましょう。飛車先を突いていってください。"
                   branch_num="0,0,15,21,27,31"
+                  slide_num="0,0,4,8,11,14"
                   video_url="../../mp4/45kaku.mp4"></shogi-board>
     <script src="../../js/test.js"></script>
   </body>

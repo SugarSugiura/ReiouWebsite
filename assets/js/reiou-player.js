@@ -590,7 +590,7 @@ export class ShogiBoard extends LitElement {
         this.human_side = "none";
       }
     } else {
-      elem.style.display = "none";
+      //elem.style.display = "none";
     }
   }
   
@@ -651,9 +651,36 @@ export class ShogiBoard extends LitElement {
     this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第" + (this.current_chapter + 1) + "章へ");
     this.shadowRoot.getElementById("hint-button").style.display = "block";
 
-    document.querySelector(".slideContents").style.transform = "translateX(-" + this.slide_num[this.current_chapter]*5 + "%)";
-    console.log(this.slide_num[this.current_chapter]);
-    document.getElementById("slide_close").checked = true;
+    this.create_arrow();
+
+    //次の章のスライドを表示
+    this.reset_slide_switch();
+    document.getElementById("switch" + (this.slide_num[this.current_chapter] + 1)).checked = true;
+    this.open_slide();
+  }
+
+  create_arrow() {
+    var right_arrow = document.getElementById("right-arrow");
+    for (var i = (this.slide_num[this.current_chapter]); i < (this.slide_num[this.current_chapter + 1]); i++) {
+      var child = document.createElement("label");
+      child.setAttribute("for", "switch" + (i + 1));
+      right_arrow.appendChild(child);
+    }
+
+    var left_arrow = document.getElementById("left-arrow");
+    for (var i = (this.slide_num[this.current_chapter]); i < (this.slide_num[this.current_chapter + 1]); i++) {
+      var child = document.createElement("label");
+      child.setAttribute("for", "switch" + (i + 1));
+      left_arrow.appendChild(child);
+    }
+  }
+
+  reset_slide_switch() {
+    var switches = document.querySelectorAll(".slide-switch");
+
+    for (var i = 0; i < switches.length; i++) {
+      switches[i].checked = false;
+    }
   }
 
   open_slide() {

@@ -4,6 +4,7 @@ package router
 
 import (
 	"encoding/gob"
+	"github.com/SugarSugiura/ReiouWebsite/platform/middleware"
 	"net/http"
 
 	"github.com/gin-contrib/sessions"
@@ -36,7 +37,7 @@ func New(auth *authenticator.Authenticator) *gin.Engine {
 	})
 	router.GET("/login", login.Handler(auth))
 	router.GET("/callback", callback.Handler(auth))
-	router.GET("/user", user.Handler)
+	router.GET("/user", middleware.IsAuthenticated, user.Handler)
 	router.GET("/logout", logout.Handler)
 
 	return router

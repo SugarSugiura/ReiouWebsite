@@ -34,5 +34,7 @@ func Handler(ctx *gin.Context) {
 	parameters.Add("client_id", os.Getenv("AUTH0_CLIENT_ID"))
 	logoutUrl.RawQuery = parameters.Encode()
 
+	// todo: cookieの削除
+
 	ctx.Redirect(http.StatusTemporaryRedirect, logoutUrl.String())
 }

@@ -28,6 +28,7 @@
             /*justify-content: center;
             gap: 1rem;*/
             flex-direction: column;
+            background-color: #f4f4f4;
           }
 
           .article-top {
@@ -80,6 +81,7 @@
             display: flex;
             align-items: end;
             border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            background-color: white;
           }
 
           .tab-button-container:before {
@@ -224,21 +226,41 @@
 
           .sidebar-container > div {
             width: 40%;
-            height: auto;
-            border: 1px solid rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 1;
           }
 
-          .sidebar-container > div > a {
-            display: flex;
+          
+
+          .blue-back {
+            position: absolute;
             width: 100%;
             height: 100%;
-            text-align: center;
+            background-color: blue;
+            z-index: -1;
           }
 
-          .sidebar-container span {
-            margin: auto 0;
-            flex-basis: 100%;
+          .sub-container {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.12);
+            background-color: #fff;
+            transition: all 0.3s;
+          }
+          
+          .sub-container:hover {
+            transform: translateX(8px) translateY(-8px);
+          }
+
+          .sub-container > span {
             font-size: 1.5rem;
+            margin: 1rem 0 1rem 1rem;
+          }
+
+          .sub-container > div > span {
+            font-size: 1rem;
+            margin-left: 1rem;
           }
 
           
@@ -255,6 +277,14 @@
 
             .middle-container {
               flex-direction: column;
+            }
+
+            .blue-back {
+              position: absolute;
+              width: 99%;
+              height: 99%;
+              background-color: blue;
+              z-index: -1;
             }
           }
         `
@@ -439,10 +469,44 @@
                   
                 </div>
                 <div class="sidebar-container">
-                  <div><a><span>基本ルール</span></a></div>
-                  <div><a><span>基本ルール</span></a></div>
-                  <div><a><span>基本ルール</span></a></div>
-                  <div><a><span>基本ルール</span></a></div>
+                  <div>
+                    <div class="blue-back"></div>
+                    <div class="sub-container">
+                      <span>全体の流れ</span>
+                      <div><span>駒の初期配置</span></div>
+                      <div><span>将棋の進め方</span></div>
+                      <div><span>駒をとる、使う</span></div>
+                      <div><span>勝ち負け</span></div>
+                    </div>
+                    
+                  </div>
+                  <div>
+                    <div class="blue-back"></div>
+                    <div class="sub-container">
+                      <span>禁じ手</span>
+                      <div><span>反則行為について</span></div>
+                      <div><span>二歩</span></div>
+                      <div><span>千日手</span></div>
+                      <div><span>打ち歩詰め</span></div>
+                      <div><span>身動きの取れない駒</span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="blue-back"></div>
+                    <div class="sub-container">
+                      <span>駒の動き</span>
+                      <div><span>それぞれの駒の動き</span></div>
+                      <div><span>駒が成る</span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="blue-back"></div>
+                    <div class="sub-container">
+                      <span>その他</span>
+                      <div><span>入玉と持将棋</span></div>
+                      <div><span></span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

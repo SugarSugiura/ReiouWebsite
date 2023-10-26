@@ -21,6 +21,15 @@
             font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
             --sub-color: #5E8DC3;
           }
+
+          a {
+            text-decoration: none;
+          }
+
+          a:visited {
+            color: black;
+          }
+
           .container {
             position: relative;
             display: flex;
@@ -253,12 +262,19 @@
             transform: translateX(8px) translateY(-8px);
           }
 
-          .sub-container > span {
+          .sub-container > a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .sub-container > a > span {
             font-size: 1.5rem;
             margin: 1rem 0 1rem 1rem;
           }
 
-          .sub-container > div > span {
+          .sub-container > a > div > span {
             font-size: 1rem;
             margin-left: 1rem;
           }
@@ -379,7 +395,7 @@
               }
               if (elem.ripple_elem.length >= 2) {
                 elem.ripple_parent.removeChild(elem.ripple_elem[0]);
-              }              
+              }
               elem.isRippling = false;
             }
             this.isMouseDown = false;
@@ -397,7 +413,7 @@
               <div class="article-top">
                 <div class="top-content">
                   <div>
-                    将棋のルール
+                    駒の動かし方
                   </div>
                 </div>
               </div>
@@ -472,39 +488,47 @@
                   <div>
                     <div class="blue-back"></div>
                     <div class="sub-container">
-                      <span>全体の流れ</span>
-                      <div><span>駒の初期配置</span></div>
-                      <div><span>将棋の進め方</span></div>
-                      <div><span>駒をとる、使う</span></div>
-                      <div><span>勝ち負け</span></div>
+                      <a href="shogi-flow.html">
+                        <span>全体の流れ</span>
+                        <div><span>駒の初期配置</span></div>
+                        <div><span>将棋の進め方</span></div>
+                        <div><span>駒を取る、使う</span></div>
+                        <div><span>勝ち負け</span></div>
+                      </a>
                     </div>
                     
                   </div>
                   <div>
                     <div class="blue-back"></div>
                     <div class="sub-container">
-                      <span>禁じ手</span>
-                      <div><span>反則行為について</span></div>
-                      <div><span>二歩</span></div>
-                      <div><span>千日手</span></div>
-                      <div><span>打ち歩詰め</span></div>
-                      <div><span>身動きの取れない駒</span></div>
+                      <a href="shogi-foul.html">
+                        <span>禁じ手</span>
+                        <div><span>反則行為について</span></div>
+                        <div><span>二歩</span></div>
+                        <div><span>千日手</span></div>
+                        <div><span>打ち歩詰め</span></div>
+                        <div><span>身動きの取れない駒</span></div>
+                      </a>
                     </div>
                   </div>
                   <div>
                     <div class="blue-back"></div>
                     <div class="sub-container">
-                      <span>駒の動き</span>
-                      <div><span>それぞれの駒の動き</span></div>
-                      <div><span>駒が成る</span></div>
+                      <a href="shogi-koma.html">
+                        <span>駒の動き</span>
+                        <div><span>それぞれの駒の動き</span></div>
+                        <div><span>駒が成る</span></div>
+                      </a>
                     </div>
                   </div>
                   <div>
                     <div class="blue-back"></div>
                     <div class="sub-container">
-                      <span>その他</span>
-                      <div><span>入玉と持将棋</span></div>
-                      <div><span></span></div>
+                      <a href="shogi-other.html">
+                        <span>その他</span>
+                        <div><span>入玉と持将棋</span></div>
+                        <div><span></span></div>
+                      </a>
                     </div>
                   </div>
                 </div>

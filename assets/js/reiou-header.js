@@ -10,6 +10,7 @@ export class ReiouHeader extends LitElement {
     height: 60px;
     display: block;
     position: fixed;
+    z-index: 100;
   }
 
   html, body, div, span, object, iframe,
@@ -104,6 +105,7 @@ export class ReiouHeader extends LitElement {
   
   .menu > li a {
     display: block;
+    font-size: 1rem;
   }
   
   .single:hover::before {
@@ -128,31 +130,32 @@ export class ReiouHeader extends LitElement {
   }
   
   .menu-second {
+    width: 100%;
+    position: relative;
+    top: 0px;
+    left: 0;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s, visibility 0.5s;
-    border-radius: 0.5rem;
-    /* border-left: 4px solid transparent; */
+    border-radius:0 0 0.5rem 0.5rem;
+    background-color: #000;
+  }
+
+  .menu-second li {
+    transition: background-color 0.3s;
   }
   
   .menu-second li:hover {
     background-color: var(--sub-color);
-    border-radius: 0.5rem;
-    
   }
-  
-  
-  .single .menu-second {
-    width: 100%;
-    background-color: #444;
-    position: relative;
-    top: 0px;
-    left: 0;
+
+  .menu-second li:last-child {
+    border-radius:0 0 0.5rem 0.5rem;
   }
+
   .single .menu-second li a:hover {
     /* opacity: 0.7; */
     transition: opacity 0.5s;
-    border-left: solid;
   }
   
   .single:hover .menu-second {
@@ -407,7 +410,6 @@ export class ReiouHeader extends LitElement {
     super()
 	}
 
-
 	render() {
     return html`
     <header id="header">
@@ -432,6 +434,7 @@ export class ReiouHeader extends LitElement {
               <ul class="menu-second">
                 <li><a href="joseki-slide.html">棋戦情報</a></li>
                 <li><a href="quiz.html">プロの棋譜解説</a></li>
+                <li><a href="assets/html/slide.html">動画ページ</a></li>
               </ul>
             </li>
             <li class="single active">

@@ -8,8 +8,6 @@
       <link rel="stylesheet" href="assets/css/reset.css">
       <link rel="stylesheet" href="assets/css/font.css">
       <link rel="stylesheet" href="assets/css/style.css">
-      <link rel="stylesheet" href="assets/css/header.css">  <!--ヘッダーファイルを分けたヘッダーの変更をしたい場合はここを変更
-      　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　htmlのほうも別ファイルで作るのもありかも-->
       <link rel="stylesheet" href="assets/css/footer.css">  <!--上記と同様にフッターファイルも分けた-->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
       <!--JQuery読み込み-->
@@ -17,95 +15,7 @@
     </head>
 
     <body>
-      <header id="header">
-        <div></div>          
-        <div class="header_container">
-          <div class="site-title"><!--空白でclass名を2つ指定-->
-            <a href="index.html"><img src="assets/img/REIOUlogo.png" alt="REIOU"></a>
-          </div>
-          <nav id="navi" class="pc-area"><!--元は-->
-            <ul class="menu active"><!--元はmenu-->
-              <li class="single">
-                <a href="index.html" id="menu1" class="single_text">学習</a>
-                <ul class="menu-second">
-                  <li><a href="index.html">戦法定跡</a></li>
-                  <li><a href="quiz.html">次の一手</a></li>
-                  <li><a href="tsume-shogi.html">詰将棋</a></li>
-                  <li><a href="assets/html/slide.html">YouTube動画</a></li>
-                </ul>
-              </li>
-              <li class="single active">
-                <a href="assets/html/useful/phone-test.html" id="menu2" class="single_text">記事<!----></a>
-                <ul class="menu-second">
-                  <li><a href="joseki-slide.html">棋戦情報</a></li>
-                  <li><a href="quiz.html">プロの棋譜解説</a></li>
-                  <li><a href="assets/html/video.html">動画ページ</a></li>
-                </ul>
-              </li>
-              <li class="single active">
-                <a href="sousa.html" id="menu3" class="single_text">紹介<!----></a>
-              </li>
-              <li class="single active">
-                <a href="create-tume-shogi.html" id="menu4" class="single_text">プラン<!---->
-                </a>
-              </li>
-              <!--<li><a href="#">お問い合わせ</a></li>-->
-            </ul>
-                <!--<ul class="login">
-                    <li><a href="#">無料版</a></li>
-                    <li><a href="#">ログイン</a></li>
-              </ul>-->
-          </nav>
-          <div style="flex-basis: 10%;" class="test">
-            <h1>
-              仮予定地
-            </h1>
-          </div>
-        </div>
-        
-        <nav id="navi-phone" class="phone-area">
-          <ul id="phone-menu" class="phone-menu">
-            <li>
-              <div class="link">
-                学習<i class="fa"></i>
-              </div>
-              <ul class="phone-submenu">
-                  <li><a href="index.html">戦法定跡</a></li>
-                  <li><a href="quiz.html">次の一手</a></li>
-                  <li><a href="tsume-shogi.html">詰将棋</a></li>
-                  <li><a href="assets/html/slide.html">YouTube動画</a></li>
-              </ul>
-            </li>
-            <li>
-              <div class="link">
-                記事<i class="fa"></i>
-              </div>
-              <ul class="phone-submenu">
-                <li><a href="joseki-slide.html">棋戦情報</a></li>
-                <li><a href="quiz.html">プロの棋譜解説</a></li>
-                <li><a href="assets/html/video.html">動画ページ</a></li>
-              </ul>
-            </li>
-            <li>
-              <div class="link">
-                紹介<i class="fa"></i>
-              </div>
-            </li>
-            <li>
-              <div class="link">
-                プラン<i class="fa"></i>
-              </div>
-            </li>
-            <!-- <li><a href="#">お問い合わせ</a></li> -->
-          </ul>
-        </nav>
-        
-        <div class="toggle_btn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div id="mask"></div>
+      <reiou-header></reiou-header>
       </header>
 
       <!--ヘッダーとmainの間にタイトルをつけたいならこれをいれた方がいいか-->
@@ -339,7 +249,7 @@
       </footer>
       
       <script src="assets/js/main.js"></script>
-      <!-- <script src="assets/js/header.js"></script> -->
+      <script type="module" src="assets/js/reiou-header.js"></script>
     </body>
 </html>
 

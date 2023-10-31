@@ -590,7 +590,7 @@ export class ShogiBoard extends LitElement {
         this.human_side = "none";
       }
     } else {
-      //elem.style.display = "none";
+      elem.style.display = "none";
     }
   }
   

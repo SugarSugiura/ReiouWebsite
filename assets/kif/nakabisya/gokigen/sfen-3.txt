@@ -1,0 +1,22 @@
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+ 7i8h
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+ 7i8h B*3c
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+ 7i8h B*3c 2d2a+
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+ 7i8h B*3c 2d2a+ 3c8h+
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+ 7i8h B*3c 2d2a+ 3c8h+ N*5e
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+ 7i8h B*3c 2d2a+ 3c8h+ N*5e 5a6b
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+ 7i8h B*3c 2d2a+ 3c8h+ N*5e 5a6b 2a1a
+position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 2g2f 5c5d 2f2e 8b5b 4i5h 5d5e 2e2d 2c2d 2h2d 5e5f 5g5f 2b8h+ 7i8h B*3c 2d2a+ 3c8h+ N*5e 5a6b 2a1a S*5d

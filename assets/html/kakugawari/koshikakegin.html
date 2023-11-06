@@ -1,102 +1,44 @@
 <!doctype html>
-<html><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#5E8DC3">
-  <link rel="stylesheet" href="../../css/reset.css">
-  <link rel="stylesheet" href="../../css/header.css">
-  <link rel="stylesheet" href="../../css/slide.css">
-  <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
-  <script type="module" src="../../js/reiou-player.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <style>
-    html {
-      overflow-y: scroll;
-    }
-
-   
-   
-  </style>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#5E8DC3">
+    <title>令王</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/slide.css">
+    <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      html {
+        overflow-y: scroll;
+      }
+    </style>
   </head>
   <body>
-    <header id="header">
-      <div></div>          
-      <div class="header_container">
-        <div class="site-title"><!--空白でclass名を2つ指定-->
-          <a href="../../../index.html"><img src="../../img/REIOUlogo.png" alt="REIOU"></a>
-        </div>
-        <nav id="navi" class="pc-area"><!--元は-->
-          <ul class="menu active"><!--元はmenu-->
-            <li class="single">
-              <a href="index.html" id="menu1" class="single_text">学習</a>
-              <ul class="menu-second">
-                <li><a href="index.html">戦法定跡</a></li>
-                <li><a href="quiz.html">次の一手</a></li>
-                <li><a href="tsume-shogi.html">詰将棋</a></li>
-                <li><a href="../../html/slide.html">YouTube動画</a></li>
-              </ul>
-            </li>
-            <li class="single active">
-              <a href="test.html" id="menu2" class="single_text">記事<!----></a>
-              <ul class="menu-second">
-                <li><a href="shogi-player.html">棋戦情報</a></li>
-                <li><a href="quiz.html">プロの棋譜解説</a></li>
-              </ul>
-            </li>
-            <li class="single active">
-              <a href="sousa.html" id="menu3" class="single_text">紹介<!----></a>
-            </li>
-            <li class="single active">
-              <a href="create-tume-shogi.html" id="menu4" class="single_text">プラン<!---->
-              </a>
-            </li>
-            <!--<li><a href="#">お問い合わせ</a></li>-->
-          </ul>
-              <!--<ul class="login">
-                  <li><a href="#">無料版</a></li>
-                  <li><a href="#">ログイン</a></li>
-            </ul>-->
-        </nav>
-        <div style="flex-basis: 10%;" class="test">
-          <h1>
-            仮予定地
-          </h1>
-        </div>
-      </div>
-      
-      
-      <nav id="navi-phone" class="phone-area">
-        <ul class="phone_menu_wrapper">
-          <li><a href="index.html" style="border-top: 1px solid #fff;">学習</a></li>
-          <li><a href="#">戦法一覧</a></li>
-          <li><a href="#">紹介</a></li>
-          <li><a href="#">プラン</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-        </ul>
-      </nav>
-      <div class="toggle_btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div id="mask"></div>
-    </header>
-    <!-- <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px"> -->
-
+    <reiou-header></reiou-header>
     <input type="checkbox" id="slide_close" checked> <!--閉じるボタンのチェックボックスここに記述してよいのかはわからない-->
     <div id="slide_all" class="slideshow_wrapper">
       <div class="slideshow_container">
         <div class="slideshow">
-          <input type="radio" name="slideshow" id="switch1" checked>
-          <input type="radio" name="slideshow" id="switch2">
-          <input type="radio" name="slideshow" id="switch3">
-          <input type="radio" name="slideshow" id="switch4">
-          <input type="radio" name="slideshow" id="switch5">
-          <input type="radio" name="slideshow" id="switch6">
-          <input type="radio" name="slideshow" id="switch7">
-          <input type="radio" name="slideshow" id="switch8">
-          <input type="radio" name="slideshow" id="switch9">
-          <input type="radio" name="slideshow" id="switch10">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch1" checked>
+          <input class="slide-switch" type="radio" name="slideshow" id="switch2">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch3">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch4">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch5">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch6">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch7">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch8">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch9">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch10">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch11">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch12">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch13">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch14">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch15">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch16">
+          <input class="slide-switch" type="radio" name="slideshow" id="switch17">
+
           <div class="slide_closeButton_container">
             <div style="position: relative; display: inline-block">
               <label class="slide_closeButton" for="slide_close">×</label>
@@ -111,16 +53,16 @@
                   </div>
                   <div style="flex-basis: 20%;">
                     <p>
-                      ひねり飛車は縦歩取りと別名されていた時期もありました。
+                      角換わり腰掛銀は王道の戦法のひとつ。
                       <br>
-                      近年では居飛車相掛かり戦法の一種として定跡所に登場しています。
+                      昭和の時代には最強戦法の１つとも言われていました。
                     </p>
                   </div>
                   <div style="flex-basis: 60%;">
                       <div class="logo">
                         <div>
-                          <div class="logo-text logo-blue">
-                            角換わり右玉<br>
+                          <div class="logo-text logo-green">
+                            角換わり腰掛銀<br>
                           </div>
                         </div>
                       </div>
@@ -134,14 +76,20 @@
                   <div class="slide-txt">
                     <div>
                       <p>
-                        ①角換わり腰掛銀の出だしから、玉を右に移動！
+                        ①角換わり腰掛銀の基本図。バランス良く構えるのが現代流。
+                        <br>
+                        ➁基本図から△４四歩には▲４五歩と開戦！
                       </p>
                     </div>
                   </div>
-                  <div class="slide-img-single">
-                    <div>
-                      <img src="../..\img\kakugawari-migigyoku1.png" alt="" >
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../../img/kakugawari-koshikakegin/kakugawari-koshikake1.png" alt="" >
                       <p>第１図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../../img/kakugawari-koshikakegin/kakugawari-koshikake2.png" alt="" >
+                      <p>第２図</p>
                     </div>
                   </div>
                 </div>
@@ -153,18 +101,20 @@
                   <div class="slide-txt">
                     <div>
                       <p>
-                        ①飛車先交換をとがめる桂頭攻め！
+                        ③基本図から△６五歩には堂々と迎え撃つ！
                         <br>
-                        ②持駒の角を駆使して反撃！
+                        ④基本図から△５二玉の待機戦術には、十分に形を整えてから襲い掛かる！
                       </p>
                     </div>
                   </div>
-                  <div class="slide-img-single">
-                    <div>
-                      <div>
-                        <img src="../..\img\kakugawari-migigyoku2.png" alt="" >
-                        <p>第２図</p>
-                      </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../../img/kakugawari-koshikakegin/kakugawari-koshikake3.png" alt="" >
+                      <p>第３図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../../img/kakugawari-koshikakegin/kakugawari-koshikake4.png" alt="" >
+                      <p>第４図</p>
                     </div>
                   </div>
                 </div>
@@ -172,69 +122,6 @@
             </div>
             <div class="slide_bg">
               <section id="slide4_container">
-                <div id="slide4" class="slide_wrapper">
-                  <div class="slide-txt">
-                    <div>
-                      <p>
-                        ①相手が動いてこなくても積極的に攻めることは可能
-                      </p>
-                    </div>
-                  </div>
-                  <div class="slide-img-single">
-                    <div>
-                      <div>
-                        <img src="../..\img\kakugawari-migigyoku3.png" alt="" >
-                        <p>第３図</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div class="slide_bg">
-              <section id="slide5_container">
-                <div id="slide5" class="slide_wrapper">
-                  <div class="slide-txt">
-                    <div>
-                      <p>
-                        ①△５二金型にも桂頭攻めが急所！
-                      </p>
-                    </div>
-                  </div>
-                  <div class="slide-img-single">
-                    <div>
-                      <div>
-                        <img src="../..\img\kakugawari-migigyoku4.png" alt="" >
-                        <p>第４図</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div class="slide_bg">
-              <section id="slide6_container">
-                <div id="slide6" class="slide_wrapper">
-                  <div class="slide-txt">
-                    <div>
-                      <p>
-                        ①相手陣が偏っているときは薄い右辺を攻める！
-                      </p>
-                    </div>
-                  </div>
-                  <div class="slide-img-single">
-                    <div>
-                      <div>
-                        <img src="../..\img\kakugawari-migigyoku5.png" alt="" >
-                        <p>第５図</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div class="slide_bg">
-              <section id="slide7_container">
                 <div id="slide-last" class="slide_wrapper">
                   <div>
                     <div class="slide-txt-last">
@@ -255,6 +142,77 @@
             <div class="slide_bg">
               <section id="slide5_container">
                 <div id="slide5" class="slide_wrapper">
+                  <div id="slide-last" class="slide_wrapper">
+                    <div>
+                      <div class="slide-txt-last">
+                        <p>ここでスライドは終わりです
+                          <br>
+                          それではやっていきましょう！
+                        </p>
+                      </div>
+                      <div style="position:relative; z-index:10000">
+                        <div style="display: inline-block">
+                          <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide6_container">
+                <div id="slide6" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ①▲７五歩に飛車交換は先手成功形でした。そのため△８二飛（第１図）が冷静な対応です。
+                        <br>
+                        ②先手は７筋の位を活かし▲７七桂（第２図）から石田流を目指します。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../../img/hineri/hineri2_1.png" alt="" >
+                      <p>第１図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../../img/hineri/hineri2_2.png" alt="" >
+                      <p>第２図</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide7_container">
+                <div id="slide7" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ③△８七歩と打たれると角の頭が怖いですが、これは心配ありません。
+                        <br>
+                        ④角を逃げてから▲８五歩（第４図）とすれば△８七歩を取り返すことができます。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../../img/hineri/hineri2_3.png" alt="" >
+                      <p>第３図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../../img/hineri/hineri2_4.png" alt="" >
+                      <p>第４図</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide8_container">
+                <div id="slide-last" class="slide_wrapper">
                   <div>
                     <div class="slide-txt-last">
                       <p>ここでスライドは終わりです
@@ -272,20 +230,270 @@
               </section>
             </div>
             <div class="slide_bg">
-              <section id="slide5_container">
-                <div id="slide5" class="slide_wrapper">
-                  <img src="" alt="" width="100" height="400">
+              <section id="slide9_container">
+                <div id="slide9" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ①第３章では△３二玉（第１図）と寄られた場合を解説します。
+                        <br>
+                        ②先手は石田流に組み換え、振り飛車のような構えになりました。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../../img/hineri/hineri3_1.png" alt="" >
+                      <p>第１図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../../img/hineri/hineri3_2.png" alt="" >
+                      <p>第２図</p>
+                    </div>
+                  </div>
                 </div>
               </section>
             </div>
             <div class="slide_bg">
-              <section id="slide5_container">
-                <div id="slide5" class="slide_wrapper">
-                  <img src="" alt="" width="100" height="400">
+              <section id="slide10_container">
+                <div id="slide10" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ③その後、▲４八玉～▲２八玉と美濃囲いのように囲っていきます。正式名称はちょんまげ美濃です。
+                        <br>
+                        １歩を手持ちにしている分攻撃力が上がり、難なく石田流に構えることができました！
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../../img/hineri/hineri3_3.png" alt="" >
+                      <p>第３図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../../img/hineri/hineri3_3.png" alt="" >
+                      <p>第４図</p>
+                    </div>
+                  </div>
                 </div>
               </section>
             </div>
-            
+            <div class="slide_bg">
+              <section id="slide11_container">
+                <div id="slide-last" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
+                      </p>
+                    </div>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide12_container">
+                <div id="slide12" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ①第４章では公式戦で谷川十七世名人の放った「△８七銀（第１図）」を深く掘り下げます。
+                        <br>
+                        ②▲同金は△７九飛があるため▲７七馬が定跡ですが、さらに△７六銀不成！（第２図）が攻めの継続手。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../..//img/45kaku/45kaku4_1.png" alt="" >
+                      <p>第１図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../..//img/45kaku/45kaku4_2.png" alt="" >
+                      <p>第２図</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide13_container">
+                <div id="slide13" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ③▲同馬とタダで取れますが、これは△８四飛（第３図）の馬銀両取りが強烈です。
+                        <br>
+                        派手な手順ですが、覚えるととても楽しいです！
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../..//img/45kaku/45kaku4_3.png" alt="" >
+                      <p>第３図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../..//img/45kaku/45kaku4_3.png" alt="" >
+                      <p>第４図</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide14_container">
+                <div id="slide-last" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
+                      </p>
+                    </div>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide15_container">
+                <div id="slide15" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ①第５章では▲４二馬（第１図）と引かれた際を解説します。
+                        <br>
+                        ②後手は△８八歩に、先手は▲７七歩（第２図）と当てて受けていきます。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../..//img/45kaku/45kaku5_1.png" alt="" >
+                      <p>第１図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../..//img/45kaku/45kaku5_2.png" alt="" >
+                      <p>第２図</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide16_container">
+                <div id="slide16" class="slide_wrapper">
+                  <div class="slide-txt">
+                    <div>
+                      <p>
+                        ③後手は単純に△８九歩成でも一局ですが、一度△６七銀成（第３図）と歩を取るのがおすすめです。
+                        <br>
+                        ④▲同金に△８九歩成（第４図）とすれば手持ちに歩が入り、形勢は互角の激しい終盤戦に入ります。
+                      </p>
+                    </div>
+                  </div>
+                  <div class="slide-img-double">
+                    <div class="slide-img-1">
+                      <img src="../..//img/45kaku/45kaku5_3.png" alt="" >
+                      <p>第３図</p>
+                    </div>
+                    <div class="slide-img-2">
+                      <img src="../..//img/45kaku/45kaku5_3.png" alt="" >
+                      <p>第４図</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide17_container">
+                <div id="slide-last" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
+                      </p>
+                    </div>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide18_container">
+                <div id="slide-last" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
+                      </p>
+                    </div>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide19_container">
+                <div id="slide-last" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
+                      </p>
+                    </div>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="slide_bg">
+              <section id="slide20_container">
+                <div id="slide-last" class="slide_wrapper">
+                  <div>
+                    <div class="slide-txt-last">
+                      <p>ここでスライドは終わりです
+                        <br>
+                        それではやっていきましょう！
+                      </p>
+                    </div>
+                    <div style="position:relative; z-index:10000">
+                      <div style="display: inline-block">
+                        <label class="slide_closeButton last" for="slide_close">演習に進む</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
           </div>
           <p id="left-arrow" class="arrow prev">
             <i class="ico"></i>
@@ -293,9 +501,19 @@
             <label for="switch2"></label>
             <label for="switch3"></label>
             <label for="switch4"></label>
-            <label for="switch5"></label>
+            <!-- <label for="switch5"></label>
             <label for="switch6"></label>
             <label for="switch7"></label>
+            <label for="switch8"></label>
+            <label for="switch9"></label>
+            <label for="switch10"></label>
+            <label for="switch11"></label>
+            <label for="switch12"></label>
+            <label for="switch13"></label>
+            <label for="switch14"></label>
+            <label for="switch15"></label>
+            <label for="switch16"></label>
+            <label for="switch17"></label> -->
           </p>
           <p id="right-arrow" class="arrow next">
             <i class="ico"></i>
@@ -303,24 +521,36 @@
             <label for="switch2"></label>
             <label for="switch3"></label>
             <label for="switch4"></label>
-            <label for="switch5"></label>
+            <!-- <label for="switch5"></label>
             <label for="switch6"></label>
             <label for="switch7"></label>
+            <label for="switch8"></label>
+            <label for="switch9"></label>
+            <label for="switch10"></label>
+            <label for="switch11"></label>
+            <label for="switch12"></label>
+            <label for="switch13"></label>
+            <label for="switch14"></label>
+            <label for="switch15"></label>
+            <label for="switch16"></label>
+            <label for="switch17"></label> -->
           </p>
         </div>
       </div>
-      
     </div>
     <shogi-board  id="shogi"
-                  style="background-color: beige"
+                  style="background-color: #dcf5f0"
                   file_path="kakugawari/koshikakegin"
                   human_side="black"
                   max_chapter_num = "4"
                   first_sfen="position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
                   first_comment="第１章 基本図まで*角換わり腰掛銀は王道の戦法のひとつ。*細かい攻めをつなげていき、少しずつ敵陣を崩していく、という方針で指します。"
-                  branch_num="0,0,38,38,38,0"></shogi-board>
-
+                  branch_num="0,0,38,38,38,0"
+                  slide_num="0,0,4,0,0,0"
+                  icon_url="../../img/outhor-icon/kuru-icon.jpg"></shogi-board>
     <script src="../../js/test.js"></script>
+    <script type="module" src="../../js/reiou-header.js"></script>
+    <script type="module" src="../../js/reiou-player.js"></script>
   </body>
 </html>
 

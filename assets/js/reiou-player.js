@@ -288,7 +288,8 @@ export class ShogiBoard extends LitElement {
     hint: { type:String },
     hints_chapter: { type: Array },
     current_hints: { type: String },
-    slide_num:  { type: String }
+    slide_num:  { type: String }, 
+    icon_url: {type: String}
   }
 
   static fromAttribute(name, value) {
@@ -308,6 +309,8 @@ export class ShogiBoard extends LitElement {
     } else if (name === "video_url") {
       return value;
     } else if (name === "slide_num") {
+      return value;
+    } else if (name === "icon_url") {
       return value;
     }
     return super.fromAttribute(name, value);
@@ -348,6 +351,7 @@ export class ShogiBoard extends LitElement {
     this.max_chapter_num = 0;
     this.viewpoint = "";
     this.video_url = "";
+    this.icon_url = "";
     this.isVideoEnded = false;
   }
 
@@ -503,7 +507,7 @@ export class ShogiBoard extends LitElement {
       <div class="sidebar-container">
         <div class="comments-container">
           <div class="icon-container">
-            <img src="../../img/sugar_icon.jpg">
+            <img src="${this.icon_url}">
             <p>現在の手数：${this.turn}手目</p>
             <div>
               <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}" style="display: none">

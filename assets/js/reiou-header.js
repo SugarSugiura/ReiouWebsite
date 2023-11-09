@@ -416,7 +416,7 @@ export class ReiouHeader extends LitElement {
       <div></div>
       <div class="header_container">
         <div class="site-title">
-          <a href="index.html"><img src="../../img/REIOUlogo.png" alt="REIOU"></a>
+          <a href="http://reioushogi.jp/"><img src="https://reioushogi.jp/assets/img/REIOUlogo.png" alt="REIOU"></a>
         </div>
         <nav id="navi" class="pc-area">
           <ul class="menu active">

@@ -13,6 +13,8 @@ brew install go
 ```
 </div></details>
 
+`.env` を誰かから受け取って、プロジェクトのルートに配置する
+
 ## 起動
 
 ```bash

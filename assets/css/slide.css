@@ -295,8 +295,7 @@ input[name="slideshow"] {
 }
 
 .slide-img-single img {
-  width: 100%;
-  max-width: 36vw;
+  height: 88%;
   border: solid 5px #024900;
 }
 
@@ -318,8 +317,7 @@ input[name="slideshow"] {
 }
 
 .slide-img-double img {
-  width: 100%;
-  max-width: 36vw;
+  height: 88%;
   border: solid 5px #024900;
 }
 
@@ -633,6 +631,19 @@ shogi-player
 
 .emphasize {
   background-color: aqua;
+}
+
+@media screen and (max-width: 1540px) {
+  .slide-img-single img {
+    width: 100%;
+    max-width: 36vw;
+  }
+
+  .slide-img-double img {
+    width: 100%;
+    max-width: 36vw;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 991px) {

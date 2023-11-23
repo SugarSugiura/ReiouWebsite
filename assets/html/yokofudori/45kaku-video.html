@@ -5,72 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/reset.css">
-    <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/video.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
   </head>
   <body>
-    <header id="header">
-      <div></div>          
-      <div class="header_container">
-        <div class="site-title"><!--空白でclass名を2つ指定-->
-          <a href="../../../index.html"><img src="../../img/REIOUlogo.png" alt="REIOU"></a>
-        </div>
-        <nav id="navi" class="pc-area"><!--元は-->
-          <ul class="menu active"><!--元はmenu-->
-            <li class="single">
-              <a href="index.html" id="menu1" class="single_text">学習</a>
-              <ul class="menu-second">
-                <li><a href="index.html">戦法定跡</a></li>
-                <li><a href="quiz.html">次の一手</a></li>
-                <li><a href="tsume-shogi.html">詰将棋</a></li>
-                <li><a href="../../html/slide.html">YouTube動画</a></li>
-              </ul>
-            </li>
-            <li class="single active">
-              <a href="test.html" id="menu2" class="single_text">記事<!----></a>
-              <ul class="menu-second">
-                <li><a href="shogi-player.html">棋戦情報</a></li>
-                <li><a href="quiz.html">プロの棋譜解説</a></li>
-              </ul>
-            </li>
-            <li class="single active">
-              <a href="sousa.html" id="menu3" class="single_text">紹介<!----></a>
-            </li>
-            <li class="single active">
-              <a href="create-tume-shogi.html" id="menu4" class="single_text">プラン<!---->
-              </a>
-            </li>
-            <!--<li><a href="#">お問い合わせ</a></li>-->
-          </ul>
-              <!--<ul class="login">
-                  <li><a href="#">無料版</a></li>
-                  <li><a href="#">ログイン</a></li>
-            </ul>-->
-        </nav>
-        <div style="flex-basis: 10%;" class="test">
-          <h1>
-            仮予定地
-          </h1>
-        </div>
-      </div>
-      <nav id="navi-phone" class="phone-area">
-        <ul class="phone_menu_wrapper">
-          <li><a href="index.html" style="border-top: 1px solid #fff;">学習</a></li>
-          <li><a href="#">戦法一覧</a></li>
-          <li><a href="#">紹介</a></li>
-          <li><a href="#">プラン</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-        </ul>
-      </nav>
-      <div class="toggle_btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div id="mask"></div>
-    </header>
-    <!-- ここまでヘッダー -->
+    <reiou-header></reiou-header>
     <main>
       <div class="top-url-container">
         <div>
@@ -106,5 +45,6 @@
         </div>
       </div>
     </main>
+    <script type="module" src="../../js/reiou-header.js"></script>
   </body>
 </html>

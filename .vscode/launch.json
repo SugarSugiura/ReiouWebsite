@@ -6,12 +6,23 @@
     "configurations": [
         
     
+        // {
+        //     "type": "chrome",
+        //     "request": "launch",
+        //     "name": "localhost に対して Chrome を起動する",
+        //     "url": "http://localhost:5501",
+        //     "webRoot": "${workspaceFolder}"
+        // }
+
         {
-            "type": "chrome",
+            "name": "Launch",
+            // "type": "godlvdap",
+            "type": "go",
             "request": "launch",
-            "name": "localhost に対して Chrome を起動する",
-            "url": "http://localhost:5501",
-            "webRoot": "${workspaceFolder}"
+            "mode": "auto",
+            "program": "${fileDirname}",
+            "env": {},
+            "args": []
         }
     ]
 }

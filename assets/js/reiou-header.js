@@ -171,6 +171,25 @@ export class ReiouHeader extends LitElement {
     border-left:1px solid;
     border-right:1px solid;
   }
+
+  .login {
+    flex-basis: 10%;
+    padding: 0.5rem;
+  }
+
+  .login > a {
+    width: 80%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: var(--sub-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    margin: 0 auto;
+  }
+
   
   .pc-area {
     display: block;
@@ -264,24 +283,28 @@ export class ReiouHeader extends LitElement {
       border-radius: 4px; */
     }
    
-   .phone-menu .link {
-     cursor: pointer;
-     display: block;
-     padding: 15px 15px 15px 42px;
-     color: #fff;
-     background-color: #293949;
-     font-size: 14px;
-     font-weight: 700;
-     border-bottom: 1px solid #CCC;
-     position: relative;
-     -webkit-transition: all 0.4s ease;
-     -o-transition: all 0.4s ease;
-     transition: all 0.4s ease;
-   }
+    .phone-menu .link {
+      cursor: pointer;
+      display: block;
+      padding: 15px 15px 15px 42px;
+      color: #fff;
+      background-color: #293949;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid #CCC;
+      position: relative;
+      -webkit-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+    }
+
+    .login {
+      display: none;
+    }
    
-   .phone-menu li:last-child .link {
-     border-bottom: 0;
-   }
+    .phone-menu li:last-child .link {
+      border-bottom: 0;
+    }
    
    .phone-menu li i {
      position: absolute;
@@ -446,15 +469,11 @@ export class ReiouHeader extends LitElement {
             </li>
             <!--<li><a href="#">お問い合わせ</a></li>-->
           </ul>
-              <!--<ul class="login">
-                  <li><a href="#">無料版</a></li>
-                  <li><a href="#">ログイン</a></li>
-            </ul>-->
         </nav>
-        <div style="flex-basis: 10%;" class="test">
-          <h1>
-            仮予定地
-          </h1>
+        <div style="flex-basis: 10%;" class="login">
+          <a href="http://localhost:8000/login">
+            <span>ログイン</sapn>
+          </a>
         </div>
       </div>
 

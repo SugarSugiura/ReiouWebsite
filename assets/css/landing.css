@@ -2,6 +2,7 @@
 
 :root {
   --main-color: #004097;
+  --sub-color: #5E8DC3;
   --transition-color: 0.2s;
 }
 
@@ -217,8 +218,7 @@ SP
   color:#000000;
 }
 
-.title-text1 p {
-}
+
 
 .text01 {
   width: 300px; 
@@ -272,12 +272,12 @@ SP
   line-height: 2rem;
   border-radius: 25px;
   color: #000000;
-  background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
-  transition: background 1s;
+  background: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+  transition: all 1s;
 }
 
 .btn-gradient-radius:hover {
-  background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  background: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
 }
 
 .titleback2 {
@@ -459,10 +459,22 @@ SP
 
 .acount {
   display: flex;
+  justify-content: center;
   width: 100%;
-  height: 600px;
   background-color: rgb(72, 150, 240);
-  padding: 10px;
+  padding: 1rem;
+}
+
+.acount-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acount-text span {
+  display: inline-block;
+  color: #fff;
+  font-size: 1.5rem;
 }
 
 .button_solid013 a {
@@ -558,21 +570,25 @@ font-size: 20px;
   text-align: center;
 } */
 
+.plan > h1 {
+  text-align: center;
+  color: var(--sub-color);
+}
+
 .flex_test-box {
- height: 400px;
   background-color: #bed0ff;     /* 背景色指定 */
-  padding:  10px;             /* 余白指定 */
+  padding:  1rem;             /* 余白指定 */
   display: flex;
   align-items:stretch;
   justify-content:center;
+  gap: 1rem;
 }
 
 .flex_test-item {
   padding: 10px;
   color:  #fff;               /* 文字色 */
-  margin:  10px;              /* 外側の余白 */
   border-radius:  5px;        /* 角丸指定 */
-  width: 30%;                 /* 幅指定 */
+  width: 20%;                 /* 幅指定 */
 }
  
 .flex_test-item:nth-child(1) {
@@ -580,11 +596,15 @@ font-size: 20px;
 }
  
 .flex_test-item:nth-child(2) {
-  font-family: NSimSun;
+  /*font-family: NSimSun;*/
   background-color:  #4CAF50; /* 背景色指定 */
 }
 
 @media screen and (max-width: 767px){
+
+  h1 {
+    font-size: 1.5rem;
+  }
 
   .text01 p {
     margin: 0 auto;
@@ -645,5 +665,40 @@ font-size: 20px;
     line-height: 20px;
     font-size: 0.8rem;
   }
-  
+
+  .register p {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 19px;
+  }
+
+  .btn-gradient-radius {
+    display: flex;
+    font-size: 1rem;
+    height: 4rem;
+    padding: 0 1rem;
+    margin-left: 1rem;
+    border-radius: 25px;
+    color: #000000;
+    background: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+    transition: all 1s;
+    align-items: center;
+  }
+
+  .acount {
+    flex-direction: column;
+  }
+
+  .acount-text {
+    margin-bottom: 1rem;
+  }
+
+  .flex_test-item {
+    padding: 10px;
+    color:  #fff;               /* 文字色 */
+    border-radius:  5px;        /* 角丸指定 */
+    width: 40%;                 /* 幅指定 */
+  }
+
 }

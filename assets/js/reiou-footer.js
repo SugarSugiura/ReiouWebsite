@@ -154,12 +154,12 @@ export class ReiouFooter extends LitElement {
     float: left;
     margin: 0px;
     padding: 0px;
-    width: 30px;
-    height: 30px;
+    width: 44px;
+    height: 44px;
     background-color: white;
     border-radius: 2px;
     text-align: center;
-    line-height: 30px;
+    line-height: 55px;
   }
   
   .follow-me li a {

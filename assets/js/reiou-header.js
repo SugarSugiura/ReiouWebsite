@@ -174,11 +174,10 @@ export class ReiouHeader extends LitElement {
 
   .login {
     flex-basis: 10%;
-    padding: 0.5rem;
   }
 
   .login > a {
-    width: 80%;
+    /*width: 80%;
     height: 100%;
     border-radius: 5px;
     background-color: var(--sub-color);
@@ -187,7 +186,51 @@ export class ReiouHeader extends LitElement {
     justify-content: center;
     align-items: center;
     font-weight: 600;
-    margin: 0 auto;
+    margin: 0 auto;*/
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  
+    color: #fff;
+    border-radius: 0;
+    background: #000;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+  }
+
+  .login > a:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 500%;
+    content: "";
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    background: #00b7ee;
+  }
+
+  .login > a:hover:before {
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  }
+
+  .login > a > span {
+    position: relative;
   }
 
   

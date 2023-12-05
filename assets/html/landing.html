@@ -11,6 +11,8 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
       <!--JQuery読み込み-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
+      <script src="https://unpkg.com/gsap@3.9.0/dist/ScrollTrigger.min.js"></script>
     </head>
 
     <body>
@@ -18,16 +20,19 @@
      
 
       <div class="titleback1">
-        <div class="title-text1">
+        <!-- <div class="title-text1">
           <p>令王</p>
-        </div>
+        </div> -->
         <div class="text01">
-         <p>将棋の世界へ、軽やかな一歩<br>初心者でも楽しめる将棋学習</p>
+         <p>誰でも<span>確実</span>に<br><span>効率的</span>に<br>初心者から始める将棋学習</p>
         </div>
-        <div class="titleimg1">
+        <!-- <div class="titleimg1">
          <img src="../img/online.jpg";>
-        </div> 
-      </div> 
+        </div>  -->
+        <div style="font-size: 3.6rem; font-family: HG正楷書体-PRO,serif; color: black; margin: 0; position: absolute; bottom: 1rem; left: 5%;">
+          <p >令王将棋教室</p>
+        </div>
+      </div>
 
       <main class="mainback1">
 
@@ -42,8 +47,55 @@
             <a href="#" class="btn-gradient-radius">新規登録/ログイン</a>
           </div> -->
         </div>
+        <div class="tween-up">
+          <div class="titleback2">
+            <h1 class="title3">棋力が伸び悩んでいませんか？</h1>
+          </div>
+          <div class="textback">
+            <div class="titleback4">
+              <div>
+                <div class="balloon1-right">
+                  <div class="hukidasi2">
+                   <p>
+                    勉強の仕方が<br>わからない
+                  </p>
+                  </div>
+                </div>
+                <div>
+                  <div class="balloon1-right">
+                    <div class="hukidasi2">
+                      <p>学校が忙しい</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="titleback3-1">
+              <img style="width: 100%;" src="../img/nayami.jpg">
+            </div>
+            <div class="titleback3">
+              <div>
+                <div class=balloon1-left>
+                  <div class="hukidasi2">
+                    <p>
+                      スキマ時間で勉強したい
+                    </p>
+                  </div>
+                </div>
+                <div >
+                  <div class="balloon1-left">
+                    <div class="hukidasi2">
+                      <p>仕事が忙しい</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
 
-        <div class="titleback2">
+        <!-- <div class="titleback2">
           <h1 class="title3">将棋についてこう思ってませんか？</h1>
         </div>
         <div class="textback">
@@ -84,18 +136,19 @@
               </div>
             </div>
           </div>
+        </div> -->
+          <div class="titleback2">
+            <h1 class="title3 card">令王ならそんな悩みもすぐ解決します！！</h1>
+          </div>
         </div>
-        <div class="titleback2">
-          <h1 class="title3">令王ならそんな悩みもすぐ解決します！！</h1>
-        </div>
-        
         <div class="backimg">
-          <h1 class="centermoji">令王で出来ること</h1>
+          <!-- <h1 class="centermoji">令王で出来ること</h1> -->
+          <h1 class="centermoji">最適な学習方法</h1>
         </div>
 
         <div class="contentsback">  
-          <div class="contents">
-            <div class="set">
+          <!-- <div class="contents">
+            <div class="set tween-right">
               <div class="moji">
                 <h1 class="border_">定石学習</h1>
                 <p>将棋の駒の動かし方から有段者まで勉強でき、プロ棋士、奨励会、全国優勝者などの令王メンバー解説付き！</p>
@@ -104,7 +157,7 @@
                 <img style="width: 500px;" src="../img/IMG_0704.jpg"> 
               </div>
             </div>
-            <div class="set">
+            <div class="set tween-left">
               <div class = "souchan_img">
                 <img style="width: 500px;" src="../img/souchan.jpg"> 
               </div>
@@ -115,7 +168,7 @@
                 </p>
               </div>
             </div>
-            <div class="set">
+            <div class="set tween-right">
               <div class="moji">
                 <h1 class="border_">指導対局</h1>
                 <p>令王メンバーの個人にあった丁寧な指導対局を行います。
@@ -125,7 +178,7 @@
                 <img style="width: 500px;" src="../img/shidou.png">
               </div>
             </div>
-            <div class="set">
+            <div class="set tween-left">
               <div class = "jouseki_img">
                 <img style="width: 500px;" src="../img/jouseki3.jpg">
               </div>
@@ -133,6 +186,46 @@
                 <h1 class="border_">詰将棋</h1>
                 <p>初心者向けの簡単な問題から、上級者向けの難しい問題まで幅広くあります。
                 <br>詰将棋を解くだけでなく、詰将棋を作ることもできます。</p>
+              </div>
+            </div>
+          </div> -->
+          <div class="contents">
+            <div class="set tween-right">
+              <div class="moji">
+                <h1 class="border_">令王将棋教室</h1>
+                <p>将棋道場や従来の方法と比較してコスト面や効果を実感できます。</p>
+              </div> 
+              <div class = "learn_img"> 
+                <img style="width: 500px;" src="../img/IMG_0704.jpg"> 
+              </div>
+            </div>
+            <div class="set tween-left">
+              <div class = "souchan_img">
+                <img style="width: 500px;" src="../img/souchan.jpg"> 
+              </div>
+              <div class="moji">
+                <h2 class="border_">定跡学習</h2>
+                <p>
+                  将棋の駒の動かし方から有段者まで勉強でき、プロ棋士、奨励会、全国優勝者などの令王メンバー解説付き！
+                </p>
+              </div>
+            </div>
+            <div class="set tween-right">
+              <div class="moji">
+                <h1 class="border_">なぜ見放題なのに価格が安いの？</h1>
+                <p>私たちは動画作成におけるスキルや指導の技術を持っているため<br>より需要のある講座を無駄なく作成することができます。</p>
+              </div> 
+              <div class = "shidou_img">
+                <img style="width: 500px;" src="../img/shidou.png">
+              </div>
+            </div>
+            <div class="set tween-left">
+              <div class = "jouseki_img">
+                <img style="width: 500px;" src="../img/jouseki3.jpg">
+              </div>
+              <div class="moji">
+                <h1 class="border_">最短で効率よく学べる将棋教室</h1>
+                <p>家で学べるためお気軽に始められます。<br>ルール学習から学べるため、初心者の方でも今すぐ開始できます。</p>
               </div>
             </div>
           </div>
@@ -174,6 +267,7 @@
       <script src="../js/main.js"></script>
       <script type="module" src="../js/reiou-header.js"></script>
       <script type="module" src="../js/reiou-footer.js"></script>
+      <script src="../js/landing.js"></script>
       <!-- <script src="assets/js/header.js"></script> -->
     </body>
 </html>

@@ -466,6 +466,10 @@ export class ReiouHeader extends LitElement {
       display: none;
       transition: all 0.5s;
     }
+
+    .sub-open {
+      display: block;
+    }
   }
 	`
 	static properties = {
@@ -475,6 +479,13 @@ export class ReiouHeader extends LitElement {
 	constructor() {
     super()
 	}
+
+  firstUpdated() {
+    const accordionItems = this.shadowRoot.querySelectorAll('.link');
+    accordionItems.forEach(item => {
+      item.addEventListener('click', (e) => this.toggleAccordion(e));
+    });
+  }
 
 	render() {
     return html`
@@ -580,6 +591,25 @@ export class ReiouHeader extends LitElement {
   close_phone_header() {
     const elem = this.shadowRoot.getElementById("header");
     elem.classList.remove("open");
+  }
+
+  toggleAccordion(e) {
+    const clickedItem = e.currentTarget;
+    const nextElement = clickedItem.nextElementSibling;
+    if (nextElement != null) {
+      nextElement.classList.toggle("open");
+    }
+    
+
+    //複数開きっぱなしにするならmultipleをtrueに
+    if (!this.multiple) {
+      const accordionItems = this.shadowRoot.querySelectorAll('.phone-submenu');
+      accordionItems.forEach(item => {
+        if (item !== nextElement && item.classList.contains('open')) {
+          item.classList.remove('open');
+        }
+      });
+    }
   }
 
 // $(function(){

@@ -272,6 +272,8 @@
           .sub-container > a > span {
             font-size: 1.5rem;
             margin: 1rem 0 1rem 1rem;
+            text-decoration: underline;
+            text-underline-offset: 6px;
           }
 
           .sub-container > a > div > span {
@@ -301,6 +303,21 @@
               height: 99%;
               background-color: blue;
               z-index: -1;
+            }
+
+            .sub-container {
+              padding: 1rem;
+              height: auto;
+            }
+
+            .sidebar-container > div {
+              width: auto;
+              flex-grow: 1;
+            }
+
+            .sub-container > a > span {
+              margin:0;
+              margin-bottom: 1rem;
             }
           }
         `

@@ -22,6 +22,12 @@
             --sub-color: #5E8DC3;
           }
 
+          * {
+            box-sizing: border-box;
+            border-style: solid;
+            border-width: 0px;
+          }
+
           a {
             text-decoration: none;
           }
@@ -278,12 +284,38 @@
               flex-direction: column;
             }
 
+            .tab-button-container {
+              width: 100%;
+              position: relative;
+              display: flex;
+              align-items: center;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+              background-color: white;
+              height: auto;
+              padding: 1rem 0;
+            }
+
+            .tab-button-container::before {
+              bottom: 0px;
+            }
+
+            .koma-button {
+              writing-mode: vertical-lr;
+              display: flex;
+              align-items: center;
+            } 
+
             .blue-back {
               position: absolute;
               width: 99%;
               height: 99%;
               background-color: blue;
               z-index: -1;
+            }
+
+            .sidebar-container > div {
+              width: auto;
+              flex-grow: 1;
             }
           }
         `
@@ -307,32 +339,11 @@
 
         constructor() {
           super()
-          this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
+          this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
           this.comment_lines = null
           this.comments = ""
           this.turn = null
-          this.pass_css = `.place_5_4::before{  content: "";
-                                                position: absolute;
-                                                width: 40%;
-                                                height: 40%;
-                                                background-color: dimgray;
-                                                border-radius: 50%;
-                                              }
-                            .place_5_2::before{ content: "";
-                                                position: absolute;
-                                                display: inline-block;
-                                                width: 100%;
-                                                height: 100%;
-                                                background-color: #1E88E5;
-                                                clip-path: polygon(30% 25%, 50% 0, 70% 25%, 55% 25%, 55% 100%, 45% 100%, 45% 25%);
-                                              }
-                            .place_5_3::before{ content: "";
-                                                position: absolute;
-                                                display: inline-block;
-                                                width: 10%;
-                                                height: 100%;
-                                                background-color: #1E88E5;
-                                              }`
+          this.pass_css = ``
                             
           this.human_sfen = ""
           this.ai_sfen = ""
@@ -344,10 +355,7 @@
           this.isMousedown = false;
           this.ripple_parent;
           this.ripple_elem = [];
-          this.exp_content = `全方向に動ける取られてはいけない駒玉将」*
-          「王将」の二つがあり、読み方は「玉（ぎょく）」と「王（おう）」*
-          詰まされたら負けになるこの駒は、全ての方向に1マスずつ動くことができます。*
-          また豆知識となりますが、一般的に王は格上（棋力や年齢が上の人、あるいは後手の人）が使い、玉は（棋力や年齢が下の人、あるいは先手の人）が使います。`
+          this.exp_content = ``
           
           window.addEventListener('mousedown', this.handleMouseDown);
           window.addEventListener('mouseup', this.handleMouseUp);
@@ -581,19 +589,11 @@
         
 
         king() {
-          this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
-          this.exp_content = `全方向に動ける取られてはいけない駒玉将」*
-          「王将」の二つがあり、読み方は「玉（ぎょく）」と「王（おう）」*
-          詰まされたら負けになるこの駒は、全ての方向に1マスずつ動くことができます。*
-          また豆知識となりますが、一般的に王は格上（棋力や年齢が上の人、あるいは後手の人）が使い、玉は（棋力や年齢が下の人、あるいは先手の人）が使います。`
-          this.pass_css = this.make_arrow(5, 4, "up");
-          this.pass_css += this.make_arrow(4, 4, "up_right");
-          this.pass_css += this.make_arrow(4, 5, "right");
-          this.pass_css += this.make_arrow(4, 6, "down_right");
-          this.pass_css += this.make_arrow(5, 6, "down");
-          this.pass_css += this.make_arrow(6, 6, "down_left");
-          this.pass_css += this.make_arrow(6, 5, "left");
-          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
+          this.exp_content = `駒の初期配置*
+          上図のように並べます。*
+          8種類の動き方が違う駒があり、それぞれの動きを理解しておきましょう！*
+          動き方の説明はページ下のタブにあります。`
           this.remove_active();
           this.shadowRoot.getElementById("king-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-1");
@@ -602,8 +602,8 @@
 
         gold() {
           this.source = "position sfen 9/9/9/9/4G4/9/9/9/9 b - 1";
-          this.exp_content = `守りの要となる駒*
-          「金（きん）」は、とても大切な守備駒で、1マスずつですが、図のようにナナメ後ろ以外の６方向に動くことができます。*
+          this.exp_content = `将棋の進め方*
+          将棋はお互いに１手づつ*
           駒の特性上、上や横に効きが強いため、１段目であれば隙がなく自玉の守りに最適です。また、自分の守りだけでなく相手の王様を詰ます際にも重宝します。*
           裏には何も書いておらず、成ることはできません。 `
           this.pass_css = this.make_arrow(5, 4, "up");

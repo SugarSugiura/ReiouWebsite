@@ -366,7 +366,8 @@
         firstUpdated() {
           this.king();
           console.log(this.shadowRoot.querySelector(".piece-explane").children[0]);
-          this.shadowRoot.querySelector(".piece-explane").children[0].style.font = "bold 1rem 游ゴシック";
+          this.shadowRoot.querySelector(".piece-explane").children[0].style.fontWeight = "bold";
+          this.shadowRoot.querySelector(".piece-explane").children[0].style.fontSize = "1.2rem";
         }
 
         handleMouseDown() {
@@ -593,7 +594,7 @@
         king() {
           this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
           this.exp_content = `駒の初期配置*
-          上図のように並べます。*
+          図のように並べます。*
           8種類の動き方が違う駒があり、それぞれの動きを理解しておきましょう！*
           動き方の説明はページ下のタブにあります。`
           this.remove_active();
@@ -606,9 +607,9 @@
         gold() {
           this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 8c8d";
           this.exp_content = `将棋の進め方*
-          将棋はお互いに１手づつ*
-          駒の特性上、上や横に効きが強いため、１段目であれば隙がなく自玉の守りに最適です。また、自分の守りだけでなく相手の王様を詰ます際にも重宝します。*
-          裏には何も書いておらず、成ることはできません。 `
+          将棋はお互いに１手づつ、手番をパスすることはできません。*
+          実際に盤面上で動かして確かめてみましょう！*
+          `
           this.pass_css = ""
           this.remove_active();
           this.shadowRoot.getElementById("gold-tab").classList.add("tab-active");
@@ -617,16 +618,13 @@
         }
 
         silver() {
-          this.source = "position sfen 9/9/9/9/4S4/9/9/9/9 b - 1";
-          this.exp_content = `攻めの要となる駒*
-          「銀（ぎん）」は金と変わって横に動くことができず、その代わりナナメ後ろには動くことができます。*
-          ナナメにするする進軍できることから、金よりも攻撃に向きやすい駒です。*
-          また、「銀」が成ると「成銀（なりぎん）」となり、「金（きん）」と同じ動きになります。 `
-          this.pass_css = this.make_arrow(5, 4, "up");
-          this.pass_css += this.make_arrow(4, 4, "up_right");
-          this.pass_css += this.make_arrow(4, 6, "down_right");
-          this.pass_css += this.make_arrow(6, 6, "down_left");
-          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 8c8d 2f2e 8d8e 6i7h 4a3b 2e2d 8e8f";
+          this.exp_content = `駒を取る、使う*
+          図では右から2列目と8列目の歩兵が相手の歩兵と向かい合っています。*
+          この場合次の一手で相手の駒を取ることができます。*
+          実際に歩を動かして相手の駒を取ってみましょう。*
+          駒を取るとその駒は自分の「持ち駒」となり、自分の戦力として使うことができます！`
+          this.pass_css = "";
           this.remove_active();
           this.shadowRoot.getElementById("silver-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-3");
@@ -634,12 +632,13 @@
         }
 
         pawn() {
-          this.source = "position sfen 9/9/9/9/4P4/9/9/9/9 b - 1";
-          this.exp_content = `１歩ずつ進む重要な駒*
-          「歩（ふ）」は、1マスずつ前に進むことができます。一見地味なようですが、この駒が一番数が多く、動かす回数も多いです。*
-          将棋の強い人は歩の使い方が上手く、この駒を使いこなせれば上級者になりやすいと言われています。*
-          「歩」が成ると、「と金」となり、「金（きん）」と同じ動きになります。`
-          this.pass_css = this.make_arrow(5, 4, "up");
+          this.source = "position sfen 4k4/4G4/4S4/9/9/9/9/9/9 b - 1";
+          this.exp_content = `勝ち負け*
+          相手の王様を取ればとったほうの勝ちになります。*
+          しかし、実際には王様の逃げる場所がどこにもなくなったときに勝敗が決まります。
+          図は「頭金」と呼ばれる状態で、後手の王様を討ち取った局面です。*
+          `
+          this.pass_css = "";
           this.remove_active();
           this.shadowRoot.getElementById("pawn-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-4");

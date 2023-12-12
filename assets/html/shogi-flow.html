@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/koma-move.css">
     <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module">
@@ -30,9 +28,6 @@
 
           a {
             text-decoration: none;
-          }
-
-          a:visited {
             color: black;
           }
 
@@ -248,7 +243,7 @@
           }
           
           .sub-container:hover {
-            transform: translateX(8px) translateY(-8px);
+            /*transform: translateX(8px) translateY(-8px);*/
           }
 
           .sub-container > a {
@@ -256,16 +251,19 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            padding: 1rem;
           }
 
           .sub-container > a > span {
-            font-size: 1.5rem;
-            margin: 1rem 0 1rem 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 5px;
           }
 
           .sub-container > a > div > span {
             font-size: 1rem;
-            margin-left: 1rem;
           }
 
           
@@ -281,6 +279,10 @@
             }
 
             .middle-container {
+              flex-direction: column;
+            }
+
+            .sidebar-container {
               flex-direction: column;
             }
 
@@ -350,7 +352,7 @@
           this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
           this.chapter = 1
           this.turn_max = 37
-          this.human_side = "black"
+          this.human_side = "both"
           this.isRippling = false;   
           this.isMousedown = false;
           this.ripple_parent;
@@ -595,23 +597,19 @@
           8種類の動き方が違う駒があり、それぞれの動きを理解しておきましょう！*
           動き方の説明はページ下のタブにあります。`
           this.remove_active();
+          this.pass_css = "";
           this.shadowRoot.getElementById("king-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-1");
           this.shadowRoot.querySelectorAll(".tab-content")[0].style.color = "black";
         }
 
         gold() {
-          this.source = "position sfen 9/9/9/9/4G4/9/9/9/9 b - 1";
+          this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 8c8d";
           this.exp_content = `将棋の進め方*
           将棋はお互いに１手づつ*
           駒の特性上、上や横に効きが強いため、１段目であれば隙がなく自玉の守りに最適です。また、自分の守りだけでなく相手の王様を詰ます際にも重宝します。*
           裏には何も書いておらず、成ることはできません。 `
-          this.pass_css = this.make_arrow(5, 4, "up");
-          this.pass_css += this.make_arrow(4, 4, "up_right");
-          this.pass_css += this.make_arrow(4, 5, "right");
-          this.pass_css += this.make_arrow(5, 6, "down");
-          this.pass_css += this.make_arrow(6, 5, "left");
-          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.pass_css = ""
           this.remove_active();
           this.shadowRoot.getElementById("gold-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-2");
@@ -825,74 +823,11 @@
     </script>
   </head>
   <body>
-    <header id="header">
-      <div></div>          
-      <div class="header_container">
-        <div class="site-title"><!--空白でclass名を2つ指定-->
-          <a href="../../../index.html"><img src="../img/REIOUlogo.png" alt="REIOU"></a>
-        </div>
-        <nav id="navi" class="pc-area"><!--元は-->
-          <ul class="menu active"><!--元はmenu-->
-            <li class="single">
-              <a href="index.html" id="menu1" class="single_text">学習</a>
-              <ul class="menu-second">
-                <li><a href="index.html">戦法定跡</a></li>
-                <li><a href="quiz.html">次の一手</a></li>
-                <li><a href="tsume-shogi.html">詰将棋</a></li>
-                <li><a href="../../html/slide.html">YouTube動画</a></li>
-              </ul>
-            </li>
-            <li class="single active">
-              <a href="test.html" id="menu2" class="single_text">記事<!----></a>
-              <ul class="menu-second">
-                <li><a href="shogi-player.html">棋戦情報</a></li>
-                <li><a href="quiz.html">プロの棋譜解説</a></li>
-              </ul>
-            </li>
-            <li class="single active">
-              <a href="sousa.html" id="menu3" class="single_text">紹介<!----></a>
-            </li>
-            <li class="single active">
-              <a href="create-tume-shogi.html" id="menu4" class="single_text">プラン<!---->
-              </a>
-            </li>
-            <!--<li><a href="#">お問い合わせ</a></li>-->
-          </ul>
-              <!--<ul class="login">
-                  <li><a href="#">無料版</a></li>
-                  <li><a href="#">ログイン</a></li>
-            </ul>-->
-        </nav>
-        <div style="flex-basis: 10%;" class="test">
-          <h1>
-            仮予定地
-          </h1>
-        </div>
-      </div>
-      
-      
-      <nav id="navi-phone" class="phone-area">
-        <ul class="phone_menu_wrapper">
-          <li><a href="index.html" style="border-top: 1px solid #fff;">学習</a></li>
-          <li><a href="#">戦法一覧</a></li>
-          <li><a href="#">紹介</a></li>
-          <li><a href="#">プラン</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-        </ul>
-      </nav>
-      <div class="toggle_btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div id="mask"></div>
-    </header>
-    <!-- <input type="button" value="採点" onclick="EmphasizeSquare(5, 5)" style="position: absolute; top: 100px"> -->
+    <reiou-header></reiou-header>
     <main>
       <shogi-board id="shogi"></shogi-board>
     </main>
-    
-
     <script src="../js/test.js"></script>
+    <script type="module" src="../js/reiou-header.js"></script>
   </body>
 </html>

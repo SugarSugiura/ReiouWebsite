@@ -5,18 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/koma-move.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
     <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module">
       import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
       export class ShogiBoard extends LitElement {
         static styles = css`
-          :host {
+        :host {
             padding-top: 60px;
             display: flex;
-            min-height: 100vh;
             /*border: 1px solid hsl(0 0% 0% / 0.1);*/
             font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
             --sub-color: #5E8DC3;
@@ -30,10 +28,11 @@
 
           a {
             text-decoration: none;
+            color: black;
           }
 
-          a:visited {
-            color: black;
+          p {
+            margin: 0.2rem 0;
           }
 
           .container {
@@ -105,7 +104,6 @@
             width: calc(100% / 5);
             position: absolute;
             transition: transform 0.225s cubic-bezier(0.35, 0, 0.25, 1), 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-            
           }
 
           .tab-content {
@@ -163,18 +161,6 @@
             transform: translateX(400%);
           }
 
-          .tab-button-border-6:before {
-            transform: translateX(500%);
-          }
-
-          .tab-button-border-7:before {
-            transform: translateX(600%);
-          }
-
-          .tab-button-border-8:before {
-            transform: translateX(700%);
-          }
-
 
           .piece-button {
             pointer-events: none;
@@ -196,7 +182,7 @@
           }
 
           .koma-button {
-            width: calc(100% / 5);;
+            width: calc(100%/4);
             position: relative;
             text-align: center;
           }
@@ -243,6 +229,7 @@
             width: 40%;
             position: relative;
             z-index: 1;
+            flex-grow: 1;
           }
 
           
@@ -260,12 +247,15 @@
             height: 100%;
             flex-direction: column;
             border: 1px solid rgba(0,0,0,0.12);
+            box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 10px;
             background-color: #fff;
             transition: all 0.3s;
+            rgba(0, 0, 0, 0.04) 0px 2px 10px;
           }
           
           .sub-container:hover {
-            transform: translateX(8px) translateY(-8px);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
+            transition: all 0.3s ease-in-out 0s;
           }
 
           .sub-container > a {
@@ -273,16 +263,24 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            padding: 1rem;
+          }
+
+          .sub-container > a:active {
+            background-color: #c2c2c2;
+            transition: all 0.3s ease-in-out 0s;
           }
 
           .sub-container > a > span {
-            font-size: 1.5rem;
-            margin: 1rem 0 1rem 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 5px;
           }
 
           .sub-container > a > div > span {
             font-size: 1rem;
-            margin-left: 1rem;
           }
 
           
@@ -298,6 +296,10 @@
             }
 
             .middle-container {
+              flex-direction: column;
+            }
+
+            .sidebar-container {
               flex-direction: column;
             }
 
@@ -330,17 +332,9 @@
               z-index: -1;
             }
 
-            .sub-container {
-              padding: 1rem;
-            }
-
             .sidebar-container > div {
+              width: auto;
               flex-grow: 1;
-            }
-
-            .sub-container > a > span {
-              margin:0;
-              margin-bottom: 1rem;
             }
           }
         `
@@ -396,7 +390,7 @@
           this.first_sfen = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1"
           this.chapter = 1
           this.turn_max = 37
-          this.human_side = "black"
+          this.human_side = "none"
           this.isRippling = false;   
           this.isMousedown = false;
           this.ripple_parent;
@@ -414,6 +408,11 @@
           this.king();
           console.log(this.shadowRoot.querySelector(".piece-explane").children[0]);
           this.shadowRoot.querySelector(".piece-explane").children[0].style.font = "bold 1rem 游ゴシック";
+          this.shadowRoot.querySelector(".piece-explane").children[0].style.fontSize = "1.2rem";
+          this.shadowRoot.querySelector(".piece-explane").children[0].style.margin = "0 0 1rem 0";
+          const el = this.renderRoot.querySelector("shogi-player-wc");
+          const sp_instance = el.shadowRoot.querySelector(".ShogiPlayer").__vue__;
+          setInterval(() => sp_instance.api_turn_add(1, {cycle: true}), 1000);
         }
 
         handleMouseDown() {
@@ -643,19 +642,14 @@
         
 
         king() {
-          this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
-          this.exp_content = `全方向に動ける取られてはいけない駒玉将」*
-          「王将」の二つがあり、読み方は「玉（ぎょく）」と「王（おう）」*
-          詰まされたら負けになるこの駒は、全ての方向に1マスずつ動くことができます。*
-          また豆知識となりますが、一般的に王は格上（棋力や年齢が上の人、あるいは後手の人）が使い、玉は（棋力や年齢が下の人、あるいは先手の人）が使います。`
-          this.pass_css = this.make_arrow(5, 4, "up");
-          this.pass_css += this.make_arrow(4, 4, "up_right");
-          this.pass_css += this.make_arrow(4, 5, "right");
-          this.pass_css += this.make_arrow(4, 6, "down_right");
-          this.pass_css += this.make_arrow(5, 6, "down");
-          this.pass_css += this.make_arrow(6, 6, "down_left");
-          this.pass_css += this.make_arrow(6, 5, "left");
-          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.source = "position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1";
+          this.exp_content = `反則行為とは*
+          いくつかありますが、最低限「二歩」というルールだけは*
+          心得ておきましょう。それ以外の反則行為は現れるケースは稀で、*
+          将棋を楽しみながら少しずつ覚えていけば良いと思います。*
+          なお、禁じ手を行うと正式には即負けになりますが、*
+          覚えて間もない内は、直前の局面に戻して続行するほうが現実的です。`
+          this.pass_css = "";
           this.remove_active();
           this.shadowRoot.getElementById("king-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-1");
@@ -663,17 +657,14 @@
         }
 
         gold() {
-          this.source = "position sfen 9/9/9/9/4G4/9/9/9/9 b - 1";
-          this.exp_content = `守りの要となる駒*
-          「金（きん）」は、とても大切な守備駒で、1マスずつですが、図のようにナナメ後ろ以外の６方向に動くことができます。*
-          駒の特性上、上や横に効きが強いため、１段目であれば隙がなく自玉の守りに最適です。また、自分の守りだけでなく相手の王様を詰ます際にも重宝します。*
-          裏には何も書いておらず、成ることはできません。 `
-          this.pass_css = this.make_arrow(5, 4, "up");
-          this.pass_css += this.make_arrow(4, 4, "up_right");
-          this.pass_css += this.make_arrow(4, 5, "right");
-          this.pass_css += this.make_arrow(5, 6, "down");
-          this.pass_css += this.make_arrow(6, 5, "left");
-          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.source = "position sfen 9/9/4+P4/9/9/9/PPPP1P1PP/9/9 b - 1";
+          this.exp_content = `二歩*
+          持ち駒は基本的にはマス目のどこへ打ってもよいのですが、*
+          すでに自分の歩がある縦の列に歩を打つことはできません。*
+          これを「二歩」と言って、歩兵だけのルールです。*
+          と金の場合は、その列に歩を打つことは可能です。*
+          図では右から２列目と５列目には歩を打てます。`
+          this.pass_css = "";
           this.remove_active();
           this.shadowRoot.getElementById("gold-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-2");
@@ -681,16 +672,16 @@
         }
 
         silver() {
-          this.source = "position sfen 9/9/9/9/4S4/9/9/9/9 b - 1";
-          this.exp_content = `攻めの要となる駒*
-          「銀（ぎん）」は金と変わって横に動くことができず、その代わりナナメ後ろには動くことができます。*
-          ナナメにするする進軍できることから、金よりも攻撃に向きやすい駒です。*
-          また、「銀」が成ると「成銀（なりぎん）」となり、「金（きん）」と同じ動きになります。 `
-          this.pass_css = this.make_arrow(5, 4, "up");
-          this.pass_css += this.make_arrow(4, 4, "up_right");
-          this.pass_css += this.make_arrow(4, 6, "down_right");
-          this.pass_css += this.make_arrow(6, 6, "down_left");
-          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.source = "position sfen 7nl/9/4+BSkp1/5pp1p/9/9/9/9/9 b - 1 moves 5c4b 3c2b 4b3a 2b3c 3a4b 3c2b 4b3a 2b3c 3a4b 3c2b 4b3a 2b3c";
+          this.exp_content = `千日手*
+          完全に同じ局面が繰り返し現れてしまうことを*
+          千日手と言います。４回同じ局面が現れると千日手のルールが*
+          成立します。自己申告ですので、４回くらい局面が現れたなと思えば、*
+          相手に千日手ですねと申告しましょう。千日手になった場合は、*
+          先手と後手を入れ替えてまた最初からやり直します。*
+          図では「連続王手の千日手」になっていて、この場合は*
+          王手をしている側が手を変えなければ反則になります。`
+          this.pass_css = ""
           this.remove_active();
           this.shadowRoot.getElementById("silver-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-3");
@@ -698,12 +689,14 @@
         }
 
         pawn() {
-          this.source = "position sfen 9/9/9/9/4P4/9/9/9/9 b - 1";
-          this.exp_content = `１歩ずつ進む重要な駒*
-          「歩（ふ）」は、1マスずつ前に進むことができます。一見地味なようですが、この駒が一番数が多く、動かす回数も多いです。*
-          将棋の強い人は歩の使い方が上手く、この駒を使いこなせれば上級者になりやすいと言われています。*
-          「歩」が成ると、「と金」となり、「金（きん）」と同じ動きになります。`
-          this.pass_css = this.make_arrow(5, 4, "up");
+          this.source = "position sfen 7+B1/9/7pk/9/7S1/9/9/9/9 b P 1 moves P*1d";
+          this.exp_content = `打ち歩詰め*
+          持ち駒の歩を使って、相手の王様を詰ましてしまうことを*
+          「打ち歩詰め」といいます。将棋にルールでは反則になっています。*
+          図では歩を打つと後手玉は詰むのですが、持ち駒の歩を*
+          使っているので反則になります。
+          `
+          this.pass_css = "";
           this.remove_active();
           this.shadowRoot.getElementById("pawn-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-4");
@@ -711,30 +704,14 @@
         }
 
         rook() {
-          this.source = "position sfen 9/1R8/9/9/9/6p2/9/3l2R2/9 b - 1";
-          this.exp_content = `人気の高い最強の駒*
-          「飛（ひ）」は、タテとヨコなら１回で、他の駒にぶつかるまで何マスでも進むことができます。*
-          飛は攻めの主役となりやすく、序盤戦は主に「振り飛車」と「居飛車」の２つに分かれます。*
-          「飛」が成ると、「竜・龍（りゅう）」となり、元の動きに加えて、ナナメにも１マスずつ動けるようになります。`
-          this.pass_css = this.make_arrow(3, 7, "up");
-          this.pass_css += this.make_stick(4, 8, "holizontal");
-          this.pass_css += this.make_arrow(5, 8, "left");
-          this.pass_css += this.make_arrow(8, 1, "up");
-          this.pass_css += this.make_arrow(9, 2, "left");
-          this.pass_css += this.make_arrow(1, 2, "right");
-          this.pass_css += this.make_arrow(8, 9, "down");
-          this.pass_css += this.make_stick(8, 3, "vertical");
-          this.pass_css += this.make_stick(8, 4, "vertical");
-          this.pass_css += this.make_stick(8, 5, "vertical");
-          this.pass_css += this.make_stick(8, 6, "vertical");
-          this.pass_css += this.make_stick(8, 7, "vertical");
-          this.pass_css += this.make_stick(8, 8, "vertical");
-          this.pass_css += this.make_stick(2, 2, "holizontal");
-          this.pass_css += this.make_stick(3, 2, "holizontal");
-          this.pass_css += this.make_stick(4, 2, "holizontal");
-          this.pass_css += this.make_stick(5, 2, "holizontal");
-          this.pass_css += this.make_stick(6, 2, "holizontal");
-          this.pass_css += this.make_stick(7, 2, "holizontal");
+          this.source = "position sfen 3PL4/5N3/9/9/9/9/9/9/9 b - 1";
+          this.exp_content = `身動きの取れない駒*
+          「桂」「香」「歩」は前にしか進めない駒なので、*
+          上部にいきすぎると動けなってしまうこともあります。*
+          このような場合は必ず成る必要があります。*
+          成れば金と同じ動きをするので、バックすることができます。*
+          また、持ち駒をそれらの場所に打つことも禁じ手になります。`
+          this.pass_css = "";
           this.remove_active();
           this.shadowRoot.getElementById("rook-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-5");
@@ -891,7 +868,9 @@
     <main>
       <shogi-board id="shogi"></shogi-board>
     </main>
+    <reiou-footer></reiou-footer>
     <script type="module" src="../js/reiou-header.js"></script>
+    <script type="module" src="../js/reiou-footer.js"></script>
     <script src="../js/test.js"></script>
   </body>
 </html>

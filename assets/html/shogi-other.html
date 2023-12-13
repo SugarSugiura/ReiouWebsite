@@ -5,29 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/koma-move.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
     <script defer="" src="https://cdn.jsdelivr.net/npm/shogi-player@1.1.15"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module">
       import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
       export class ShogiBoard extends LitElement {
         static styles = css`
-          :host {
+        :host {
             padding-top: 60px;
             display: flex;
-            min-height: 100vh;
             /*border: 1px solid hsl(0 0% 0% / 0.1);*/
             font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
             --sub-color: #5E8DC3;
           }
 
-          a {
-            text-decoration: none;
+          * {
+            box-sizing: border-box;
+            border-style: solid;
+            border-width: 0px;
           }
 
-          a:visited {
+          a {
+            text-decoration: none;
             color: black;
+          }
+
+          p {
+            margin: 0.2rem 0;
           }
 
           .container {
@@ -89,6 +94,7 @@
             line-height: 50px;
             display: flex;
             align-items: end;
+            justify-content: center;
             border-bottom: 1px solid rgba(0, 0, 0, 0.12);
             background-color: white;
           }
@@ -99,7 +105,6 @@
             width: calc(100% / 1);
             position: absolute;
             transition: transform 0.225s cubic-bezier(0.35, 0, 0.25, 1), 0.5s cubic-bezier(0.35, 0, 0.25, 1);
-            
           }
 
           .tab-content {
@@ -153,22 +158,6 @@
             transform: translateX(300%);
           }
 
-          .tab-button-border-5:before {
-            transform: translateX(400%);
-          }
-
-          .tab-button-border-6:before {
-            transform: translateX(500%);
-          }
-
-          .tab-button-border-7:before {
-            transform: translateX(600%);
-          }
-
-          .tab-button-border-8:before {
-            transform: translateX(700%);
-          }
-
 
           .piece-button {
             pointer-events: none;
@@ -190,7 +179,7 @@
           }
 
           .koma-button {
-            width: calc(100% / 1);
+            width: calc(100%/4);
             position: relative;
             text-align: center;
           }
@@ -237,6 +226,7 @@
             width: 40%;
             position: relative;
             z-index: 1;
+            flex-grow: 1;
           }
 
           
@@ -254,12 +244,15 @@
             height: 100%;
             flex-direction: column;
             border: 1px solid rgba(0,0,0,0.12);
+            box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 10px;
             background-color: #fff;
             transition: all 0.3s;
+            rgba(0, 0, 0, 0.04) 0px 2px 10px;
           }
           
           .sub-container:hover {
-            transform: translateX(8px) translateY(-8px);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px;
+            transition: all 0.3s ease-in-out 0s;
           }
 
           .sub-container > a {
@@ -267,16 +260,24 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            padding: 1rem;
+          }
+
+          .sub-container > a:active {
+            background-color: #c2c2c2;
+            transition: all 0.3s ease-in-out 0s;
           }
 
           .sub-container > a > span {
-            font-size: 1.5rem;
-            margin: 1rem 0 1rem 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 5px;
           }
 
           .sub-container > a > div > span {
             font-size: 1rem;
-            margin-left: 1rem;
           }
 
           
@@ -295,12 +296,42 @@
               flex-direction: column;
             }
 
+            .sidebar-container {
+              flex-direction: column;
+            }
+
+            .tab-button-container {
+              width: 100%;
+              position: relative;
+              display: flex;
+              align-items: center;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+              background-color: white;
+              height: auto;
+              padding: 1rem 0;
+            }
+
+            .tab-button-container::before {
+              bottom: 0px;
+            }
+
+            .koma-button {
+              writing-mode: vertical-lr;
+              display: flex;
+              align-items: center;
+            } 
+
             .blue-back {
               position: absolute;
               width: 99%;
               height: 99%;
               background-color: blue;
               z-index: -1;
+            }
+
+            .sidebar-container > div {
+              width: auto;
+              flex-grow: 1;
             }
           }
         `
@@ -373,7 +404,8 @@
         firstUpdated() {
           this.king();
           console.log(this.shadowRoot.querySelector(".piece-explane").children[0]);
-          this.shadowRoot.querySelector(".piece-explane").children[0].style.font = "bold 1rem 游ゴシック";
+          this.shadowRoot.querySelector(".piece-explane").children[0].style.fontSize = "1.2rem";
+          this.shadowRoot.querySelector(".piece-explane").children[0].style.margin = "0 0 1rem 0";
         }
 
         handleMouseDown() {
@@ -583,19 +615,17 @@
         
 
         king() {
-          this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
-          this.exp_content = `全方向に動ける取られてはいけない駒玉将」*
-          「王将」の二つがあり、読み方は「玉（ぎょく）」と「王（おう）」*
-          詰まされたら負けになるこの駒は、全ての方向に1マスずつ動くことができます。*
-          また豆知識となりますが、一般的に王は格上（棋力や年齢が上の人、あるいは後手の人）が使い、玉は（棋力や年齢が下の人、あるいは先手の人）が使います。`
-          this.pass_css = this.make_arrow(5, 4, "up");
-          this.pass_css += this.make_arrow(4, 4, "up_right");
-          this.pass_css += this.make_arrow(4, 5, "right");
-          this.pass_css += this.make_arrow(4, 6, "down_right");
-          this.pass_css += this.make_arrow(5, 6, "down");
-          this.pass_css += this.make_arrow(6, 6, "down_left");
-          this.pass_css += this.make_arrow(6, 5, "left");
-          this.pass_css += this.make_arrow(6, 4, "up_left");
+          this.source = "position sfen K8/+P+P+P6/1+P7/2P6/9/9/7+pp/6+p+p1/6+p1k b - 1";
+          this.exp_content = `入玉と持ち将棋*
+          王様が敵の陣地に侵入することを入玉（にゅうぎょく）と言います。*
+          入玉に成功すると、王様の近くに成り駒を量産できますから*
+          鉄壁になります。ただし、お互いの王様が入玉してしまうと、*
+          詰ますことが不可能になり勝敗がつかなくなってしまう恐れが生じます。*
+          そのような場合は、どちらか一方が一言声をかけて将棋の進行を*
+          一旦ストップさせます。そして、また別のルールを用いて*
+          勝敗を決定付けます。中断する目安は、最上段まで王様を移動させ、*
+          ある程度「と金」で回りを囲った状態にするのが妥当です。`
+          this.pass_css = ""
           this.remove_active();
           this.shadowRoot.getElementById("king-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-1");
@@ -831,7 +861,9 @@
     <main>
       <shogi-board id="shogi"></shogi-board>
     </main>
+    <reiou-footer></reiou-footer>
     <script src="../js/test.js"></script>
     <script type="module" src="../js/reiou-header.js"></script>
+    <script type="module" src="../js/reiou-footer.js"></script>
   </body>
 </html>

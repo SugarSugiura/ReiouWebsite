@@ -35,7 +35,7 @@ li {
 
 /*ほとんどのボタンに共通して適用するクラス*/
 .btn {
-  font-weight: 700;
+  /* font-weight: 700;
   line-height: 1.5;
   position: relative;
   display: inline-block;
@@ -52,7 +52,7 @@ li {
   text-decoration: none;
   letter-spacing: 0.1em;
   color: #212529;
-  border-radius: 0.5rem;
+  border-radius: 0.5rem; */
 }
 
 .slideshow_wrapper {
@@ -331,6 +331,30 @@ input[name="slideshow"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+
+
+div.btn--green.btn--emboss {
+  color: white;
+  text-shadow: -1px -1px 1px #a1a1a1;
+  border-bottom: 5px solid #00662d;
+  font-size: 2rem;
+}
+
+div.btn--green.btn--cubic:hover {
+  margin-top: 3px;
+  border-bottom: 2px solid #00662d;
+}
+
+.fa-position-right {
+    position: absolute;
+    top: calc(50% - .5em);
+    right: 1rem;
+}
+
+.fa-angle-right:before {
+  content: "\f105";
 }
 
 .slide-title {
@@ -637,6 +661,7 @@ shogi-player
   .slide-img-single img {
     width: 100%;
     max-width: 36vw;
+    height: auto;
   }
 
   .slide-img-double img {
@@ -679,6 +704,14 @@ shogi-player
     font-size: 10vw;
   }
 
+  .prev {
+    right: 80%;
+  }
+
+  .next {
+    left: 80%;
+  }
+
   #slide1 > div > p {
     font-size: 4vw;
   }
@@ -717,10 +750,14 @@ shogi-player
     align-items: center;
     
   }
+
+  .slide-txt div {
+    flex-basis: 100%;
+  }
   
   .slide-txt p {
     font-size: 1rem;
-    line-height: 30px;
+    line-height: 25px;
   }
 
   .slide-txt-last p {
@@ -729,7 +766,13 @@ shogi-player
 
   .slide-img-single {
     flex-basis: 70%;
-    top: -20px;
+    flex-direction: column;
+  }
+
+  .slide-img-single p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
   }
   
   .slide-img-double {
@@ -768,11 +811,11 @@ shogi-player
   }
 
   .slide-img-single img {
-    max-width: 250px;
+    max-width: 60%;
   }
   
   .slide-img-double img {
-    max-width: 250px;
+    max-width: 60%;
   }
 }
 

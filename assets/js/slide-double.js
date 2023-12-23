@@ -1,5 +1,5 @@
 import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
-export class SlideSingle extends LitElement {
+export class SlideDouble extends LitElement {
 	static styles = css`
   html, body, div, span, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -67,6 +67,7 @@ export class SlideSingle extends LitElement {
     margin: 1rem;
     color: white;
     font-size: var(--slide-txt-size);
+    text-align: start;
   }
 
   .img-container {
@@ -76,12 +77,15 @@ export class SlideSingle extends LitElement {
   .slide-img {
     display: flex;
     justify-content: center;
-    height: calc(100% - ((2*var(--slide-txt-size) + var(--imgnum-txt-size))*1.6 + 2rem + 0.6px)) ;
+    height: calc(100% - ((2*var(--slide-txt-size))*1.6 + 2rem + 0.95px));
   }
 
-  .slide-img > img{
+  .slide-img > div > img {
     border: solid 5px #024900;
-    max-width: calc(100vw - 2rem - 25.6px);
+    max-width: calc(50vw - 2rem);
+    height: calc(100% - (var(--imgnum-txt-size)*1.6 + 1rem));
+    margin: 0 1rem;
+    width: auto;
   }
 
   .img-num {
@@ -96,24 +100,60 @@ export class SlideSingle extends LitElement {
       --imgnum-txt-size: 1rem;
     }
 
-    .slide-img {
+    .slide-img > div > img {
       height: auto;
+      width: calc(50vw - 2rem);
+    }
+  }
+
+  @media (orientation: portrait) {
+    {
+      flex-direction: colmun;
+    }
+  }
+
+  @media (orientation: portrait) {
+    .slide-img {
+      flex-direction: column;
+      justify-content: start;
+    }
+    
+    .slide-img > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .slide-img > div > img {
+      max-width: 100vw;
+      width: auto;
+      height: 30vh;
+    }
+
+    .img-num {
+      margin-bottom: 1rem;
     }
   }
 	`
 	static properties = {
     text: { type: String },
-    img_url: { type: String },
-    num_text: { type: String }
+    img_url_1: { type: String },
+    img_url_2: { type:String },
+    num_text_1: { type: String },
+    num_text_2: { type: String }
 	}
 
   static fromAttribute(name, value) {
     if (name === "text") {
       // カスタム属性名が 'my-property' の場合、値をそのまま返す
       return value;
-    } else if (name === "img_url") {
+    } else if (name === "img_url_1") {
       return value;
-    } else if (name === "num_text") {
+    } else if (name === "img_url_2") {
+      return value;
+    } else if (name === "num_text_1") {
+      return value;
+    } else if (name === "num_text_2") {
       return value;
     }
     return super.fromAttribute(name, value);
@@ -122,8 +162,10 @@ export class SlideSingle extends LitElement {
 	constructor() {
     super()
     this.text = "①▲７五歩に飛車交換は先手成功形でした。そのため△８二飛（第１図）が冷静な対応です。*②先手は７筋の位を活かし▲７七桂（第２図）から石田流を目指します。";
-    this.img_url = "../../img/hineri/hineri1_1.png";
-    this.num_text = "第１図";
+    this.img_url_1 = "../../img/hineri/hineri1_1.png";
+    this.img_url_2 = "../../img/hineri/hineri1_2.png";
+    this.num_text_1 = "第１図";
+    this.num_text_2 = "第２図";
 	}
 
   firstUpdated() {
@@ -140,14 +182,23 @@ export class SlideSingle extends LitElement {
       </div>
       <div class="img-container">
         <div class="slide-img">
-        <img src="${this.img_url}">
+          <div>
+            <img src="${this.img_url_1}">
+            <div class="img-num">
+              <p>${this.num_text_1}</p>
+            </div>
+          </div>
+          <div>
+            <img src="${this.img_url_2}">
+            <div class="img-num">
+              <p>${this.num_text_1}</p>
+            </div>
+          </div>
         </div>
-        <div class="img-num">
-          <p>${this.num_text}</p>
-        </div>
+        
       </div>
     </div>
 		`
 	}
 }
-customElements.define("slide-single", SlideSingle);
+customElements.define("slide-double", SlideDouble);

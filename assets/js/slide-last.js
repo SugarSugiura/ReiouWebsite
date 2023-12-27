@@ -1,5 +1,5 @@
 import { LitElement, css, html } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
-export class SlideSingle extends LitElement {
+export class SlideLast extends LitElement {
 	static styles = css`
   html, body, div, span, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -52,54 +52,80 @@ export class SlideSingle extends LitElement {
     text-decoration: none;
   }
 
-  .single-slide-container {
+  .last-slide-container {
     background-color: seagreen;
     height: 100%;
-  }
-
-  .slide-txt {
     display: flex;
-    justify-content: center;
+    align-items: center;
   }
 
-  .slide-txt > div {
-    display: inline-block;
-    margin: 1rem;
-    color: white;
-    font-size: var(--slide-txt-size);
+  .last-slide-container > div {
+    width: 100%;
+    padding: 0 1rem;
   }
 
-  .img-container {
-    height: 100%;
+  .last-text {
+    margin-bottom: 1rem;
   }
 
-  .slide-img {
-    display: flex;
-    justify-content: center;
-    height: calc(100% - ((2*var(--slide-txt-size) + var(--imgnum-txt-size))*1.6 + 2rem + 0.6px)) ;
-  }
-
-  .slide-img > img{
-    border: solid 5px #024900;
-    max-width: calc(100vw - 2rem - 33.6px);
-  }
-
-  .img-num {
-    color: white;
+  .last-text > p {
     text-align: center;
-    font-size: var(--imgnum-txt-size);
+    color: white;
+    font-size: 2rem;
+    line-height: 40px;
   }
 
-  @media screen and (max-width: 1000px) {
-    :host {
-      --slide-txt-size: 1rem;
-      --imgnum-txt-size: 1rem;
+  .close-button-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .close-button-container > div {
+    color: white;
+    text-shadow: -1px -1px 1px #a1a1a1;
+    border: 2px solid #00662d;
+    border-bottom: 5px solid #00662d;
+    font-size: 2rem;
+    width: 444px;
+    text-align: center;
+    border-radius: 5px;
+    user-select: none;
+    position: relative;
+    transition: all ease 0.1s;
+  }
+
+  .close-button-container > div:active {
+    margin-top: 3px;
+    border-bottom: 2px solid #00662d;
+  }
+
+  
+
+  .close-button-container > div > i {
+    position: absolute;
+    top: calc(50% - 0.5em);
+    right: 1rem;
+  }
+
+  @media screen and (max-width: 500px) {
+    .last-text {
+      margin-bottom: 0.5rem;
     }
 
-    .slide-img {
-      height: auto;
+    .last-text > p {
+      font-size: 1.2rem;
+      line-height: 24px;
     }
+
+    .close-button-container > div {
+      font-size: 1.2rem;
+      width: 270px;
+    }
+
   }
+
+  
 	`
 	static properties = {
     text: { type: String },
@@ -132,22 +158,26 @@ export class SlideSingle extends LitElement {
 
 	render() {
     return html`
-    <div class="single-slide-container">
-      <div class="slide-txt">
-        <div>
-          ${this.text.split("*").map(line => html`<p>${line}</p>`)}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+    <div class="last-slide-container">
+      <div>
+        <div class="last-text">
+          <p>ここでスライドは終わりです<br>それではやっていきましょう！</p>
         </div>
-      </div>
-      <div class="img-container">
-        <div class="slide-img">
-        <img src="${this.img_url}">
-        </div>
-        <div class="img-num">
-          <p>${this.num_text}</p>
+        <div class="close-button-container">
+          <div @click="${this.close_slide}">
+            学習に進む<i class="fas fa-angle-right fa-position-right"></i>
+          </div>
         </div>
       </div>
     </div>
 		`
 	}
+
+  close_slide() {
+    document.getElementById("slide_close").checked = false;
+  }
+
+
 }
-customElements.define("slide-single", SlideSingle);
+customElements.define("slide-last", SlideLast);

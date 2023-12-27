@@ -52,7 +52,7 @@ export class SlideDouble extends LitElement {
     text-decoration: none;
   }
 
-  .single-slide-container {
+  .double-slide-container {
     background-color: seagreen;
     height: 100%;
   }
@@ -82,7 +82,7 @@ export class SlideDouble extends LitElement {
 
   .slide-img > div > img {
     border: solid 5px #024900;
-    max-width: calc(50vw - 2rem);
+    max-width: calc(50vw - 4rem);
     height: calc(100% - (var(--imgnum-txt-size)*1.6 + 1rem));
     margin: 0 1rem;
     width: auto;
@@ -174,7 +174,7 @@ export class SlideDouble extends LitElement {
 
 	render() {
     return html`
-    <div class="single-slide-container">
+    <div class="double-slide-container">
       <div class="slide-txt">
         <div>
           ${this.text.split("*").map(line => html`<p>${line}</p>`)}
@@ -191,7 +191,7 @@ export class SlideDouble extends LitElement {
           <div>
             <img src="${this.img_url_2}">
             <div class="img-num">
-              <p>${this.num_text_1}</p>
+              <p>${this.num_text_2}</p>
             </div>
           </div>
         </div>

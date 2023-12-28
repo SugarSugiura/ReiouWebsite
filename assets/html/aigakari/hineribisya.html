@@ -14,6 +14,54 @@
       overflow-y: scroll;
     }   
   </style>
+  <script>
+    //スライドのフリック機能
+    // var startX = null;
+		// var endX = null;
+    // var slideTrans = 0;
+    // var slideTransMax = 95;
+
+    // window.addEventListener("load", function(){
+    //   const slideWrapperElem = document.querySelectorAll(".slide_bg");
+    //   slideWrapperElem.forEach(element => {
+    //     element.addEventListener("touchmove", logTouch);
+    //     element.addEventListener("touchstart", logTouchStart);
+    //     element.addEventListener("touchend", logTouchEnd);
+    //   });
+    //   document.querySelector(".slideContents").style.transform = "translateX(0)";
+    // });
+    
+    // function logTouch() {
+    //   event.preventDefault();
+
+		// 	endX = event.touches[0].pageX;
+    // }
+
+    // function logTouchStart() {
+    //   event.preventDefault();
+
+		// 	startX = event.touches[0].pageX;
+    // }
+
+    // function logTouchEnd() {
+    //   event.preventDefault();
+
+		// 	if( 0 < (endX - startX) ) {
+    //     if (slideTrans != 0) {
+    //       slideTrans += 5;
+    //       document.querySelector(".slideContents").style.transform = "translateX(" + slideTrans + "%)";
+    //       console.log(document.querySelector(".slideContents").style.transform);
+    //     }
+		// 	} else {
+    //     if (slideTrans != slideTransMax) {
+    //       console.log("左向き");
+    //       slideTrans -= 5;
+    //       document.querySelector(".slideContents").style.transform = "translateX(" + slideTrans + "%)";
+    //       console.log(document.querySelector(".slideContents").style.transform);
+    //     }
+		// 	}
+    // }
+  </script>
   </head>
   <body>
     <reiou-header></reiou-header>

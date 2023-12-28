@@ -70,14 +70,11 @@ export class SlideDouble extends LitElement {
     text-align: start;
   }
 
-  .img-container {
-    height: 100%;
-  }
-
   .slide-img {
     display: flex;
     justify-content: center;
     height: calc(100% - ((2*var(--slide-txt-size))*1.6 + 2rem + 0.95px));
+    height: 100%;
   }
 
   .slide-img > div > img {
@@ -107,12 +104,6 @@ export class SlideDouble extends LitElement {
   }
 
   @media (orientation: portrait) {
-    {
-      flex-direction: colmun;
-    }
-  }
-
-  @media (orientation: portrait) {
     .slide-img {
       flex-direction: column;
       justify-content: start;
@@ -122,12 +113,13 @@ export class SlideDouble extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: 50%;
     }
 
     .slide-img > div > img {
       max-width: 100vw;
       width: auto;
-      height: 30vh;
+      height: calc(100% - (var(--imgnum-txt-size)*1.6) - 1rem);
     }
 
     .img-num {
@@ -166,11 +158,16 @@ export class SlideDouble extends LitElement {
     this.img_url_2 = "../../img/hineri/hineri1_2.png";
     this.num_text_1 = "第１図";
     this.num_text_2 = "第２図";
+
+    
 	}
 
   firstUpdated() {
-    
+    window.addEventListener('resize', () => this.updateStyles());
+    this.updateStyles(); // 初期化時にもスタイルを更新する
   }
+
+  
 
 	render() {
     return html`
@@ -183,13 +180,13 @@ export class SlideDouble extends LitElement {
       <div class="img-container">
         <div class="slide-img">
           <div>
-            <img src="${this.img_url_1}">
+            <img class="img" src="${this.img_url_1}">
             <div class="img-num">
               <p>${this.num_text_1}</p>
             </div>
           </div>
           <div>
-            <img src="${this.img_url_2}">
+            <img class="img" src="${this.img_url_2}">
             <div class="img-num">
               <p>${this.num_text_2}</p>
             </div>
@@ -200,5 +197,30 @@ export class SlideDouble extends LitElement {
     </div>
 		`
 	}
+
+  updateStyles() {
+    // デバイスの向きが縦向きかどうかを確認
+    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+    const slideImgElem = this.shadowRoot.querySelectorAll(".img");
+    const slideTxtElem = this.shadowRoot.querySelector(".slide-txt");
+    const slideTxtHeight = slideTxtElem.offsetHeight;
+    const imgContainerElem = this.shadowRoot.querySelector(".img-container");
+    imgContainerElem.style.height = "calc(100% - " + slideTxtElem.offsetHeight + "px)";
+    // 必要に応じてスタイルを更新
+    // if (isPortrait) {
+      
+
+    //   slideImgElem.forEach((element, index) => {
+    //     element.style.height = "calc((100% - 84px - " + slideTxtHeight + "px)/2)";
+    //     element.style.height = "100%";
+    //     console.log(element.style.height);
+    //   });
+    // } else {
+    //   slideImgElem.forEach((element, index) => {
+    //     element.style.height = "calc(100% - (var(--imgnum-txt-size)*1.6 + 1rem))";
+    //     console.log(element.style.height);
+    //   });
+    // }
+  }
 }
 customElements.define("slide-double", SlideDouble);

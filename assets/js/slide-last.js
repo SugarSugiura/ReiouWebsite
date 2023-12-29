@@ -128,28 +128,13 @@ export class SlideLast extends LitElement {
   
 	`
 	static properties = {
-    text: { type: String },
-    img_url: { type: String },
-    num_text: { type: String }
+    
 	}
 
-  static fromAttribute(name, value) {
-    if (name === "text") {
-      // カスタム属性名が 'my-property' の場合、値をそのまま返す
-      return value;
-    } else if (name === "img_url") {
-      return value;
-    } else if (name === "num_text") {
-      return value;
-    }
-    return super.fromAttribute(name, value);
-  }
+  
 
 	constructor() {
     super()
-    this.text = "①▲７五歩に飛車交換は先手成功形でした。そのため△８二飛（第１図）が冷静な対応です。*②先手は７筋の位を活かし▲７七桂（第２図）から石田流を目指します。";
-    this.img_url = "../../img/hineri/hineri1_1.png";
-    this.num_text = "第１図";
 	}
 
   firstUpdated() {
@@ -177,7 +162,5 @@ export class SlideLast extends LitElement {
   close_slide() {
     document.getElementById("slide_close").checked = false;
   }
-
-
 }
 customElements.define("slide-last", SlideLast);

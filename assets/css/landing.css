@@ -444,17 +444,49 @@ SP
 
 .contentsback {
   width: 100%;
-  height: 1630px;
-  background-color: burlywood;  
+  background-color: burlywood;
   background-image: url(../img/kami2.jpg);
-  background-size: cover; 
-  padding: 1em; 
+  background-size: cover;
+  padding: 1em;
   color: rgb(0, 0, 0);
 }
 
 .contents {
   width: 100%;
   height: 1200px;
+}
+
+.contents-container > ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.contents-container > ul > li {
+  width: 400px;
+  background-color: #64b9ff;
+  padding: 1rem;
+}
+
+.contents-container > ul > li > img {
+  vertical-align: top;
+  border-radius: 0px;
+}
+
+.contents-container > ul > li > h2 {
+  text-align: center;
+  color: rgb(255, 238, 0);
+}
+
+.contents-container > ul > li > p {
+  text-align: center;
+  margin-bottom: 1rem;
+  color:  white;
+}
+
+.hide-item {
+  opacity: 0;
 }
 
 .set {
@@ -753,4 +785,23 @@ font-size: 20px;
     font-size: 5rem;
   }
 
+  .contents-container > ul > li > h2 {
+    font-size: 1.6rem;
+  }
+
+  .contents-container > ul > li > p {
+    font-size: 0.9rem;
+  }
+
+  .hide-item {
+    display: none;
+  }
+
+  
+
+}
+@media screen and (min-width: 1680px) {
+  .hide-item {
+    display: none;
+  }
 }

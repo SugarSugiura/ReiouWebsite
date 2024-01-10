@@ -667,10 +667,11 @@
 
         king() {
           this.source = "position sfen 9/9/9/9/4K4/9/9/9/9 b - 1";
-          this.exp_content = `全方向に動ける取られてはいけない駒玉将」*
+          this.exp_content = `将棋で一番重要な王様*
           「王将」の二つがあり、読み方は「玉（ぎょく）」と「王（おう）」*
           詰まされたら負けになるこの駒は、全ての方向に1マスずつ動くことができます。*
-          また豆知識となりますが、一般的に王は格上（棋力や年齢が上の人、あるいは後手の人）が使い、玉は（棋力や年齢が下の人、あるいは先手の人）が使います。`
+          また豆知識となりますが、一般的に王は格上（棋力や年齢が上の人、あるいは後手の人）が使い、*
+          玉は格下（棋力や年齢が下の人、あるいは先手の人）が使います。`
           this.pass_css = this.make_arrow(5, 4, "up");
           this.pass_css += this.make_arrow(4, 4, "up_right");
           this.pass_css += this.make_arrow(4, 5, "right");
@@ -700,7 +701,7 @@
           this.remove_active();
           this.shadowRoot.getElementById("gold-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-4");
-          this.shadowRoot.querySelectorAll(".tab-content")[4].style.color = "black";
+          this.shadowRoot.querySelectorAll(".tab-content")[3].style.color = "black";
         }
 
         silver() {
@@ -717,7 +718,7 @@
           this.remove_active();
           this.shadowRoot.getElementById("silver-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-5");
-          this.shadowRoot.querySelectorAll(".tab-content")[5].style.color = "black";
+          this.shadowRoot.querySelectorAll(".tab-content")[4].style.color = "black";
         }
 
         pawn() {
@@ -730,7 +731,7 @@
           this.remove_active();
           this.shadowRoot.getElementById("pawn-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-8");
-          this.shadowRoot.querySelectorAll(".tab-content")[8].style.color = "black";
+          this.shadowRoot.querySelectorAll(".tab-content")[7].style.color = "black";
         }
 
         rook() {
@@ -761,7 +762,7 @@
           this.remove_active();
           this.shadowRoot.getElementById("rook-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-2");
-          this.shadowRoot.querySelectorAll(".tab-content")[2].style.color = "black";
+          this.shadowRoot.querySelectorAll(".tab-content")[1].style.color = "black";
         }
 
         bishop() {
@@ -787,7 +788,7 @@
           this.remove_active();
           this.shadowRoot.getElementById("bishop-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-3");
-          this.shadowRoot.querySelectorAll(".tab-content")[3].style.color = "black";
+          this.shadowRoot.querySelectorAll(".tab-content")[2].style.color = "black";
         }
 
         knight() {
@@ -810,7 +811,7 @@
           this.remove_active();
           this.shadowRoot.getElementById("knight-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-6");
-          this.shadowRoot.querySelectorAll(".tab-content")[6].style.color = "black";
+          this.shadowRoot.querySelectorAll(".tab-content")[5].style.color = "black";
         }
 
         lance() {
@@ -835,7 +836,7 @@
           this.remove_active();
           this.shadowRoot.getElementById("lance-tab").classList.add("tab-active");
           this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-7");
-          this.shadowRoot.querySelectorAll(".tab-content")[7].style.color = "black";
+          this.shadowRoot.querySelectorAll(".tab-content")[6].style.color = "black";
         }
 
         make_arrow(line, row, direction) {

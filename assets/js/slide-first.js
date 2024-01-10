@@ -239,11 +239,5 @@ export class SlideFirst extends LitElement {
     </div>
 		`
 	}
-
-  close_slide() {
-    document.getElementById("slide_close").checked = false;
-  }
-
-
 }
 customElements.define("slide-first", SlideFirst);

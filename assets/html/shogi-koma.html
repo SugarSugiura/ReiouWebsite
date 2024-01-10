@@ -474,21 +474,6 @@
                       <label id="king-tab" for="king-button" class="piece-button">
                       </label>
                     </div>
-                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.gold}">
-                      <span class="tab-content">金将</span>
-                      <label id="gold-tab" class="piece-button">
-                      </label>
-                    </div>
-                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.silver}">
-                      <span class="tab-content">銀将</span>
-                      <label id="silver-tab" class="piece-button">
-                      </label>
-                    </div>
-                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.pawn}">
-                      <span class="tab-content">歩兵</span>
-                      <label id="pawn-tab" class="piece-button">
-                      </label>
-                    </div>
                     <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.rook}">
                       <span class="tab-content">飛車</span>
                       <label id="rook-tab" class="piece-button">
@@ -499,6 +484,16 @@
                       <label id="bishop-tab" class="piece-button">
                       </label>
                     </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.gold}">
+                      <span class="tab-content">金将</span>
+                      <label id="gold-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.silver}">
+                      <span class="tab-content">銀将</span>
+                      <label id="silver-tab" class="piece-button">
+                      </label>
+                    </div>
                     <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.knight}">
                       <span class="tab-content">桂馬</span>
                       <label id="knight-tab" class="piece-button">
@@ -507,6 +502,11 @@
                     <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.lance}">
                       <span class="tab-content">香車</span>
                       <label id="lance-tab" class="piece-button">
+                      </label>
+                    </div>
+                    <div class="koma-button" @mousedown="${this.create_ripple}" @click="${this.pawn}">
+                      <span class="tab-content">歩兵</span>
+                      <label id="pawn-tab" class="piece-button">
                       </label>
                     </div>
                     <div></div>
@@ -699,8 +699,8 @@
           this.pass_css += this.make_arrow(6, 4, "up_left");
           this.remove_active();
           this.shadowRoot.getElementById("gold-tab").classList.add("tab-active");
-          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-2");
-          this.shadowRoot.querySelectorAll(".tab-content")[1].style.color = "black";
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-4");
+          this.shadowRoot.querySelectorAll(".tab-content")[4].style.color = "black";
         }
 
         silver() {
@@ -716,8 +716,8 @@
           this.pass_css += this.make_arrow(6, 4, "up_left");
           this.remove_active();
           this.shadowRoot.getElementById("silver-tab").classList.add("tab-active");
-          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-3");
-          this.shadowRoot.querySelectorAll(".tab-content")[2].style.color = "black";
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-5");
+          this.shadowRoot.querySelectorAll(".tab-content")[5].style.color = "black";
         }
 
         pawn() {
@@ -729,8 +729,8 @@
           this.pass_css = this.make_arrow(5, 4, "up");
           this.remove_active();
           this.shadowRoot.getElementById("pawn-tab").classList.add("tab-active");
-          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-4");
-          this.shadowRoot.querySelectorAll(".tab-content")[3].style.color = "black";
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-8");
+          this.shadowRoot.querySelectorAll(".tab-content")[8].style.color = "black";
         }
 
         rook() {
@@ -760,8 +760,8 @@
           this.pass_css += this.make_stick(7, 2, "holizontal");
           this.remove_active();
           this.shadowRoot.getElementById("rook-tab").classList.add("tab-active");
-          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-5");
-          this.shadowRoot.querySelectorAll(".tab-content")[4].style.color = "black";
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-2");
+          this.shadowRoot.querySelectorAll(".tab-content")[2].style.color = "black";
         }
 
         bishop() {
@@ -786,8 +786,8 @@
           this.pass_css += this.make_stick(8, 4, "diagonal_right");
           this.remove_active();
           this.shadowRoot.getElementById("bishop-tab").classList.add("tab-active");
-          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-6");
-          this.shadowRoot.querySelectorAll(".tab-content")[5].style.color = "black";
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-3");
+          this.shadowRoot.querySelectorAll(".tab-content")[3].style.color = "black";
         }
 
         knight() {
@@ -809,7 +809,7 @@
           this.pass_css += ".place_8_5" + common + " clip-path: polygon(24% 58%, 33% 27%, 61% 44%, 47% 50%, 65% 100%, 55% 100%, 38% 53%);}";
           this.remove_active();
           this.shadowRoot.getElementById("knight-tab").classList.add("tab-active");
-          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-7");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-6");
           this.shadowRoot.querySelectorAll(".tab-content")[6].style.color = "black";
         }
 
@@ -834,7 +834,7 @@
           this.pass_css += this.make_stick(7, 8, "vertical");
           this.remove_active();
           this.shadowRoot.getElementById("lance-tab").classList.add("tab-active");
-          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-8");
+          this.shadowRoot.querySelector(".tab-button-container").classList.add("tab-button-border-7");
           this.shadowRoot.querySelectorAll(".tab-content")[7].style.color = "black";
         }
 

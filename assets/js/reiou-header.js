@@ -76,8 +76,13 @@ export class ReiouHeader extends LitElement {
   }
   
   header .site-title a {
-    display: block;
+    display: flex;
     height: 100%;
+    align-items: center;
+  }
+
+  header .site-title a > img {
+    max-width: 100%;
   }
   
   #navi {
@@ -291,6 +296,15 @@ export class ReiouHeader extends LitElement {
       left: 15px;
       position: relative;
     }
+
+    header .site-title {
+      padding: 0px 1vw;
+      text-align: center;
+  }
+
+    header .site-title a > img {
+      height: 60px;
+    }
   
   
   
@@ -493,7 +507,7 @@ export class ReiouHeader extends LitElement {
       <div></div>
       <div class="header_container">
         <div class="site-title">
-          <a href="http://reioushogi.jp/"><img src="https://reioushogi.jp/assets/img/REIOUlogo.png" alt="REIOU"></a>
+          <a href="http://reioushogi.jp/"><img src="https://reioushogi.jp/assets/img/logo/reiou_logo_3.jpg" alt="REIOU"></a>
         </div>
         <nav id="navi" class="pc-area">
           <ul class="menu active">

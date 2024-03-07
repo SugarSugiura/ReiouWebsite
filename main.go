@@ -2,6 +2,9 @@ package main
 
 import (
 	"encoding/gob"
+	"log"
+	"net/http"
+
 	"github.com/SugarSugiura/ReiouWebsite/platform/middleware"
 	"github.com/SugarSugiura/ReiouWebsite/web/app/callback"
 	"github.com/SugarSugiura/ReiouWebsite/web/app/login"
@@ -10,8 +13,6 @@ import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
-	"log"
-	"net/http"
 
 	"github.com/joho/godotenv"
 
@@ -19,10 +20,13 @@ import (
 )
 
 func main() {
+	//それぞれの関数は成功するとnilを返す、失敗するとエラーを返す
 	if err := godotenv.Load(); err != nil {
 		log.Fatalf("Failed to load the env vars: %v", err)
 	}
 
+	//パッケージ名.関数名
+	//この関数が成功するとauthに新しいインスタンスが入り、errはnilが入る
 	auth, err := authenticator.New()
 	if err != nil {
 		log.Fatalf("Failed to initialize the authenticator: %v", err)
@@ -37,6 +41,7 @@ func main() {
 }
 
 // NewRouter registers the routes and returns the router.
+// ここでは関数名(引数 引数の型) 関数の返り値の型
 func newRouter(auth *authenticator.Authenticator) *gin.Engine {
 	router := gin.Default()
 

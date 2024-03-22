@@ -130,6 +130,34 @@ li {
   border-radius: 0.5rem;
 }
 
+.landing-header {
+  height: 60px;
+  width: 100%;
+  background-color: #fff;
+  position: fixed;
+  z-index: 1;
+}
+
+.landing-header-container {
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.landing-header-container > div {
+  height: 100%;
+}
+
+.landing-header-right {
+
+}
+
+.landing-login {
+  line-height: 0px;
+}
+
 .menu_headline {
   transition: all 0.5s; /*カーソルを合わせた時の文字が薄くなる速度が滑らかになる */
 }

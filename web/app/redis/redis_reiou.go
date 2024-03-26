@@ -1,4 +1,4 @@
-package redis_test
+package redis_reiou
 
 import (
 	"log"

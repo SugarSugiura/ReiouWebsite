@@ -9,6 +9,7 @@ import (
 	"github.com/SugarSugiura/ReiouWebsite/web/app/callback"
 	"github.com/SugarSugiura/ReiouWebsite/web/app/login"
 	"github.com/SugarSugiura/ReiouWebsite/web/app/logout"
+	redis_reiou "github.com/SugarSugiura/ReiouWebsite/web/app/redis"
 	"github.com/SugarSugiura/ReiouWebsite/web/app/user"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
@@ -67,7 +68,7 @@ func newRouter(auth *authenticator.Authenticator) *gin.Engine {
 	//})
 	router.GET("/login", login.Handler(auth))
 	router.GET("/callback", callback.Handler(auth))
-	router.GET("/user", middleware.IsAuthenticated, user.Handler)
+	router.GET("/user", middleware.IsAuthenticated, user.Handler, redis_reiou.Handler)
 	router.GET("/logout", logout.Handler)
 
 	return router

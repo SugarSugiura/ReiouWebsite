@@ -6,7 +6,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-  redis:
-    image: "redis:latest"
+  # redis:
+  #   image: "redis:latest"
+  #   ports:
+  #     - "6379:6379"
+  memcached:
+    image: memcached:latest
     ports:
-      - "6379:6379"
+      - "11211:11211"

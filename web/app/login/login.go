@@ -10,7 +10,6 @@ import (
 	"net/http"
 
 	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 
 	"github.com/redis/go-redis/v9"
@@ -19,7 +18,7 @@ import (
 )
 
 // Handler for our login.
-func Handler(auth *authenticator.Authenticator, store cookie.Store) gin.HandlerFunc {
+func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		state, err := generateRandomState()
 		if err != nil {

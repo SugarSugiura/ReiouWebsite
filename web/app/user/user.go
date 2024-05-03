@@ -16,5 +16,5 @@ func Handler(ctx *gin.Context) {
 	profile := session.Get("profile")
 
 	ctx.HTML(http.StatusOK, "user.html", profile)
-	log.Println(profile)
+	log.Println(profile.(map[string]interface{})["aud"].(string))
 }

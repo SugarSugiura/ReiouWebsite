@@ -5,16 +5,21 @@ package login
 import (
 	"crypto/rand"
 	"encoding/base64"
+
+	//"log"
 	"net/http"
 
 	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
+
+	//"github.com/redis/go-redis/v9"
 
 	"github.com/SugarSugiura/ReiouWebsite/platform/authenticator"
 )
 
 // Handler for our login.
-func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
+func Handler(auth *authenticator.Authenticator, store cookie.Store) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		state, err := generateRandomState()
 		if err != nil {

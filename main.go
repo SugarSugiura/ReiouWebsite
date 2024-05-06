@@ -1,7 +1,9 @@
 package main
 
 import (
+	sql "database/sql"
 	"encoding/gob"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -18,6 +20,7 @@ import (
 	"github.com/joho/godotenv"
 
 	"github.com/SugarSugiura/ReiouWebsite/platform/authenticator"
+	_ "github.com/lib/pq"
 )
 
 func main() {
@@ -33,7 +36,26 @@ func main() {
 		log.Fatalf("Failed to initialize the authenticator: %v", err)
 	}
 
-	rtr := newRouter(auth)
+	// Setup the connection string
+	connStr := "host=postgres user=postgres password=postgres dbname=postgres sslmode=disable"
+
+	// Open the database
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		log.Println("接続できない")
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	// Check if the database is accessible by pinging it
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("DB successfully connected!")
+
+	rtr := newRouter(auth, db)
 
 	log.Print("Server listening on http://localhost:8000/")
 	if err := http.ListenAndServe("0.0.0.0:8000", rtr); err != nil {
@@ -43,7 +65,7 @@ func main() {
 
 // NewRouter registers the routes and returns the router.
 // ここでは関数名(引数 引数の型) 関数の返り値の型
-func newRouter(auth *authenticator.Authenticator) *gin.Engine {
+func newRouter(auth *authenticator.Authenticator, db *sql.DB) *gin.Engine {
 	router := gin.Default()
 
 	// To store custom types in our cookies,
@@ -67,7 +89,10 @@ func newRouter(auth *authenticator.Authenticator) *gin.Engine {
 	//	ctx.HTML(http.StatusOK, "home.html", nil)
 	//})
 	router.GET("/login", login.Handler(auth))
-	router.GET("/callback", callback.Handler(auth))
+
+	userService := user.NewUserService(db)
+	router.GET("/callback", callback.Handler(auth, userService))
+
 	router.GET("/user", middleware.IsAuthenticated, user.Handler, redis_reiou.Handler)
 	router.GET("/logout", logout.Handler)
 

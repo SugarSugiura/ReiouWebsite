@@ -15,13 +15,14 @@ COPY . .
 RUN go build -gcflags="all=-N -l" -o main
 
 # 実行ステージ
-FROM golang:1.22.2
+FROM golang:1.22.2 as runtime
 
 # 作業ディレクトリの設定
 WORKDIR /app
 
 # ビルドステージから実行可能ファイルをコピー
 COPY --from=builder /app/main .
+COPY --from=builder /app/.env .
 
 # アプリケーションの実行
 CMD ["./main"]

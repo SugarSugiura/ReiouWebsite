@@ -15,7 +15,7 @@ COPY . .
 RUN go build -o main
 
 # 実行ステージ
-FROM gcr.io/distroless/base
+FROM gcr.io/distroless/base as runtime
 
 # 作業ディレクトリの設定
 WORKDIR /main

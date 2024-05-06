@@ -23,6 +23,8 @@ WORKDIR /app
 # ビルドステージから実行可能ファイルをコピー
 COPY --from=builder /app/main .
 COPY --from=builder /app/.env .
+COPY --from=builder /app/web/static .
+COPY --from=builder /app/web/template .
 
 # アプリケーションの実行
 CMD ["./main"]

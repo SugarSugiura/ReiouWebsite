@@ -145,7 +145,23 @@ export class ShogiBoard extends LitElement {
     #chapter-button:hover {
       color: #fff;
       background-color: var(--sub-color);
+    }
 
+    #return-init-page {
+      border: 1px solid var(--sub-color);
+      color: var(--sub-color);
+      font-weight: 600;
+      border-radius: 5px;
+      display: block;
+      text-align: center;
+      margin: 8px auto 0px auto;
+      max-width: 120px;
+      transition: 0.5s;
+    }
+
+    #return-init-page:hover {
+      color: #fff;
+      background-color: var(--sub-color);
     }
 
     .chat-container {
@@ -513,6 +529,9 @@ export class ShogiBoard extends LitElement {
               <input id="change-chapter" type="button" value="第２章へ" @click="${this.change_sfen_t}" style="display: none">
               <label id="chapter-button" for="change-chapter">第${this.current_chapter + 1}章へ</label>
             </div>
+            <div>
+              <a href="../../../index.html" id="return-init-page" style="display: none">戦法一覧へ</a>
+            </div>
             <div class="pc-button">
               <input type="checkbox" id="hint-button-pc" @click="${this.add_hint}" style="display: none">
               <label id="hint-button" for="hint-button-pc">ヒント</label>
@@ -593,6 +612,12 @@ export class ShogiBoard extends LitElement {
         elem.style.display = "block";
         this.human_side = "none";
       }
+      if (this.max_line_num[this.max_chapter_num] == this.turn_ma) {
+        this.shadowRoot.getElementById("return-init-page").style.display = "block;"
+        console.log("終わり");
+      }
+
+      
     } else {
       elem.style.display = "none";
     }
@@ -651,6 +676,7 @@ export class ShogiBoard extends LitElement {
     this.hint = line_string(this.current_hints, this.branch_num[this.current_chapter + 1]);
     this.first_comment = line_string(this.current_comments, this.branch_num[this.current_chapter + 1]);
     this.turn_max = this.max_line_num[this.current_chapter + 1];
+    console.log(this.turn_max);
     this.current_chapter++;
     this.shadowRoot.getElementById("change-chapter").setAttribute("value", "第" + (this.current_chapter + 1) + "章へ");
     this.shadowRoot.getElementById("hint-button").style.display = "block";

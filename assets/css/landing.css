@@ -140,13 +140,17 @@ li {
 
 .landing-header-container {
   height: 100%;
-  padding: 1rem;
+  padding: 0 1rem 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .landing-header-container > div {
+  height: 100%;
+}
+
+.landing-header-left > img {
   height: 100%;
 }
 
@@ -242,6 +246,16 @@ SP
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
+.title-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding-left: 10%;
+  padding-bottom: 2%;
+}
+
 .title-text1 {
   display: block;
   font-family: "HG正楷書体-PRO","serif";
@@ -257,12 +271,10 @@ SP
 
 
 .text01 {
-  width: 50%; 
+  /* width: 50%;  */
   font-size: 3rem;
   color:var(--main-color);
   position: relative;
-  margin-top: 8%;
-  margin-left: 5%;
   font-weight: 700;
   font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
 }
@@ -278,6 +290,14 @@ SP
   font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
   background-color: rgb(255, 238, 0);
   color: var(--main-color);
+}
+
+.title-letter {
+  font-size: 3.6rem;
+  font-family: HG正楷書体-PRO,serif;
+  color: black;
+  margin: 0;
+  position: relative;
 }
 
 .titleimg1 {

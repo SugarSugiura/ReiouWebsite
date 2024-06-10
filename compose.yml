@@ -1,5 +1,5 @@
 services:
-  server:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,7 +7,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-  postgres:
+  db:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
@@ -17,7 +17,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    restart: always
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   memcached:
     image: memcached:latest
     ports:

@@ -56,6 +56,10 @@ func Handler(auth *authenticator.Authenticator, userService userPkg.UserService)
 		// ユーザーが存在するか確認
 		user, err := userService.GetUserByEmail(ctx, email)
 		if err != nil {
+			log.Fatalf("Failed to get user by email: %v", err)
+		}
+
+		if user == nil {
 			// ユーザーが存在しない場合、新規作成
 			log.Printf("profile: %v", profile)
 			p := userPkg.User{

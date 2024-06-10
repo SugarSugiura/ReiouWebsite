@@ -14,7 +14,7 @@ COPY . .
 # アプリケーションのビルド
 RUN go build -gcflags="all=-N -l" -o main
 
-RUN go install github.com/cosmtrek/air@latest
+RUN go install github.com/air-verse/air@latest
 
 # 実行ステージ
 FROM golang:1.22.2 as runtime

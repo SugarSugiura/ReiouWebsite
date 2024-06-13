@@ -154,10 +154,6 @@ li {
   height: 100%;
 }
 
-.landing-header-right {
-
-}
-
 .landing-login {
   line-height: 0px;
 }
@@ -513,7 +509,7 @@ SP
 
 .contents-container > ul > li {
   width: 400px;
-  background-color: #64b9ff;
+  background-color: #f5f5dc;
   padding: 1rem;
 }
 
@@ -524,13 +520,13 @@ SP
 
 .contents-container > ul > li > h2 {
   text-align: center;
-  color: rgb(255, 238, 0);
+  color: #daa520;
 }
 
 .contents-container > ul > li > p {
   text-align: center;
   margin-bottom: 1rem;
-  color:  white;
+  color: #003366;
 }
 
 .hide-item {
@@ -714,8 +710,51 @@ font-size: 20px;
     font-size: 1.5rem;
   }
 
+  .titleback1 {
+    position: relative;
+    justify-content: start;
+    width: 100%;
+    height: 31vh;
+    background: url(../img/shogi_kodomo.jpg) no-repeat top center / cover;
+    padding-top: 60px;
+  }
+
+  .titleback1:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.5) 30%, rgba(0, 0, 0, .3) 100%);
+  }
+
+  .title-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding-left: 0%;
+    padding-bottom: 0%;
+  }
+
+  .title-letter {
+    padding-right: 1rem;
+  }
+
+  .title-letter > p {
+    text-align: end;
+    font-size: 2rem;
+  }
+
+  .text01 {
+    justify-content: start;
+    padding-left: 1rem;
+  }
+
+  
+
   .text01 p {
-    margin: 0 auto;
+    margin: 0;
   }
 
   .titleimg1 {
@@ -728,11 +767,16 @@ font-size: 20px;
 
   .textback {
     height: 250px;
+    padding-top: 0;
+  }
+
+  .titleback2 {
+    height: auto;
   }
 
   /*将棋についてこう思っていませんか*/
   .title3{
-    font-size: 20px;
+    font-size: 1rem;
   }
 
   .balloon1-right , .balloon1-left{
@@ -741,6 +785,11 @@ font-size: 20px;
 
   .centermoji{
     font-size: 35px;
+    line-height: 130px;
+  }
+
+  .backimg {
+    height: auto;
   }
   
   .moji{
@@ -778,7 +827,7 @@ font-size: 20px;
     display: flex;
     align-items: center;
     color: white;
-    font-size: 19px;
+    font-size: .9rem;
   }
 
   .btn-gradient-radius {
@@ -810,21 +859,18 @@ font-size: 20px;
   }
 
   .text01 {
-    width: 50%; 
-    font-size: 30px;
+    width: 100%; 
+    font-size: 1rem;
     color:white;
     position: relative;
-    margin-left: 2rem;
-    writing-mode:vertical-lr;
+    /* writing-mode:vertical-lr; */
+    display: flex;
+    align-items: center;
   }
-  
-  .text01 p {
-    /* writing-mode: vertical-rl; */
-    margin: 0 auto;
-  }
+
   
   .text01 > p > span {
-    font-size: 5rem;
+    font-size: 2rem;
     font-weight: 700;
     font-family: "ヒラギノ角ゴ ProN W3", HiraKakuProN-W3, 游ゴシック, "Yu Gothic", メイリオ, Meiryo, Verdana, Helvetica, Arial, sans-serif;
   }

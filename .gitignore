@@ -113,3 +113,6 @@ sw.*
 
 # Go workspace file
 go.work
+
+# air produces this directory
+tmp

@@ -12,24 +12,16 @@ RUN go mod download
 COPY . .
 
 # アプリケーションのビルド
-RUN go build -gcflags="all=-N -l" -o main
-
-RUN go install github.com/air-verse/air@latest
+RUN go build -o main
 
 # 実行ステージ
-FROM golang:1.22.2 as runtime
+FROM gcr.io/distroless/base as runtime
 
 # 作業ディレクトリの設定
-WORKDIR /app
+WORKDIR /main
 
 # ビルドステージから実行可能ファイルをコピー
 COPY --from=builder /app/main .
-COPY --from=builder /app/.env .
-COPY --from=builder /app/web/template ./web/template
-COPY --from=builder /app/web/static ./web/static
-
-COPY --from=builder /go/bin/air /usr/local/bin/
-COPY --from=builder /app/.air.toml /app/.air.toml
 
 # アプリケーションの実行
-CMD ["air", "-c", ".air.toml"]
+CMD ["./main"]

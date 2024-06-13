@@ -1,0 +1,24 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+cmd = "go build -o ./tmp/main ."
+bin = "tmp/main"
+full_bin = "APP_ENV=dev APP_USER=air ./tmp/main"
+include_ext = ["go"]
+exclude_dir = ["assets", "tmp", "vendor"]
+exclude_file = ["air.toml"]
+follow_symlink = true
+include_dir_recursive = ["."]
+delay = 1000
+stop_on_error = true
+
+[log]
+color = true
+time = false
+
+[open_browser]
+enable = false
+
+[open_browser.args]
+url = "http://localhost:8080"

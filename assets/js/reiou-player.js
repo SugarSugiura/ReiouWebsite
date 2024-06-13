@@ -70,7 +70,7 @@ export class ShogiBoard extends LitElement {
     }
 
     shogi-player-wc::part(root) {
-      --sp_board_color: goldenrod;
+      --sp_board_color: #b58863;
       --sp_board_piece_size: 1.0;
     }
 

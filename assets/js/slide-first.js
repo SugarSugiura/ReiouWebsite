@@ -119,7 +119,10 @@ export class SlideFirst extends LitElement {
   
 
   @media screen and (max-width: 500px) {
-    
+    .img-text-container {
+      width: 100vw;
+      font-size: 2rem;
+    }
 
   }
 

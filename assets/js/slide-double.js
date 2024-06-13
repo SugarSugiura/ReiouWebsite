@@ -117,7 +117,7 @@ export class SlideDouble extends LitElement {
     }
 
     .slide-img > div > img {
-      max-width: 100vw;
+      max-width: calc(100vw - 100px);
       width: auto;
       height: calc(100% - (var(--imgnum-txt-size)*1.6) - 1rem);
     }

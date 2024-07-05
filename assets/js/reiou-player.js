@@ -612,8 +612,8 @@ export class ShogiBoard extends LitElement {
         elem.style.display = "block";
         this.human_side = "none";
       }
-      if (this.max_line_num[this.max_chapter_num] == this.turn_ma) {
-        this.shadowRoot.getElementById("return-init-page").style.display = "block;"
+      if (this.max_line_num[this.max_chapter_num] == this.turn_max) {
+        this.shadowRoot.getElementById("return-init-page").style.display = "block"
         console.log("終わり");
       }
 

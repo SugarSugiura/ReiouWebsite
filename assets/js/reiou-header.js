@@ -41,6 +41,7 @@ export class ReiouHeader extends LitElement {
   }
   a {
     text-decoration: none;
+    color: #333;
   }
   
   * {
@@ -175,6 +176,19 @@ export class ReiouHeader extends LitElement {
   #menu3 {
     border-left:1px solid;
     border-right:1px solid;
+  }
+
+  .login-container {
+    flex-basis: 10%;
+  }
+
+  .login-container > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    text-align: center;
+    line-height: 60px;
   }
 
   .login {
@@ -507,7 +521,7 @@ export class ReiouHeader extends LitElement {
       <div></div>
       <div class="header_container">
         <div class="site-title">
-          <a href="http://reioushogi.jp/"><img src="https://reioushogi.jp/assets/img/logo/reiou_logo_3.jpg" alt="REIOU"></a>
+          <a href="http://reioushogi.jp/"><img src="https://reioushogi.jp/assets/img/logo/logo_blue_letter.png" alt="REIOU"></a>
         </div>
         <nav id="navi" class="pc-area">
           <ul class="menu active">
@@ -538,9 +552,14 @@ export class ReiouHeader extends LitElement {
             <!--<li><a href="#">お問い合わせ</a></li>-->
           </ul>
         </nav>
-        <div style="flex-basis: 10%;" class="login">
+        <!-- <div style="flex-basis: 10%;" class="login">
           <a href="http://localhost:8000/login">
             <span>ログイン</sapn>
+          </a>
+        </div> -->
+        <div class="login-container">
+          <a href="#">
+            <span>ログイン・新規登録</sapn>
           </a>
         </div>
       </div>

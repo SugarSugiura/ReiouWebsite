@@ -296,8 +296,8 @@ export class ReiouFooter extends LitElement {
           <h3 class="footer-title">サポート</h3>
             <ul class="menu-list">
               <li><a href="https://reioushogi.jp/assets/html/company-info.html">運営会社</a></li>
-              <li><a href="https://reioushogi.jp/assets/html/policy.html" >利用規約</a></li>
-              <li><a href="#">プライバシーポリシー</a></li>
+              <li><a href="https://reioushogi.jp/assets/html/terms.html" >利用規約</a></li>
+              <li><a href="https://reioushogi.jp/assets/html/policy.html">プライバシーポリシー</a></li>
               <li><a href="https://reioushogi.jp/assets/img/specifiedCommercial.pdf">特定商取引法に関する表記</a></li>
           </ul>
         </section>

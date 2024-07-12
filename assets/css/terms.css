@@ -57,6 +57,12 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
+h1, h2, h3 {
+  font-weight: bold;
+  color: #2b546a;
+  letter-spacing: .04em;
+}
+
 p, span, pre {
   color: #8491a5;
   font-size: 1rem;
@@ -79,30 +85,53 @@ li {
     list-style: none;
 }
 
-.policy-container, .privacy-policy-container-anti-easylist-cookie-list {
-  background-color: #fff;
-  padding: 32px 0;
-  font-family: "AvenirNext", "Lato", "Hirago KakuGothic ProN", Meiryo, sans-serif;
+.u-pb50 {
+  padding-bottom: 50px;
 }
 
-.policy-inner, .privacy-policy-inner {
-  width: 70%;
+.u-pt50 {
+  padding-top: 50px;
+}
+
+.policy-contents {
+  width: 90%;
+  max-width: 960px;
   margin: 0 auto;
 }
 
 .markdown-parsed-content *:first-child {
   margin-top: 0;
 }
+.markdown-parsed-content p {
+  font-size: .875rem;
+}
+
+.markdown-parsed-content ul {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
 .markdown-parsed-content h1 {
   font-size: 2rem;
   margin: 16px 0;
 }
 
-.markdown-parsed-content p {
-  font-size: .875rem;
+.policy-contents-explain {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: dotted 3px #53bbb4;
+  border-radius: 5px;
+  padding: 10px;
+  color: #53bbb4;
+  font-weight: normal;
+  line-height: 30px;
 }
 
 .markdown-parsed-content h2 {
   font-size: 1.5rem;
   margin: 12px 0;
 }
+

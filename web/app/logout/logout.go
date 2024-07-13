@@ -3,6 +3,7 @@
 package logout
 
 import (
+	"github.com/gin-contrib/sessions"
 	"net/http"
 	"net/url"
 	"os"
@@ -12,6 +13,7 @@ import (
 
 // Handler for our logout.
 func Handler(ctx *gin.Context) {
+	session := sessions.Default(ctx)
 	logoutUrl, err := url.Parse("https://" + os.Getenv("AUTH0_DOMAIN") + "/v2/logout")
 	if err != nil {
 		ctx.String(http.StatusInternalServerError, err.Error())
@@ -23,7 +25,7 @@ func Handler(ctx *gin.Context) {
 		scheme = "https"
 	}
 
-	returnTo, err := url.Parse(scheme + "://" + ctx.Request.Host)
+	returnTo, err := url.Parse(scheme + "://" + ctx.Request.Host + "/login")
 	if err != nil {
 		ctx.String(http.StatusInternalServerError, err.Error())
 		return
@@ -34,7 +36,14 @@ func Handler(ctx *gin.Context) {
 	parameters.Add("client_id", os.Getenv("AUTH0_CLIENT_ID"))
 	logoutUrl.RawQuery = parameters.Encode()
 
-	// todo: cookieの削除
+	session.Clear()
+	session.Options(sessions.Options{
+		MaxAge: -1,
+	})
+	if err := session.Save(); err != nil {
+		ctx.String(http.StatusInternalServerError, "Failed to logout: %v", err)
+		return
+	}
 
 	ctx.Redirect(http.StatusTemporaryRedirect, logoutUrl.String())
 }

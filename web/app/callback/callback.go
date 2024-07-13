@@ -14,7 +14,7 @@ import (
 	"github.com/SugarSugiura/ReiouWebsite/platform/authenticator"
 )
 
-const sessionIDKey = "session_id"
+//const SessionIDKey = "session_id"
 
 // Handler for our callback.
 func Handler(auth *authenticator.Authenticator, userService userPkg.UserService) gin.HandlerFunc {
@@ -40,12 +40,12 @@ func Handler(auth *authenticator.Authenticator, userService userPkg.UserService)
 		// IDトークンからユーザー情報を取得
 		var profile map[string]interface{}
 		if err := idToken.Claims(&profile); err != nil {
-			println("Failed to get user profile: %v", err)
+			log.Printf("Failed to get user profile: %v", err)
 			ctx.String(http.StatusInternalServerError, "Failed to get user profile: %v", err)
 			return
 		}
 
-		log.Printf("profile: %v", profile)
+		log.Printf("profile in callback: %v", profile)
 
 		email, ok := profile["email"].(string)
 		if !ok {
@@ -56,12 +56,14 @@ func Handler(auth *authenticator.Authenticator, userService userPkg.UserService)
 		// ユーザーが存在するか確認
 		user, err := userService.GetUserByEmail(ctx, email)
 		if err != nil {
-			log.Fatalf("Failed to get user by email: %v", err)
+			log.Printf("Failed to get user by email: %v", err)
+			ctx.String(http.StatusInternalServerError, "Failed to get user by email: %v", err)
+			return
 		}
 
 		if user == nil {
 			// ユーザーが存在しない場合、新規作成
-			log.Printf("profile: %v", profile)
+			log.Printf("User is being created. profile: %v", profile)
 			p := userPkg.User{
 				ID:    uuid.NewString(),
 				Email: email,
@@ -69,14 +71,16 @@ func Handler(auth *authenticator.Authenticator, userService userPkg.UserService)
 			}
 			user, err = userService.CreateUser(ctx, p)
 			if err != nil {
+				log.Printf("Failed to create user: %v", err)
 				ctx.String(http.StatusInternalServerError, "Failed to create user: %v", err)
 				return
 			}
 		}
 
 		// ユーザー情報をセッションに保存
-		session.Set(sessionIDKey, user.ID)
+		session.Set(userPkg.SessionIDKey, user.ID)
 		if err := session.Save(); err != nil {
+			log.Printf("Failed to save session: %v", err)
 			ctx.String(http.StatusInternalServerError, "Failed to save session: %v", err)
 			return
 		}

@@ -557,7 +557,7 @@ export class ReiouHeader extends LitElement {
             <span>ログイン</sapn>
           </a>
         </div> -->
-        <div class="login-container pc-area">
+        <div class="login-container pc-area" style="flex-basis: 10%;">
           <a href="#">
             <span>ログイン・新規登録</sapn>
           </a>

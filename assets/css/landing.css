@@ -682,7 +682,7 @@ font-size: 20px;
   color: var(--sub-color);
 }
 
-.flex_test-box {
+.plan-box {
   background-color: #bed0ff;     /* 背景色指定 */
   padding:  1rem;             /* 余白指定 */
   display: flex;
@@ -691,18 +691,40 @@ font-size: 20px;
   gap: 1rem;
 }
 
-.flex_test-item {
+.plan-item {
   padding: 10px;
   color:  #fff;               /* 文字色 */
   border-radius:  5px;        /* 角丸指定 */
-  width: 20%;                 /* 幅指定 */
+  width: 25%;                 /* 幅指定 */
+}
+.plan-item > h1 {
+  font-size: 2rem;
+  margin: 4rem 0 2rem 0;
+}
+
+.plan-sub {
+  margin: 0 0 2rem 0;
+  font-size: 1.5rem;
+}
+
+.plan-item > span {
+  font-size: 1.5rem;
+}
+
+.plan-item {
+  text-align: center;
+}
+
+.price-text {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
  
-.flex_test-item:nth-child(1) {
+.plan-item:nth-child(1) {
   background-color:  #2196F3; /* 背景色指定 */
 }
  
-.flex_test-item:nth-child(2) {
+.plan-item:nth-child(2) {
   /*font-family: NSimSun;*/
   background-color:  #4CAF50; /* 背景色指定 */
 }
@@ -881,13 +903,35 @@ font-size: 20px;
     display: inline-block;
     color: #fff;
     font-size: 3vw;
-}
+  }
 
-  .flex_test-item {
+  .plan-box {
+    flex-direction: column;
+  }
+
+  .plan-item {
     padding: 10px;
     color:  #fff;               /* 文字色 */
     border-radius:  5px;        /* 角丸指定 */
-    width: 40%;                 /* 幅指定 */
+    width: 100%;                 /* 幅指定 */
+  }
+
+  .plan-item > h1 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .plan-sub {
+    margin: 0 0 2rem 0;
+  }
+  
+  .plan-item {
+    text-align: center;
+  }
+  
+  .price-text {
+    font-size: 2rem;
+    margin-bottom: 1rem;
   }
 
   .text01 {

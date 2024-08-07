@@ -7,216 +7,325 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="assets/css/reset.css">
       <link rel="stylesheet" href="assets/css/font.css">
-      <link rel="stylesheet" href="assets/css/style.css">
-      <link rel="stylesheet" href="assets/css/footer.css">  <!--上記と同様にフッターファイルも分けた-->
+      <link rel="stylesheet" href="assets/css/landing.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
       <!--JQuery読み込み-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://unpkg.com/gsap@3.9.0/dist/gsap.min.js"></script>
+      <script src="https://unpkg.com/gsap@3.9.0/dist/ScrollTrigger.min.js"></script>
     </head>
 
     <body>
-      <reiou-header></reiou-header>
-      </header>
-      <div id="top-title" class="wrapper">
-        <a  href="assets/html/shogi-flow.html" style="margin: 0 auto">
-          <div class="top-container">
-            <div class="top-left" style="flex-basis: 40%;">
-              <h2 class="article-subtitle">
-                駒の動かし方
-                
-                ここにちょっとした説明を書く
-              </h2>
-            </div>
-            <div class="top-right" style="flex-basis:60%; width: -webkit-fill-available;">
-              <!-- <h2 class="article-title">初心者はこちらから！！！</h2> -->
-              <div class="logo">
-                <div>
-                  <div class="logo-text logo-blue" style="text-align: center;">
-                    将棋のルール
-                  </div>
-                </div>
-              </div>
-      
-              <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-      
-              <!-- <div id="app">{{ message }}</div> -->
-      
-              <!-- <script>
-                const {createApp} = Vue
-      
-                createApp({
-                  data() {
-                    return {
-                      message: '将棋盤をここに表示する'
-                    }
-                  }
-                }).mount('#app')
-              </script> -->
-              <!--吹き出しはじまり-->
-              <!-- <div class="balloon5">
-                <div class="faceicon">
-                  <img src="img/45fu.png">
-                </div>
-                <div class="chatting">
-                  <div class="says">
-                    <p>自分に合った戦法を選ぼう</p>
-                  </div>
-                </div>
-              </div> -->
-              <!--吹き出し終わり-->
-            </div>
-          </div>  
-        </a>
-      </div>
-      <!--上にタイトルをつけたいならこれをいれた方がいいか-->
-      <div class="list-title-container">
-        <span class="list-title">・戦法一覧</span>
-      </div>
-      <main>
-        <div id="top" class="wrapper">
-          <ul class="product-list">
-            <li>
-              <div>
-                <a href="assets/html/aigakari/aigakari.html">
-                  <div class="logo">
-                    <div>
-                      <div class="logo-text logo-blue">
-                        相掛かり戦法
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-list-title">
-                    <p>【居飛車】</p>
-                    <p>相掛かり戦法</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li>
-              <div>
-                <a href="assets/html/yokofudori/yokofudori.html">
-                  <div class="logo">
-                    <div>
-                      <div class="logo-text logo-red">
-                        横歩取り戦法
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-list-title">
-                    <p>【居飛車】</p>
-                    <p>横歩取り戦法</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li>
-              <div>
-                <a href="assets/html/kakugawari/kakugawari.html">
-                  <div class="logo">
-                    <div>
-                      <div class="logo-text logo-green">
-                        角換わり戦法
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-list-title">
-                    <p>【居飛車】</p>
-                    <p>角換わり戦法</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li>
-              <div>
-                <a href="assets/html/yagura/yagura.html">
-                  <div class="logo">
-                    <div>
-                      <div class="logo-text logo-yellow">
-                        矢倉戦法
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-list-title">
-                    <p>【居飛車】</p>
-                    <p>矢倉戦法</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li>
-              <div>
-                <a href="assets/html/sankenbisya/sankenbisya.html">
-                  <div class="logo">
-                    <div>
-                      <div class="logo-text logo-lightBlue">
-                        三間飛車戦法
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-list-title">
-                    <p>【振り飛車】</p>
-                    <p>三間飛車戦法</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li>
-              <div>
-                <a href="assets/html/shikenbisya/shikenbisya.html">
-                  <div class="logo">
-                    <div>
-                      <div class="logo-text logo-orange">
-                        四間飛車戦法
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-list-title">
-                    <p>【振り飛車】</p>
-                    <p>四間飛車戦法</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li>
-              <div>
-                <a href="assets/html/nakabisya/nakabisya.html">
-                  <div class="logo">
-                    <div>
-                      <div class="logo-text logo-pink">
-                        中飛車戦法
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product-list-title">
-                    <p>【振り飛車】</p>
-                    <p>中飛車戦法</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li style="opacity:0; pointer-events:none">
-              <div>
-                <a href="aigakari.html">
-                  <img src="assets/img/main1.jpg" alt="">
-                  <div class="product-list-title">
-                    <p>【居飛車】</p>
-                    <p>相掛かり戦法</p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            
-          </ul>
+      <header class="landing-header">
+        <div class="landing-header-container">
+          <div class="landing-header-left">
+            <img src="assets/img/logo/logo_blue_letter.png">
+          </div>
+          <div class="landing-header-right">
+            <a href="http://localhost:8000/login" class="landing-login">ログイン</a>
+            <a>無料会員登録</a>
+          </div>
         </div>
-        <div style="width:100px; margin:0 auto">
-          <!-- <a class="link-text" href="index.html#koma-move">View More</a> -->
-          <!--View Moreを押下するとさらに戦法一覧が表示される、productsのmoreから表示できるとなおよい-->
+      </header>
+     
+
+      <div class="titleback1">
+        <div class="title-container">
+          <div class="text01">
+            <p>誰でも<span>確実</span>に<br><span>効率的</span>に<br>初心者から始める将棋学習</p>
+          </div>
+          <div class="title-letter">
+            <p >令王将棋教室</p>
+          </div>
+        </div>
+      </div>
+
+      <main class="mainback1">
+
+        <div class="register">
+          <div>
+            <!-- <p>アカウント登録はこちら<a href="../login" class="btn-gradient-radius">新規登録/ログイン</a></p> -->
+            <!-- <p>アカウント登録はこちら</p>
+            <div class="f1">
+              <div class="button_solid013">
+                <a href="../login">新規登録/ログイン</a>
+              </div>
+            </div> -->
+          </div>
+          <div class="f1">
+            <p  class="freemoji">アカウント登録はこちらから</p>
+          </div>
+          <div class="f2">
+            <a href="#" class="btn-gradient-radius">新規登録/ログイン</a>
+          </div>
+        </div>
+        <div class="tween-up">
+          <div class="titleback2">
+            <h1 class="title3">棋力が伸び悩んでいませんか？</h1>
+          </div>
+          <div class="textback">
+            <div class="titleback4">
+              <div>
+                <div class="balloon1-right">
+                  <div class="hukidasi2">
+                   <p>
+                    勉強の仕方が<br>わからない
+                  </p>
+                  </div>
+                </div>
+                <div>
+                  <div class="balloon1-right">
+                    <div class="hukidasi2">
+                      <p>学校が忙しい</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="titleback3-1">
+              <img style="width: 100%;" src="assets/img/nayami.jpg">
+            </div>
+            <div class="titleback3">
+              <div>
+                <div class=balloon1-left>
+                  <div class="hukidasi2">
+                    <p>
+                      スキマ時間で勉強したい
+                    </p>
+                  </div>
+                </div>
+                <div >
+                  <div class="balloon1-left">
+                    <div class="hukidasi2">
+                      <p>仕事が忙しい</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
+
+        <!-- <div class="titleback2">
+          <h1 class="title3">将棋についてこう思ってませんか？</h1>
+        </div>
+        <div class="textback">
+          <div class="titleback4">
+            <div>
+              <div class="balloon1-right">
+                <div class="hukidasi2">
+                 <p>そもそも駒の動かし方が
+                 <br>わからない</p>
+                </div>
+              </div>
+              <div>
+                <div class="balloon1-right">
+                  <div class="hukidasi2">
+                    <p>将棋って難しそう</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="titleback3-1">
+            <img style="width: 100%;" src="../img/nayami.jpg">
+          </div>
+          <div class="titleback3">
+            <div>
+              <div class=balloon1-left>
+                <div class="hukidasi2">
+                 <p>強くなりたいけど、
+                 <br>どうすればいいかわからない</p>
+                </div>
+              </div>
+              <div >
+                <div class="balloon1-left">
+                  <div class="hukidasi2">
+                    <p>藤井聡太に勝ちたい</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+          <div class="titleback2">
+            <h1 class="title3 card">令王ならそんな悩みもすぐ解決します！！</h1>
+          </div>
+        </div>
+        <div class="backimg">
+          <!-- <h1 class="centermoji">令王で出来ること</h1> -->
+          <h1 class="centermoji">令王なら</h1>
+        </div>
+
+        <div class="contentsback">  
+          <!-- <div class="contents">
+            <div class="set tween-right">
+              <div class="moji">
+                <h1 class="border_">定石学習</h1>
+                <p>将棋の駒の動かし方から有段者まで勉強でき、プロ棋士、奨励会、全国優勝者などの令王メンバー解説付き！</p>
+              </div> 
+              <div class = "learn_img"> 
+                <img style="width: 500px;" src="../img/IMG_0704.jpg"> 
+              </div>
+            </div>
+            <div class="set tween-left">
+              <div class = "souchan_img">
+                <img style="width: 500px;" src="../img/souchan.jpg"> 
+              </div>
+              <div class="moji">
+                <h2 class="border_">プロ棋士の将棋観戦</h2>
+                <p>プロの対局を奨励会、アマ強豪が解説いたします。
+                <br>話題の棋譜をその場の様子、棋士の考えを言語化しわかりやすく表現します。
+                </p>
+              </div>
+            </div>
+            <div class="set tween-right">
+              <div class="moji">
+                <h1 class="border_">指導対局</h1>
+                <p>令王メンバーの個人にあった丁寧な指導対局を行います。
+                <br>棋力upコースでは指導対局に加えて棋譜添削や詰将棋の課題を出題し目標棋力まで全力でお手伝いいたします。</p>
+              </div> 
+              <div class = "shidou_img">
+                <img style="width: 500px;" src="../img/shidou.png">
+              </div>
+            </div>
+            <div class="set tween-left">
+              <div class = "jouseki_img">
+                <img style="width: 500px;" src="../img/jouseki3.jpg">
+              </div>
+              <div class="moji">
+                <h1 class="border_">詰将棋</h1>
+                <p>初心者向けの簡単な問題から、上級者向けの難しい問題まで幅広くあります。
+                <br>詰将棋を解くだけでなく、詰将棋を作ることもできます。</p>
+              </div>
+            </div>
+          </div> -->
+
+
+          <!-- <div class="contents">
+            <div class="set tween-right">
+              <div class="moji">
+                <h1 class="border_">令王将棋教室</h1>
+                <p>将棋道場や従来の方法と比較してコスト面や効果を実感できます。</p>
+              </div> 
+              <div class = "learn_img"> 
+                <img style="width: 500px;" src="../img/IMG_0704.jpg"> 
+              </div>
+            </div>
+            <div class="set tween-left">
+              <div class = "souchan_img">
+                <img style="width: 500px;" src="../img/souchan.jpg"> 
+              </div>
+              <div class="moji">
+                <h2 class="border_">定跡学習</h2>
+                <p>
+                  将棋の駒の動かし方から有段者まで勉強でき、プロ棋士、奨励会、全国優勝者などの令王メンバー解説付き！
+                </p>
+              </div>
+            </div>
+            <div class="set tween-right">
+              <div class="moji">
+                <h1 class="border_">なぜ見放題なのに価格が安いの？</h1>
+                <p>私たちは動画作成におけるスキルや指導の技術を持っているため<br>より需要のある講座を無駄なく作成することができます。</p>
+              </div> 
+              <div class = "shidou_img">
+                <img style="width: 500px;" src="../img/shidou.png">
+              </div>
+            </div>
+            <div class="set tween-left">
+              <div class = "jouseki_img">
+                <img style="width: 500px;" src="../img/jouseki3.jpg">
+              </div>
+              <div class="moji">
+                <h1 class="border_">最短で効率よく学べる将棋教室</h1>
+                <p>家で学べるためお気軽に始められます。<br>ルール学習から学べるため、初心者の方でも今すぐ開始できます。</p>
+              </div>
+            </div>
+          </div> -->
+          
+          <div class="contents-container">
+            <ul>
+              <li>
+                <h2>令王将棋教室</h2>
+                <p>将棋道場や従来の方法と比較して<br>コストが安く学習でき、定跡の確認なども<br>簡単にでき、効果を実感できます。</p>
+                <img src="assets/img/ranking1.jpg">
+              </li>
+              <li>
+                <h2>定跡学習</h2>
+                <p>将棋の駒の動かし方から有段者まで勉強でき<br>プロ棋士、奨励会、全国優勝者などの<br>令王メンバー解説付き！</p>
+                <img src="assets/img/ranking1.jpg">
+              </li>
+              <li>
+                <h2>なぜ価格が安いの？</h2>
+                <p>私たちはに動画作成のスキルや指導の技術を<br>持っており、より需要のある講座を無駄なく<br>作成することができます。</p>
+                <img src="assets/img/ranking1.jpg">
+              </li>
+              <li>
+                <h2>最短で効率良く</h2>
+                <p>家で学べるためお気軽に始められます。<br>ルール学習から学べるため、初心者の方でも<br>今すぐ開始できます。</p>
+                <img src="assets/img/ranking1.jpg">
+              </li>
+              <li class="hide-item">
+                <h2>最短で効率よく学べる将棋教室</h2>
+                <p>家で学べるためお気軽に始められます。<br>ルール学習から学べるため、初心者の方でも<br>今すぐ開始できます。</p>
+                <img src="assets/img/ranking1.jpg">
+              </li>
+              <li class="hide-item">
+                <h2>最短で効率よく学べる将棋教室</h2>
+                <p>家で学べるためお気軽に始められます。<br>ルール学習から学べるため、初心者の方でも<br>今すぐ開始できます。</p>
+                <img src="assets/img/ranking1.jpg">
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="acount">
+          <!-- <div>
+            <h1 class="actext">アカウント登録はこちらから
+            <br>無料で作成できます</h1>
+          </div>
+          <div class="display: block;">「令王」はいつでもどこでも将棋を学べるサービスです。
+            <br>将棋を0から学ぶことができます。
+          </div> -->
+          <div class="acount-text">
+            <span>「令王」はいつでもどこでも<Br>将棋を学べるサービス！</span>
+          </div>
+          <!-- <div class="f1">
+            <div class="button_solid013">
+              <a href="../login">新規登録/ログイン</a>
+            </div>
+          </div> -->
+          <div class="f2">
+            <a href="#" class="btn-gradient-radius">新規登録/ログイン</a>
+          </div>
+        </div>
+
+        <div class="backcolor5">
+          <div class="plan">
+            <h1>選べる2つのプラン</h1>
+          </div>
+          <div class="plan-box">
+            <div class="plan-item">
+              <h1 style="text-align: center;">プラン名１</h1>
+              <p class="plan-sub">説明</p>
+              <span>サブ見出し</span>
+              <p class="price-text">金額</p>
+            </div>
+            <div class="plan-item">
+              <h1 style="text-align: center;">プラン名２</h1>
+              <p class="plan-sub">説明</p>
+              <span>サブ見出し</span>
+              <p class="price-text">金額</p>
+            </div>
+          </div> 
         </div>
       </main>
       <reiou-footer></reiou-footer>
       <script src="assets/js/main.js"></script>
       <script type="module" src="assets/js/reiou-header.js"></script>
       <script type="module" src="assets/js/reiou-footer.js"></script>
+      <script src="assets/js/landing.js"></script>
+      <!-- <script src="assets/js/header.js"></script> -->
     </body>
 </html>
-

@@ -285,7 +285,7 @@ export class ReiouFooter extends LitElement {
         <section class="item service">
           <h3 class="footer-title">サービス</h3>
           <ul class="service-list">
-            <li><a href="assets/html/landing.html">トップページ</a></li>
+            <li><a href="https://reioushogi.jp/assets/html/home.html"> ホームへ</a></li>
             <li><a href="REIOUunnei.html">コース一覧</a></li>
             <li><a href="mailto:sugarrennraku@gmail.com?subject=お仕事のご依頼">Q&A</a></li>
             <li><a href="otoiawase">お問い合わせ</a></li>

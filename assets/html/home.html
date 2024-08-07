@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+    <meta charset="utf-8">
+    <head>
+      <title>令王</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../css/reset.css">
+      <link rel="stylesheet" href="../css/font.css">
+      <link rel="stylesheet" href="../css/style.css">
+      <link rel="stylesheet" href="../css/footer.css">  <!--上記と同様にフッターファイルも分けた-->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+      <!--JQuery読み込み-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+      <reiou-header></reiou-header>
+      </header>
+      <div id="top-title" class="wrapper">
+        <a  href="../html/shogi-flow.html" style="margin: 0 auto">
+          <div class="top-container">
+            <div class="top-left" style="flex-basis: 40%;">
+              <h2 class="article-subtitle">
+                駒の動かし方
+                
+                ここにちょっとした説明を書く
+              </h2>
+            </div>
+            <div class="top-right" style="flex-basis:60%; width: -webkit-fill-available;">
+              <!-- <h2 class="article-title">初心者はこちらから！！！</h2> -->
+              <div class="logo">
+                <div>
+                  <div class="logo-text logo-blue" style="text-align: center;">
+                    将棋のルール
+                  </div>
+                </div>
+              </div>
+      
+              <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+      
+              <!-- <div id="app">{{ message }}</div> -->
+      
+              <!-- <script>
+                const {createApp} = Vue
+      
+                createApp({
+                  data() {
+                    return {
+                      message: '将棋盤をここに表示する'
+                    }
+                  }
+                }).mount('#app')
+              </script> -->
+              <!--吹き出しはじまり-->
+              <!-- <div class="balloon5">
+                <div class="faceicon">
+                  <img src="img/45fu.png">
+                </div>
+                <div class="chatting">
+                  <div class="says">
+                    <p>自分に合った戦法を選ぼう</p>
+                  </div>
+                </div>
+              </div> -->
+              <!--吹き出し終わり-->
+            </div>
+          </div>  
+        </a>
+      </div>
+      <!--上にタイトルをつけたいならこれをいれた方がいいか-->
+      <div class="list-title-container">
+        <span class="list-title">・戦法一覧</span>
+      </div>
+      <main>
+        <div id="top" class="wrapper">
+          <ul class="product-list">
+            <li>
+              <div>
+                <a href="../html/aigakari/aigakari.html">
+                  <div class="logo">
+                    <div>
+                      <div class="logo-text logo-blue">
+                        相掛かり戦法
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>相掛かり戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a href="../html/yokofudori/yokofudori.html">
+                  <div class="logo">
+                    <div>
+                      <div class="logo-text logo-red">
+                        横歩取り戦法
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>横歩取り戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a href="../html/kakugawari/kakugawari.html">
+                  <div class="logo">
+                    <div>
+                      <div class="logo-text logo-green">
+                        角換わり戦法
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>角換わり戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a href="../html/yagura/yagura.html">
+                  <div class="logo">
+                    <div>
+                      <div class="logo-text logo-yellow">
+                        矢倉戦法
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>矢倉戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a href="../html/sankenbisya/sankenbisya.html">
+                  <div class="logo">
+                    <div>
+                      <div class="logo-text logo-lightBlue">
+                        三間飛車戦法
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-list-title">
+                    <p>【振り飛車】</p>
+                    <p>三間飛車戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a href="../html/shikenbisya/shikenbisya.html">
+                  <div class="logo">
+                    <div>
+                      <div class="logo-text logo-orange">
+                        四間飛車戦法
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-list-title">
+                    <p>【振り飛車】</p>
+                    <p>四間飛車戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <a href="../html/nakabisya/nakabisya.html">
+                  <div class="logo">
+                    <div>
+                      <div class="logo-text logo-pink">
+                        中飛車戦法
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-list-title">
+                    <p>【振り飛車】</p>
+                    <p>中飛車戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li style="opacity:0; pointer-events:none">
+              <div>
+                <a href="aigakari.html">
+                  <img src="../img/main1.jpg" alt="">
+                  <div class="product-list-title">
+                    <p>【居飛車】</p>
+                    <p>相掛かり戦法</p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        <div style="width:100px; margin:0 auto">
+          <!-- <a class="link-text" href="index.html#koma-move">View More</a> -->
+          <!--View Moreを押下するとさらに戦法一覧が表示される、productsのmoreから表示できるとなおよい-->
+        </div>
+      </main>
+      <reiou-footer></reiou-footer>
+      <script src="../js/main.js"></script>
+      <script type="module" src="../js/reiou-header.js"></script>
+      <script type="module" src="../js/reiou-footer.js"></script>
+    </body>
+</html>
+

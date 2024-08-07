@@ -526,27 +526,27 @@ export class ReiouHeader extends LitElement {
         <nav id="navi" class="pc-area">
           <ul class="menu active">
             <li class="single">
-              <a href="index.html" id="menu1" class="single_text">学習</a>
+              <a href="#" id="menu1" class="single_text">学習</a>
               <ul class="menu-second">
                 <li><a href="index.html">戦法定跡</a></li>
-                <li><a href="quiz.html">次の一手</a></li>
-                <li><a href="tsume-shogi.html">詰将棋</a></li>
-                <li><a href="assets/html/slide.html">YouTube動画</a></li>
+                <!--<li><a href="quiz.html">次の一手</a></li>-->
+                <!--<li><a href="tsume-shogi.html">詰将棋</a></li>-->
+                <li><a href="https://www.youtube.com/@SugarSaiShogi">YouTube動画</a></li>
               </ul>
             </li>
             <li class="single active">
-              <a href="test.html" id="menu2" class="single_text">記事<!----></a>
+              <a href="#" id="menu2" class="single_text">記事<!----></a>
               <ul class="menu-second">
-                <li><a href="joseki-slide.html">棋戦情報</a></li>
-                <li><a href="quiz.html">プロの棋譜解説</a></li>
-                <li><a href="assets/html/slide.html">動画ページ</a></li>
+                <li><a href="https://shogimatome.com/">棋戦情報</a></li>
+                <li><a href="https://www.youtube.com/@ShogiNewsSokuho">プロの棋譜解説</a></li>
+                <!--<li><a href="assets/html/slide.html">動画ページ</a></li>-->
               </ul>
             </li>
             <li class="single active">
-              <a href="sousa.html" id="menu3" class="single_text">紹介<!----></a>
+              <a href="#" id="menu3" class="single_text">紹介<!----></a>
             </li>
             <li class="single active">
-              <a href="create-tume-shogi.html" id="menu4" class="single_text">プラン<!---->
+              <a href="http://reioushogi.jp/" id="menu4" class="single_text">プラン<!---->
               </a>
             </li>
             <!--<li><a href="#">お問い合わせ</a></li>-->
@@ -643,6 +643,33 @@ export class ReiouHeader extends LitElement {
         }
       });
     }
+  }
+
+  action() {
+    var Accordion = function(el, multiple) {
+      this.el = el || {};
+      this.multiple = multiple || false;
+  
+      // Variables privadas
+      var links = this.el.find('.link');
+      // Evento
+      links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+    }
+  
+    Accordion.prototype.dropdown = function(e) {
+      var $el = e.data.el;
+        $this = $(this),
+        $next = $this.next();
+  
+      $next.slideToggle();
+      $this.parent().toggleClass('open');
+  
+      if (!e.data.multiple) {
+        $el.find('.phone-submenu').not($next).slideUp().parent().removeClass('open');
+      };
+    }	
+  
+    var accordion = new Accordion($('#phone-menu'), false);
   }
 
 // $(function(){

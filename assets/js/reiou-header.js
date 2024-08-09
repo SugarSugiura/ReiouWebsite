@@ -498,6 +498,69 @@ export class ReiouHeader extends LitElement {
     .sub-open {
       display: block;
     }
+
+    h2 {
+      text-align: center;
+      margin: 20px auto;
+      color: #fff;
+    }
+
+    .accordion-menu {
+      width: 100%;
+      max-width: 350px;
+      margin: 60px auto 20px;
+      background: #fff;
+      border-radius: 4px;
+    }
+    .accordion-menu li.open .dropdown {
+      color: #CDDC39;
+      .fa-chevron-down {
+        transform: rotate(180deg);
+      }
+    }
+    .accordion-menu li:last-child .dropdown {
+      border-bottom: 0;
+    }
+    .dropdown {
+      cursor: pointer;
+      display: block;
+      padding: 15px 15px 15px 45px;
+      font-size: 18px;
+      border-bottom: 1px solid #ccc;
+      color: #212121;
+      position: relative;
+      transition: all 0.4s ease-out;
+      i {
+        position: absolute;
+        top: 17px;
+        left: 16px;
+      }
+      .fa-chevron-down {
+        right: 12px;
+        left: auto;
+      }
+    }
+
+    .phone-submenu {
+      display: none;
+      background: #C8E6C9;
+      li {
+        border-bottom: 1px solid #B6B6B6;
+      }
+    }
+
+    .phone-submenu a {
+      display: block;
+      color: #727272;
+      padding: 12px 12px 12px 45px;
+      transition: all 0.4s ease-out;
+      &:hover {
+        background-color: #CDDC39;
+        color: #fff;
+      }
+    }
+
+
   }
 	`
 	static properties = {
@@ -565,41 +628,49 @@ export class ReiouHeader extends LitElement {
       </div>
 
       <nav id="navi-phone" class="phone-area">
-          <ul id="phone-menu" class="phone-menu">
-            <li>
-              <div class="link">
-                学習<i class="fa"></i>
-              </div>
-              <ul class="phone-submenu">
-                  <li><a href="index.html">戦法定跡</a></li>
-                  <li><a href="quiz.html">次の一手</a></li>
-                  <li><a href="tsume-shogi.html">詰将棋</a></li>
-                  <li><a href="assets/html/slide.html">YouTube動画</a></li>
-              </ul>
-            </li>
-            <li>
-              <div class="link">
-                記事<i class="fa"></i>
-              </div>
-              <ul class="phone-submenu">
-                <li><a href="joseki-slide.html">棋戦情報</a></li>
-                <li><a href="quiz.html">プロの棋譜解説</a></li>
-                <li><a href="assets/html/video.html">動画ページ</a></li>
-              </ul>
-            </li>
-            <li>
-              <div class="link">
-                紹介<i class="fa"></i>
-              </div>
-            </li>
-            <li>
-              <div class="link">
-                プラン<i class="fa"></i>
-              </div>
-            </li>
-            <!-- <li><a href="#">お問い合わせ</a></li> -->
-          </ul>
-        </nav>
+        <ul id="phonemenu" class="phone-menu">
+          <li>
+            <div class="dropdown" @click=${this.accordionFunc}><i class="fa fa-road" aria-hidden="true"></i> History
+              <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </div>
+            <ul class="phone-submenu">
+              <li><a href="#">History book 1</a></li>
+              <li><a href="#">History book 2</a></li>
+              <li><a href="#">History book 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="dropdown" @click=${this.accordionFunc}><i class="fa fa-paper-plane" aria-hidden="true"></i> Fiction
+              <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </div>
+            <ul class="phone-submenu">
+              <li><a href="#">Fiction book 1</a></li>
+              <li><a href="#">Fiction book 2</a></li>
+              <li><a href="#">Fiction book 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="dropdown" @click=${this.accordionFunc}><i class="fa fa-quote-left" aria-hidden="true"></i> Fantasy
+              <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </div>
+            <ul class="phone-submenu">
+              <li><a href="#">Fantasy book 1</a></li>
+              <li><a href="#">Fantasy book 2</a></li>
+              <li><a href="#">Fantasy book 3</a></li>
+            </ul>
+          </li>
+          <li>
+            <div class="dropdown" @click=${this.accordionFunc}><i class="fa fa-motorcycle" aria-hidden="true"></i> Action
+              <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </div>
+            <ul class="phone-submenu">
+              <li><a href="#">Action book 1</a></li>
+              <li><a href="#">Action book 2</a></li>
+              <li><a href="#">Action book 3</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
         
         <div class="toggle_btn" @click="${this.toggle_phone_header}">
           <span></span>
@@ -644,6 +715,31 @@ export class ReiouHeader extends LitElement {
       });
     }
   }
+
+  accordionFunc() {
+    let nextElement = this.shadowRoot.querySelector('.phone-submenu');
+    if (nextElement) {
+        // サブメニューをトグル
+        nextElement.classList.toggle('open');
+        nextElement.style.display = nextElement.style.display === 'block' ? 'none' : 'block';
+
+        // 現在の要素の親要素をトグル
+        let parentElement = nextElement.parentElement;
+        if (parentElement) {
+            parentElement.classList.toggle('open');
+        }
+
+        // 他のメニューを閉じる
+        let otherSubmenus = this.shadowRoot.querySelectorAll('.phone-submenu');
+        otherSubmenus.forEach(submenu => {
+            if (submenu !== nextElement) {
+                submenu.style.display = 'none';
+                submenu.parentElement.classList.remove('open');
+            }
+        });
+    }
+  }
+
 
   action() {
     var Accordion = function(el, multiple) {
